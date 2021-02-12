@@ -5,7 +5,7 @@ import Sidebar from './layouts/Sidebar';
 import Content from './layouts/Content';
 import Footer from './layouts/Footer';
 
-class App extends React.Component {
+class Login extends React.Component {
    render() {
       return (
          <div className="auth-main">
@@ -55,4 +55,4 @@ class App extends React.Component {
       );
    }
 } 
-export default App;
+export default Login;
