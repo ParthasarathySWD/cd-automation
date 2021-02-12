@@ -16,12 +16,12 @@ require('./bootstrap');
 require('./components/Example');
 
 
-// import React from 'react';
-// import ReactDOM from 'react-dom';
+import React from 'react';
+import ReactDOM from 'react-dom';
 
-// // import Login from './Login';
-// import Main from './Main';
+// import Login from './Login';
+import Main from './Main';
 
-// if (document.getElementById('body')) {
-//     ReactDOM.render(<Main />, document.getElementById('body'));
-// }
+if (document.getElementById('body')) {
+    ReactDOM.render(<Main />, document.getElementById('body'));
+}
