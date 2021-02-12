@@ -1855,9 +1855,10 @@ __webpack_require__(/*! ./bootstrap */ "./resources/js/bootstrap.js");
 
 __webpack_require__(/*! ./components/Example */ "./resources/js/components/Example.js"); // import React from 'react';
 // import ReactDOM from 'react-dom';
-// import Layout from './Main';
-// if (document.getElementById('user')) {
-//     ReactDOM.render(<Layout />, document.getElementById('user'));
+// // import Login from './Login';
+// import Main from './Main';
+// if (document.getElementById('body')) {
+//     ReactDOM.render(<Main />, document.getElementById('body'));
 // }
 
 /***/ }),

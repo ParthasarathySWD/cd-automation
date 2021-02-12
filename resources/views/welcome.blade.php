@@ -12,7 +12,7 @@
 <body>
 
     <!-- React root DOM -->
-    <div id="Login">
+    <div id="body" class="theme-green">
 
     </div>
     <!-- React JS -->

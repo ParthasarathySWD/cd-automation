@@ -4,6 +4,7 @@
  * building robust, powerful web applications using React + Laravel.
  */
 
+
 require('./bootstrap');
 
 /**
@@ -18,8 +19,9 @@ require('./components/Example');
 // import React from 'react';
 // import ReactDOM from 'react-dom';
 
-// import Layout from './Main';
+// // import Login from './Login';
+// import Main from './Main';
 
-// if (document.getElementById('user')) {
-//     ReactDOM.render(<Layout />, document.getElementById('user'));
+// if (document.getElementById('body')) {
+//     ReactDOM.render(<Main />, document.getElementById('body'));
 // }
