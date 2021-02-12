@@ -41,7 +41,16 @@ window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 // });
 // 
 
-// require('../js/bundles/libscripts.bundle.js');
-// require('../js/bundles/vendorscripts.bundle.js');
-// require('../js/bundles/mainscripts.bundle.js');
+require('../js/bundles/libscripts.bundle.js');
+require('../js/bundles/apexcharts.bundle.js');
+// require('../js/bundles/c3.bundle.js');
+// require('../js/bundles/chartist.bundle.js');
+// require('../js/bundles/datatablescripts.bundle.js');
+require('../js/bundles/easypiechart.bundle.js');
+require('../js/bundles/flotscripts.bundle.js');
+require('../js/bundles/jvectormap.bundle.js');
+require('../js/bundles/knob.bundle.js');
+require('../js/bundles/libscripts.bundle.js');
+require('../js/bundles/mainscripts.bundle.js');
+require('../js/bundles/vendorscripts.bundle.js');
 // require('../js/themejs/index.js');

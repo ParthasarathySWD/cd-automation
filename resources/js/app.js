@@ -15,11 +15,11 @@ require('./bootstrap');
 require('./components/Example');
 
 
-import React from 'react';
-import ReactDOM from 'react-dom';
+// import React from 'react';
+// import ReactDOM from 'react-dom';
 
-import Layout from './Main';
+// import Layout from './Main';
 
-if (document.getElementById('user')) {
-    ReactDOM.render(<Layout />, document.getElementById('user'));
-}
+// if (document.getElementById('user')) {
+//     ReactDOM.render(<Layout />, document.getElementById('user'));
+// }
