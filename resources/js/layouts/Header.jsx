@@ -10,7 +10,7 @@ class Header extends React.Component {
          <div className="container-fluid">
             <div className="navbar-left">
                <div className="navbar-btn">
-                  <a href="index.html"><img alt="Mooli Logo" className="img-fluid logo"/></a>
+                  <a href="index.html"><img src="../../images/icon.svg" alt="Mooli Logo" className="img-fluid logo"/></a>
                   <button type="button" className="btn-toggle-offcanvas"><i className="fa fa-align-left"></i></button>
                </div>
                <form id="navbar-search" className="navbar-form search-form">
@@ -40,7 +40,7 @@ class Header extends React.Component {
                            <li>
                               <a href="#!">
                                  <div className="media">
-                                    <img className="media-object " alt=""/>
+                                    <img src="../../images/xs/avatar1.jpg" className="media-object " alt=""/>
                                     <div className="media-body">
                                        <span className="name">Dr. James Wert <small className="float-right font-12">Just now</small></span>
                                        <span className="message">Update GitHub</span>
@@ -51,7 +51,7 @@ class Header extends React.Component {
                            <li>
                               <a href="#!">
                                  <div className="media">
-                                    <img className="media-object" alt=""/>
+                                    <img src="../../images/xs/avatar2.jpg" className="media-object" alt=""/>
                                     <div className="media-body">
                                        <span className="name">Dr. Folisise Chosielie <small className="float-right font-12">12min ago</small></span>
                                        <span className="message">New Messages</span>
@@ -73,7 +73,7 @@ class Header extends React.Component {
                            <li>
                               <a href="#!">
                                  <div className="media mb-0">
-                                    <img className="media-object" alt=""/>
+                                    <img src="../../images/xs/avatar3.jpg" className="media-object" alt=""/>
                                     <div className="media-body">
                                        <span className="name">Dr. Debra Stewart <small className="float-right font-12">2hr ago</small></span>
                                        <span className="message">Fix Bug</span>
@@ -131,12 +131,12 @@ class Header extends React.Component {
                      <li className="dropdown language-menu hidden-xs">
                         <a href="#!" className="dropdown-toggle icon-menu" data-toggle="dropdown"><i className="fa fa-language"></i></a>
                         <div className="dropdown-menu language_widget mt-0">
-                           <a className="dropdown-item pt-2 pb-2" href="#!"><img  alt="US English" /> US English</a>
-                           <a className="dropdown-item pt-2 pb-2" href="#!"><img  alt="UK English" /> UK English</a>
+                           <a className="dropdown-item pt-2 pb-2" href="#!"><img src="../../images/flag/us.svg" alt="US English" /> US English</a>
+                           <a className="dropdown-item pt-2 pb-2" href="#!"><img src="../../images/flag/gb.svg" alt="UK English" /> UK English</a>
                            <div className="dropdown-divider"></div>
-                           <a className="dropdown-item pt-2 pb-2" href="#!"><img  alt="Russian" /> Russian</a>
-                           <a className="dropdown-item pt-2 pb-2" href="#!"><img  alt="Arabic" /> Arabic</a>
-                           <a className="dropdown-item pt-2 pb-2" href="#!"><img  alt="French" /> French</a>
+                           <a className="dropdown-item pt-2 pb-2" href="#!"><img src="../../images/flag/russia.svg" alt="Russian" /> Russian</a>
+                           <a className="dropdown-item pt-2 pb-2" href="#!"><img src="../../images/flag/arabia.svg" alt="Arabic" /> Arabic</a>
+                           <a className="dropdown-item pt-2 pb-2" href="#!"><img src="../../images/flag/france.svg" alt="French" /> French</a>
                         </div>
                      </li>
                      <li><a href="#!" className="right_toggle icon-menu" title="Right Menu"><i className="fa fa-comments-o"></i></a></li>

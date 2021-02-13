@@ -24,7 +24,7 @@ class RightSideBar extends React.Component {
                                 <ul className="right_chat list-unstyled mb-0 animation-li-delay">
                                     <li className="online">
                                         <a href="#!" className="media">
-                                            <img className="media-object"  alt=""/>
+                                            <img src="../../images/xs/avatar4.jpg" className="media-object"  alt=""/>
                                             <div className="media-body">
                                                 <span className="name">Louis Henry <small className="text-muted font-12">10 min</small></span>
                                                 <span className="message">How do you do?</span>
@@ -38,7 +38,7 @@ class RightSideBar extends React.Component {
                                 <ul className="right_chat list-unstyled mb-0 animation-li-delay">
                                     <li className="online">
                                         <a href="#!" className="media">
-                                            <img className="media-object"  alt=""/>
+                                            <img src="../../images/xs/avatar1.jpg" className="media-object"  alt=""/>
                                             <div className="media-body">
                                                 <span className="name">Apolog Hospital<small className="text-muted font-12">10 min</small></span>
                                                 <span className="message">How do you do?</span>
@@ -52,7 +52,7 @@ class RightSideBar extends React.Component {
                                 <ul className="right_chat list-unstyled mb-0 animation-li-delay">
                                     <li className="offline">
                                         <a href="#!" className="media">
-                                            <img className="media-object " alt=""/>
+                                            <img src="../../images/xs/avatar2.jpg" className="media-object " alt=""/>
                                             <div className="media-body">
                                                 <span className="name">Dr. John Smith <small className="text-muted"><i className="fa fa-star"></i></small></span>
                                                 <span className="message">johnsmith@info.com</span>

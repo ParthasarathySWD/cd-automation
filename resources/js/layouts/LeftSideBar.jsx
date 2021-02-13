@@ -9,13 +9,13 @@ class LeftSideBar extends React.Component {
          <header>
             <a href="#!" className="menu_toggle"><i className="fa fa-angle-left"></i></a>
             <div className="navbar-brand">
-               <a href="index.html"><img alt="Mooli Logo" className="img-fluid logo"/><span>Mooli-Hospital</span></a>
+               <a href="index.html"><img src="../../images/icon.svg" alt="Mooli Logo" className="img-fluid logo"/><span>Mooli-Hospital</span></a>
                <button type="button" className="btn-toggle-offcanvas btn btn-sm float-right"><i className="fa fa-close"></i></button>
             </div>
             <div className="sidebar-scroll">
                <div className="user-account">
                   <div className="user_div">
-                     <img className="user-photo" alt="User Profile Picture"/>
+                     <img src="../../images/user.png" className="user-photo" alt="User Profile Picture"/>
                   </div>
                   <div className="dropdown">
                      <span>Welcome</span>

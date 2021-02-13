@@ -4,6 +4,7 @@ import Header from './layouts/Header';
 import LeftSideBar from './layouts/LeftSideBar';
 import RightSideBar from './layouts/RightSideBar';
 import Footer from './layouts/Footer';
+import ThemeSetting from './layouts/ThemeSetting';
 
 class Main extends React.Component {
 
@@ -76,9 +77,11 @@ s0.parentNode.insertBefore(s1,s0);
 }
    render() {
       return (
-        <div className="theme-cyan">
+        <div>
             
-            <div className="themesetting"></div>
+            <div className="themesetting">
+              <ThemeSetting/>
+            </div>
             
             
             <div className="overlay"></div>
@@ -91,7 +94,7 @@ s0.parentNode.insertBefore(s1,s0);
               </nav>
                 
                 
-              <div id="left-sidebar" className="sidebar">
+              <div id="left-sidebar" className="sidebar light_active">
                 <LeftSideBar/>
               </div>
                 
