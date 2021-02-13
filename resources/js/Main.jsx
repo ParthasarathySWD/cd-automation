@@ -1,10 +1,12 @@
-import React from 'react'
+import React from 'react';
+import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom';
 
-import Header from './layouts/Header';
-import LeftSideBar from './layouts/LeftSideBar';
-import RightSideBar from './layouts/RightSideBar';
-import Footer from './layouts/Footer';
-import ThemeSetting from './layouts/ThemeSetting';
+import Header from './ThemeLayouts/Header';
+import LeftSideBar from './ThemeLayouts/LeftSideBar';
+import RightSideBar from './ThemeLayouts/RightSideBar';
+import Footer from './ThemeLayouts/Footer';
+import ThemeSetting from './ThemeLayouts/ThemeSetting';
+import Routes from './Routes';
 
 class Main extends React.Component {
 
@@ -77,6 +79,7 @@ s0.parentNode.insertBefore(s1,s0);
 }
    render() {
       return (
+        <Router>
         <div>
             
             <div className="themesetting">
@@ -108,15 +111,15 @@ s0.parentNode.insertBefore(s1,s0);
 
                 
               <div id="main-content">
-                <div className="container-fluid">
-                  <div className="block-header"></div>
-                  <div className="row clearfix"></div>
+                <div className="container-fluid" id="ContentBody">
+                  <Routes/>
                 </div>
               </div>
                 
             </div>
         </div>
-        );
+        </Router>
+      );
     }
 }
 export default Main;
