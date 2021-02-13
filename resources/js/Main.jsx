@@ -6,6 +6,7 @@ import LeftSideBar from './ThemeLayouts/LeftSideBar';
 import RightSideBar from './ThemeLayouts/RightSideBar';
 import Footer from './ThemeLayouts/Footer';
 import ThemeSetting from './ThemeLayouts/ThemeSetting';
+import StickyNote from './ThemeLayouts/StickyNote';
 import Routes from './Routes';
 
 class Main extends React.Component {
@@ -107,7 +108,9 @@ s0.parentNode.insertBefore(s1,s0);
               </div>
                 
                 
-              <div className="sticky-note"></div>
+              <div className="sticky-note">
+                <StickyNote/>
+              </div>
 
                 
               <div id="main-content">
