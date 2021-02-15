@@ -18,7 +18,8 @@ import ReactDOM from 'react-dom';
 
 // import Login from './Login';
 import Main from './Main';
+import ToDo from './ToDo';
 
 if (document.getElementById('body')) {
-    ReactDOM.render(<Main />, document.getElementById('body'));
+    ReactDOM.render(<ToDo />, document.getElementById('body'));
 }

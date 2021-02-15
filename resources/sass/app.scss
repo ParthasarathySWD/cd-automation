@@ -8,6 +8,14 @@
 @import '~bootstrap/scss/bootstrap';
 @import 'fontawesome-4.7/scss/font-awesome';
 
+// Main Scss
 @import 'main';
 
-@import 'mdbreact/dist/css/mdb.css'
+//mdb React
+@import 'mdbreact/dist/css/mdb.css';
+
+//Theme Over Right
+@import 'overright';
+
+//Order Entry
+@import 'OrderEntry/OrderEntry';

@@ -1,6 +1,8 @@
 import React from 'react';
 
 class AddUser extends React.Component{
+	componentDidMount(){
+    }
 	render() {
 		return (
 			<div>
@@ -20,10 +22,156 @@ class AddUser extends React.Component{
                     </div>
 				</div>
 				<div className="row clearfix">
-					<div>
-						<h5>Form</h5>
-					</div>
-				</div>
+                    <div className="col-lg-12 col-md-12 col-sm-12">
+                        <div className="card">
+                            <div className="body">
+                                <div className="row clearfix">
+                                    <div className="col-sm-6">
+                                        <div className="form-group c_form_group">
+                                            <label>First Name <span className="text-danger">*</span></label>
+                                            <input className="form-control" type="text" defaultValue=""/>
+                                        </div>
+                                    </div>
+                                    <div className="col-sm-6">
+                                        <div className="form-group c_form_group">
+                                            <label>Last Name <span className="text-danger">*</span></label>
+                                            <input className="form-control" type="text" defaultValue=""/>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div className="row clearfix">
+                                    <div className="col-sm-3">
+                                        <div className="form-group c_form_group">
+                                            <label>Date of Birth <span className="text-danger">*</span></label>
+                                            <input type="text" data-provide="datepicker" data-date-autoclose="true" className="form-control" placeholder=""/>
+                                        </div>
+                                    </div>
+                                    <div className="col-sm-3">
+                                        <div className="form-group c_form_group">
+                                            <label>Phone <span className="text-danger">*</span></label>
+                                            <input className="form-control" type="text" defaultValue=""/>
+                                        </div>
+                                    </div>
+                                    <div className="col-sm-6">
+                                        <div className="form-group c_form_group">
+                                            <label>Enter Your Email <span className="text-danger">*</span></label>
+                                            <input className="form-control" type="email" defaultValue=""/>
+                                        </div>
+                                    </div>
+                                    
+                                    <div className="col-lg-12">
+                                        <input type="file" className="dropify"/>
+                                    </div>
+                                    <div className="col-sm-12">
+                                        <div className="form-group mt-3">
+                                            <textarea rows="4" className="form-control no-resize" placeholder="Please type what you want..."></textarea>
+                                        </div>
+                                    </div>
+                                    <div className="col-sm-12">
+                                        <button type="submit" className="btn btn-sm btn-primary">Submit</button>
+                                        <button type="submit" className="btn  btn-sm btn-danger">Cancel</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div className="row clearfix">
+                    <div className="col-md-12">
+                        <div className="card">
+                            <div className="header">
+                                <h3>Doctors Account Information</h3>
+                            </div>
+                            <div className="body">
+                                <div className="row clearfix">
+                                    <div className="col-sm-12">
+                                        <div className="form-group c_form_group">
+                                            <label>User Name <span className="text-danger">*</span></label>
+                                            <input className="form-control" type="text" defaultValue=""/>
+                                        </div>
+                                    </div>
+                                    <div className="col-sm-6">
+                                        <div className="form-group c_form_group">
+                                            <label>Password <span className="text-danger">*</span></label>
+                                            <input className="form-control" type="password" defaultValue=""/>
+                                        </div>
+                                    </div>
+                                    <div className="col-sm-6">
+                                        <div className="form-group c_form_group">
+                                            <label>Confirm Password <span className="text-danger">*</span></label>
+                                            <input className="form-control" type="password" defaultValue=""/>
+                                        </div>
+                                    </div>
+                                    <div className="col-sm-12">
+                                        <button type="submit" className="btn btn-sm btn-primary">Submit</button>
+                                        <button type="submit" className="btn  btn-sm btn-danger">Cancel</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div className="row clearfix">
+                    <div className="col-md-12">
+                        <div className="card">
+                            <div className="header">
+                                <h3>Doctor Social Media Info</h3>
+                            </div>
+                            <div className="body">
+                                <div className="row clearfix">
+                                    <div className="col-md-6">
+                                        <div className="form-group c_form_group">
+                                            <label>Facebook</label>
+                                            <div className="input-group">
+                                                <div className="input-group-prepend">
+                                                    <span className="input-group-text"><i className="fa fa-facebook"></i></span>
+                                                </div>
+                                                <input type="text" className="form-control" placeholder=""/>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div className="col-md-6">
+                                        <div className="form-group c_form_group">
+                                            <label>Twitter</label>
+                                            <div className="input-group">
+                                                <div className="input-group-prepend">
+                                                    <span className="input-group-text"><i className="fa fa-twitter"></i></span>
+                                                </div>
+                                                <input type="text" className="form-control" placeholder=""/>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div className="col-md-6">
+                                        <div className="form-group c_form_group">
+                                            <label>Linkedin</label>
+                                            <div className="input-group">
+                                                <div className="input-group-prepend">
+                                                    <span className="input-group-text"><i className="fa fa-linkedin"></i></span>
+                                                </div>
+                                                <input type="text" className="form-control" placeholder=""/>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div className="col-md-6">
+                                        <div className="form-group c_form_group">
+                                            <label>Instagram</label>
+                                            <div className="input-group">
+                                                <div className="input-group-prepend">
+                                                    <span className="input-group-text"><i className="fa fa-instagram"></i></span>
+                                                </div>
+                                                <input type="text" className="form-control" placeholder=""/>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div className="col-sm-12">
+                                        <button type="submit" className="btn btn-sm btn-primary">Submit</button>
+                                        <button type="submit" className="btn  btn-sm btn-danger">Cancel</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
 			</div>
 		);
 	}

@@ -20931,3 +20931,16 @@ hr {
   *zoom: 1;
   *display: block;
 }
+
+.card {
+  box-shadow: unset !important;
+}
+
+.navbar {
+  box-shadow: unset !important;
+}
+
+.scroll-div {
+  overflow-y: scroll;
+  height: 450px;
+}
