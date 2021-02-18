@@ -1,6 +1,23 @@
 import React from 'react';
 
 class ThemeSetting extends React.Component{
+	constructor(props){
+		super(props);
+
+		this.state = {
+			'NotesList': []
+		}	
+	}
+
+	componentDidMount(){
+		this.getNotesList();
+	}
+
+	getNotesList() {
+		axios.get('/users', {headers:{"Content-Type" : "application/json"}}).then((response) => {
+			console.log(response);
+		})
+	}
 	render(){
 		return (
 			<div>
