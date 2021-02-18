@@ -1,9 +1,9 @@
 import React from 'react';
 
-import Header from './layouts/Header';
-import Sidebar from './layouts/Sidebar';
-import Content from './layouts/Content';
-import Footer from './layouts/Footer';
+// import Header from './layouts/Header';
+// import Sidebar from './layouts/Sidebar';
+// import Content from './layouts/Content';
+// import Footer from './layouts/Footer';
 
 class Login extends React.Component {
    render() {

@@ -20944,3 +20944,72 @@ hr {
   overflow-y: scroll;
   height: 450px;
 }
+
+.main-container {
+  width: 100%;
+  height: 100%;
+  background-size: auto;
+  background-repeat: no-repeat;
+}
+
+.child {
+  float: left;
+}
+
+#header {
+  top: 0.5em;
+  margin-left: 100px;
+  margin-top: 100px;
+}
+
+#login-container {
+  width: 400px;
+  height: 350px;
+  padding-left: 10px;
+  margin-top: 70px;
+  border-radius: 1px;
+}
+
+.head {
+  height: 50px;
+}
+
+.lead {
+  color: chocolate;
+  font-size: 14px;
+  padding-top: 20px;
+  padding-left: 10px;
+  font-weight: 400;
+}
+
+.sign-link {
+  border: none;
+  position: absolute;
+  right: 0.2em;
+  top: 1em;
+  background: none;
+  color: steelblue;
+}
+
+#signup-btn {
+  background-color: chocolate;
+  border-radius: 35px;
+  height: 60px;
+  color: white;
+  font-weight: 400;
+}
+
+.form-control {
+  border-right: none !important;
+  border-left: none !important;
+  border-top: none !important;
+}
+
+.signup-text {
+  padding-left: 10px;
+  padding-top: 20px;
+}
+
+.field-label {
+  font-size: 14px;
+}

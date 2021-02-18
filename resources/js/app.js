@@ -16,10 +16,10 @@ require('./bootstrap');
 import React from 'react';
 import ReactDOM from 'react-dom';
 
-// import Login from './Login';
-import Main from './Main';
+import LoginPage from './components/LoginComponents/LoginPage';
+//import Main from './Main';
 // import ToDo from './ToDo';
 
-if (document.getElementById('body')) {
-    ReactDOM.render(<Main />, document.getElementById('body'));
+if (document.getElementById('login')) {
+    ReactDOM.render(<LoginPage />, document.getElementById('login'));
 }
