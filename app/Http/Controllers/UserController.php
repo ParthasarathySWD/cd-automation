@@ -26,7 +26,7 @@ class UserController extends Controller
      */
     public function create()
     {
-        //
+        echo '<pre>';print_r('create');exit;
     }
 
     /**
@@ -41,7 +41,7 @@ class UserController extends Controller
         $validation = Validator::make($request->input(), [
             'FirstName' => 'required',
             'LastName' => 'required',
-            'Email' => 'required|email|unique:users',
+            'Email' => 'required|Email|unique:mUsers',
         ]);
 
         if ($validation->fails()) {
@@ -56,7 +56,7 @@ class UserController extends Controller
                 'UserName' => $request->input('UserName'),
                 'Password' => md5($request->input('Password')),
                 'RoleUID' => $request->input('RoleUID'),
-                'CreatedByDateTime' => $request->input('CreatedByDateTime'),
+                'CreatedByDateTime' => date('Y-m-h H:m:s', strtotime($request->input('CreatedByDateTime'))),
                 'ModifiedByDateTime' => NULL
             ]);
 
@@ -97,7 +97,7 @@ class UserController extends Controller
      */
     public function edit(User $user)
     {
-        //
+        echo '<pre>';print_r('edit');exit;
     }
 
     /**
@@ -107,9 +107,23 @@ class UserController extends Controller
      * @param  \App\Models\User  $user
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, User $user)
+    public function update(Request $request, $id)
     {
-        //
+        $UpdateDetails = User::find($id);
+
+        if ($UpdateDetails->update($request->all())) {
+            return response()->json([
+                'Method' => 'Update', 
+                'Request State Response' => '200',
+                'Message' => 'Update Successfully'
+            ]);
+        } else {
+            return response()->json([
+                'Method' => 'Update', 
+                'Request State Response' => '500',
+                'Message' => 'Update Faild'
+            ]);
+        }
     }
 
     /**
@@ -120,6 +134,6 @@ class UserController extends Controller
      */
     public function destroy(User $user)
     {
-        //
+       echo '<pre>';print_r('destroy');exit;
     }
 }
