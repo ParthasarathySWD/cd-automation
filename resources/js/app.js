@@ -17,6 +17,8 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 
 import LoginPage from './components/LoginComponents/LoginPage';
+import LoginMain from './LoginMain';
+// import ForgotPassword from './components/LoginComponents/ForgotPassword';
 //import Main from './Main';
 // import ToDo from './ToDo';
 
