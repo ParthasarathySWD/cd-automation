@@ -6,6 +6,7 @@ import React, {
     useCallback
   } from 'react';
 import {useDropzone} from 'react-dropzone';
+import SelectBox from '../../CommonComponents/MultiSelect';
 
 const baseStyle = {
     flex: 1,
@@ -21,7 +22,7 @@ const baseStyle = {
     color: '#bdbdbd',
     outline: 'none',
     transition: 'border .24s ease-in-out',
-    margin:'2rem'
+    margin:'1'
   };
   
   const activeStyle = {
@@ -48,17 +49,31 @@ const baseStyle = {
       acceptedFiles
     } = useDropzone();
 
-    const removeFile = (file) => () => {       
+    const removeFile = (file, row) => () => {       
         console.log('removeFile...')        
         acceptedFiles.splice(acceptedFiles.indexOf(file), 1)
         console.log(acceptedFiles)
+        $('#'+row).remove();
     }
 
     const files = acceptedFiles.map((file, i) => (
-        <tr key={file.path} id="row_{i}">
+       
+        <tr key={file.path} id={"Row_"+i}>
             <td>{file.path}</td>
-            <td>{file.size} bytes</td>
-            <td className="text-center"><i className="fa fa-trash-o text-danger" aria-hidden="true" onClick={removeFile(file)}></i></td>
+            <td>
+                <div className="form-group">
+                    {/* <label>Document Type <span className="text-danger">*</span></label> */}
+                    <select className="form-control show-tick">
+                        <option defaultValue="">Document Type</option>
+                        <option value="Prelim CD">Prelim CD</option>
+                        <option value="Tax Certificate">Tax Certificate</option>
+                        <option value="Pay Off">Pay Off</option>
+                        <option value="Title Commitment">Title Commitment</option>
+                        <option value="Closing Instruction">Closing Instruction</option>
+                    </select>
+                </div>
+            </td>
+            <td className="text-center"><i className="fa fa-trash-o text-danger" aria-hidden="true" onClick={removeFile(file, "Row_"+i)}></i></td>
         </tr>
     ));
   
@@ -80,14 +95,14 @@ const baseStyle = {
           <p>Drag 'n' drop your files here, or click to select files</p>
         </div>
         <aside>
-            {files.length > 0 ? <h5>Selected Files</h5> : <h5></h5>}
+            {files.length > 0 ? <h5 className="pt-2">Selected Files</h5> : <h5></h5>}
             {files.length > 0 ?
                 <div className="table-wrapper-scroll-y my-custom-scrollbar">
-                    <table className="table table-bordered table-striped mb-0">
+                    <table className="table">
                         <thead>
                             <tr>
                                     <th>File Name</th>
-                                    <th>File Size</th>
+                                    <th>Document Types</th>
                                     <th>Action</th>
                             </tr>
                         </thead>
@@ -121,16 +136,48 @@ class OrderEntry extends React.Component{
                                     <div className="col-sm-6">
                                         <div className="row clearfix scroll-div">
                                             <div className="col-md-12">
-                                                <div className="form-group c_form_group">
+                                                <div className="form-group">
                                                     <label>Loan Number <span className="text-danger">*</span></label>
                                                     <input className="form-control" type="text" defaultValue=""/>
                                                 </div>
                                             </div>
+                                            {/* <div className="col-md-12">
+                                                <SelectBox />
+                                            </div>
+                                            <div className="col-sm-12">
+                                                <StyledDropzone />
+                                            </div>
+                                            <div className="col-sm-12">
+                                                <div className="pull-right">
+                                                    <button type="submit" className="btn btn-sm btn-primary">Submit</button>
+                                                    <button type="submit" className="btn  btn-sm btn-danger">Cancel</button>
+                                                </div>
+                                            </div> */}
                                             <div className="col-md-12">
-                                                <div className="form-group c_form_group">
+                                                <div className="form-group">
+                                                    <label>Client <span className="text-danger">*</span></label>
+                                                    <select className="form-control show-tick">
+                                                        <option defaultValue=""></option>
+                                                        <option defaultValue="10">Test</option>
+                                                        <option defaultValue="20">Tech</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                            <div className="col-md-12">
+                                                <div className="form-group">
+                                                    <label>Lender <span className="text-danger">*</span></label>
+                                                    <select className="form-control show-tick">
+                                                        <option defaultValue=""></option>
+                                                        <option defaultValue="10">Test Lender</option>
+                                                        <option defaultValue="20">Title</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                            <div className="col-md-12">
+                                                <div className="form-group">
                                                     <label>Loan Type <span className="text-danger">*</span></label>
                                                     <select className="form-control show-tick">
-                                                        <option defaultValue="">- Loan Type -</option>
+                                                        <option defaultValue=""></option>
                                                         <option defaultValue="10">Closing</option>
                                                         <option defaultValue="20">Title</option>
                                                     </select>
@@ -138,65 +185,14 @@ class OrderEntry extends React.Component{
                                             </div>
 
                                             <div className="col-md-12">
-                                                <div className="form-group c_form_group">
+                                                <div className="form-group">
                                                     <label>Closing Date <span className="text-danger">*</span></label>
                                                     <input className="form-control" type="text" defaultValue=""/>
                                                 </div>
                                             </div>
 
-                                            <div className="col-md-12">
-                                                <div className="form-group c_form_group">
-                                                    <label>Settlement Date <span className="text-danger">*</span></label>
-                                                    <input className="form-control" type="text" defaultValue=""/>
-                                                </div>
-                                            </div>
-
-                                            <div className="col-md-12">
-                                                <div className="form-group c_form_group">
-                                                    <label>Disbursement Date <span className="text-danger">*</span></label>
-                                                    <input className="form-control" type="text" defaultValue=""/>
-                                                </div>
-                                            </div>
-
-                                            <div className="col-md-12">
-                                                <div className="form-group c_form_group">
-                                                    <label>Property Address1 <span className="text-danger">*</span></label>
-                                                    <input className="form-control" type="text" defaultValue=""/>
-                                                </div>
-                                            </div>
-
-                                            <div className="col-md-12">
-                                                <div className="form-group c_form_group">
-                                                    <label>Property Address2 <span className="text-danger">*</span></label>
-                                                    <input className="form-control" type="text" defaultValue=""/>
-                                                </div>
-                                            </div>
-                                            <div className="col-md-12">
-                                                <div className="form-group c_form_group">
-                                                    <label>Zip Code <span className="text-danger">*</span></label>
-                                                    <input className="form-control" type="text" defaultValue=""/>
-                                                </div>
-                                            </div>
-                                            <div className="col-md-12">
-                                                <div className="form-group c_form_group">
-                                                    <label>City <span className="text-danger">*</span></label>
-                                                    <input className="form-control" type="text" defaultValue=""/>
-                                                </div>
-                                            </div>
-                                            <div className="col-md-12">
-                                                <div className="form-group c_form_group">
-                                                    <label>County <span className="text-danger">*</span></label>
-                                                    <input className="form-control" type="text" defaultValue=""/>
-                                                </div>
-                                            </div>
-                                            <div className="col-md-12">
-                                                <div className="form-group c_form_group">
-                                                    <label>State <span className="text-danger">*</span></label>
-                                                    <input className="form-control" type="text" defaultValue=""/>
-                                                </div>
-                                            </div>
                                         </div>
-                                    </div>
+                                    </div>                                            
                                     <div className="col-sm-6">
                                         <div className="row clearfix">
                                             <div className="col-sm-12">
@@ -213,6 +209,7 @@ class OrderEntry extends React.Component{
                                         </div>                                       
                                     </div>
                                 </div>
+                                
                             </div>
                         </div>
                     </div>

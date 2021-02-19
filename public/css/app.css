@@ -20940,9 +20940,12 @@ hr {
   box-shadow: unset !important;
 }
 
-.scroll-div {
-  overflow-y: scroll;
-  height: 450px;
+.form-control {
+  border-right: none !important;
+  border-left: none !important;
+  border-top: none !important;
+  height: 25px !important;
+  padding: 0px !important;
 }
 
 .main-container {

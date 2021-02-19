@@ -19,9 +19,13 @@ import ReactDOM from 'react-dom';
 import LoginPage from './components/LoginComponents/LoginPage';
 import LoginMain from './LoginMain';
 // import ForgotPassword from './components/LoginComponents/ForgotPassword';
-//import Main from './Main';
+import Main from './Main';
 // import ToDo from './ToDo';
 
 if (document.getElementById('login')) {
     ReactDOM.render(<LoginPage />, document.getElementById('login'));
+}
+
+if (document.getElementById('body')) {
+    ReactDOM.render(<Main />, document.getElementById('body'));
 }

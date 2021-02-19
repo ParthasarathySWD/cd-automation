@@ -4,3 +4,11 @@
 .navbar {
     box-shadow: unset !important;
 }
+
+.form-control{
+    border-right: none !important;
+    border-left:none !important;
+    border-top:none !important;
+    height: 25px !important;
+    padding: 0px !important;
+}
