@@ -1,0 +1,78 @@
+.main-container
+{
+    background-color: rgb(255, 255, 255);
+}
+.child-container
+{
+    width:90%;
+    margin-left:60px;
+}
+.myorder-header
+{
+    margin-top: 25px;
+    margin-left:20px;
+}
+.btn-order
+{
+    position:absolute;
+    right: 0.2em;
+    top:1.0em;
+    text-transform: none;
+    /* float:right; */
+}
+.status-row
+{
+    width:900px;
+    margin-left: 20px;
+    margin-top:20px;
+    height:80px;
+}
+.status-val
+{
+    padding-left:10px;
+    padding-top:10px;
+}
+
+.tab-menus
+{
+    margin-top:40px;
+    overflow: hidden;
+    /* border-bottom:thin !important; */
+    /* border-bottom-width:50px !important;
+    border-bottom-color: black; */
+    border-bottom: 1px solid #f0f2f5;
+   
+}
+.tab-menus a:hover,a:active
+{
+    border-top:none !important;
+    border-right:none !important;
+    border-left:none !important;
+    border-bottom: 2px solid#0392cf;
+    border-radius: unset;
+    color:#0392cf;
+ } 
+/* li:hover {
+    color:mediumblue;
+} */
+ul
+{
+    margin-block-start: unset !important;
+    margin-block-end: unset !important;
+    margin-inline-start: unset !important;
+    margin-inline-end: unset !important;
+    padding-inline-start: unset !important;
+}
+.order-table
+{
+    margin-top:20px;
+}
+.icons
+{
+    padding:5px;
+}
+
+.dp
+{
+    margin-right:5px;
+}

@@ -43,7 +43,7 @@ function LoginPage(props) {
                                     
                                     <button type="submit" id="signup-btn" className="btn btn-lg btn-block" ><b>Login</b></button>
                                     <div className="bottom text-center">
-                                        <span className="helper-text m-b-10 text-center"><i className="fa fa-lock"></i> <Link to={'/forgotpassword'}>Forgot password?</Link></span>
+                                        <span className="helper-text m-b-10 text-center"><i className="fa fa-lock"></i> <Link to="{/forgotpassword}" >Forgot password?</Link></span>
                                         {/* <span>Don't have an account? <a href="page-register.html">Register</a></span> */}
                                     </div> 
                                 </form>
@@ -51,11 +51,11 @@ function LoginPage(props) {
                         </div>
                     </div>
                     
-                </div>
+                </div> 
                 <p className="signup-text">By signing up you agree to our T&C and Privacy Policy </p>
+              
              </div>
         </>
        )
-
 }
 export default LoginPage;

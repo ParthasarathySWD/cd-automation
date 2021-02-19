@@ -10,6 +10,7 @@ import EditUser from "./components/UsersComponents/EditUsers";
 import OrderEntry from "./components/OrderEntryComponents/OrderEntry";
 import Login from "./Login";
 import ForgotPassword from './components/LoginComponents/ForgotPassword';
+import MyOrder from './components/MyOrderPageComponents/MyOrder';
 
 class Routes extends React.Component
 {
@@ -22,7 +23,8 @@ class Routes extends React.Component
                 <Route exact path='/adduser' component={AddUser} />
                 <Route path='/edituser' component={EditUser} />               
                 <Route path='/orderentry' component={OrderEntry} />
-                <Route path='/forgotpassword' component={ForgotPassword} />                 
+                <Route path='/forgotpassword' component={ForgotPassword} />   
+                <Route path='/myorders' component={MyOrder}/>              
             </Switch>
         )
     }
