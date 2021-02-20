@@ -8,6 +8,7 @@ import AllUsers from "./components/UsersComponents/AllUsers";
 import AddUser from "./components/UsersComponents/AddUsers";
 import EditUser from "./components/UsersComponents/EditUsers";
 import OrderEntry from "./components/OrderEntryComponents/OrderEntry";
+import Login from "./Login";
 import ForgotPassword from './components/LoginComponents/ForgotPassword';
 
 class Routes extends React.Component
@@ -16,6 +17,7 @@ class Routes extends React.Component
     {
         return (
             <Switch>
+                <Route exact path='/' component={Login} />
                 <Route exact path='/alluser' component={AllUsers} />
                 <Route exact path='/adduser' component={AddUser} />
                 <Route path='/edituser' component={EditUser} />               

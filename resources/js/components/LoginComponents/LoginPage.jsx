@@ -1,10 +1,20 @@
 import React from 'react';
-import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom';
- 
-class LoginPage extends React.Component {
-    render() {
+import auth from '../../repository/auth';
+
+import { BrowserRouter as Router, Switch, Route, Link, useHistory } from 'react-router-dom';
+function LoginPage(props) {
+    
+    let history = useHistory();
+    function handleSubmit(e){
+        alert();
+    }
+    function clickHandle(){
+        auth.login(function () {
+            props.checkAuth( auth.isAuthenticated );
+        });
+    }
         return(
-         <Router>
+         <>
             <div className="main-container">
                 <div id="header" className="child col-sm-6">
                     <h2 className="heading"><b>CD-Automation</b></h2>
@@ -31,7 +41,8 @@ class LoginPage extends React.Component {
                                         <input type="password" className="form-control" />
                                     </div>
                                     
-                                    <button type="submit" id="signup-btn" className="btn btn-lg btn-block"><b>Login</b></button>
+                                    <button type="button" id="signup-btn" className="btn btn-lg btn-block" onClick={ 
+                                        clickHandle} onSubmit={handleSubmit} ><b>Login</b></button>
                                     <div className="bottom text-center">
                                         <span className="helper-text m-b-10 text-center"><i className="fa fa-lock"></i> <Link to={'/forgotpassword'}>Forgot password?</Link></span>
                                         {/* <span>Don't have an account? <a href="page-register.html">Register</a></span> */}
@@ -44,8 +55,8 @@ class LoginPage extends React.Component {
                 </div>
                 <p className="signup-text">By signing up you agree to our T&C and Privacy Policy </p>
              </div>
-        </Router>
+        </>
        )
-    }
+
 }
 export default LoginPage;

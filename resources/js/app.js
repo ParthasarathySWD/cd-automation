@@ -13,7 +13,8 @@ require('./bootstrap');
  * or customize the JavaScript scaffolding to fit your unique needs.
  */
 
-import React from 'react';
+require('./index.js');
+/* import React from 'react';
 import ReactDOM from 'react-dom';
 
 import LoginPage from './components/LoginComponents/LoginPage';
@@ -29,3 +30,4 @@ if (document.getElementById('login')) {
 if (document.getElementById('body')) {
     ReactDOM.render(<Main />, document.getElementById('body'));
 }
+ */
