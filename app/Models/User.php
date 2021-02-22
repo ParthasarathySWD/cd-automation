@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class User extends Model
 {
-    use HasFactory;
+    use HasApiTokens, HasFactory;
 
     protected $primaryKey = 'UserUID';
     public $timestamps = false;

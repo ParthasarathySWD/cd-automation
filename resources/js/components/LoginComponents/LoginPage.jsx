@@ -6,12 +6,12 @@ function LoginPage(props) {
     
     let history = useHistory();
     function handleSubmit(e){
-        alert();
-    }
-    function clickHandle(){
+        e.preventDefault();
         auth.login(function () {
-            props.checkAuth( auth.isAuthenticated );
+            props.checkAuth(auth.isAuthenticated);
+            history.push('/alluser');
         });
+
     }
         return(
          <>
@@ -29,7 +29,7 @@ function LoginPage(props) {
                                 <hr></hr>
                             </div>
                             <div className="body">
-                                <form className="form-auth-small" action="index.html">
+                                    <form className="form-auth-small" onSubmit={handleSubmit}>
                                 
                                     <div className="form-group ">
                                         <label className="field-label">User Name</label>
@@ -41,8 +41,7 @@ function LoginPage(props) {
                                         <input type="password" className="form-control" />
                                     </div>
                                     
-                                    <button type="button" id="signup-btn" className="btn btn-lg btn-block" onClick={ 
-                                        clickHandle} onSubmit={handleSubmit} ><b>Login</b></button>
+                                    <button type="submit" id="signup-btn" className="btn btn-lg btn-block" ><b>Login</b></button>
                                     <div className="bottom text-center">
                                         <span className="helper-text m-b-10 text-center"><i className="fa fa-lock"></i> <Link to={'/forgotpassword'}>Forgot password?</Link></span>
                                         {/* <span>Don't have an account? <a href="page-register.html">Register</a></span> */}
