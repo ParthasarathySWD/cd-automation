@@ -50,7 +50,7 @@ class OrderEntryController extends Controller
             return response()->json($validation->errors());
         } else {
             $InsertData = new OrderEntry([
-                'OrderNumber' => '12345',
+                'OrderNumber' => $this->GenerateOrderNumber(),
                 'OrderEntryDate' => date('Y-m-d H:m:s', strtotime($request->input('OrderEntryDate'))),
                 'LoanNumer' => $request->input('LoanNumer'),
                 'LoanTypeUID' => $request->input('LoanTypeUID'),
@@ -58,6 +58,7 @@ class OrderEntryController extends Controller
                 'LenderUID' => $request->input('LenderUID'),
                 'ClosingDate' => date('Y-m-d H:m:s', strtotime($request->input('ClosingDate'))),
                 'Status' => 'New',
+                'CreatedByUserUID' => $request->input('CreatedByUserUID'),
                 'CreatedByDateTime' => date('Y-m-d H:m:s')
             ]);
 
@@ -87,6 +88,7 @@ class OrderEntryController extends Controller
                                 'DocumentName' => $NewFileName,
                                 'DocumentTypeUID' => $request->input('DocumentTypeUID'),
                                 'FilePath' => $FilePath,
+                                'CreatedByUserUID' => $request->input('CreatedByUserUID'),
                                 'CreatedByDateTime' => date('Y-m-d H:m:s')
                             ]);
 
@@ -189,4 +191,13 @@ class OrderEntryController extends Controller
     {
         echo '<pre>';print_r('destroy');exit;
     }
+
+    /**
+     * [GenerateOrderNumber description]
+     */
+    function GenerateOrderNumber()
+    {
+        return '12345';
+    }
+    /** end */
 }
