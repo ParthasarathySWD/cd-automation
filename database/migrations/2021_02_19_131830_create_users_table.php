@@ -21,9 +21,11 @@ class CreateUsersTable extends Migration
             $table->string('Email');
             $table->string('UserName');
             $table->string('Password');
-            $table->bigInteger('RoleUID');        
-            $table->dateTime('CreatedByDateTime', $precision = 0)->nullable();
-            $table->dateTime('ModifiedByDateTime', $precision = 0)->nullable();
+            $table->bigInteger('RoleUID');   
+            $table->integer('CreatedByUserUID')->nullable();
+            $table->timestamp('CreatedByDateTime', $precision = 0)->nullable();
+            $table->integer('ModifiedByUserUID')->nullable();
+            $table->timestamp('ModifiedByDateTime', $precision = 0)->nullable();
         });
     }
 

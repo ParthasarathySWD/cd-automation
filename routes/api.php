@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 
 use App\Http\Controllers\NoteController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\OrderEntryController;
 
 /*
 |--------------------------------------------------------------------------
@@ -24,5 +25,6 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 Route::middleware('api')->group(function () {
     Route::resource('/notes', NoteController::class);
     Route::resource('/users', UserController::class);
+    Route::resource('/orderentry', OrderEntryController::class);
 });
 

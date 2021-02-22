@@ -18,9 +18,9 @@ class CreateNotesTable extends Migration
             $table->integer('UserUID');
             $table->longText('Notes');
             $table->integer('CreatedByUserUID')->nullable();
-            $table->dateTime('CreatedByDateTime', $precision = 0)->nullable();
+            $table->timestamp('CreatedByDateTime', $precision = 0)->nullable();
             $table->integer('ModifiedByUserUID')->nullable();
-            $table->dateTime('ModifiedByDateTime', $precision = 0)->nullable();
+            $table->timestamp('ModifiedByDateTime', $precision = 0)->nullable();
         });
     }
 

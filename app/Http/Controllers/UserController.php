@@ -56,7 +56,7 @@ class UserController extends Controller
                 'UserName' => $request->input('UserName'),
                 'Password' => md5($request->input('Password')),
                 'RoleUID' => $request->input('RoleUID'),
-                'CreatedByDateTime' => date('Y-m-h H:m:s', strtotime($request->input('CreatedByDateTime'))),
+                'CreatedByDateTime' => date('Y-m-d H:m:s'),
                 'ModifiedByDateTime' => NULL
             ]);
 
@@ -110,8 +110,11 @@ class UserController extends Controller
     public function update(Request $request, $id)
     {
         $UpdateDetails = User::find($id);
+        $UpdateData = $request->all();
 
-        if ($UpdateDetails->update($request->all())) {
+        $UpdateData['ModifiedByDateTime'] = date('Y-m-d H:m:s');
+        
+        if ($UpdateDetails->update($UpdateData)) {
             return response()->json([
                 'Method' => 'Update', 
                 'Request State Response' => '200',
@@ -132,8 +135,22 @@ class UserController extends Controller
      * @param  \App\Models\User  $user
      * @return \Illuminate\Http\Response
      */
-    public function destroy(User $user)
+    public function destroy($id)
     {
-       echo '<pre>';print_r('destroy');exit;
+       $DeleteUser = User::find($id);
+       if ($DeleteUser->delete()) {
+           
+            return response()->json([
+                'Method' => 'Delete', 
+                'Request State Response' => '200',
+                'Message' => 'Delete Successfully'
+            ]);
+        } else {
+            return response()->json([
+                'Method' => 'Delete', 
+                'Request State Response' => '500',
+                'Message' => 'Delete Faild'
+            ]);
+        }
     }
 }

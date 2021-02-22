@@ -45,7 +45,7 @@ class RoleController extends Controller
         } else{
             $StoreDetails = new Role([
                 'RoleName' => $request->input('RoleName'),
-                'CreatedByDateTime' => date('Y-m-h H:m:s', strtotime($request->input('CreatedByDateTime'))),
+                'CreatedByDateTime' => date('Y-m-d H:m:s', strtotime($request->input('CreatedByDateTime'))),
                 'ModifiedByDateTime' => NULL
             ]);
 
