@@ -7,6 +7,10 @@ import React, {
   } from 'react';
 import {useDropzone} from 'react-dropzone';
 import SelectBox from '../../CommonComponents/MultiSelect';
+import DatePicker from "react-datepicker";
+
+import "react-datepicker/dist/react-datepicker.css";
+
 
 const baseStyle = {
     flex: 1,
@@ -122,6 +126,7 @@ const baseStyle = {
 class OrderEntry extends React.Component{
 	componentDidMount(){
     }
+    
 	render() {
 		return (
 			<div>
@@ -163,7 +168,7 @@ class OrderEntry extends React.Component{
                                                     </select>
                                                 </div>
                                             </div>
-                                            <div className="col-md-12">
+                                            {/* <div className="col-md-12">
                                                 <div className="form-group">
                                                     <label>Lender <span className="text-danger">*</span></label>
                                                     <select className="form-control show-tick">
@@ -172,7 +177,7 @@ class OrderEntry extends React.Component{
                                                         <option defaultValue="20">Title</option>
                                                     </select>
                                                 </div>
-                                            </div>
+                                            </div> */}
                                             <div className="col-md-12">
                                                 <div className="form-group">
                                                     <label>Loan Type <span className="text-danger">*</span></label>
@@ -187,7 +192,9 @@ class OrderEntry extends React.Component{
                                             <div className="col-md-12">
                                                 <div className="form-group">
                                                     <label>Closing Date <span className="text-danger">*</span></label>
-                                                    <input className="form-control" type="text" defaultValue=""/>
+                                                    {/* <input className="form-control" type="text" defaultValue="" /> */}
+                                                    <DatePicker selected={startdate} onChange={date => setStartDate(date)} />
+                                                    
                                                 </div>
                                             </div>
 

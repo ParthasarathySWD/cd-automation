@@ -34,9 +34,11 @@ class LeftSideBar extends React.Component {
                <nav id="left-sidebar-nav" className="sidebar-nav">
                   <ul id="main-menu" className="metismenu animation-li-delay">
                      <li className="header">Hospital</li>
-                     <li className=""><a href="index.html"><i className="fa fa-dashboard"></i> <span>Dashboard</span></a></li>
+                     <li className=""><Link to={'/dashboard'} className="nav-link"><i className="fa fa-dashboard"></i> <span>Dashboard</span></Link></li>
                      <li  className="active"><Link to={'/orderentry'} className="nav-link"><i className="fa fa-external-link-square" aria-hidden="true"></i> <span>Order Entry</span></Link></li>
                      <li  className="active"><Link to={'/myorders'} className="nav-link"><i className="fa fa-list" aria-hidden="true"></i> <span>My Orders</span></Link></li>
+                                          <li  className="active"><Link to={'/orderslist'} className="nav-link"><i className="fa fa-external-link-square" aria-hidden="true"></i> <span>Orders List</span></Link></li>
+
                      <li>
                         <a href="#!" className="has-arrow"><i className="fa fa-users"></i><span>User</span></a>
                         <ul>

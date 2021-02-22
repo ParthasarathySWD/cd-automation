@@ -1,0 +1,22 @@
+.scroll-div{
+    overflow-y: scroll;
+    height: 450px;
+}
+.userlist{
+    list-style: none;
+}
+.loanOrder{
+    color:white;
+}
+.openOrder{
+    background-color: #57b9a9;
+}
+.todayOrder{
+    background-color: #818af9;
+}
+.pendingOrder{
+    background-color: #3490dccc ;
+}
+.closedOrder{
+    background-color: #545050;
+}

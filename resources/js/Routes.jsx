@@ -11,6 +11,8 @@ import OrderEntry from "./components/OrderEntryComponents/OrderEntry";
 import Login from "./Login";
 import ForgotPassword from './components/LoginComponents/ForgotPassword';
 import MyOrder from './components/MyOrderPageComponents/MyOrder';
+import Dashboard from './components/DashboardComponents/Dashboard';
+import OrdersList from './components/OrdersListComponents/OrdersList';
 
 class Routes extends React.Component
 {
@@ -23,8 +25,10 @@ class Routes extends React.Component
                 <Route exact path='/adduser' component={AddUser} />
                 <Route path='/edituser' component={EditUser} />               
                 <Route path='/orderentry' component={OrderEntry} />
-                <Route exact path='/forgotpassword' component={ForgotPassword} />   
-                <Route exact path='/myorders' component={MyOrder}/>              
+                <Route path='/forgotpassword' component={ForgotPassword} />   
+                <Route path='/myorders' component={MyOrder}/>     
+                                <Route path='/dashboard' component={Dashboard} />
+                <Route path='/orderslist' component={OrdersList} />                       
             </Switch>
         )
     }
