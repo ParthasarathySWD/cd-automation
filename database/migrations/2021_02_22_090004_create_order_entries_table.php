@@ -24,6 +24,8 @@ class CreateOrderEntriestable extends Migration
             $table->dateTime('ClosingDate');
             $table->dateTime('CompletedDate')->nullable();
             $table->integer('CompletedByUserUID')->nullable();
+            $table->unsignedBigInteger('StatusUID');
+            $table->foreign('StatusUID')->references('StatusUID')->on('mOrderStatus');
             $table->string('Status');
             $table->integer('CreatedByUserUID')->nullable();
             $table->timestamp('CreatedByDateTime', $precision = 0)->nullable();

@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\OrderEntry;
 use App\Models\OrderEntryFile;
 use App\Models\OrderSetting;
+use App\Models\OrderStatus;
 
 use Illuminate\Support\Facades\Validator;
 
@@ -39,11 +40,12 @@ class OrderEntryController extends Controller
      */
     public function store(Request $request)
     {
+        echo '<pre>';print_r($request->all());exit;
         $validation = Validator::make($request->all(), [
             'LoanNumer' => 'required',
             'CustomerUID' => 'required',
-            'File' => 'required|max:20000',
-            'File.*' => 'mimes:pdf,xlsx,docx,txt,zip'
+            'PrelimFile' => 'required|max:20000|mimes:pdf',
+            // 'File.*' => 'mimes:pdf,xlsx,docx,txt,zip'
         ]);
 
         /** form validation */
@@ -64,7 +66,7 @@ class OrderEntryController extends Controller
                     'CustomerUID' => $request->input('CustomerUID'),
                     'LenderUID' => $request->input('LenderUID'),
                     'ClosingDate' => date('Y-m-d H:m:s', strtotime($request->input('ClosingDate'))),
-                    'Status' => 'New',
+                    'Status' => 1,
                     'CreatedByUserUID' => $request->input('CreatedByUserUID'),
                     'CreatedByDateTime' => date('Y-m-d H:m:s')
                 ]);
@@ -75,37 +77,33 @@ class OrderEntryController extends Controller
                     if (!empty($InsertData->OrderUID)) {
 
                         $data = [];
-                        $FileInsertState = [];
-                        /** check file is exits or not empty */
-                        if($request->hasfile('File'))
-                        {
-                            /**
-                             * Order Document File Processing
-                             * @var $request->file('File')
-                             */
-                            foreach($request->file('File') as $key => $file)
-                            {
-                                $FileName=$file->getClientOriginalName();
+                        $SupportFileInsertState = [];
+                        $PrelimFileInsertState = [];
 
-                                $NewFileName = $FileName;
-                                $FilePath = $file->storeAs('OrderDocuments', $NewFileName);
+                        /** check prelim file is empty or not empty */
+                        if ($request->hsafile('PrelimFile')) {
+                            $PrelimFile = $request->file('PrelimFile');
 
-                                $FileInsertArray = new OrderEntryFile([
-                                    'OrderUID' => $InsertData->OrderUID,
-                                    'DocumentName' => $NewFileName,
-                                    'DocumentTypeUID' => $request->input('DocumentTypeUID'),
-                                    'FilePath' => $FilePath,
-                                    'CreatedByUserUID' => $request->input('CreatedByUserUID'),
-                                    'CreatedByDateTime' => date('Y-m-d H:m:s')
-                                ]);
+                            $FileName=$PrelimFile->getClientOriginalName();
 
-                                if ($FileInsertArray->save()) {
-                                    $FileInsertState['State'] = '200';
-                                } else {
-                                    $FileInsertState['State'] = '500';                              
-                                }
+                            $NewFileName = $FileName;
+                            $FilePath = $PrelimFile->storeAs('OrderDocuments', $NewFileName);
+
+                            $FileInsertArray = new OrderEntryFile([
+                                'OrderUID' => $InsertData->OrderUID,
+                                'DocumentName' => $NewFileName,
+                                'DocumentTypeUID' => 1,
+                                'FilePath' => $FilePath,
+                                'CreatedByUserUID' => $request->input('CreatedByUserUID'),
+                                'CreatedByDateTime' => date('Y-m-d H:m:s')
+                            ]);
+
+                            if ($FileInsertArray->save()) {
+                                $PrelimFileInsertState['State'] = '200';
+                            } else {
+                                $PrelimFileInsertState['State'] = '500';                              
                             }
-                            /** end */
+
                         } else {
                             return response()->json([
                                 'Method' => 'Order Insert', 
@@ -115,10 +113,44 @@ class OrderEntryController extends Controller
                         }
                         /** end */
 
+                        /** check supporting file is exits or not empty */
+                        if($request->hasfile('SupportingFile'))
+                        {
+                            /**
+                             * Order Document Supporting File Processing
+                             * @var $request->file('File')
+                             */
+                            foreach($request->file('SupportingFile') as $key => $file)
+                            {
+                                $DocumentType = $request->input('DocumentTypeUID');
+                                $FileName=$file->getClientOriginalName();
+
+                                $NewFileName = $FileName;
+                                $FilePath = $file->storeAs('OrderDocuments', $NewFileName);
+
+                                $FileInsertArray = new OrderEntryFile([
+                                    'OrderUID' => $InsertData->OrderUID,
+                                    'DocumentName' => $NewFileName,
+                                    'DocumentTypeUID' => $DocumentType[$key],
+                                    'FilePath' => $FilePath,
+                                    'CreatedByUserUID' => $request->input('CreatedByUserUID'),
+                                    'CreatedByDateTime' => date('Y-m-d H:m:s')
+                                ]);
+
+                                if ($FileInsertArray->save()) {
+                                    $SupportFileInsertState['State'] = '200';
+                                } else {
+                                    $SupportFileInsertState['State'] = '500';                              
+                                }
+                            }
+                            /** end */
+                        }
+                        /** end */
+
                         /**
                          * check insert state
                          */
-                        if ($FileInsertState['State'] == '200') {
+                        if ($PrelimFileInsertState['State'] == '200') {
                             return response()->json([
                                 'Method' => 'Order Insert', 
                                 'Request State Response' => '200',
