@@ -40,7 +40,6 @@ class OrderEntryController extends Controller
      */
     public function store(Request $request)
     {
-        echo '<pre>';print_r($request->all());exit;
         $validation = Validator::make($request->all(), [
             'LoanNumer' => 'required',
             'CustomerUID' => 'required',
@@ -66,7 +65,7 @@ class OrderEntryController extends Controller
                     'CustomerUID' => $request->input('CustomerUID'),
                     'LenderUID' => $request->input('LenderUID'),
                     'ClosingDate' => date('Y-m-d H:m:s', strtotime($request->input('ClosingDate'))),
-                    'Status' => 1,
+                    'StatusUID' => 1,
                     'CreatedByUserUID' => $request->input('CreatedByUserUID'),
                     'CreatedByDateTime' => date('Y-m-d H:m:s')
                 ]);
@@ -78,10 +77,10 @@ class OrderEntryController extends Controller
 
                         $data = [];
                         $SupportFileInsertState = [];
-                        $PrelimFileInsertState = [];
+                        $PrelimFileInsertState = "";
 
                         /** check prelim file is empty or not empty */
-                        if ($request->hsafile('PrelimFile')) {
+                        if ($request->hasFile('PrelimFile')) {
                             $PrelimFile = $request->file('PrelimFile');
 
                             $FileName=$PrelimFile->getClientOriginalName();
@@ -89,7 +88,7 @@ class OrderEntryController extends Controller
                             $NewFileName = $FileName;
                             $FilePath = $PrelimFile->storeAs('OrderDocuments', $NewFileName);
 
-                            $FileInsertArray = new OrderEntryFile([
+                            $PrelimFileInsertArray = new OrderEntryFile([
                                 'OrderUID' => $InsertData->OrderUID,
                                 'DocumentName' => $NewFileName,
                                 'DocumentTypeUID' => 1,
@@ -98,10 +97,10 @@ class OrderEntryController extends Controller
                                 'CreatedByDateTime' => date('Y-m-d H:m:s')
                             ]);
 
-                            if ($FileInsertArray->save()) {
-                                $PrelimFileInsertState['State'] = '200';
+                            if ($PrelimFileInsertArray->save()) {
+                                $PrelimFileInsertState = '200';
                             } else {
-                                $PrelimFileInsertState['State'] = '500';                              
+                                $PrelimFileInsertState = '500';                              
                             }
 
                         } else {
@@ -114,7 +113,7 @@ class OrderEntryController extends Controller
                         /** end */
 
                         /** check supporting file is exits or not empty */
-                        if($request->hasfile('SupportingFile'))
+                        if($request->hasFile('SupportingFile'))
                         {
                             /**
                              * Order Document Supporting File Processing
@@ -123,24 +122,38 @@ class OrderEntryController extends Controller
                             foreach($request->file('SupportingFile') as $key => $file)
                             {
                                 $DocumentType = $request->input('DocumentTypeUID');
-                                $FileName=$file->getClientOriginalName();
-
+                                $FileName = $file->getClientOriginalName();
+                                $Extension = $file->getClientOriginalExtension();
+                                $AllowedExtension = array('pdf');
                                 $NewFileName = $FileName;
-                                $FilePath = $file->storeAs('OrderDocuments', $NewFileName);
 
-                                $FileInsertArray = new OrderEntryFile([
-                                    'OrderUID' => $InsertData->OrderUID,
-                                    'DocumentName' => $NewFileName,
-                                    'DocumentTypeUID' => $DocumentType[$key],
-                                    'FilePath' => $FilePath,
-                                    'CreatedByUserUID' => $request->input('CreatedByUserUID'),
-                                    'CreatedByDateTime' => date('Y-m-d H:m:s')
-                                ]);
 
-                                if ($FileInsertArray->save()) {
-                                    $SupportFileInsertState['State'] = '200';
+                                if (!in_array($Extension, $AllowedExtension)) {
+                                    return response()->json([
+                                        'Method' => 'Order Insert', 
+                                        'Request State Response' => '500',
+                                        'Message' => 'Supporting Files are <b> '.$NewFileName.' </b> Should Allowed PDF Only'
+                                    ]);
+                                    
                                 } else {
-                                    $SupportFileInsertState['State'] = '500';                              
+
+                                    $FilePath = $file->storeAs('OrderDocuments', $NewFileName);
+
+                                    $FileInsertArray = new OrderEntryFile([
+                                        'OrderUID' => $InsertData->OrderUID,
+                                        'DocumentName' => $NewFileName,
+                                        'DocumentTypeUID' => $DocumentType[$key],
+                                        'FilePath' => $FilePath,
+                                        'CreatedByUserUID' => $request->input('CreatedByUserUID'),
+                                        'CreatedByDateTime' => date('Y-m-d H:m:s')
+                                    ]);
+
+                                    if ($FileInsertArray->save()) {
+                                        $SupportFileInsertState['State'] = '200';
+                                    } else {
+                                        $SupportFileInsertState['State'] = '500';                              
+                                    }
+
                                 }
                             }
                             /** end */
@@ -150,7 +163,7 @@ class OrderEntryController extends Controller
                         /**
                          * check insert state
                          */
-                        if ($PrelimFileInsertState['State'] == '200') {
+                        if ($PrelimFileInsertState == '200') {
                             return response()->json([
                                 'Method' => 'Order Insert', 
                                 'Request State Response' => '200',
@@ -271,29 +284,36 @@ class OrderEntryController extends Controller
                 switch ($settings['OrderSettingName']) {
 
                     case 'Prefix':
-                        $Prefix = $settings['OrderSettingValue'];
-                        break;
+                    $Prefix = $settings['OrderSettingValue'];
+                    break;
 
                     case 'Starting Number':
-                        $StartNumber = $settings['OrderSettingValue'];
-                        break;
+                    $StartNumber = $settings['OrderSettingValue'];
+                    break;
                     
                     default:
-                        $Prefix = "";
-                        $StartNumber = "1";
-                        break;
+                    $Prefix = "";
+                    $StartNumber = "1";
+                    break;
                 }
                 /** end */
                 
             } 
             /** end */
 
-            $checktOrders = OrderEntry::latest('OrderNumber')->first()->toArray();
+            $checktOrders = OrderEntry::latest('OrderNumber')->first();
+            // dd($checktOrders);
 
             /** check table is empty or not empty */
-            if (empty($checktOrders)) {
+            if (empty($checktOrders) && $checktOrders == null) {
                 $OrderNumber = $Prefix.$StartNumber;
+                return $ResponseData = array(
+                    'Response State' => '200',
+                    'Message' => 'Order Number Genarate Success',
+                    'OrderNumber' => $OrderNumber
+                );
             } else {
+                $checktOrders->toArray();
 
                 $LastOrderNumber = $checktOrders['OrderNumber'];
                 $OrderNumberRegex = "/[0-9]{5}/";
@@ -311,15 +331,15 @@ class OrderEntryController extends Controller
                 );
 
             }
-            /** end */
+            /** end */            
         } else {
             $ResponseData = array(
                 'Response State' => '500',
                 'Message' => 'Configure in your Order Settings'
             );
         }
-        /** end */
-        return $ResponseData;
+        /** end */ 
+        return $ResponseData;       
     }
     /** end */
 }

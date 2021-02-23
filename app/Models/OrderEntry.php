@@ -23,7 +23,7 @@ class OrderEntry extends Model
     	'ClosingDate',
     	'CompletedDate',
     	'CompletedByUserUID',
-    	'Status',
+    	'StatusUID',
     	'CreatedByDateTime',
     	'ModifiedByDateTime'
     ];
