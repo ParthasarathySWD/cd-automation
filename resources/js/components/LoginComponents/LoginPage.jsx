@@ -17,7 +17,7 @@ function LoginPage(props) {
         return(
          <>
      
-            <div className="main-container">
+            <div className="login main-container">
                 <div id="header" className="child col-sm-6">
                     <h2 className="heading"><b>CD-Automation</b></h2>
                     <h5>We automate your work in a simple way</h5>
