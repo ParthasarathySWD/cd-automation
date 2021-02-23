@@ -38,7 +38,7 @@ function LoginPage(props) {
                                 
                                     <div className="form-group ">
                                         <label className="field-label" >Email Id</label>
-                                        <input type="email" className="form-control" autofocus="autofocus"/>
+                                        <input type="email" className="form-control" autoFocus="autofocus"/>
                                     </div>
                                     <div className="form-group">
                                         <label className="field-label">Password
