@@ -54,10 +54,10 @@ class OrderEntryController extends Controller
             $OrderNumber = $this->GenerateOrderNumber();
 
             /** check order number is empty or not empty */
-            if ($OrderNumber != '') {
+            if ($OrderNumber['Response State'] == '200') {
 
                 $InsertData = new OrderEntry([
-                    'OrderNumber' => $OrderNumber,
+                    'OrderNumber' => $OrderNumber['OrderNumber'],
                     'OrderEntryDate' => date('Y-m-d H:m:s', strtotime($request->input('OrderEntryDate'))),
                     'LoanNumer' => $request->input('LoanNumer'),
                     'LoanTypeUID' => $request->input('LoanTypeUID'),
@@ -151,11 +151,10 @@ class OrderEntryController extends Controller
                 }
                 /** end */
             } else {
-
-               return response()->json([
+                return response()->json([
                     'Method' => 'Order Insert', 
-                    'Request State Response' => '500',
-                    'Message' => 'Order Number Genarate Faild'
+                    'Request State Response' => $OrderNumber['Response State'],
+                    'Message' => $OrderNumber['Message']
                 ]);
             }
             /** end */
@@ -223,7 +222,7 @@ class OrderEntryController extends Controller
 
         $Prefix = "";
         $StartNumber = "";
-        $OrderNumber = "";
+        $OrderNumber = "";        
 
         /** check order setting is empty or not empty */
         if (!empty($GetOrderSettings)) {
@@ -273,13 +272,22 @@ class OrderEntryController extends Controller
 
                 $OrderNumber = $Prefix.$GenarateOrderNumber;
 
+                $ResponseData = array(
+                    'Response State' => '200',
+                    'Message' => 'Order Number Genarate Success',
+                    'OrderNumber' => $OrderNumber
+                );
+
             }
             /** end */
         } else {
-           $OrderNumber = '';
+            $ResponseData = array(
+                'Response State' => '500',
+                'Message' => 'Configure in your Order Settings'
+            );
         }
         /** end */
-        return $OrderNumber;
+        return $ResponseData;
     }
     /** end */
 }
