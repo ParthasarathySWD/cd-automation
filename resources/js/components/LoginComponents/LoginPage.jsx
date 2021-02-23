@@ -37,8 +37,8 @@ function LoginPage(props) {
                                     <form className="form-auth-small" onSubmit={handleSubmit}>
                                 
                                     <div className="form-group ">
-                                        <label className="field-label" >User Name</label>
-                                        <input type="text" className="form-control" autofocus="autofocus"/>
+                                        <label className="field-label" >Email Id</label>
+                                        <input type="email" className="form-control" autofocus="autofocus"/>
                                     </div>
                                     <div className="form-group">
                                         <label className="field-label">Password

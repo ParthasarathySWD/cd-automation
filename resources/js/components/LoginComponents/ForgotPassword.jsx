@@ -20,7 +20,7 @@ class ForgotPassword extends React.Component{
                                 
                                 <button type="submit" id="signup-btn" className="btn btn-lg btn-block"><b>Submit</b></button>
                                  <div className="bottom text-center"> 
-                                    <span className="helper-text m-b-10 text-center"><i className="fa fa-arrow-left text-primary"></i> <Link to={'/'}>Back to login</Link></span>
+                                    <span className="helper-text m-b-10 text-center text-secondary"><i className="fa fa-arrow-left text-primary text-secondary"></i> <Link to={'/'} className="text-secondary">Back to login</Link></span>
                                     {/* <span>Don't have an account? <a href="page-register.html">Register</a></span> */}
                                  </div> 
                             </form>

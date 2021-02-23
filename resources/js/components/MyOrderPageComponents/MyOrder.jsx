@@ -10,53 +10,44 @@ class MyOrder extends React.Component{
                     <button className="btn btn-primary btn-order">Create order</button>
                     </div> 
                     <div className="child-container">
-                        <div class="row mb-2 status-row">
-                            <div class="col-xl-3 col-sm-6 py-2">
-                                <div class="card bg-light h-100 status-val">
+                        <div className="row mb-2 status-row">
+                            <div className="col-xl-3 col-sm-6 py-2">
+                                <div className="card bg-light h-100 status-val">
                                     <label>Active Orders</label>
                                     <h4>1,023</h4>
                                 </div>
                             </div>
-                            <div class="col-xl-3 col-sm-6 py-2">
-                                <div class="card bg-light h-100 status-val">
-                                    <label>Unfulfilled</label>
-                                    <h4>159</h4>
-                                </div>
-                            </div>
-                    
-                            <div class="col-xl-3 col-sm-6 py-2">
-                                <div class="card bg-light h-100 status-val">
+
+                            <div className="col-xl-3 col-sm-6 py-2">
+                                <div className="card bg-light h-100 status-val">
                                     <label>Pending</label>
                                     <h4>64</h4>
                                 </div>
                             </div>
                     
-                            <div class="col-xl-3 col-sm-6 py-2">
-                                <div class="card bg-light h-100 status-val">
-                                    <label>Fulfilled</label>
+                            <div className="col-xl-3 col-sm-6 py-2">
+                                <div className="card bg-light h-100 status-val">
+                                    <label>Completed</label>
                                     <h4>990</h4>
                                 </div>
                             </div>
                         </div>
-                        <div class="tab-menus">
-                            <ul class="nav nav-pills nav-menu" role="tablist">
-                                <li class="nav-item">
-                                <a class="nav-link" href="#all" role="tab" data-toggle="tab">All orders</a>
+                        <div className="tab-menus">
+                            <ul className="nav nav-pills nav-menu" role="tablist">
+                                <li className="nav-item">
+                                <a className="nav-link" href="#all" role="tab" data-toggle="tab">Active orders</a>
                                 </li>
-                                <li class="nav-item">
-                                <a class="nav-link" href="#active" role="tab" data-toggle="tab">Active</a>
+                                <li className="nav-item">
+                                <a className="nav-link" href="#unpaid" role="tab" data-toggle="tab">Pending</a>
                                 </li>
-                                <li class="nav-item">
-                                <a class="nav-link" href="#unpaid" role="tab" data-toggle="tab">Unpaid</a>
-                                </li>
-                                <li class="nav-item">
-                                <a class="nav-link" href="#unfulfilled" role="tab" data-toggle="tab">Unfulfilled</a>
+                                <li className="nav-item">
+                                <a className="nav-link" href="#unfulfilled" role="tab" data-toggle="tab">Completed</a>
                                 </li>
                             </ul>
                         </div>
 
                         <div className="order-table">
-                            <table class="table table-striped">
+                            <table className="table table-striped" id="all">
                                 <thead>
                                     <tr>
                                         <th><input type="checkbox"/></th>
@@ -75,7 +66,7 @@ class MyOrder extends React.Component{
                                         <td>102223234</td>
                                         <td><img src="../../images/robot.png" className="rounded dp" width="20px"></img><label>Amy</label></td>
                                         <td>Housing Loan</td>
-                                        <td><span class="badge badge-secondary">In progress</span></td>
+                                        <td><span className="badge badge-secondary">In progress</span></td>
                                         <td>
                                             <a href="#"  className="fa fa-eye icons text-primary"></a> 
                                             <a href="#"  className="fa fa-edit icons text-success"></a>  
@@ -88,7 +79,7 @@ class MyOrder extends React.Component{
                                         <td>102223234</td>
                                         <td><img src="../../images/robot.png" className="rounded dp" width="20px"></img><label>Richard</label></td>
                                         <td>Personal Loan</td>
-                                        <td><span class="badge badge-success p-1">Closed</span></td>
+                                        <td><span className="badge badge-success p-1">Closed</span></td>
                                         <td>
                                             <a href="#"  className="fa fa-eye icons text-primary"></a> 
                                             <a href="#"  className="fa fa-edit icons text-success"></a>  
@@ -101,7 +92,7 @@ class MyOrder extends React.Component{
                                         <td>102223234</td>
                                         <td><img src="../../images/robot.png" className="rounded dp" width="20px"></img><label>Sara Graham</label></td>
                                         <td>Education Loan</td>
-                                        <td><span class="badge badge-secondary p-1">In progress</span></td>
+                                        <td><span className="badge badge-secondary p-1">In progress</span></td>
                                         <td>
                                             <a href="#"  className="fa fa-eye icons text-primary"></a> 
                                             <a href="#"  className="fa fa-edit icons text-success"></a>  
@@ -114,7 +105,7 @@ class MyOrder extends React.Component{
                                         <td>1024444234</td>
                                         <td><img src="../../images/robot.png" className="rounded dp" width="20px"></img><label>Victor Samson</label></td>
                                         <td>Personal Loan</td>
-                                        <td><span class="badge badge-primary p-1">Open</span></td>
+                                        <td><span className="badge badge-primary p-1">Open</span></td>
                                         <td>
                                             <a href="#"  className="fa fa-eye icons text-primary"></a> 
                                             <a href="#"  className="fa fa-edit icons text-success"></a>  
@@ -127,7 +118,7 @@ class MyOrder extends React.Component{
                                         <td>1034323234</td>
                                         <td><img src="../../images/robot.png" className="rounded dp" width="20px"></img><label>Patrica John</label></td>
                                         <td>Education Loan</td>
-                                        <td><span class="badge badge-success p-1">Closed</span></td>
+                                        <td><span className="badge badge-success p-1">Closed</span></td>
                                         <td>
                                             <a href="#"  className="fa fa-eye icons text-primary"></a> 
                                             <a href="#"  className="fa fa-edit icons text-success"></a>  
