@@ -12,7 +12,7 @@ import Login from "./Login";
 import ForgotPassword from './components/LoginComponents/ForgotPassword';
 import MyOrder from './components/MyOrderPageComponents/MyOrder';
 import Dashboard from './components/DashboardComponents/Dashboard';
-import OrdersList from './components/OrdersListComponents/OrdersList';
+
 
 class Routes extends React.Component
 {
@@ -27,8 +27,8 @@ class Routes extends React.Component
                 <Route path='/orderentry' component={OrderEntry} />
                 <Route path='/forgotpassword' component={ForgotPassword} />   
                 <Route path='/myorders' component={MyOrder}/>     
-                                <Route path='/dashboard' component={Dashboard} />
-                <Route path='/orderslist' component={OrdersList} />                       
+                <Route path='/dashboard' component={Dashboard} />
+                                       
             </Switch>
         )
     }
