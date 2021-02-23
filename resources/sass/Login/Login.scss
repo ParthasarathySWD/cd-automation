@@ -1,14 +1,13 @@
+
 .main-container
 {
     width:100%;
-    height:100%;
-   
-   
+    height:100vh;
+    background-image: url("/images/bg.jpg");
+    background-size: 100%;
+    background-repeat: no-repeat;
 }
-// #login
-// {
-//     background-image: url("/images/container-login-image.jpg");
-// }
+
 .child
 {
     float:left;
@@ -21,18 +20,17 @@
 }
 .form-container
 {
-    margin-top: 50px;
+    margin-top: 30px;
 }
 #login-container
 {
     width:400px;
-    height:450px;
+    height:400px;
     margin-left:50px;
-    margin-top:170px;
+    margin-top:100px;
     border-radius: 1px;
-    // background-color:floralwhite;
-    background-color: #f9fbfdb3;
-   
+    background-color:#d3d3d838;
+    // background-color: #f9fbfde3;
 }
 .heading
 {
@@ -45,8 +43,8 @@
 .lead
 {
     color:slateblue;
-    font-size: 18px;
-    padding-top: 10px;
+    font-size: 20px;
+    // padding-top: 10px;
     padding-left:10px;
     font-weight:600;
 }
@@ -63,19 +61,27 @@
 {
     background-color:slateblue;
     border-radius: 35px;
-    height:60px;
+    height:45px;
     color:white;
     font-size:16px;
     font-weight:400;
     text-transform: none;
+    margin-top: 30px;
+    padding:2px;
 }
 .form-control
 {
     border-right: none !important;
     border-left:none !important;
     border-top:none !important;
+    border-color: #a9a9a95e;
+    caret-color: darkgray;
+    color:darkslategray;  
 
 }
+::selection {
+    background:cornflowerblue !important;
+  }
 .signup-text
 {
     margin-left: 720px;
@@ -90,4 +96,15 @@
 .bottom
 {
     margin-top:30px;
+}
+
+input[type=text]:focus
+{
+    border-color: darkgray;
+    color:darkslategray;
+}
+input[type=password]:focus
+{
+    border-color: darkgray;
+    color:darkslategray;
 }

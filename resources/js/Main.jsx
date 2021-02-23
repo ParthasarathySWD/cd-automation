@@ -8,6 +8,7 @@ import Footer from './ThemeLayouts/Footer';
 import ThemeSetting from './ThemeLayouts/ThemeSetting';
 import StickyNote from './ThemeLayouts/StickyNote';
 import Routes from './Routes';
+import LoginPage from './components/LoginComponents/LoginPage';
 
 class Main extends React.Component {
 
@@ -116,6 +117,7 @@ s0.parentNode.insertBefore(s1,s0);
               <div id="main-content">
                 <div className="container-fluid" id="ContentBody">
                   <Routes/>
+                 
                 </div>
               </div>
                 

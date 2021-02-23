@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
 import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom';
 
-import LoginPage from './components/LoginComponents/LoginPage';
+import LoginRoutes from './LoginRoutes';
 import auth from './repository/auth';
 
 import Header from './ThemeLayouts/Header';
@@ -13,6 +13,7 @@ import ThemeSetting from './ThemeLayouts/ThemeSetting';
 import StickyNote from './ThemeLayouts/StickyNote';
 import Routes from './Routes';
 import jquery_init from './jquery_init';
+import ForgotPassword from './components/LoginComponents/ForgotPassword';
 
 class App extends React.Component {
 
@@ -30,11 +31,11 @@ class App extends React.Component {
     }
     render() {
         if (! this.state.isauthenticated ) {
-            return (<LoginPage checkAuth={this.checkAuth} />);            
+            return (<LoginRoutes checkAuth={this.checkAuth} />);            
         }
         else{
             return (
-                <Main />
+                 <Main />
                 );
             }
         }

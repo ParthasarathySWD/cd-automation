@@ -1,6 +1,7 @@
 import React from 'react';
 import auth from '../../repository/auth';
 
+
 import { BrowserRouter as Router, Switch, Route, Link, useHistory } from 'react-router-dom';
 function LoginPage(props) {
     
@@ -15,14 +16,18 @@ function LoginPage(props) {
     }
         return(
          <>
+     
             <div className="main-container">
                 <div id="header" className="child col-sm-6">
                     <h2 className="heading"><b>CD-Automation</b></h2>
                     <h5>We automate your work in a simple way</h5>
                 </div>
+                
                 <div id="login-container" className="col-sm-6 card">
+                    
                     <div id="card" >
                         <div className="form-container">
+                      
                             <div className="head">
                                 <p className="lead">Login</p>
                                 {/* <button className="sign-link" href="#" >Sign in</button> */}
@@ -32,8 +37,8 @@ function LoginPage(props) {
                                     <form className="form-auth-small" onSubmit={handleSubmit}>
                                 
                                     <div className="form-group ">
-                                        <label className="field-label">User Name</label>
-                                        <input type="text" className="form-control" />
+                                        <label className="field-label" >User Name</label>
+                                        <input type="text" className="form-control" autofocus="autofocus"/>
                                     </div>
                                     <div className="form-group">
                                         <label className="field-label">Password
@@ -41,21 +46,25 @@ function LoginPage(props) {
                                         <input type="password" className="form-control" />
                                     </div>
                                     
-                                    <button type="submit" id="signup-btn" className="btn btn-lg btn-block" ><b>Login</b></button>
+                                    <button type="submit" id="signup-btn" className="btn btn-lg btn-block text-center" ><b>Login</b></button>
                                     <div className="bottom text-center">
-                                        <span className="helper-text m-b-10 text-center"><i className="fa fa-lock"></i> <Link to="{/forgotpassword}" >Forgot password?</Link></span>
+                                        <span className="helper-text m-b-10 text-center "><i className="fa fa-lock"></i> <Link to={'/forgotpassword'} className="text-secondary">Forgot password?</Link></span>
                                         {/* <span>Don't have an account? <a href="page-register.html">Register</a></span> */}
                                     </div> 
                                 </form>
                             </div>
+                          
                         </div>
                     </div>
+                   
                     
                 </div> 
-                <p className="signup-text">By signing up you agree to our T&C and Privacy Policy </p>
+                {/* <p className="signup-text">By signing up you agree to our T&C and Privacy Policy </p> */}
               
-             </div>
+            </div>
+         
         </>
+        
        )
 }
 export default LoginPage;

@@ -23,8 +23,8 @@ class Routes extends React.Component
                 <Route exact path='/adduser' component={AddUser} />
                 <Route path='/edituser' component={EditUser} />               
                 <Route path='/orderentry' component={OrderEntry} />
-                <Route path='/forgotpassword' component={ForgotPassword} />   
-                <Route path='/myorders' component={MyOrder}/>              
+                <Route exact path='/forgotpassword' component={ForgotPassword} />   
+                <Route exact path='/myorders' component={MyOrder}/>              
             </Switch>
         )
     }
