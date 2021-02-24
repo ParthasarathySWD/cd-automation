@@ -5,9 +5,16 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class OrderEntry extends Model
+use OwenIt\Auditing\Contracts\Auditable;
+
+class OrderEntry extends Model implements Auditable
 {
     use HasFactory;
+
+    use \OwenIt\Auditing\Auditable;
+
+    protected $auditTimestamps = true;
+
     protected $primaryKey = 'OrderUID';
     public $timestamps = false;
 
@@ -26,5 +33,20 @@ class OrderEntry extends Model
     	'StatusUID',
     	'CreatedByDateTime',
     	'ModifiedByDateTime'
+    ];
+
+    protected $auiditInclude = [
+        'OrderNumber',
+        'OrderEntryDate',
+        'LoanNumer',
+        'LoanTypeUID',
+        'CustomerUID',
+        'LenderUID',
+        'ClosingDate',
+        'CompletedDate',
+        'CompletedByUserUID',
+        'StatusUID',
+        'CreatedByDateTime',
+        'ModifiedByDateTime'
     ];
 }

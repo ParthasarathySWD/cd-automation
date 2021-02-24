@@ -8,6 +8,8 @@ use App\Models\OrderEntryFile;
 use App\Models\OrderSetting;
 use App\Models\OrderStatus;
 
+use Carbon\Carbon;
+
 use Illuminate\Support\Facades\Validator;
 
 class OrderEntryController extends Controller
@@ -19,6 +21,7 @@ class OrderEntryController extends Controller
      */
     public function index()
     {
+        $OrderList = OrderEntry::where('UserUID', 1)->get();
         echo '<pre>';print_r('index');exit;
     }
 
@@ -49,7 +52,7 @@ class OrderEntryController extends Controller
 
         /** form validation */
         if ($validation->fails()) {
-            return response()->json($validation->errors());
+            return response()->json($validation->messages(), 402);
         } else {
 
             $OrderNumber = $this->GenerateOrderNumber();
@@ -105,10 +108,11 @@ class OrderEntryController extends Controller
 
                         } else {
                             return response()->json([
-                                'Method' => 'Order Insert', 
-                                'Request State Response' => '404',
-                                'Message' => 'File Is Not Available'
-                            ]);
+                                'type' => 'Order Insert',
+                                'status' => false,
+                                'errors' => 'Prelim File Not Found', 
+                                'message' => 'File Is Not Available'
+                            ], 404);
                         }
                         /** end */
 
@@ -130,10 +134,11 @@ class OrderEntryController extends Controller
 
                                 if (!in_array($Extension, $AllowedExtension)) {
                                     return response()->json([
-                                        'Method' => 'Order Insert', 
-                                        'Request State Response' => '500',
-                                        'Message' => 'Supporting Files are <b> '.$NewFileName.' </b> Should Allowed PDF Only'
-                                    ]);
+                                        'type' => 'Order Insert',
+                                        'status' => false,
+                                        'errors' => 'Should Allowed PDF Files Only', 
+                                        'message' => 'Supporting Files are <b> '.$NewFileName.' </b> Should Allowed PDF Only'
+                                    ], 406);
                                     
                                 } else {
 
@@ -165,42 +170,47 @@ class OrderEntryController extends Controller
                          */
                         if ($PrelimFileInsertState == '200') {
                             return response()->json([
-                                'Method' => 'Order Insert', 
-                                'Request State Response' => '200',
-                                'Message' => 'Order Created Successfully'
-                            ]);
+                                'type' => 'Order Insert',
+                                'status' => true,
+                                'errors' => '', 
+                                'message' => 'Order Created Successfully'
+                            ], 200);
                         } else {
                             return response()->json([
-                                'Method' => 'Order Insert', 
-                                'Request State Response' => '500',
-                                'Message' => 'Order Created Faild'
-                            ]);
+                                'type' => 'Order Insert', 
+                                'status' => false,
+                                'errors' => '', 
+                                'message' => 'Order Created Faild'
+                            ], 417);
                         }
                         /** end */
                     }
                     else {
                         return response()->json([
-                            'Method' => 'Order Insert', 
-                            'Request State Response' => '500',
-                            'Message' => 'Database Error'
-                        ]);
+                            'type' => 'Order Insert',
+                            'status' => false,
+                            'errors' => 'Database Error', 
+                            'message' => 'Order Files Created Faild'
+                        ], 500);
                     }
                     /** end */
                 }
                 else {            
                     return response()->json([
-                        'Method' => 'Order Insert', 
-                        'Request State Response' => '500',
-                        'Message' => 'Database Error'
-                    ]);  
+                        'type' => 'Order Insert',
+                        'status' => false,
+                        'errors' => 'Database Error', 
+                        'message' => 'Order Created Faild'
+                    ], 500);  
                 }
                 /** end */
             } else {
                 return response()->json([
-                    'Method' => 'Order Insert', 
-                    'Request State Response' => $OrderNumber['Response State'],
-                    'Message' => $OrderNumber['Message']
-                ]);
+                    'type' => 'Order Insert', 
+                    'status' => false,
+                    'errors' => 'Database Error',
+                    'message' => $OrderNumber['message']
+                ], $OrderNumber['Response State']);
             }
             /** end */
         }
@@ -309,7 +319,7 @@ class OrderEntryController extends Controller
                 $OrderNumber = $Prefix.$StartNumber;
                 return $ResponseData = array(
                     'Response State' => '200',
-                    'Message' => 'Order Number Genarate Success',
+                    'message' => 'Order Number Genarate Success',
                     'OrderNumber' => $OrderNumber
                 );
             } else {
@@ -326,7 +336,7 @@ class OrderEntryController extends Controller
 
                 $ResponseData = array(
                     'Response State' => '200',
-                    'Message' => 'Order Number Genarate Success',
+                    'message' => 'Order Number Genarate Success',
                     'OrderNumber' => $OrderNumber
                 );
 
@@ -335,7 +345,7 @@ class OrderEntryController extends Controller
         } else {
             $ResponseData = array(
                 'Response State' => '500',
-                'Message' => 'Configure in your Order Settings'
+                'message' => 'Configure in your Order Settings'
             );
         }
         /** end */ 
