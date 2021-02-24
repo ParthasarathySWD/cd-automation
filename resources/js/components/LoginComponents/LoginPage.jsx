@@ -3,7 +3,8 @@ import toastr from 'reactjs-toastr';
 import { useSelector, useDispatch } from 'react-redux';
 import store from '../../store/store.js';
 
-// import 'reactjs-toastr/lib/toast.css';
+import 'reactjs-toastr/lib/toast.css';
+import { useToasts } from 'react-toast-notifications';
 
 
 import { ToastContainer } from "react-toastr";
@@ -16,14 +17,33 @@ import { getAccessToken, setAccessToken, removeAccessToken, checkUserAuthenticat
 import { BrowserRouter as Router, Switch, Route, Link, useHistory } from 'react-router-dom';
 function LoginPage(props) {
 
+    const { addToast } = useToasts();
+
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
     const [errors, setErrors] = useState([]);
-    let container;
+    var Toastcontainer;
 
     let history = useHistory();
      async function handleSubmit(e){
         e.preventDefault();
+
+        //  setErrors([]);
+         let validationErrors = [];
+         if (!username || username == '') {
+             validationErrors.push('Email is required');
+         }
+
+         if (!password || password == '') {
+             validationErrors.push('Password is required');
+         }
+
+         if (validationErrors.length > 0) {
+             setErrors(validationErrors);
+             setErrorMessage(validationErrors);
+             return false;
+         }
+
         var formData = new FormData(e.target);
         
         //  toastr.error('Error Message', 'Title', { displayDuration: 3000 });
@@ -37,9 +57,7 @@ function LoginPage(props) {
                      if ( response.data['access-token'] != "") {
                          
                          setAccessToken(response.data['access-token'])
-                         container.success(response.data.message, `Success`, {
-                             closeButton: true,
-                         });
+                         addToast(response.data.message, { appearance: 'success' });
                      }
                  }
                  else {
@@ -50,9 +68,8 @@ function LoginPage(props) {
          catch(e){
             console.log(e);
 
-             container.error(e.data.message, `Error`, {
-                 closeButton: true,
-             });
+             addToast(e.data.message, { appearance: 'error' });
+
 
              let $responseError = e.data.errors;
 
@@ -64,9 +81,31 @@ function LoginPage(props) {
              })
 
              setErrors(generatedErrors);
+            //  setErrorMessage(generatedErrors);
+
          }
 
         // history.push('/alluser');
+
+    }
+
+
+    function setErrorMessage(errors) {
+
+        let message = errors.map((err, key) => {
+            return <p key={key}>{err}</p>
+        })
+        addToast(message, { appearance: 'error' });
+
+    }
+
+    function showErrors(message) {
+        addToast(message, { appearance: 'error' });
+
+    }
+
+    function showMessage(message) {
+        addToast(message, { appearance: 'success' });
 
     }
 
@@ -77,7 +116,7 @@ function LoginPage(props) {
             let li = errors.map((value, key) => {
                 return <li key={key}>{value}</li>
             })
-            errormessage = <div class="error-messages" style={{ color: 'red', fontSize: '12px', 'border': '1px solid #bbb', 'borderRadius': '5px', 'padding': '10px 5px', 'background': '#4aa'}}>
+            errormessage = <div className="error-messages" style={{ color: 'red', fontSize: '12px', 'border': '1px solid #bbb', 'borderRadius': '5px', 'padding': '10px 5px', 'background': '#4aa' }}>
 
                 <ul style={{ listStylePosition: 'inside' }}>
                     {
@@ -92,7 +131,7 @@ function LoginPage(props) {
 
             <div className="login main-container">
                     <ToastContainer
-                        ref={ref => container = ref}
+                        ref={ref => Toastcontainer = ref}
                         className="toast-top-right"
                     />
                 <div id="header" className="child col-sm-6">
@@ -113,7 +152,7 @@ function LoginPage(props) {
                             <div className="body">
                                     <form className="form-auth-small" onSubmit={handleSubmit}>
 
-                                        {errormessage}
+                                       {/*  {errormessage} */}
 
                                     <div className="form-group ">
                                         <label className="field-label" >Email Id</label>

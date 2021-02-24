@@ -20,6 +20,7 @@ import jquery_init from './jquery_init';
 import { SignIn } from './store/action';
 import store from './store/store.js';
 import { getAccessToken, setAccessToken, removeAccessToken, checkUserAuthentication } from "./store/localstorage";
+import { ToastProvider } from 'react-toast-notifications';
 
 
 function App(props) {
@@ -102,9 +103,11 @@ class Main extends Component {
         
         ReactDOM.render(
             <Provider store={store}>
+                <ToastProvider>
                 <Router>
                     <App />
                 </Router>
+                </ToastProvider>
             </Provider>
             , document.getElementById('body')
             , function () {
