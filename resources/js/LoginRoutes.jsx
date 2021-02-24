@@ -18,6 +18,7 @@ class LoginRoutes extends React.Component
             <Switch>
                 <Route exact path='/' render={(props) => <LoginPage checkAuth={this.props.checkAuth} {...props} />}/>
                 <Route exact path='/forgotpassword' render={(props) => <ForgotPassword checkAuth={this.props.checkAuth} {...props} />} />
+                <Route path='*' render={(props) => <LoginPage checkAuth={this.props.checkAuth} {...props} />} />
             </Switch>
         )
     }

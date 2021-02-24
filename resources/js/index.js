@@ -1,6 +1,9 @@
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
+import { Provider } from 'react-redux';
 import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom';
+import {useSelector, useDispatch} from 'react-redux';
+import {useEffect} from 'react';
 
 import LoginRoutes from './LoginRoutes';
 import auth from './repository/auth';
@@ -13,31 +16,33 @@ import ThemeSetting from './ThemeLayouts/ThemeSetting';
 import StickyNote from './ThemeLayouts/StickyNote';
 import Routes from './Routes';
 import jquery_init from './jquery_init';
-import ForgotPassword from './components/LoginComponents/ForgotPassword';
 
-class App extends React.Component {
+import { SignIn } from './store/action';
+import store from './store/store.js';
 
-    constructor(props){
-        super(props);
-        this.state = {'isauthenticated': false};
-        this.checkAuth = this.checkAuth.bind(this);
-    }
-    componentDidMount() {
-        this.setState({ 'isauthenticated': auth.isAuthenticated() });
+
+function App(props) {
+
+    
+    const isAuthenticated = useSelector(state => state.IsAuthenticated);
+    const dispatch = useDispatch();
+    
+    useEffect(()=>{
+        // dispatch(SignIn())
+    });
+
+
+    function checkAuth(){
+        // auth.login();
     }
 
-    checkAuth(Authenticated){
-        this.setState({'isauthenticated': Authenticated});
+    if (! isAuthenticated ) {
+        return (<LoginRoutes checkAuth={checkAuth} />);            
     }
-    render() {
-        if (! this.state.isauthenticated ) {
-            return (<LoginRoutes checkAuth={this.checkAuth} />);            
-        }
-        else{
-            return (
-                 <Main />
-                );
-            }
+    else{
+        return (
+                <Main />
+            );
         }
     }
 export default App;
@@ -97,6 +102,13 @@ class Main extends Component {
         }
         
         
-        ReactDOM.render(<Router><App /></Router>, document.getElementById('body'), function () {
+        ReactDOM.render(
+            <Provider store={store}>
+                <Router>
+                    <App />
+                </Router>
+            </Provider>
+            , document.getElementById('body')
+            , function () {
             
-});
+        });

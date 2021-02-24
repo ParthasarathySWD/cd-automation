@@ -9,7 +9,6 @@ function LoginPage(props) {
     function handleSubmit(e){
         e.preventDefault();
         auth.login(function () {
-            props.checkAuth(auth.isAuthenticated);
             history.push('/alluser');
         });
 
