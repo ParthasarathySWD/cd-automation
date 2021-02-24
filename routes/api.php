@@ -24,7 +24,7 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 
 Route::middleware('api')->group(function () {
 
-    Route::post('login', 'Api\AuthController@login');
+    Route::post('login', 'App\Http\Controllers\Api\AuthController@login');
     Route::resource('/notes', NoteController::class);
     Route::resource('/users', UserController::class);
     Route::resource('orderentry', OrderEntryController::class);

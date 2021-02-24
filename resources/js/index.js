@@ -19,6 +19,7 @@ import jquery_init from './jquery_init';
 
 import { SignIn } from './store/action';
 import store from './store/store.js';
+import { getAccessToken, setAccessToken, removeAccessToken, checkUserAuthentication } from "./store/localstorage";
 
 
 function App(props) {
@@ -28,16 +29,13 @@ function App(props) {
     const dispatch = useDispatch();
     
     useEffect(()=>{
-        // dispatch(SignIn())
+        checkUserAuthentication();
     });
 
 
-    function checkAuth(){
-        // auth.login();
-    }
 
     if (! isAuthenticated ) {
-        return (<LoginRoutes checkAuth={checkAuth} />);            
+        return (<LoginRoutes />);            
     }
     else{
         return (
