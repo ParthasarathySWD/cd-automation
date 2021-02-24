@@ -1,13 +1,9 @@
 import React, {useState} from 'react';
-import toastr from 'reactjs-toastr';
 import { useSelector, useDispatch } from 'react-redux';
 import store from '../../store/store.js';
 
-import 'reactjs-toastr/lib/toast.css';
 import { useToasts } from 'react-toast-notifications';
 
-
-import { ToastContainer } from "react-toastr";
 
 import auth from '../../repository/auth';
 import { SignIn, SignOut } from "../../store/action";
@@ -22,7 +18,6 @@ function LoginPage(props) {
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
     const [errors, setErrors] = useState([]);
-    var Toastcontainer;
 
     let history = useHistory();
      async function handleSubmit(e){
@@ -130,10 +125,7 @@ function LoginPage(props) {
          <>
 
             <div className="login main-container">
-                    <ToastContainer
-                        ref={ref => Toastcontainer = ref}
-                        className="toast-top-right"
-                    />
+
                 <div id="header" className="child col-sm-6">
                     <h2 className="heading"><b>CD-Automation</b></h2>
                     <h5>We automate your work in a simple way</h5>
