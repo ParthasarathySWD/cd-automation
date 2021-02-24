@@ -48,7 +48,6 @@ class AuthController extends Controller
         if( $user )
         {            
             if ( ! Hash::check($request->Password, $user->Password, [])) {
-                dd('if');
                 return response()->json([
                     'status'=>'failed',
                     'message'=>'The given data was invalid',
@@ -59,7 +58,6 @@ class AuthController extends Controller
                 }
             }
             else{
-            dd('else');
                 return response()->json([
                     'status'=>'failed',
                     'message'=>'The given data was invalid',
