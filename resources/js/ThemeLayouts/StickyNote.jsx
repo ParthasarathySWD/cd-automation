@@ -1,5 +1,5 @@
 import React from 'react';
-
+import axios from "../repository/api";
 class ThemeSetting extends React.Component{
 	constructor(props){
 		super(props);
@@ -14,7 +14,7 @@ class ThemeSetting extends React.Component{
 	}
 
 	getNotesList() {
-		axios.get('/users', {headers:{"Content-Type" : "application/json"}}).then((response) => {
+		axios.get('users', {headers:{"Content-Type" : "application/json"}}).then((response) => {
 			console.log(response);
 		})
 	}

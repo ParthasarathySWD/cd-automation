@@ -18,7 +18,7 @@ class AuthController extends Controller
 
 
     /**
-     * Store a newly created resource in storage.
+     * Check User Login
      *
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
@@ -28,7 +28,8 @@ class AuthController extends Controller
         //
         $validator = Validator::make($request->all(), [
             'Email'=>'email|required',
-            'Password'=>'required|min:5'
+            'Password'=>'required|min:5',
+            'device_name' => 'required',
         ]);
 
         if ($validator->fails()) {
@@ -45,8 +46,7 @@ class AuthController extends Controller
         $user = DB::table('mUsers')->where('Email', $request->Email)->first();
 
         // if (!Auth::attempt($credentials)) {
-        if( $user )
-        {            
+        if( $user ){
             if ( ! Hash::check($request->Password, $user->Password, [])) {
                 return response()->json([
                     'status'=>'failed',
@@ -77,5 +77,21 @@ class AuthController extends Controller
         ], 200);
 
     }
+
+        /**
+     * Logged Out
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function logout(Request $request)
+    {
+        auth()->user()->tokens()->delete();
+
+        return response()->json([
+            'message' => 'Tokens Revoked'
+        ], 200);
+    }
+
 
 }

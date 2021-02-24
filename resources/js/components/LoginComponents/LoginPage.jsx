@@ -143,7 +143,7 @@ function LoginPage(props) {
                             </div>
                             <div className="body">
                                     <form className="form-auth-small" onSubmit={handleSubmit}>
-
+                                        <input type="hidden" name="device_name" value="system"/>
                                        {/*  {errormessage} */}
 
                                     <div className="form-group ">

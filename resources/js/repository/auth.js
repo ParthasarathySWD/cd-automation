@@ -26,6 +26,15 @@ class Auth {
     logout(cb){
         this.authenticated = false;
         removeAccessToken();
+
+
+        axios.get('logout')
+            .then((response) => {
+                resolve(response);
+            })
+            .catch((error) => {
+                reject(error.response);
+            })
         cb();
     }
 

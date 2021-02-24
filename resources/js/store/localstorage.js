@@ -11,6 +11,7 @@ export const getAccessToken = () => {
 
 export const setAccessToken = (token) => {
     localStorage.setItem('access-token', token);
+    axios.defaults.headers.common = { 'Authorization': `Bearer ${token}` }
     store.dispatch(SignIn());
     return true;
 }
