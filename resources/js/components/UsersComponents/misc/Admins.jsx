@@ -1,5 +1,5 @@
 import React from 'react'
-import AllUsersTab from './AllUsersTab';
+import AllUsersTab from '../AllUsersTab';
 class Admins extends React.Component {
     render() {
         return (

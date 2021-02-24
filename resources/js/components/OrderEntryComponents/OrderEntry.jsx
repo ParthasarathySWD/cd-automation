@@ -9,7 +9,6 @@ import {useDropzone} from 'react-dropzone';
 import SelectBox from '../../CommonComponents/MultiSelect';
 
 
-import "react-datepicker/dist/react-datepicker.css";
 
 
 const baseStyle = {
@@ -52,7 +51,9 @@ const baseStyle = {
       isDragAccept,
       isDragReject,
       acceptedFiles
-    } = useDropzone();
+    } = useDropzone({
+        accept: '.pdf'
+    });
 
     const removeFile = (file, row) => () => {       
         console.log('removeFile...')        
@@ -68,7 +69,7 @@ const baseStyle = {
             <td>
                 <div className="form-group">
                     {/* <label>Document Type <span className="text-danger">*</span></label> */}
-                    <select className="form-control show-tick">
+                    <select className="form-control show-tick"  >
                         <option defaultValue="">Document Type</option>
                         <option value="Prelim CD">Prelim CD</option>
                         <option value="Tax Certificate">Tax Certificate</option>
@@ -94,7 +95,7 @@ const baseStyle = {
     ]);
   
     return (
-      <div className="container">
+      <div className="container mt-2">
         <div className="row clearfix">
             <div className="col-sm-6">
                 <div {...getRootProps({style})}>
@@ -134,7 +135,38 @@ const baseStyle = {
 class OrderEntry extends React.Component{
 	componentDidMount(){
     }
+    constructor(props){
+        super(props);
+        this.state = { id: 1, PrelimFile: '', LoanNumber: '', DocumentTypeUID: [], SupportingFile: []};
+        // this.handleChange = this.handleChange.bind(this);
+        // this.handleSubmit = this.handleSubmit.bind(this);
+        
+        this.onDrop = this.onDrop.bind(this);
+    }
     
+
+    onDrop(files,type)
+    {
+        if(type == "Prelim")
+        {
+            this.setState({
+                PrelimFile: files
+              });
+        }
+        else
+        {
+            this.setState({
+                SupportingFile: files
+            });
+        }
+    }
+    // handleChange(e){
+    //     // this.setState({ loanNumber: e.target.value , documentType: e.target.value });
+    // }
+    // handleSubmit(e){
+
+    // }
+
 	render() {
 		return (
 			<div>
@@ -151,10 +183,11 @@ class OrderEntry extends React.Component{
                                             <div className="col-md-12">
                                                 <div className="form-group">
                                                     <label>Loan Number <span className="text-danger">*</span></label>
-                                                    <input className="form-control" type="text" defaultValue=""/>
+                                                    <input className="form-control" type="text" defaultValue=""  />
                                                 </div>
                                             </div>
-                                            {/* <div className="col-md-12">
+                                            <div>
+                                                {/* <div className="col-md-12">
                                                 <SelectBox />
                                             </div>
                                             <div className="col-sm-12">
@@ -205,19 +238,27 @@ class OrderEntry extends React.Component{
                                                     
                                                 {/* </div>
                                             </div> */}
+                                            </div>
 
                                         </div>
                                     </div>                                            
                                     <div className="col-sm-12">
                                         <div className="row clearfix">
                                             <div className="col-sm-12">
-                                                <StyledDropzone />
+                                                <StyledDropzone  />
+                                                {this.props.StyledDropzone}
                                             </div>
-                                        </div>  
+                                        </div>
+                                        <div className="row clearfix">
+                                            <div className="col-sm-12">
+                                                <StyledDropzone  />
+                                                
+                                            </div>
+                                        </div>   
                                         <div className="row clearfix">
                                             <div className="col-sm-12">
                                                 <div className="pull-right">
-                                                    <button type="submit" className="btn btn-sm btn-primary">Submit</button>
+                                                    <button type="submit" className="btn btn-sm btn-primary" >Submit</button>
                                                     <button type="submit" className="btn  btn-sm btn-danger">Cancel</button>
                                                 </div>
                                             </div>
@@ -232,6 +273,7 @@ class OrderEntry extends React.Component{
 			</div>
 		);
 	}
+    
 }
 
 export default OrderEntry;
