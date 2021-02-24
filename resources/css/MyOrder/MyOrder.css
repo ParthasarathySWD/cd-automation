@@ -37,11 +37,8 @@
 {
     margin-top:40px;
     overflow: hidden;
-    /* border-bottom:thin !important; */
-    /* border-bottom-width:50px !important;
-    border-bottom-color: black; */
     border-bottom: 1px solid #f0f2f5;
-   
+    
 }
 .tab-menus a:hover,a:active
 {
@@ -52,9 +49,7 @@
     border-radius: unset;
     color:#0392cf;
  } 
-/* li:hover {
-    color:mediumblue;
-} */
+ 
 ul
 {
     margin-block-start: unset !important;
@@ -62,6 +57,7 @@ ul
     margin-inline-start: unset !important;
     margin-inline-end: unset !important;
     padding-inline-start: unset !important;
+
 }
 .order-table
 {

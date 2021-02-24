@@ -1,54 +1,90 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import '../../../css/MyOrder/MyOrder.css';
 import DataTable from 'react-data-table-component';
 import DataTab from './DataTab';
+import axios from 'axios';
 
+/*Datatable values*/
 const columns = [
+  {
+    name: <b>Order Id</b>,
+    selector: "OrderId",
+    sortable: true
+  },
+  {
+    name: <b>Loan Number</b>,
+    selector: "LoanNumber",
+    sortable: true
+  },   
+  {
+    name: <b>Customer</b>,
+    selector: "Customer",
+    sortable: true
+  },
+  {
+    name: <b>Loan Type</b>,
+    selector: "LoanType",
+    sortable: true
+  },
+  {
+    name: <b>Status</b>,
+    selector: "status",
+    sortable: true
+      
+  },
+  {
+    name:<b>Action</b>,
+    selector:"action",
+    cell: row => <div><a href="#"><span className="fa fa-eye text-primary p-1"></span></a>
+    <a href="#"><span className="fa fa-edit text-secondary p-1"></span></a>
+    <a href="#"><span className="fa fa-trash text-danger p-1"></span></a>
+    </div>
+  }
+   
+];
+
+
+// class MyOrder extends React.Component{
+  function MyOrder(){
+    // render(){
+  const [users, setUsers] = useState({});
+  const [page, setPage] = useState(1);
+  const countPerPage = 3;
+  const data=[
     {
-      name: <b>Order Id</b>,
-      selector: "OrderId",
-      sortable: true
-    },
-    {
-      name: <b>Loan Number</b>,
-      selector: "LoanNumber",
-      sortable: true
-    },
-    
-      {
-        name: <b>Customer</b>,
-        selector: "Customer",
-        sortable: true
-      },
-      {
-        name: <b>Loan Type</b>,
-        selector: "LoanType",
-        sortable: true
-      },
-      {
-        name: <b>Status</b>,
-        selector: "status",
-        sortable: true
-        
-      },
-      {
-          name:<b>Action</b>,
-          selector:"action",
-          cell: row => <div><a href="#"><span className="fa fa-eye text-primary p-1"></span></a>
-          <a href="#"><span className="fa fa-edit text-secondary p-1"></span></a>
-          <a href="#"><span className="fa fa-trash text-danger p-1"></span></a>
-          </div>
-    //       render: (rowData) =>
-    //       rowData && (
-    //     //   <IconButton
-    //     //       color="secondary">
-    //           <a href="#"><span className="fa fa-trash"></span></a>
-    //     //   </IconButton>
-    //       )
-      }
-     
+      OrderId: "100 291",
+      LoanNumber: "1024444234",
+      Customer:<label className="text-center"><img src="../../images/robot.png" className="p-1" width="25px"></img>Amy Wong</label>,
+      LoanType:"Housing",
+      status:<label className="badge badge-primary p-1">Pending</label>
+  }
   ];
 
+  // const getUserList = () => {
+  //   const data=[
+  //     {
+  //       OrderId: "100 291",
+  //       LoanNumber: "1024444234",
+  //       Customer:"Amy Wong",
+  //       LoanType:"Housing",
+  //       status:"Pending"
+  //   }
+  //   ];
+    // axios.get(`https://reqres.in/api/users?page=${page}&per_page=${countPerPage}&delay=1`).then(res => {
+      // setUsers(data);
+    // }).catch(err => {
+    //   setUsers({});
+    // });
+    
+  // }
+
+  // useEffect(() => {
+  //   getUserList();
+  // },[page]);
+
+  
+  
+  /*Set checkbox for datatable rows*/
   const Checkbox = React.forwardRef(({ onClick, ...rest }, ref) => (
     <div className="custom-control custom-checkbox">
       <input
@@ -63,31 +99,14 @@ const columns = [
     </div>
   
   ));
-
-//   const action = React.forwardRef(({ onClick, ...rest }, ref) => (
-//     <div className="action">
-//       <a href="#"><span className="fa fa-trash"
-//         ref={ref}
-//         {...rest}>
-//     </span></a>
-//     <a href="#"><span className="fa fa-eye"
-//         ref={ref}
-//         {...rest}>
-//     </span></a>
-     
-//       <label className="action-label" onClick={onClick} />
-    
-//     </div>
-   
-//   ));
   
-class MyOrder extends React.Component{
-    render(){
+  
+  
         return(
             <div className="card main-container">
                     <div className="myorder-header">
-                    <h5>Orders List</h5>
-                    <button className="btn btn-primary btn-order">Create order</button>
+                      <h5>Orders List</h5>
+                      <button className="btn btn-primary btn-order">CREATE ORDER</button>
                     </div> 
                     <div className="child-container">
                         <div className="row mb-2 status-row">
@@ -128,15 +147,33 @@ class MyOrder extends React.Component{
 
                         <div className="tab-content">
                             <div id="all" className="order-table tab-pane in active">
-                                <DataTable
+                                
+                            <DataTable
+                              columns={columns}
+                              // data={users.data}
+                              data={data}
+                              defaultSortField="title"
+                              pagination
+                              selectableRows
+                              selectableRowsComponent={Checkbox}
+                              // highlightOnHover
+                              // pagination
+                              // paginationServer
+                              // paginationTotalRows={users.total}
+                              // paginationPerPage={countPerPage}
+                              // paginationComponentOptions={{
+                              //   noRowsPerPage: true
+                              // }}
+                              // onChangePage={page => setPage(page)}
+                            />
+                             {/* <DataTable
                                     columns={columns}
                                     data={DataTab}
                                     defaultSortField="title"
                                     pagination
                                     selectableRows
                                     selectableRowsComponent={Checkbox}
-                                    // selectableRowsComponent={action}
-                                    />
+                                    /> */}
                             </div>
                             <div id="pending" className="order-table tab-pane fade">
                                 <DataTable
@@ -146,7 +183,6 @@ class MyOrder extends React.Component{
                                     pagination
                                     selectableRows
                                     selectableRowsComponent={Checkbox}
-                                    // selectableRowsComponent={action}
                                     />
                             </div>
                             <div id="completed" className="order-table tab-pane fade">
@@ -157,7 +193,6 @@ class MyOrder extends React.Component{
                                     pagination
                                     selectableRows
                                     selectableRowsComponent={Checkbox}
-                                    // selectableRowsComponent={action}
                                     />
                             </div>
                         </div>
@@ -166,5 +201,5 @@ class MyOrder extends React.Component{
             
         )
     }
-}
+// }
 export default MyOrder;

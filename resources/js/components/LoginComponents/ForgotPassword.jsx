@@ -2,6 +2,27 @@ import React from 'react';
 import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom';
 
 class ForgotPassword extends React.Component{
+    constructor(props) {
+        super(props);
+    
+        this.state = {
+          email: "",
+          messageEmail: ""
+        }
+      }
+      handleOnBlurEmail(event) {
+        var email        = event.target.value;
+        var messageEmail = "";
+    
+        if(!email) {
+          messageEmail = "Email required"; 
+        }
+    
+        this.setState({
+          email: email,
+          messageEmail: messageEmail
+        });
+      }
     render() {
         return(
             <div className="ForgetPassword-container col-sm-6 card">
@@ -11,11 +32,12 @@ class ForgotPassword extends React.Component{
                             <hr></hr>
                         </div>
                         <div className="body">
-                            <form className="form-auth-small" action="index.html">
+                            <form className="form-auth-small" >
                                
                                 <div className="form-group ">
                                     <label className="field-label">Email Id</label>
-                                    <input type="email" className="form-control" autoFocus="autofocus"/>
+                                    <input type="email" className="form-control" autoFocus="autofocus" onBlur={this.handleOnBlurEmail.bind(this)}/>
+                                    <span className="error text-danger">{this.state.messageEmail}</span>
                                 </div>
                                 
                                 <button type="submit" id="signup-btn" className="btn btn-lg btn-block"><b>Submit</b></button>
