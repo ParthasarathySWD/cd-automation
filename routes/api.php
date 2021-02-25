@@ -18,13 +18,20 @@ use App\Http\Controllers\OrderEntryController;
 |
 */
 
-Route::middleware('auth:sanctum')->get('user', function (Request $request) {
-    return $request->user();
-});
-
 Route::post('login', 'App\Http\Controllers\Api\AuthController@login');
-Route::middleware('auth:sanctum')->get('logout', 'App\Http\Controllers\Api\AuthController@logout');
 
-Route::middleware('auth:sanctum')->resource('/notes', NoteController::class);
-Route::middleware('auth:sanctum')->resource('/users', UserController::class);
-Route::middleware('auth:sanctum')->resource('orderentry', OrderEntryController::class);
+Route::middleware('auth:sanctum')->group(function () {
+    
+    Route::get('user', function (Request $request) {
+        return $request->user();
+    });
+    
+    Route::get('logout', 'App\Http\Controllers\Api\AuthController@logout');
+    Route::post('myorders/fetchorders', 'App\Http\Controllers\Api\MyOrdersController@fetchMyOrders');
+    
+    Route::resource('/notes', NoteController::class);
+    Route::resource('/users', UserController::class);
+    Route::resource('orderentry', OrderEntryController::class);
+    Route::resource('orderentry', OrderEntryController::class);
+
+});
