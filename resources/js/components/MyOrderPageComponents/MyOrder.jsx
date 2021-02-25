@@ -1,47 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import '../../../css/MyOrder/MyOrder.css';
 import DataTable from 'react-data-table-component';
-import DataTab from './DataTab';
+import DataTableExtensions from "react-data-table-component-extensions";
+import "react-data-table-component-extensions/dist/index.css";
+// import { columns, data } from './DataTab';
 import axios from 'axios';
 
 /*Datatable values*/
-const columns = [
-  {
-    name: <b>Order Id</b>,
-    selector: "OrderId",
-    sortable: true
-  },
-  {
-    name: <b>Loan Number</b>,
-    selector: "LoanNumber",
-    sortable: true
-  },   
-  {
-    name: <b>Customer</b>,
-    selector: "Customer",
-    sortable: true
-  },
-  {
-    name: <b>Loan Type</b>,
-    selector: "LoanType",
-    sortable: true
-  },
-  {
-    name: <b>Status</b>,
-    selector: "status",
-    sortable: true
-      
-  },
-  {
-    name:<b>Action</b>,
-    selector:"action",
-    cell: row => <div><a href="#"><span className="fa fa-eye text-primary p-1"></span></a>
-    <a href="#"><span className="fa fa-edit text-secondary p-1"></span></a>
-    <a href="#"><span className="fa fa-trash text-danger p-1"></span></a>
-    </div>
-  }
-   
-];
+
 
 
 // class MyOrder extends React.Component{
@@ -50,15 +16,29 @@ const columns = [
   const [users, setUsers] = useState({});
   const [page, setPage] = useState(1);
   const countPerPage = 3;
-  const data=[
-    {
-      OrderId: "100 291",
-      LoanNumber: "1024444234",
-      Customer:<label className="text-center"><img src="../../images/robot.png" className="p-1" width="25px"></img>Amy Wong</label>,
-      LoanType:"Housing",
-      status:<label className="badge badge-primary p-1">Pending</label>
-  }
-  ];
+  // const data=[
+//     {
+//       OrderId: "100 291",
+//       LoanNumber: "1024444234",
+//       Customer:<label className="text-center"><img src="../../images/robot.png" className="p-1" width="25px"></img>Amy Wong</label>,
+//       LoanType:"Housing",
+//       status:<label className="badge badge-primary p-1">Pending</label>
+//   },
+//   {
+//     OrderId: "100 291",
+//     LoanNumber: "1024444234",
+//     Customer:<label className="text-center"><img src="../../images/robot.png" className="p-1" width="25px"></img>emy Wong</label>,
+//     LoanType:"Housing",
+//     status:<label className="badge badge-primary p-1">Pending</label>
+// },
+// {
+//   OrderId: "100 291",
+//   LoanNumber: "1024444234",
+//   Customer:<label className="text-center"><img src="../../images/robot.png" className="p-1" width="25px"></img>jeni Wong</label>,
+//   LoanType:"Housing",
+//   status:<label className="badge badge-primary p-1">Pending</label>
+// }
+//   ];
 
   // const getUserList = () => {
   //   const data=[
@@ -82,7 +62,62 @@ const columns = [
   //   getUserList();
   // },[page]);
 
-  
+  const columns = [
+    {
+      name: <b>Order Id</b>,
+      selector: "OrderId",
+      sortable: true
+      
+    },
+    {
+      name: <b>Loan Number</b>,
+      selector: "LoanNumber",
+      sortable: true
+    },   
+    {
+      name: <b>Customer</b>,
+      selector: "Customer",
+      sortable: true
+
+    },
+    {
+      name: <b>Loan Type</b>,
+      selector: "LoanType",
+      sortable: true
+    },
+    {
+      name: <b>Status</b>,
+      selector: "status",
+      sortable: true
+        
+    },
+    {
+      name:<b>Action</b>,
+      selector:"action",
+      cell: row => <div><a href="#"><span className="fa fa-eye text-primary p-1"></span></a>
+      <a href="#"><span className="fa fa-edit text-secondary p-1"></span></a>
+      <a href="#"><span className="fa fa-trash text-danger p-1"></span></a>
+      </div>
+    }
+     
+  ];
+
+  const data=[
+    {
+        OrderId: "100 291",
+        LoanNumber: "1024444234",
+        Customer:"Amy",
+        LoanType:"Housing",
+        status:"Pending"
+    },
+    {
+        OrderId: "100 231",
+        LoanNumber: "1223343455",
+        Customer:"Sarah Graham",
+        LoanType:"Education",
+        status:"Completed"    
+    }
+  ];
   
   /*Set checkbox for datatable rows*/
   const Checkbox = React.forwardRef(({ onClick, ...rest }, ref) => (
@@ -100,7 +135,10 @@ const columns = [
   
   ));
   
-  
+  const tableData = {
+    columns,
+    data
+  };
   
         return(
             <div className="card main-container">
@@ -147,7 +185,7 @@ const columns = [
 
                         <div className="tab-content">
                             <div id="all" className="order-table tab-pane in active">
-                                
+                            <DataTableExtensions {...tableData} export={false} print={false} >    
                             <DataTable
                               columns={columns}
                               // data={users.data}
@@ -156,6 +194,7 @@ const columns = [
                               pagination
                               selectableRows
                               selectableRowsComponent={Checkbox}
+                              
                               // highlightOnHover
                               // pagination
                               // paginationServer
@@ -166,6 +205,7 @@ const columns = [
                               // }}
                               // onChangePage={page => setPage(page)}
                             />
+                            </DataTableExtensions>
                              {/* <DataTable
                                     columns={columns}
                                     data={DataTab}
@@ -176,19 +216,21 @@ const columns = [
                                     /> */}
                             </div>
                             <div id="pending" className="order-table tab-pane fade">
+                              <DataTableExtensions {...tableData}>
                                 <DataTable
                                     columns={columns}
-                                    data={DataTab}
+                                    data={data}
                                     defaultSortField="title"
                                     pagination
                                     selectableRows
                                     selectableRowsComponent={Checkbox}
                                     />
+                                    </DataTableExtensions>
                             </div>
                             <div id="completed" className="order-table tab-pane fade">
                                 <DataTable
                                     columns={columns}
-                                    data={DataTab}
+                                    data={data}
                                     defaultSortField="title"
                                     pagination
                                     selectableRows
