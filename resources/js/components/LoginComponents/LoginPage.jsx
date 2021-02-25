@@ -1,8 +1,8 @@
 import React, {useState} from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import store from '../../store/store.js';
-
 import { useToasts } from 'react-toast-notifications';
+import Button from 'react-bootstrap/Button';
 
 
 import auth from '../../repository/auth';
@@ -12,16 +12,18 @@ import { getAccessToken, setAccessToken, removeAccessToken, checkUserAuthenticat
 
 import { BrowserRouter as Router, Switch, Route, Link, useHistory } from 'react-router-dom';
 function LoginPage(props) {
-
+    
     const { addToast } = useToasts();
 
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
     const [errors, setErrors] = useState([]);
+    const [color,setColor]=useState('blue');
 
     let history = useHistory();
      async function handleSubmit(e){
         e.preventDefault();
+        setColor('red');
 
         //  setErrors([]);
          let validationErrors = [];
@@ -36,8 +38,13 @@ function LoginPage(props) {
          if (validationErrors.length > 0) {
              setErrors(validationErrors);
              setErrorMessage(validationErrors);
+             setTimeout(()=>{
+                setColor('red');
+             }, 500);
+
              return false;
          }
+         
 
         var formData = new FormData(e.target);
         
@@ -45,6 +52,7 @@ function LoginPage(props) {
          try{
              var response = await auth.login(formData);
              console.log(response);
+
              
              if (response) {
                  
@@ -79,6 +87,8 @@ function LoginPage(props) {
             //  setErrorMessage(generatedErrors);
 
          }
+         setColor('red');
+
 
         // history.push('/alluser');
 
@@ -155,8 +165,10 @@ function LoginPage(props) {
                                         </label>
                                         <input type="password" name="Password" className="form-control" value={password} onChange={ (e)=>{setPassword(e.target.value)}} />
                                     </div>
-                                    
-                                    <button type="submit" id="signup-btn" className="btn btn-lg btn-block text-center" ><b>Login</b></button>
+                                    <div className="boxClickCss">
+                                    {/* <AnimatedButton color="success" animationDuration={1} color="#4bcffa" animationType="brightness">Brightness Animation</AnimatedButton> */}
+                                    <button type="submit" id="signup-btn" style={{background:color}} className="btn btn-lg btn-block text-center" onClick={(e)=>{setColor("#AD2508")}}>Login</button>
+                                    </div>
                                     <div className="bottom text-center">
                                         <span className="helper-text m-b-10 text-center "><i className="fa fa-lock"></i> <Link to={'/forgotpassword'} className="text-secondary">Forgot password?</Link></span>
                                         {/* <span>Don't have an account? <a href="page-register.html">Register</a></span> */}
