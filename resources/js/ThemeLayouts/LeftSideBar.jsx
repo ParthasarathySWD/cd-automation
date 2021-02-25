@@ -44,6 +44,7 @@ class LeftSideBar extends React.Component {
                         <ul>
                            <li><Link to={'/alluser'} className="nav-link"> All User </Link></li>
                            <li><Link to={'/adduser'} className="nav-link">Add User</Link></li>
+                           <li><Link to={'/edituser'} className="nav-link">Edit User</Link></li>
                         </ul>
                      </li>
                   </ul>
