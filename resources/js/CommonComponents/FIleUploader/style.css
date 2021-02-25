@@ -1,9 +1,36 @@
 .dzu-dropzone {
-   overflow: unset !important; 
-   border-radius: 5px !important;
-   border: 1px dashed #6c757d !important;
+    overflow: unset !important;
+    border-radius: 5px !important;
+    border: 1px dashed #6c757d !important;
+    margin-bottom: 1rem !important;
 }
 
 .dzu-previewContainer {
     padding: 5px !important;
+}
+
+.img-thumbnail {
+    max-width: 50% !important;
+    height: 40px !important;
+    margin-top: 1rem !important;
+    background-color: unset !important;
+    border: unset !important;
+    border-radius: unset !important;
+}
+
+.file_name {
+    font-size: 15px;
+    color: #393c45;
+    margin-top: 25px;
+}
+
+.file_status {
+    color: #48cfad;
+}
+
+.file_action {
+    float: right;
+    margin-right: 3rem;
+    margin-top: 2rem;
+    font-size: 23px;
 }

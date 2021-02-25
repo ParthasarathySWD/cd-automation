@@ -21,17 +21,17 @@ class SendSomething extends Component {
 
         return(
             <div className="row clearfix">
-                <div className="col-sm-6 uploader">
+                <div className="col-sm-8 uploader">
                     <h6>
                         Upload Documnents
                     </h6>
-                    <FileDroper text="Choose Prelim files to upload" multiple={false} maxfiles={20}/>
+                    <FileDroper text="Choose Prelim files to upload" multiple={false} maxfiles={20} state={this.state.PrelimFile}/>
 
                     <div id="Preview">
                     </div>
 
                 </div>
-            </div> 
+            </div>
         );
     }
 }
