@@ -37,7 +37,7 @@ class LeftSideBar extends React.Component {
                      <li className=""><Link to={'/dashboard'} className="nav-link"><i className="fa fa-dashboard"></i> <span>Dashboard</span></Link></li>
                      <li  className="active"><Link to={'/orderentry'} className="nav-link"><i className="fa fa-external-link-square" aria-hidden="true"></i> <span>Order Entry</span></Link></li>
                      <li  className="active"><Link to={'/myorders'} className="nav-link"><i className="fa fa-list" aria-hidden="true"></i> <span>My Orders</span></Link></li>
-                     <li  className="active"><Link to={'/clientlogin'} className="nav-link"><i className="fa fa-list" aria-hidden="true"></i> <span>Client Login</span></Link></li>
+                     <li  className="active"><Link to={'/clientlogin'} className="nav-link"><i className="fa fa-sign-in" aria-hidden="true"></i> <span>Clients</span></Link></li>
 
                      <li>
                         <a href="#!" className="has-arrow"><i className="fa fa-users"></i><span>User</span></a>

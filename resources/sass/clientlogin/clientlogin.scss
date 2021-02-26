@@ -1,0 +1,44 @@
+.clientlogin
+{
+    width:500px;
+    height:1200px;
+    //  background-image: url("/images/clogin.jpg");
+    // background-color: rgb(84, 84, 170);
+    background-size: 100%;
+    position: absolute;
+    left: 9px;
+    background-repeat: no-repeat;
+   
+}
+
+#button {
+    border-radius: 12px;
+    background-color: white;
+    color: black;
+    border: 2px solid #4CAF50; /* Green */
+  }
+.card-align   
+{
+width: 500px;
+position: absolute;
+left: 5px;
+
+}
+.field-label
+{
+    color: green;
+}
+#headtitle
+{
+    background-color: green;
+    color: white;
+    text-align: center;
+    padding: 12px;
+    border-radius: 12px;
+    font-weight: bold;
+}
+#headername
+{
+ background-color:#b0e7fd;
+ padding: 5px;
+}
