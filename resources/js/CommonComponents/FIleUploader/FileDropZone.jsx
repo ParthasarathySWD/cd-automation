@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 
 import Dropzone from 'react-dropzone-uploader'
 import 'react-dropzone-uploader/dist/styles.css'
@@ -8,19 +8,22 @@ import './style.css'
 
 const DropZone = (props) => {
 
-    const getUploadParams = ({ file, meta }) => {
-        console.log(file);
-        return { url: 'https://httpbin.org/post' }
-    }
-
+    // const getUploadParams = ({ file, meta }) => {
+    //     console.log(file);
+    //     return { url: 'https://httpbin.org/post' }
+    // }
+    // 
     const handleChangeStatus = ({ meta, file }, status) => {
-        console.log(status, meta, file);
+        console.log(file);
+        console.log('test');
+        props.test(file);
+
     }
 
-    const handleSubmit = (files, allFiles) => {
-        console.log(files.map(f => f.meta))
-        allFiles.forEach(f => f.remove())
-    }
+    // const handleSubmit = (files, allFiles) => {
+    //     console.log(files.map(f => f.meta))
+    //     allFiles.forEach(f => f.remove())
+    // }
 
     const getFilesFromEvent = e => {
         return new Promise(resolve => {
@@ -75,11 +78,11 @@ const DropZone = (props) => {
                             <div className="file_doc_type">
                                 <div className="form-group">
                                     <label>Document Type <span className="text-danger"></span></label>
-                                    <select className="form-control show-tick">
+                                    <select className="form-control show-tick" name={name}>
                                         <option value=""></option>
-                                        <option value="10">Prelim</option>
-                                        <option value="20">Closing</option>
-                                        <option value="4">Mortgage</option>
+                                        <option value="1">Prelim</option>
+                                        <option value="2">Closing</option>
+                                        <option value="3">Mortgage</option>
                                     </select>
                                 </div>
                             </div>
@@ -112,7 +115,7 @@ const DropZone = (props) => {
 
   return (
       <Dropzone
-        getUploadParams={getUploadParams}
+        
         onChangeStatus={handleChangeStatus}
         InputComponent={InputChooseFile}
         getFilesFromEvent={getFilesFromEvent}

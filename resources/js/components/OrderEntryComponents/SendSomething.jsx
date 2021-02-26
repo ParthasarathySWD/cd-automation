@@ -10,11 +10,19 @@ class SendSomething extends Component {
         super(props);
 
         this.state = {
-            PrelimFile: '',
+            Files: [],
             LoanNumber: '',
             SupportingFile: [],
             DocumentTypeUID: []
         };
+
+        this.test=this.test.bind(this)
+    }
+
+    test(file){
+        this.setState({
+            Files: [{file}],
+        });
     }
 
     render() {
@@ -25,7 +33,7 @@ class SendSomething extends Component {
                     <h6>
                         Upload Documnents
                     </h6>
-                    <FileDroper text="Choose Prelim files to upload" multiple={false} maxfiles={20} state={this.state.PrelimFile}/>
+                    <FileDroper text="Choose Prelim files to upload" multiple={false} maxfiles={20} state={this.state.PrelimFile} test={this.test}/>
 
                     <div id="Preview">
                     </div>
