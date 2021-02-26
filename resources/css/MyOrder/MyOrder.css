@@ -1,11 +1,19 @@
-.main-container
+/* .main-container
 {
     background-color: rgb(255, 255, 255);
-}
+} */
 .child-container
 {
     width:90%;
     margin-left:60px;
+    
+}
+.first-child
+{
+    margin-left:65px;
+    /* background-color: white; */
+    box-shadow: 2px 2px 8px 0px #d6d5d5;
+    width: 900px;
 }
 .myorder-header
 {
@@ -15,7 +23,7 @@
 .btn-order
 {
     position:absolute;
-    right: 0.2em;
+    right: 7.0em;
     top:1.0em;
     text-transform: none;
     /* float:right; */
@@ -23,22 +31,31 @@
 .status-row
 {
     width:900px;
-    margin-left: 10px;
+    margin-left: 8px;
     margin-top:20px;
     height:90px;
 }
-.status-val
+
+/* .status-val
 {
-    padding-left:10px;
+    padding-left:5px;
     padding-top:10px;
-}
+    background-color:rgb(255, 255, 255);
+    border-radius:2px solid black;
+    font-size: 18px;
+} */
 
 .tab-menus
 {
     margin-top:40px;
     overflow: hidden;
     border-bottom: 1px solid #f0f2f5;
-    
+    font-size: 16px;
+}
+.search-input
+{
+   position:absolute;
+
 }
 .tab-menus a:hover,a:active
 {
@@ -72,7 +89,78 @@ ul
 {
     margin-right:5px;
 }
+.data-table-extensions
+{
+    position:absolute;
+    top:13.2em !important;
+}
 .data-table-extensions-filter
 {
     float:right !important;
+    padding:0px !important;
+    position:absolute;
+    right:15em !important;
 }
+.filter-text
+{
+    width:100px;
+    padding:0px !important;
+}
+.info {
+    box-shadow: 1px 2px 8px 0px #d6d5d5;
+    background-color: rgb(255, 255, 255);
+    /* border-radius: 1px 0px 0px 1px; */
+    height: 80px;
+    margin-top:-15px;
+    
+    /* box-shadow: 1px 2px 8px 0px #f1f1f1; */
+  }
+  
+  .rone i {
+    /* width: 80%; */
+    color:white;
+  }
+  .rone {
+    background-color: #b6a1bb;
+    /* background-color: #a3bfd0b8; */
+    padding-top: 25px;
+    /* border-radius: 8px 0px 0px 8px; */
+    text-align: center;
+    height: 80px;
+    margin-left: 0px;
+  }
+  .rtwo
+  {
+      
+      background-color:#f7bd6cb8;
+  }
+  .rthree
+  { 
+    
+      background-color: #6cc78591;
+  }
+  .fontsty {
+    margin-right: -15px;
+  }
+  
+  .fontsty h4{
+    /* color: #6E6E6E; */
+    font-size:18px;
+    margin-top: 2px;
+    text-align: left;
+    margin-left: 20px;
+  }
+  
+  .status-text{
+    /* color: #6E6E6E; */
+    font-size: 16px;
+    margin-top: 8px;
+    text-align: left;
+    margin-left: 20px;
+  }
+  .tab-values
+  {
+      width:100%;
+      background-color:white;
+      padding:10px;
+  }

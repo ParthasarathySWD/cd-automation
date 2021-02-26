@@ -22,7 +22,7 @@ function Header(props) {
             <div className="navbar-right">
                <div id="navbar-menu">
                   <ul className="nav navbar-nav">
-                     <li><a href="#!" className="right_note icon-menu" title="Right Menu">Notes</a></li>
+                     {/* <li><a href="#!" className="right_note icon-menu" title="Right Menu">Notes</a></li>
                      <li className="dropdown hidden-xs">
                         <a href="#!" className="dropdown-toggle icon-menu" data-toggle="dropdown">Create</a>
                         <div className="dropdown-menu pb-0 mt-0">
@@ -30,8 +30,8 @@ function Header(props) {
                            <a className="dropdown-item pt-2 pb-2" href="#!">Invoce</a>
                            <a className="dropdown-item pt-2 pb-2" href="#!">Report</a>
                         </div>
-                     </li>
-                     <li className="dropdown hidden-xs">
+                     </li> */}
+                     {/* <li className="dropdown hidden-xs">
                         <a href="#!" className="dropdown-toggle icon-menu" data-toggle="dropdown">
                            <i className="fa fa-envelope-o"></i>
                            <span className="notification-dot msg">4</span>
@@ -83,7 +83,7 @@ function Header(props) {
                               </a>
                            </li>
                         </ul>
-                     </li>
+                     </li> */}
                      <li className="dropdown">
                         <a href="#!" className="dropdown-toggle icon-menu" data-toggle="dropdown">
                            <i className="fa fa-bell-o"></i>
@@ -129,7 +129,7 @@ function Header(props) {
                            </li>
                         </ul>
                      </li>
-                     <li className="dropdown language-menu hidden-xs">
+                     {/* <li className="dropdown language-menu hidden-xs">
                         <a href="#!" className="dropdown-toggle icon-menu" data-toggle="dropdown"><i className="fa fa-language"></i></a>
                         <div className="dropdown-menu language_widget mt-0">
                            <a className="dropdown-item pt-2 pb-2" href="#!"><img src="../../images/flag/us.svg" alt="US English" /> US English</a>
@@ -139,8 +139,8 @@ function Header(props) {
                            <a className="dropdown-item pt-2 pb-2" href="#!"><img src="../../images/flag/arabia.svg" alt="Arabic" /> Arabic</a>
                            <a className="dropdown-item pt-2 pb-2" href="#!"><img src="../../images/flag/france.svg" alt="French" /> French</a>
                         </div>
-                     </li>
-                     <li><a href="#!" className="right_toggle icon-menu" title="Right Menu"><i className="fa fa-comments-o"></i></a></li>
+                     </li> */}
+                     {/* <li><a href="#!" className="right_toggle icon-menu" title="Right Menu"><i className="fa fa-comments-o"></i></a></li> */}
                      <li className="hidden-xs"><a href="#!" id="btnFullscreen" className="icon-menu"><i className="fa fa-arrows-alt"></i></a></li>
                      <li><a onClick={() => { auth.logout(function(){}); }} className="icon-menu"><i className="fa fa-power-off"></i></a></li>
                   </ul>
