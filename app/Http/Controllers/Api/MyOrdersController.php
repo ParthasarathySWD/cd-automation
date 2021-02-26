@@ -32,7 +32,7 @@ class MyOrdersController extends Controller
 
 
         $rowCount   = $request->rowCount | 10;
-        $page       = $request->page;
+        $page       = ($request->page - 1);
         $searchText = $request->searchText;
 
         $schema = DB::table('tOrders');
