@@ -5,15 +5,15 @@
 .child-container
 {
     width:90%;
-    margin-left:60px;
+    margin-left:20px;
     
 }
 .first-child
 {
-    margin-left:65px;
+    margin-left:20px;
     /* background-color: white; */
     box-shadow: 2px 2px 8px 0px #d6d5d5;
-    width: 900px;
+    width: 950px;
 }
 .myorder-header
 {
@@ -30,7 +30,7 @@
 }
 .status-row
 {
-    width:900px;
+    width:950px;
     margin-left: 8px;
     margin-top:20px;
     height:90px;
