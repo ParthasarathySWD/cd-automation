@@ -77,13 +77,14 @@ const DropZone = (props) => {
                         <div className="col-md-4">
                             <div className="file_doc_type">
                                 <div className="form-group">
-                                    <label>Document Type <span className="text-danger"></span></label>
+                                   
                                     <select className="form-control show-tick" name={name}>
                                         <option value=""></option>
                                         <option value="1">Prelim</option>
                                         <option value="2">Closing</option>
                                         <option value="3">Mortgage</option>
                                     </select>
+                                     <label>Doc Type <span className="text-danger"></span></label>
                                 </div>
                             </div>
                         </div>
