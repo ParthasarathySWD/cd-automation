@@ -5,62 +5,16 @@ import DataTableExtensions from "react-data-table-component-extensions";
 import "react-data-table-component-extensions/dist/index.css";
 // import { columns, data } from './DataTab';
 import axios from 'axios';
-
+import MyOrders from '../../components/Datatablecomponents/MyOrders';
 /*Datatable values*/
 
 
 
-// class MyOrder extends React.Component{
   function MyOrder(){
-    // render(){
+
   const [users, setUsers] = useState({});
   const [page, setPage] = useState(1);
   const countPerPage = 3;
-  // const data=[
-//     {
-//       OrderId: "100 291",
-//       LoanNumber: "1024444234",
-//       Customer:<label className="text-center"><img src="../../images/robot.png" className="p-1" width="25px"></img>Amy Wong</label>,
-//       LoanType:"Housing",
-//       status:<label className="badge badge-primary p-1">Pending</label>
-//   },
-//   {
-//     OrderId: "100 291",
-//     LoanNumber: "1024444234",
-//     Customer:<label className="text-center"><img src="../../images/robot.png" className="p-1" width="25px"></img>emy Wong</label>,
-//     LoanType:"Housing",
-//     status:<label className="badge badge-primary p-1">Pending</label>
-// },
-// {
-//   OrderId: "100 291",
-//   LoanNumber: "1024444234",
-//   Customer:<label className="text-center"><img src="../../images/robot.png" className="p-1" width="25px"></img>jeni Wong</label>,
-//   LoanType:"Housing",
-//   status:<label className="badge badge-primary p-1">Pending</label>
-// }
-//   ];
-
-  // const getUserList = () => {
-  //   const data=[
-  //     {
-  //       OrderId: "100 291",
-  //       LoanNumber: "1024444234",
-  //       Customer:"Amy Wong",
-  //       LoanType:"Housing",
-  //       status:"Pending"
-  //   }
-  //   ];
-    // axios.get(`https://reqres.in/api/users?page=${page}&per_page=${countPerPage}&delay=1`).then(res => {
-      // setUsers(data);
-    // }).catch(err => {
-    //   setUsers({});
-    // });
-    
-  // }
-
-  // useEffect(() => {
-  //   getUserList();
-  // },[page]);
 
   const columns = [
     {
@@ -186,25 +140,7 @@ import axios from 'axios';
                         <div className="tab-content">
                             <div id="all" className="order-table tab-pane in active">
                             <DataTableExtensions {...tableData} export={false} print={false} >    
-                            <DataTable
-                              columns={columns}
-                              // data={users.data}
-                              data={data}
-                              defaultSortField="title"
-                              pagination
-                              selectableRows
-                              selectableRowsComponent={Checkbox}
-                 
-                              // highlightOnHover
-                              // pagination
-                              // paginationServer
-                              // paginationTotalRows={users.total}
-                              // paginationPerPage={countPerPage}
-                              // paginationComponentOptions={{
-                              //   noRowsPerPage: true
-                              // }}
-                              // onChangePage={page => setPage(page)}
-                            />
+                            <MyOrders />
                             </DataTableExtensions>
                              {/* <DataTable
                                     columns={columns}

@@ -10,10 +10,11 @@ class mClients extends Model
     use HasFactory;
     use \OwenIt\Auditing\Auditable;
 
-    const CREATED_AT = 'creation_date';
-    const UPDATED_AT = 'last_update';
+    const CREATED_AT = 'CreatedDateTime';
+    const UPDATED_AT = 'ModifiedDateTime';
 
     protected $auditTimestamps = true;
+    public $timestamps = false;
 
     protected $primaryKey = 'ClientUID';
     
@@ -29,6 +30,9 @@ class mClients extends Model
         'CountyName',
         'StateName',
         'Notes',
+    	'CreatedByDateTime',
+    	'ModifiedByDateTime'
+
     ];
 
     protected $auiditInclude = [
@@ -42,6 +46,9 @@ class mClients extends Model
         'CountyName',
         'StateName',
         'Notes',
+    	'CreatedByDateTime',
+    	'ModifiedByDateTime'
+
     ];
 
 }

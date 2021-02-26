@@ -15,11 +15,9 @@ class AlterTordersTable extends Migration
     {
         //
         Schema::table('tOrders', function (Blueprint $table) {
-            if (Schema::hasColumn('tOrders', 'CustomerUID')) {
-                $table->unsignedBigInteger('CustomerUID')->change();
-                $table->renameColumn('CustomerUID', 'ClientUID');
+            if (Schema::hasColumn('tOrders', 'ClientUID')) {
+                $table->foreign('ClientUID')->references('ClientUID')->on('mClients');
             }
-            $table->foreign('ClientUID')->references('ClientUID')->on('mClients');
 
         });
     }
@@ -36,7 +34,6 @@ class AlterTordersTable extends Migration
             if (Schema::hasColumn('tOrders', 'ClientUID')) {
 
                 $table->dropForeign(['ClientUID']);
-                $table->renameColumn('ClientUID', 'CustomerUID');
             }
 
         });

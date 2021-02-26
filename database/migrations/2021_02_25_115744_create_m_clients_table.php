@@ -26,7 +26,9 @@ class CreateMClientsTable extends Migration
             $table->string('StateName')->nullable();
             $table->longtext('Notes')->nullable();
             
-            $table->timestamps();
+            $table->timestamp('CreatedDateTime', $precision = 0)->nullable();
+            $table->timestamp('ModifiedDateTime', $precision = 0)->nullable();
+
         });
     }
 

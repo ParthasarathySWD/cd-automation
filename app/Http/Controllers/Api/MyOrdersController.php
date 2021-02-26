@@ -18,7 +18,7 @@ class MyOrdersController extends Controller
     public function index()
     {
         //
-        
+
     }
 
     /**
@@ -29,14 +29,17 @@ class MyOrdersController extends Controller
      */
     public function fetchMyOrders(Request $request)
     {
+
+
         $rowCount   = $request->rowCount | 10;
         $page       = $request->page;
         $searchText = $request->searchText;
 
         $schema = DB::table('tOrders');
+        $schemacount = DB::table('tOrders');
 
-        $data = $schema->get();
-        $count = $schema->count();
+        $data = $schema->skip($rowCount * $page)->take($rowCount)->get();
+        $count = $schemacount->count();
 
         return response()->json([
             'data' => $data,

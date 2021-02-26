@@ -19,7 +19,7 @@ class CreateOrderEntriestable extends Migration
             $table->dateTime('OrderEntryDate');
             $table->string('LoanNumer');
             $table->integer('LoanTypeUID');
-            $table->integer('CustomerUID');
+            $table->unsignedBigInteger('ClientUID');
             $table->integer('LenderUID');
             $table->dateTime('ClosingDate');
             $table->dateTime('CompletedDate')->nullable();
