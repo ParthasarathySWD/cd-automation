@@ -1,6 +1,9 @@
 import React from 'react'
 import AllUsersTab from './AllUsersTab'
 import { Link } from 'react-router-dom';
+import UserDataTable from './UserDataTable';
+
+
 class Members extends React.Component {
   constructor(props) {
     super(props);
@@ -15,12 +18,12 @@ class Members extends React.Component {
                         <AllUsersTab/>
                     </div>
                     <div className="row clearfix pl-4">
-                        {/* <h4>Members</h4> */}
+                        
                     </div>
                     <div className="container">
                       <div className="row">
                           <div className="col-md-12">
-                              <div className="card">
+                              {/* <div className="card">
                                   
                                   <div className="table-responsive">
                                       <table className="table no-wrap user-table mb-0">
@@ -69,12 +72,13 @@ class Members extends React.Component {
                                         </tbody>
                                       </table>
                                   </div>
-                              </div>
+                              </div> */}
                           </div>
                       </div>
                     </div>
+              <UserDataTable/>
             </div>
         );
     }
 }
-export default Members
+export default Members;

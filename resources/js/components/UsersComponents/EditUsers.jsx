@@ -12,7 +12,7 @@ class EditUsers extends React.Component{
             UserName: '',
             Password: '',
             ConfirmPassword: '',
-            Role: '',
+            RoleUID: '',
             errors: {}
 
         }
@@ -129,10 +129,10 @@ class EditUsers extends React.Component{
              }
          }
          
-        //  Role
-         if(!this.state.Role){
+        //  RoleUID
+         if(!this.state.RoleUID){
             formIsValid = false;
-            errors["Role"] = "Field is Required";
+            errors["RoleUID"] = "Field is Required";
          }
 
 
@@ -161,7 +161,7 @@ class EditUsers extends React.Component{
             data.append('UserName',this.state.UserName);
             data.append('Password',this.state.Password);
             data.append('ConfirmPassword',this.state.ConfirmPassword);
-            data.append('Role',this.state.Role);
+            data.append('RoleUID',this.state.RoleUID);
 
             axios.post("users", data, {
             })
@@ -175,7 +175,7 @@ class EditUsers extends React.Component{
                         UserName: '',
                         Password: '',
                         ConfirmPassword: '',
-                        Role: '',
+                        RoleUID: '',
                         errors: {}
                     });
                 })
@@ -196,7 +196,7 @@ class EditUsers extends React.Component{
             UserName: '',
             Password: '',
             ConfirmPassword: '',
-            Role: '',
+            RoleUID: '',
             errors: {}
         });
     };
@@ -292,17 +292,17 @@ class EditUsers extends React.Component{
                                     </div>
                                     <div className="col-sm-6">
                                         <div className="form-group c_form_group">
-                                            <label>Role <span className="text-danger">*</span></label>
-                                            <select name="Role" id="" className="form-control show-tick" onChange={this.onChangeHandler} >
+                                            <label>RoleUID <span className="text-danger">*</span></label>
+                                            <select name="RoleUID" id="" className="form-control show-tick" onChange={this.onChangeHandler} >
                                                 <option value="">-Select-</option>
-                                                <option value="Admin">Admin</option>
-                                                <option value="Customer">Customer</option>
-                                                <option value="Lender">Lender</option>
+                                                <option value="1">Admin</option>
+                                                <option value="2">Customer</option>
+                                                <option value="3">Lender</option>
                                             </select>
-                                            <span style={{color: "red"}}>{this.state.errors["Role"]}</span>
+                                            <span style={{color: "red"}}>{this.state.errors["RoleUID"]}</span>
                                         </div>
                                     </div>
-                                    <div className="col-sm-12">
+                                    <div className="col-sm-12 align-right">
                                         <button type="submit" className="btn btn-sm btn-primary" onClick={this.onClickHandler} >Save</button>
                                         <button type="submit" className="btn  btn-sm btn-danger" onClick={this.reset} >Cancel</button>
                                     </div>
