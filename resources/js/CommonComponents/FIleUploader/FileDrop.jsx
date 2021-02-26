@@ -1,81 +1,33 @@
-import React, {Component, useState, useEffect, useRef} from 'react';
-import './style.css'
+import React, { useState } from "react";
+import FileUpload from "./file-upload.component";
 
+function FileDrop(){
 
-function useFiles() {
-	const [state, setstate] = useState();
-	function withBlobs(files) {
-		const blobs = [...files]
-		.map(file => {
-			if (file.type.includes("application/pdf")) {
-				console.log(".pdf");
-				file.preview = URL.createObjectURL(file);
-				return file;
-			}
-			console.log("not .pdf");
-			return null;
-		})
-		.filter(elem => elem !== null);
+	const [OrderDocuments, setOrderDocments] = useState({
+        OrderDocuments: []
+      });
 
-		setstate(blobs);
-	}
-	return [state, withBlobs];
-}
+    const [OrderDocumentType, setOrderDocumentType] = useState({
+        OrderDocumentType:[]
+    });
 
-function FileDrop(props){
+    const OrderDocumentTypes = (types) =>
+        setOrderDocumentType({ ...OrderDocumentType, OrderDocumentType: types });
 
-	const [over, setover] = useState(false);
-	const [files, setfiles] = useFiles();
-	const $input = useRef(null);
+    const updateUploadedFiles = (files) =>
+        setOrderDocments({ ...OrderDocuments, OrderDocuments: files });
 
-	console.log(files);
-
-	const text = 0 >= 1 ? 'Upload Supporting Documents' : props.text;
-    const btnClass = 0 >= 1 ? "btn btn-sm btn-outline-success" : "btn btn-sm btn-outline-primary";
-
-    const buttonStyle = {
-      margin: '40px'
-    }
-
-    const handleDrop= (e) => {
-    	e.preventDefault();
-    	e.persist();
-    	const dataTransfer = [...e.dataTransfer.files];
-    	console.log(dataTransfer);
-    }
-
-    const handleDropOver=(e) => {
-    	e.preventDefault();
-    	setover(true);
-    }
-
-    const handleDragLeave=(e) => {
-    	e.preventDefault();
-    	setover(false);
-    }
-
-    const handleChange=(e) => {
-    	setfiles(e.target.files);
-    }
-
-	return(
-		<div className="file-container"
-			onDrop={handleDrop}
-			onDragOver={handleDropOver}
-			onDragLeave={handleDragLeave}
-		>
-			<label style={buttonStyle} className={btnClass}>
-		      {text}
-		      <input
-		      style={{ display: 'none' }}
-		      type="file"
-		      accept='.pdf'
-		      multiple
-		      onChange={handleChange}
-		     />
-		    </label>
-		</div>
-	);
+      return (
+        <div>
+            <FileUpload
+              accept=".pdf"
+              label=""
+              multiple
+              updateFilesCb={updateUploadedFiles}
+              DocumentTypes ={OrderDocumentTypes}
+            />
+        </div>
+      );
 }
 
 export default FileDrop;
