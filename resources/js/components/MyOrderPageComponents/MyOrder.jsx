@@ -194,7 +194,7 @@ import axios from 'axios';
                               pagination
                               selectableRows
                               selectableRowsComponent={Checkbox}
-                              
+                 
                               // highlightOnHover
                               // pagination
                               // paginationServer
@@ -216,7 +216,7 @@ import axios from 'axios';
                                     /> */}
                             </div>
                             <div id="pending" className="order-table tab-pane fade">
-                              <DataTableExtensions {...tableData}>
+                              <DataTableExtensions {...tableData} export={false} print={false} >
                                 <DataTable
                                     columns={columns}
                                     data={data}
@@ -228,6 +228,7 @@ import axios from 'axios';
                                     </DataTableExtensions>
                             </div>
                             <div id="completed" className="order-table tab-pane fade">
+                            <DataTableExtensions {...tableData} export={false} print={false} >
                                 <DataTable
                                     columns={columns}
                                     data={data}
@@ -236,6 +237,7 @@ import axios from 'axios';
                                     selectableRows
                                     selectableRowsComponent={Checkbox}
                                     />
+                                  </DataTableExtensions>
                             </div>
                         </div>
                     </div>
