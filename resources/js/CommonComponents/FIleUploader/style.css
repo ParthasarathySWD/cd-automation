@@ -44,3 +44,10 @@
   float: right !important;
   color: #44c4a1 !important;
 }
+
+.file-container{
+  border: 1px dashed #343a40;
+  text-align: center;
+  min-width: 100%;
+  border-radius: 10px;
+}

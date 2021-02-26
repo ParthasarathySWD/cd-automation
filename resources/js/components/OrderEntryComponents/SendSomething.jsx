@@ -3,6 +3,7 @@ import axios from 'axios';
 import '../../CommonComponents/FIleUploader/style.css';
 
 import FileDroper from '../../CommonComponents/FIleUploader/FileDropZone';
+import FileDrop from '../../CommonComponents/FIleUploader/FileDrop';
 
 class SendSomething extends Component {
 
@@ -33,8 +34,7 @@ class SendSomething extends Component {
                     <h6>
                         Upload Documnents
                     </h6>
-                    <FileDroper text="Choose Prelim files to upload" multiple={false} maxfiles={20} state={this.state.PrelimFile} test={this.test}/>
-
+                    <FileDrop text="Choose Prelim files to upload"/>
                     <div id="Preview">
                     </div>
 
