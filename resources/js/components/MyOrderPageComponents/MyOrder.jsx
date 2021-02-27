@@ -168,8 +168,9 @@ const tableData = {
                                 <a className="nav-link" href="#completed" role="tab" data-toggle="pill">Completed</a>
                                 </li>
                               </ul>
-                            <input type="text" className="search-input" placeholder="&#61442; search"></input>
-                           
+                              <div className="search-div">
+                                  <input type="text" className="search-input" placeholder="&#61442; search"></input>
+                              </div>
                           </div>
                            
                         </div>
