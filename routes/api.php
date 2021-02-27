@@ -20,14 +20,14 @@ use App\Http\Controllers\OrderEntryController;
 
 Route::post('login', 'App\Http\Controllers\Api\AuthController@login');
 
-Route::middleware('auth:sanctum')->group(function () {
+Route::middleware([])->group(function () {
     
     Route::get('user', function (Request $request) {
         return $request->user();
     });
     
     Route::get('logout', 'App\Http\Controllers\Api\AuthController@logout');
-    Route::post('myorders/fetchorders', 'App\Http\Controllers\Api\MyOrdersController@fetchMyOrders');
+    Route::get('myorders/fetchorders', 'App\Http\Controllers\Api\MyOrdersController@fetchMyOrders');
     
     Route::resource('/notes', NoteController::class);
     Route::resource('/users', UserController::class);

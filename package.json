@@ -26,6 +26,7 @@
         "sass-loader": "^8.0.0"
     },
     "dependencies": {
+        "datatables.net": "^1.10.23",
         "fontawesome-4.7": "^4.7.0",
         "html5-file-selector": "^2.1.0",
         "mdbreact": "^5.0.1",

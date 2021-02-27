@@ -4,6 +4,8 @@ import DataTable from 'react-data-table-component';
 import DataTableExtensions from "react-data-table-component-extensions";
 import "react-data-table-component-extensions/dist/index.css";
 import { BrowserRouter as Router, Switch, Route, Link, useHistory } from 'react-router-dom';
+import MyOrders from '../../components/Datatablecomponents/MyOrders';
+
 // import { columns, data } from './DataTab';
 import axios from 'axios';
 
@@ -99,7 +101,66 @@ const tableData = {
 
   const [users, setUsers] = useState({});
   const [page, setPage] = useState(1);
-  const countPerPage = 3;
+  const [countPerPage, setCountPerPage] = useState(10);
+  
+
+
+  
+  /* Should be passed from props starts */
+  const fetchUsers = async (page, size = countPerPage, searchText = "") => {
+    
+    const response = await axios.get(
+      `myorders/fetchorders`,
+      {
+        rowCount: size,
+        page: page,
+        searchText: searchText,
+      }
+      );
+      console.log(response);
+      return response;
+    };
+    
+    const handleDelete = async (row) => {
+        await axios.delete(`https://reqres.in/api/users/${row.id}`);
+    }
+    
+    const columndata = [
+      {
+        name: "Order Number",
+        selector: "OrderNumber",
+        sortable: true
+      },
+      {
+        name: "Loan Number",
+        selector: "LoanNumer",
+        sortable: true
+      },
+      {
+        name: "Client",
+        selector: "ClientUID",
+        sortable: true
+      },
+      {
+        name: "Status",
+        selector: "StatusUID",
+        sortable: true
+      },
+      {
+        // eslint-disable-next-line react/button-has-type
+        name:<b>Action</b>,
+        selector:"action",
+        cell: row => <div><a href="#"><span className="fa fa-eye text-primary p-1"></span></a>
+        <a href="#"><span className="fa fa-edit text-secondary p-1"></span></a>
+        <a href="#"><span className="fa fa-trash text-danger p-1"></span></a>
+        </div>
+      }
+    ];
+    /* Should be passed from props Ends */
+
+
+
+
 
   
   
@@ -180,26 +241,12 @@ const tableData = {
                               {/* <h4>Active Order List</h4> */}
                               {/* <DataTableExtensions {...tableData} filterPlaceholder={'Search'} export={false} print={false}>  */}
                                  
-                                <DataTable
-                                  columns={columns}
-                                  // data={users.data}
-                                  data={data}
-                                  defaultSortField="title"
-                                  pagination
-                                  customStyles={customStyles}
-                                  // selectableRows
-                                  // selectableRowsComponent={Checkbox}
-                    
-                                  // highlightOnHover
-                                  // pagination
-                                  // paginationServer
-                                  // paginationTotalRows={users.total}
-                                  // paginationPerPage={countPerPage}
-                                  // paginationComponentOptions={{
-                                  //   noRowsPerPage: true
-                                  // }}
-                                  // onChangePage={page => setPage(page)}
-                                />
+                                 <MyOrders                                                                  
+                                  title = ""
+                                  columndata = {columndata}
+                                  fetchData = {fetchUsers}
+                                  setPerPage = {setCountPerPage}
+                                  />
                               {/* </DataTableExtensions> */}
                               {/* <DataTable
                                       columns={columns}

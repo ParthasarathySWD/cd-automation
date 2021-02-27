@@ -11,14 +11,16 @@ class Auth {
 
     login(formData){
         return new Promise((resolve, reject) => {
+            axios({'method': 'get', url: '/sanctum/csrf-cookie', baseURL: '/' }).then((r) => {
 
-            axios.post('login', formData)
-                    .then((response) => {
-                        resolve(response);
-                    })
-                    .catch((error) => {
-                        reject(error.response);
-                    })
+                axios.post('login', formData)
+                .then((response) => {
+                    resolve(response);
+                })
+                .catch((error) => {
+                    reject(error.response);
+                })
+            })
 
         })
    }
