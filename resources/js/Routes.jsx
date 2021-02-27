@@ -32,7 +32,7 @@ class Routes extends React.Component
                 {/* <Route exact path='/admins' component={Admins} /> */}
 
                 <Route exact path='/adduser' component={AddUser} />
-                <Route exact path='/edituser' component={EditUser} />
+                <Route exact path='/edituser/:id' component={EditUser} />
                 <Route exact path='/orderentry' component={OrderEntry} />
                 <Route exact path='/forgotpassword' component={ForgotPassword} />
                 <Route exact path='/myorders' component={MyOrder}/>

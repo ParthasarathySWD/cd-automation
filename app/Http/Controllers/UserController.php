@@ -103,6 +103,7 @@ class UserController extends Controller
      */
     public function show($id)
     {
+        
         $GetUser = User::find($id);
         return response()->json($GetUser);
     }
@@ -125,8 +126,9 @@ class UserController extends Controller
      * @param  \App\Models\User  $user
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request,User $id)
     {
+        echo '<pre>';print_r($id);exit;
         DB::beginTransaction();
         $UpdateDetails = User::find($id);
         $UpdateData = $request->all();

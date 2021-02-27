@@ -1,40 +1,79 @@
 import React from 'react';
+import { useToasts } from 'react-toast-notifications'
+import {useState, useEffect } from 'react'
+import { useHistory } from 'react-router-dom';
 
-class EditUsers extends React.Component{
-	constructor(props) {
-        super(props);
-        this.state = {
+function EditUser(props){
+
+    const history = useHistory();
+    const RoleOptions = [
+        {value: '1', label: 'Admin'},
+        {value: '2', label: 'Customer'},
+        {value: '3', label: 'Lender'}
+    ];
+    const spanStyle = {
+        color: 'red',
+        fontSize: 12,
+      };
+	    const { addToast } = useToasts();
+        const [state, setState] = useState({
             
             FirstName: '',
             LastName: '',
             PhoneNumber: '',
             Email: '',
             UserName: '',
-            Password: '',
-            ConfirmPassword: '',
             RoleUID: '',
             errors: {}
 
+        });
+        const ID = '';
+        const [isFetched, setIsFetched] = useState(false);
+
+        useEffect(()=>{
+            if (!isFetched) {
+                
+                getUser();
+                setIsFetched(true);
+                // isFetched = true;
+
+            }
+        })
+
+        function getUser(){
+            
+            axios.get("users/"+ID)
+                .then(res => {
+
+                     setState({ 
+                        
+                        FirstName: res.data.FirstName,
+                        LastName: res.data.LastName,
+                        PhoneNumber: res.data.PhoneNumber,
+                        Email: res.data.Email,
+                        UserName: res.data.UserName,
+                        RoleUID: res.data.RoleUID,
+                        Password: '',
+                        ConfirmPassword: '',
+                        errors: {}
+    
+                     });
+    
+                })
         }
-        this.reset= this.reset.bind(this);
-        this.handleValidation = this.handleValidation.bind(this);
-        this.onChangeHandler = this.onChangeHandler.bind(this);
-        this.onClickHandler = this.onClickHandler.bind(this);
-    }
 
-
-    handleValidation(){
+    function handleValidation(){
         let errors = {};
         let formIsValid = true;
 
         // FirstName
-        if(!this.state.FirstName){
+        if(!state.FirstName){
             formIsValid = false;
             errors["FirstName"] = "Field is Required";
          }
          else{
-            if(typeof this.state.FirstName !== "undefined"){
-                if(!this.state.FirstName.match(/^[a-zA-Z]+$/)){
+            if(typeof state.FirstName !== "undefined"){
+                if(!state.FirstName.match(/^[a-zA-Z]+$/)){
                    formIsValid = false;
                    errors["FirstName"] = "Only letters";
                 }        
@@ -43,13 +82,13 @@ class EditUsers extends React.Component{
          
 
         //  LastName
-         if(!this.state.LastName){
+         if(!state.LastName){
             formIsValid = false;
             errors["LastName"] = "Field is Required";
          }
          else{
-            if(typeof this.state.LastName !== "undefined"){
-                if(!this.state.LastName.match(/^[a-zA-Z]+$/)){
+            if(typeof state.LastName !== "undefined"){
+                if(!state.LastName.match(/^[a-zA-Z]+$/)){
                 formIsValid = false;
                 errors["LastName"] = "Only letters";
                 }        
@@ -57,13 +96,13 @@ class EditUsers extends React.Component{
          }
 
         //  PhoneNumber
-         if(!this.state.PhoneNumber){
+         if(!state.PhoneNumber){
             formIsValid = false;
             errors["PhoneNumber"] = "Field is Required";
          }
          else{
-            if(typeof this.state.PhoneNumber !== "undefined"){
-                if(!this.state.PhoneNumber.match(/^[0-9]{1,10}$/)){
+            if(typeof state.PhoneNumber !== "undefined"){
+                if(!state.PhoneNumber.match(/^[0-9]{1,10}$/)){
                    formIsValid = false;
                    errors["PhoneNumber"] = "Invalid PhoneNumber";
                 }        
@@ -71,16 +110,16 @@ class EditUsers extends React.Component{
          }
 
          //Email
-         if(!this.state.Email){
+         if(!state.Email){
             formIsValid = false;
             errors["Email"] = "Field is Required";
          }
          else{
-            if(typeof this.state.Email !== "undefined"){
-                let lastAtPos = this.state.Email.lastIndexOf('@');
-                let lastDotPos = this.state.Email.lastIndexOf('.');
+            if(typeof state.Email !== "undefined"){
+                let lastAtPos = state.Email.lastIndexOf('@');
+                let lastDotPos = state.Email.lastIndexOf('.');
     
-                if (!(lastAtPos < lastDotPos && lastAtPos > 0 && this.state.Email.indexOf('@@') == -1 && lastDotPos > 2 && (this.state.Email.length - lastDotPos) > 2)) {
+                if (!(lastAtPos < lastDotPos && lastAtPos > 0 && state.Email.indexOf('@@') == -1 && lastDotPos > 2 && (state.Email.length - lastDotPos) > 2)) {
                    formIsValid = false;
                    errors["Email"] = "Email is not valid";
                  }
@@ -88,122 +127,133 @@ class EditUsers extends React.Component{
          }
 
         //  UserName
-        if(!this.state.UserName){
+        if(!state.UserName){
             formIsValid = false;
             errors["UserName"] = "Field is Required";
          }
         //  else{
-        //     if(typeof this.state.UserName !== "undefined"){
-        //         if(!this.state.UserName.match(/^[a-zA-Z]+$/)){
+        //     if(typeof state.UserName !== "undefined"){
+        //         if(!state.UserName.match(/^[a-zA-Z]+$/)){
         //            formIsValid = false;
         //            errors["UserName"] = "Only letters";
         //         }        
         //      }
         //  }
 
-         //  Password
-        if(!this.state.Password){
-            formIsValid = false;
-            errors["Password"] = "Field is Required";
-         }
-         else{
-            if(typeof this.state.Password !== "undefined"){
-                if(!this.state.Password.match(/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@#$_!%*?&])[A-Za-z\d@#$!_%*?&]{8,}$/)){
-                   formIsValid = false;
-                   errors["Password"] = "Required minimum eight characters, at least one uppercase letter, one lowercase letter, one number and one special character";
-                }        
-             }
-         }
+        //  //  Password
+        // if(!state.Password){
+        //     formIsValid = false;
+        //     errors["Password"] = "Field is Required";
+        //  }
+        //  else{
+        //     if(typeof state.Password !== "undefined"){
+        //         if(!state.Password.match(/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@#$_!%*?&])[A-Za-z\d@#$!_%*?&]{8,}$/)){
+        //            formIsValid = false;
+        //            errors["Password"] = "Required minimum eight characters, at least one uppercase letter, one lowercase letter, one number and one special character";
+        //         }        
+        //      }
+        //  }
 
-        //  ConfirmPassword
-        if(!this.state.ConfirmPassword){
-            formIsValid = false;
-            errors["ConfirmPassword"] = "Field is Required";
-         }
-         else{
-            if(this.state.ConfirmPassword !== this.state.Password){
+        // //  ConfirmPassword
+        // if(!state.ConfirmPassword){
+        //     formIsValid = false;
+        //     errors["ConfirmPassword"] = "Field is Required";
+        //  }
+        //  else{
+        //     if(state.ConfirmPassword !== state.Password){
                 
-                   formIsValid = false;
-                   errors["ConfirmPassword"] = "Password does not match";
+        //            formIsValid = false;
+        //            errors["ConfirmPassword"] = "Password does not match";
                         
-             }
-         }
+        //      }
+        //  }
          
         //  RoleUID
-         if(!this.state.RoleUID){
+         if(!state.RoleUID){
             formIsValid = false;
             errors["RoleUID"] = "Field is Required";
          }
 
-
-        this.setState({errors: errors});
+         setState(prevState => ({ ...prevState, errors: errors }));
         return formIsValid;
 
     }
 
-    onChangeHandler(e){
-        
-        this.setState({
-            [e.target.name]: e.target.value
-        });
+    function onChangeHandler(e){
+        const { name, value } = e.target;
+        setState(prevState => ({ ...prevState, [name]: value }));
+
     };
 
-    onClickHandler(){
+    function onClickHandler(){
 
-        if(this.handleValidation()){
+        if(handleValidation()){
             
             const data = new FormData();
 
-            data.append('FirstName', this.state.FirstName);
-            data.append('LastName', this.state.LastName);
-            data.append('PhoneNumber', this.state.PhoneNumber);
-            data.append('Email', this.state.Email);
-            data.append('UserName',this.state.UserName);
-            data.append('Password',this.state.Password);
-            data.append('ConfirmPassword',this.state.ConfirmPassword);
-            data.append('RoleUID',this.state.RoleUID);
-
-            axios.post("users", data, {
-            })
+            data.append('FirstName', state.FirstName);
+            data.append('LastName', state.LastName);
+            data.append('PhoneNumber', state.PhoneNumber);
+            data.append('Email', state.Email);
+            data.append('UserName',state.UserName);
+            // data.append('Password',state.Password);
+            // data.append('ConfirmPassword',state.ConfirmPassword);
+            data.append('RoleUID',state.RoleUID);
+            axios.put("users/"+ID, data)
                 .then(res => {
-                    alert(res.data.message);
-                    this.setState({
-                        FirstName: '',
-                        LastName: '',
-                        PhoneNumber: '',
-                        Email: '',
-                        UserName: '',
-                        Password: '',
-                        ConfirmPassword: '',
-                        RoleUID: '',
-                        errors: {}
-                    });
+                    addToast('Data Updated Successfully', { appearance: 'success', autoDismiss: 'true' });
+	                 setState({ 
+
+						FirstName: '',
+						LastName: '',
+						PhoneNumber: '',
+						Email: '',
+						UserName: '',
+						Password: '',
+						ConfirmPassword: '',
+						RoleUID: '',
+						errors: {}
+
+	                 });history.push("/alluser");
+
                 })
 
          }else{
-            alert("Form has errors.")
+            addToast("Invalid Input", { appearance: 'error', autoDismiss: 'true'});
          }
 
         
     };
 
-    reset(){
-        this.setState({
-            FirstName: '',
-            LastName: '',
-            PhoneNumber: '',
-            Email: '',
-            UserName: '',
-            Password: '',
-            ConfirmPassword: '',
-            RoleUID: '',
-            errors: {}
-        });
+    function reset(){
+         setState({ 
+
+			FirstName: '',
+			LastName: '',
+			PhoneNumber: '',
+			Email: '',
+			UserName: '',
+			Password: '',
+			ConfirmPassword: '',
+			RoleUID: '',
+			errors: {}
+
+         });
     };
-    
-	render() {
+            
+
+    let RoleOption = RoleOptions.map((role,index) => {
+        if (role.value== state.RoleUID) {
+            return <option key={index} selected value={role.value}>{role.label}</option> 
+        }
+        else{
+            return <option key={index} value={role.value}>{role.label}</option>
+        }
+    })
+
 		return (
 			<div>
+                
 				<div className="block-header">
 					<div className="row clearfix">
                         <div className="col-lg-4 col-md-12 col-sm-12">
@@ -227,15 +277,15 @@ class EditUsers extends React.Component{
                                     <div className="col-sm-6">
                                         <div className="form-group c_form_group">
                                             <label>First Name <span className="text-danger">*</span></label>
-                                            <input className="form-control" type="text" name="FirstName"  onChange={this.onChangeHandler} value={this.state.FirstName}/>
-                                            {this.state.errors["FirstName"] ? <span style={{color: "#ff3547"}}>{this.state.errors["FirstName"]}</span> : ""}
+                                            <input className="form-control" type="text" name="FirstName"  onChange={onChangeHandler} value={state.FirstName}/>
+                                            {state.errors["FirstName"] ? <span style={spanStyle}>{state.errors["FirstName"]}</span> : ""}
                                         </div>
                                     </div>
                                     <div className="col-sm-6">
                                         <div className="form-group c_form_group">
                                             <label>Last Name <span className="text-danger">*</span></label>
-                                            <input className="form-control" type="text" name="LastName" onChange={this.onChangeHandler} value={this.state.LastName}/>
-                                            <span style={{color: "red"}}>{this.state.errors["LastName"]}</span>
+                                            <input className="form-control" type="text" name="LastName" onChange={onChangeHandler} value={state.LastName}/>
+                                            <span style={spanStyle}>{state.errors["LastName"]}</span>
                                         </div>
                                     </div>
                                 </div>
@@ -249,15 +299,15 @@ class EditUsers extends React.Component{
                                     <div className="col-sm-6">
                                         <div className="form-group c_form_group">
                                             <label>Phone <span className="text-danger">*</span></label>
-                                            <input className="form-control" type="text" name="PhoneNumber" onChange={this.onChangeHandler} value={this.state.PhoneNumber}/>
-                                            <span style={{color: "red"}}>{this.state.errors["PhoneNumber"]}</span>
+                                            <input className="form-control" type="text" name="PhoneNumber" onChange={onChangeHandler} value={state.PhoneNumber}/>
+                                            <span style={spanStyle}>{state.errors["PhoneNumber"]}</span>
                                         </div>
                                     </div>
                                     <div className="col-sm-6">
                                         <div className="form-group c_form_group">
                                             <label>Enter Your Email <span className="text-danger">*</span></label>
-                                            <input className="form-control" type="email" name="Email" onChange={this.onChangeHandler} value={this.state.Email}/>
-                                            <span style={{color: "red"}}>{this.state.errors["Email"]}</span>
+                                            <input className="form-control" type="email" name="Email" onChange={onChangeHandler} value={state.Email}/>
+                                            <span style={spanStyle}>{state.errors["Email"]}</span>
                                         </div>
                                     </div>
                                     
@@ -272,39 +322,39 @@ class EditUsers extends React.Component{
                                     <div className="col-sm-6">
                                         <div className="form-group c_form_group">
                                             <label>User Name <span className="text-danger">*</span></label>
-                                            <input className="form-control" type="text" name="UserName" onChange={this.onChangeHandler} value={this.state.UserName}/>
-                                            <span style={{color: "red"}}>{this.state.errors["UserName"]}</span>
+                                            <input className="form-control" type="text" name="UserName" onChange={onChangeHandler} value={state.UserName}/>
+                                            <span style={spanStyle}>{state.errors["UserName"]}</span>
                                         </div>
                                     </div>
-                                    <div className="col-sm-6">
+                                    {/* <div className="col-sm-6">
                                         <div className="form-group c_form_group">
                                             <label>Password <span className="text-danger">*</span></label>
-                                            <input className="form-control" type="password" name="Password" onChange={this.onChangeHandler} value={this.state.Password}/>
-                                            <span style={{color: "red"}}>{this.state.errors["Password"]}</span>
+                                            <input className="form-control" type="password" name="Password" onChange={onChangeHandler} value={state.Password}/>
+                                            <span style={spanStyle}>{state.errors["Password"]}</span>
                                         </div>
                                     </div>
                                     <div className="col-sm-6">
                                         <div className="form-group c_form_group">
                                             <label>Confirm Password <span className="text-danger">*</span></label>
-                                            <input className="form-control" type="password" name="ConfirmPassword" onChange={this.onChangeHandler} value={this.state.ConfirmPassword} />
-                                            <span style={{color: "red"}}>{this.state.errors["ConfirmPassword"]}</span>
+                                            <input className="form-control" type="password" name="ConfirmPassword" onChange={onChangeHandler} value={state.ConfirmPassword} />
+                                            <span style={spanStyle}>{state.errors["ConfirmPassword"]}</span>
                                         </div>
-                                    </div>
+                                    </div> */}
                                     <div className="col-sm-6">
                                         <div className="form-group c_form_group">
                                             <label>RoleUID <span className="text-danger">*</span></label>
-                                            <select name="RoleUID" id="" className="form-control show-tick" onChange={this.onChangeHandler} >
-                                                <option value="">-Select-</option>
-                                                <option value="1">Admin</option>
-                                                <option value="2">Customer</option>
-                                                <option value="3">Lender</option>
-                                            </select>
-                                            <span style={{color: "red"}}>{this.state.errors["RoleUID"]}</span>
+                                            
+                                                <select name="RoleUID" id="RoleUID" className="form-control show-tick" onChange={onChangeHandler} >
+                                                    <option  value="">-Select-</option>
+                                                    {RoleOption}                                                    
+                                                </select>
+                                            
+                                            <span style={spanStyle}>{state.errors["RoleUID"]}</span>
                                         </div>
                                     </div>
-                                    <div className="col-sm-12 align-right">
-                                        <button type="submit" className="btn btn-sm btn-primary" onClick={this.onClickHandler} >Save</button>
-                                        <button type="submit" className="btn  btn-sm btn-danger" onClick={this.reset} >Cancel</button>
+                                    <div className="col-sm-12 align-right mt-3">
+                                        <button type="submit" className="btn btn-sm btn-primary" onClick={onClickHandler} >Submit</button>
+                                        <button type="submit" className="btn  btn-sm btn-danger" onClick={reset} >Cancel</button>
                                     </div>
                                 </div>
                             </div>
@@ -394,7 +444,7 @@ class EditUsers extends React.Component{
                 </div> */}
 			</div>
 		);
-	}
 }
 
-export default EditUsers;
+
+export default EditUser;

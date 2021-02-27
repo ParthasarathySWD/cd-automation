@@ -1,8 +1,10 @@
 import React from 'react';
 import { useToasts } from 'react-toast-notifications'
 import {useState, useEffect } from 'react'
+import { useHistory } from 'react-router-dom';
 
 function AddUser(props){
+    const history = useHistory();
     const spanStyle = {
         color: 'red',
         fontSize: 12,
@@ -141,7 +143,6 @@ function AddUser(props){
     }
 
     function onChangeHandler(e){
-        console.log(e);
         const { name, value } = e.target;
         setState(prevState => ({ ...prevState, [name]: value }));
 
@@ -163,10 +164,12 @@ function AddUser(props){
             data.append('ConfirmPassword',state.ConfirmPassword);
             data.append('RoleUID',state.RoleUID);
 
+            
+
             axios.post("users", data, {
-            })
-                .then(res => {
-                    addToast(res.data.message, { appearance: 'success' });
+                
+            }).then(res => {
+                    addToast("User Created Successfully", { appearance: 'success' , autoDismiss: 'true'});
 	                 setState({ 
 
 						FirstName: '',
@@ -179,9 +182,9 @@ function AddUser(props){
 						RoleUID: '',
 						errors: {}
 
-	                 });
-
+	                 });history.push("/alluser");
                 })
+                
 
          }else{
             const data = new FormData();
@@ -189,7 +192,7 @@ function AddUser(props){
             axios.post("users", data, {
             })
                 .then(res => {
-                    addToast("Invalid Input", { appearance: 'error' });
+                    addToast("Invalid Input", { appearance: 'error', autoDismiss: 'true' });
                 })
          }
 

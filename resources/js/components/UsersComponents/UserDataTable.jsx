@@ -14,7 +14,7 @@ import { Link } from 'react-router-dom';
 // class MyOrder extends React.Component{
   function UserDataTable(){
     // render(){
-  const [users, setUsers] = useState({});
+  const [users, setUsers] = useState();
   const [page, setPage] = useState(1);
   const countPerPage = 3;
   // const data=[
@@ -41,27 +41,38 @@ import { Link } from 'react-router-dom';
 // }
 //   ];
 
-//   const getUserList = () => {
-//     const data=[
-//       {
-//         UserName: "100 291",
-//         Email: "1024444234",
-//         PhoneNumber:"Amy",
-//         Role:"Housing",
-//         Status:"Pending"
-//     }
-//     ];
-//     axios.get(`http://127.0.0.1:8000/api/users`).then(res => {
-//       setUsers(data);
-//     }).catch(err => {
-//       setUsers({});
-//     });
+  const getUserList = () => {
+    axios.get(`users`).then(res => {
+      setUsers(res.data);
+      console.log(res.data);
+    }).then(err => {
+       
+    });
     
-//   }
+  }
 
-  // useEffect(() => {
-  //   getUserList();
-  // },[page]);
+  useEffect(() => {
+    getUserList();
+  },[page]);
+
+  function Td({ children, to }) {
+    // Conditionally wrapping content into a link
+    const ContentTag = to ? Link : 'div';
+  
+    return (
+      <td>
+        <ContentTag to={to}>{children}</ContentTag>
+      </td>
+    );
+  }
+  // const action = users.map( (user,index ) => {
+      
+  //                           <Link key={index}><span className="fa fa-eye text-primary p-1"></span></Link>;
+  //                           <Link to={'/edituser/'+user.UserUID}><span className="fa fa-edit text-secondary p-1"></span></Link>;
+  //                           <Link ><span className="fa fa-trash text-danger p-1"></span></Link>
+
+  //                         });
+    
 
   const columns = [
     {
@@ -82,8 +93,8 @@ import { Link } from 'react-router-dom';
 
     },
     {
-      name: <b>Role</b>,
-      selector: "Role",
+      name: <b>RoleUID</b>,
+      selector: "RoleUID",
       sortable: true
     },
     {
@@ -94,31 +105,19 @@ import { Link } from 'react-router-dom';
     },
     {
       name:<b>Action</b>,
-      selector:"action",
-      cell: row => <div><a href="#"><span className="fa fa-eye text-primary p-1"></span></a>
-      <Link to={'/edituser'}><span className="fa fa-edit text-secondary p-1"></span></Link>
-      <a href="#"><span className="fa fa-trash text-danger p-1"></span></a>
-      </div>
+      cell: row => <div>
+                       <p key={row.UserUID}>
+                        <Td ><span className="fa fa-eye text-primary p-1"></span></Td>
+                        <Td to={'/edituser/'+row.UserUID}><span className="fa fa-edit text-secondary p-1"></span></Td>
+                        <Td ><span className="fa fa-trash text-danger p-1"></span></Td> 
+                        </p>
+                  </div>
     }
      
   ];
 
-  const data=[
-    {
-        UserName: "100 291",
-        Email: "1024444234",
-        PhoneNumber:"Amy",
-        Role:"Housing",
-        Status:"Pending"
-    },
-    {
-        OrderId: "100 231",
-        LoanNumber: "1223343455",
-        Customer:"Sarah Graham",
-        Role:"Education",
-        Status:"Completed"    
-    }
-  ];
+
+  const data = users ;
   
   /*Set checkbox for datatable rows*/
   const Checkbox = React.forwardRef(({ onClick, ...rest }, ref) => (
@@ -154,7 +153,7 @@ import { Link } from 'react-router-dom';
                             <DataTable
                               columns={columns}
                               // data={users.data}
-                              data={users}
+                              data={data}
                               defaultSortField="title"
                               pagination
                             //   selectableRows
