@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component, useRef, useState  } from 'react';
 import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
 import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom';
@@ -21,7 +21,7 @@ import { SignIn } from './store/action';
 import store from './store/store.js';
 import { getAccessToken, setAccessToken, removeAccessToken, checkUserAuthentication } from "./store/localstorage";
 import { ToastProvider } from 'react-toast-notifications';
-
+import LoadingBar from 'react-top-loading-bar'
 
 function App(props) {
 
@@ -46,13 +46,16 @@ function App(props) {
     }
 export default App;
 
-class Main extends Component {
-    
+function Main() {
+      const ref = useRef(null)
 
-    componentDidMount(){
-        jquery_init.init();
-    }
-    render(){
+    useEffect( ()=> {
+        ref.current.continuousStart();
+
+        setTimeout(()=>ref.current.complete(), 10000);
+    });
+
+
 
         return (
             <div>
@@ -69,6 +72,7 @@ class Main extends Component {
             
             <nav className="navbar navbar-fixed-top">
             <Header />
+            <LoadingBar color="#f11946" ref={ref} shadow={true} />
             </nav>
             
             
@@ -97,7 +101,6 @@ class Main extends Component {
             </div>
             
             );
-        }
         }
         
         
