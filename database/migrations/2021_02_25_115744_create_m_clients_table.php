@@ -25,8 +25,10 @@ class CreateMClientsTable extends Migration
             $table->string('CountyName')->nullable();
             $table->string('StateName')->nullable();
             $table->longtext('Notes')->nullable();
-            
+            $table->integer('Active')->nullable();
+            $table->integer('CreatedByUserUID')->nullable();
             $table->timestamp('CreatedDateTime', $precision = 0)->nullable();
+            $table->integer('ModifiedByUserUID')->nullable();
             $table->timestamp('ModifiedDateTime', $precision = 0)->nullable();
 
         });

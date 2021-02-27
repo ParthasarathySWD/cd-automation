@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 
 use App\Http\Controllers\NoteController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\ClientsController;
 use App\Http\Controllers\OrderEntryController;
 
 /*
@@ -25,12 +26,16 @@ Route::middleware([])->group(function () {
     Route::get('user', function (Request $request) {
         return $request->user();
     });
+
     
     Route::get('logout', 'App\Http\Controllers\Api\AuthController@logout');
     Route::get('myorders/fetchorders', 'App\Http\Controllers\Api\MyOrdersController@fetchMyOrders');
+
+    Route::post('client','App\Http\Controllers\ClientsController@index');
     
     Route::resource('/notes', NoteController::class);
     Route::resource('/users', UserController::class);
+    Route::resource('/clients', ClientsController::class);
     Route::resource('orderentry', OrderEntryController::class);
     Route::resource('orderentry', OrderEntryController::class);
 

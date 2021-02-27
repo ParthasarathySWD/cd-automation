@@ -165,17 +165,17 @@ const tableData = {
   
   
         return(
-            <div className="main-container">
+            <div className="main-container clearfix">
                   <div className="myorder-header">
                     <h5>Orders List</h5>
                     <Link to={'/orderentry'}><button className="btn btn-primary btn-order">CREATE ORDER</button></Link>
                   </div> 
-                  <div className="child-container">
+                  <div className="child-container status-container">
                         <div className="row mb-2 status-row">
-                          <div class="col-lg-4 col-md-4 col-sm-6 col-12 mb-2 mt-4">
-                              <div class="info">
-                                <div class="row">
-                                  <div class="col-lg-3 col-md-4 col-sm-4 col-4 rone">
+                          <div className="col-lg-4 col-md-4 col-sm-6 col-12 mb-2 mt-4 w-25">
+                              <div className="info">
+                                <div className="row">
+                                  <div className="col-lg-3 col-md-4 col-sm-4 col-4 rone">
                                     <i className="fa fa-file-text fa-2x"></i>
                                   </div>
                                   <div class="col-lg-9 col-md-8 col-sm-8 col-8 fontsty">
@@ -186,13 +186,13 @@ const tableData = {
                               </div>
                           </div>
 
-                          <div class="col-lg-4 col-md-4 col-sm-6 col-12 mb-2 mt-4">
-                              <div class="info">
-                                <div class="row">
-                                  <div class="col-lg-3 col-md-4 col-sm-4 col-4 rone rtwo">
+                          <div className="col-lg-4 col-md-4 col-sm-6 col-12 mb-2 mt-4 w-25">
+                              <div className="info">
+                                <div className="row">
+                                  <div className="col-lg-3 col-md-4 col-sm-4 col-4 rone rtwo">
                                     <i className="fa fa-address-card fa-2x"></i>
                                   </div>
-                                  <div class="col-lg-9 col-md-8 col-sm-8 col-8 fontsty">
+                                  <div className="col-lg-9 col-md-8 col-sm-8 col-8 fontsty">
                                       <label className="status-text">Pending</label>
                                       <h4>107</h4>
                                   </div>
@@ -200,13 +200,13 @@ const tableData = {
                               </div>
                           </div>
                     
-                          <div class="col-lg-4 col-md-4 col-sm-6 col-12 mb-2 mt-4">
-                              <div class="info">
-                                <div class="row">
-                                  <div class="col-lg-3 col-md-4 col-sm-4 col-4 rone rthree">
+                          <div className="col-lg-4 col-md-4 col-sm-6 col-12 mb-2 mt-4 w-25">
+                              <div className="info">
+                                <div className="row">
+                                  <div className="col-lg-3 col-md-4 col-sm-4 col-4 rone rthree">
                                     <i className="fa fa-handshake-o fa-2x"></i>
                                   </div>
-                                  <div class="col-lg-9 col-md-8 col-sm-8 col-8 fontsty">
+                                  <div className="col-lg-9 col-md-8 col-sm-8 col-8 fontsty">
                                       <label className="status-text">Completed</label>
                                       <h4>68</h4>
                                   </div>
@@ -229,63 +229,66 @@ const tableData = {
                                 <a className="nav-link" href="#completed" role="tab" data-toggle="pill">Completed</a>
                                 </li>
                               </ul>
-                              <div className="search-div">
+                              {/* <div className="search-div">
                                   <input type="text" className="search-input" placeholder="&#61442; search"></input>
-                              </div>
+                              </div> */}
                           </div>
                            
                         </div>
-                      <div className="tab-values p-10">
-                        <div className="tab-content">
-                            <div id="all" className="order-table tab-pane in active">
-                              {/* <h4>Active Order List</h4> */}
-                              {/* <DataTableExtensions {...tableData} filterPlaceholder={'Search'} export={false} print={false}>  */}
-                                 
-                                 <MyOrders                                                                  
-                                  title = ""
-                                  columndata = {columndata}
-                                  fetchData = {fetchUsers}
-                                  setPerPage = {setCountPerPage}
-                                  />
-                              {/* </DataTableExtensions> */}
-                              {/* <DataTable
+                        <div className="tab-values p-10">
+                          <div className="tab-content">
+                              <div id="all" className="order-table tab-pane in active">
+                                <input type="text" className="search-input" placeholder="&#61442; search"></input>
+                                {/* <h4>Active Order List</h4> */}
+                                {/* <DataTableExtensions {...tableData} filterPlaceholder={'Search'} export={false} print={false}>  */}
+                                  
+                                  <MyOrders                                                                  
+                                    title = ""
+                                    columndata = {columndata}
+                                    fetchData = {fetchUsers}
+                                    setPerPage = {setCountPerPage}
+                                    />
+                                {/* </DataTableExtensions> */}
+                                {/* <DataTable
+                                        columns={columns}
+                                        data={DataTab}
+                                        defaultSortField="title"
+                                        pagination
+                                        selectableRows
+                                        selectableRowsComponent={Checkbox}
+                                        /> */}
+                              </div>
+                              <div id="pending" className="order-table tab-pane fade">
+                                <input type="text" className="search-input" placeholder="&#61442; search"></input>
+                                {/* <DataTableExtensions {...tableData} filterPlaceholder={'Search'} export={false}  print={false} > */}
+                                  <DataTable
                                       columns={columns}
-                                      data={DataTab}
+                                      data={data}
                                       defaultSortField="title"
                                       pagination
-                                      selectableRows
-                                      selectableRowsComponent={Checkbox}
-                                      /> */}
-                            </div>
-                            <div id="pending" className="order-table tab-pane fade">
-                              {/* <DataTableExtensions {...tableData} filterPlaceholder={'Search'} export={false}  print={false} > */}
-                                <DataTable
-                                    columns={columns}
-                                    data={data}
-                                    defaultSortField="title"
-                                    pagination
-                                    customStyles={customStyles}
-                                    // selectableRows
-                                    // selectableRowsComponent={Checkbox}
-                                    />
-                              {/* </DataTableExtensions> */}
-                            </div>
-                            <div id="completed" className="order-table tab-pane fade">
-                              {/* <DataTableExtensions {...tableData} filterPlaceholder={'Search'} export={false} print={false} > */}
-                                <DataTable
-                                    columns={columns}
-                                    data={data}
-                                    defaultSortField="title"
-                                    pagination
-                                    customStyles={customStyles}
-                                    // selectableRows
-                                    // selectableRowsComponent={Checkbox}
-                                    />
-                              {/* </DataTableExtensions> */}
-                            </div>
+                                      customStyles={customStyles}
+                                      // selectableRows
+                                      // selectableRowsComponent={Checkbox}
+                                      />
+                                {/* </DataTableExtensions> */}
+                              </div>
+                              <div id="completed" className="order-table tab-pane fade">
+                                <input type="text" className="search-input" placeholder="&#61442; search"></input>
+                                {/* <DataTableExtensions {...tableData} filterPlaceholder={'Search'} export={false} print={false} > */}
+                                  <DataTable
+                                      columns={columns}
+                                      data={data}
+                                      defaultSortField="title"
+                                      pagination
+                                      customStyles={customStyles}
+                                      // selectableRows
+                                      // selectableRowsComponent={Checkbox}
+                                      />
+                                {/* </DataTableExtensions> */}
+                              </div>
+                          </div>
                         </div>
                     </div>
-                  </div>
             </div>
             
         )

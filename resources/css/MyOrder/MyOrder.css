@@ -2,9 +2,9 @@
 {
     background-color: rgb(255, 255, 255);
 } */
-.child-container
+.child-container.status-container
 {
-    width:90%;
+    width:1000px;
     margin-left:20px;  
 }
 .first-child
@@ -22,7 +22,7 @@
 .btn-order
 {
     position:absolute;
-    right: 6.0em;
+    left: 62em;
     top:1.0em;
     text-transform: none;
     /* float:right; */

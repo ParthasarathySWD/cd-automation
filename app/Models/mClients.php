@@ -8,10 +8,10 @@ use Illuminate\Database\Eloquent\Model;
 class mClients extends Model
 {
     use HasFactory;
-    use \OwenIt\Auditing\Auditable;
+    // use \OwenIt\Auditing\Auditable;
 
-    const CREATED_AT = 'CreatedDateTime';
-    const UPDATED_AT = 'ModifiedDateTime';
+    // const CREATED_AT = 'CreatedDateTime';
+    // const UPDATED_AT = 'ModifiedDateTime';
 
     protected $auditTimestamps = true;
     public $timestamps = false;
