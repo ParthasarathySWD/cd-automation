@@ -48,7 +48,7 @@ class OrderEntryController extends Controller
         // exit;
 
         $validation = Validator::make($request->all(), [
-            'LoanNumer' => 'required',
+            'LoanNumber' => 'required',
             'PrelimFile' => 'required|max:20000|mimes:pdf',
             // 'File.*' => 'mimes:pdf,xlsx,docx,txt,zip'
         ]);
@@ -77,7 +77,6 @@ class OrderEntryController extends Controller
                     'OrderNumber' => $OrderNumber['OrderNumber'],
                     'OrderEntryDate' => Carbon::now(),
                     'LoanNumer' => $request->input('LoanNumer'),
-                    'LoanTypeUID' => $request->input('LoanTypeUID'),
                     'ClientUID' => $UserDetails['ClientUID'],
                     'StatusUID' => 1,
                     'CreatedByUserUID' => $UserDetails['UserUID'],
@@ -129,13 +128,15 @@ class OrderEntryController extends Controller
 
                         /** check supporting file is exits or not empty */
                         if($request->hasFile('SupportingFile'))
-                        {
+                        {                           
                             /**
                              * Order Document Supporting File Processing
                              * @var $request->file('File')
                              */
+                            echo '<pre>';print_r($request->file('SupportingFile'));
+                            
                             foreach($request->file('SupportingFile') as $key => $file)
-                            {
+                            {                                
                                 $DocumentType = $request->input('DocumentTypeUID');
                                 $FileName = $file->getClientOriginalName();
                                 $Extension = $file->getClientOriginalExtension();
@@ -172,6 +173,7 @@ class OrderEntryController extends Controller
 
                                 }
                             }
+                            echo '<pre>';print_r('each exit');exit;
                             /** end */
                         }
                         /** end */
