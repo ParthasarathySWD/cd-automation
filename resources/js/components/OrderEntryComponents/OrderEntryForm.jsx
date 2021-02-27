@@ -73,6 +73,69 @@ function OrderEntryForm() {
                                             <FileDrop setFiles={setFiles} setTypes={setTypes}/>
                                         </div>
                                     </div>
+
+
+                                    <div className="row clearfix">
+                                        <div className="col-sm-8">
+                                             <table className="table table-borderless table-sm text-sm upload-table">
+                                                <tbody>
+                                                    <tr>
+                                                        <td className="w-40px"><i className="fa fa-file-pdf-o text-danger"></i></td>
+                                                        <td className="w-25">Name</td>
+                                                        <td className="w-25">
+                                                            <select className="border form-control form-control-sm">
+                                                                <option>Select</option>
+                                                                <option>Document Type-2</option>
+                                                                <option>Document Type-3</option>
+                                                                <option>Document Type-4</option>
+                                                            </select>
+                                                        </td>
+                                                        <td className="text-center"><i title="View" className="fa fa-eye text-primary mr-3"></i><i title="Remove" className="fa fa-trash-o text-danger"></i></td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td className="w-40px"><i className="fa fa-file-pdf-o text-danger"></i></td>
+                                                        <td className="w-25">Name</td>
+                                                        <td className="w-25">
+                                                            <select className="border form-control form-control-sm">
+                                                                <option>Select</option>
+                                                                <option>Document Type-2</option>
+                                                                <option>Document Type-3</option>
+                                                                <option>Document Type-4</option>
+                                                            </select>
+                                                        </td>
+                                                        <td className="text-center"><i title="View" className="fa fa-eye text-primary mr-3"></i><i title="Remove" className="fa fa-trash-o text-danger"></i></td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td className="w-40px"><i className="fa fa-file-pdf-o text-danger"></i></td>
+                                                        <td className="w-25">Name</td>
+                                                        <td className="w-25">
+                                                            <select className="border form-control form-control-sm">
+                                                                <option>Select</option>
+                                                                <option>Document Type-2</option>
+                                                                <option>Document Type-3</option>
+                                                                <option>Document Type-4</option>
+                                                            </select>
+                                                        </td>
+                                                        <td className="text-center"><i title="View" className="fa fa-eye text-primary mr-3"></i><i title="Remove" className="fa fa-trash-o text-danger"></i></td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td className="w-40px"><i className="fa fa-file-pdf-o text-danger"></i></td>
+                                                        <td className="w-25">Name</td>
+                                                        <td className="w-25">
+                                                            <select className="border form-control form-control-sm">
+                                                                <option>Select</option>
+                                                                <option>Document Type-2</option>
+                                                                <option>Document Type-3</option>
+                                                                <option>Document Type-4</option>
+                                                            </select>
+                                                        </td>
+                                                        <td className="text-center"><i title="View" className="fa fa-eye text-primary mr-3"></i><i title="Remove" className="fa fa-trash-o text-danger"></i></td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                    
                                     <div className="row clearfix">
                                         <div className="col-sm-12">
                                             <div className="pull-right">
