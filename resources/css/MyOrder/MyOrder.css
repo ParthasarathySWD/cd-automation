@@ -5,8 +5,7 @@
 .child-container
 {
     width:90%;
-    margin-left:20px;
-    
+    margin-left:20px;  
 }
 .first-child
 {
@@ -23,7 +22,7 @@
 .btn-order
 {
     position:absolute;
-    right: 7.0em;
+    right: 6.0em;
     top:1.0em;
     text-transform: none;
     /* float:right; */
@@ -55,7 +54,22 @@
 .search-input
 {
    position:absolute;
-
+   top:14.5em;
+   right:7em;
+   width: 150px;
+   border-top:none !important;
+   border-right:none !important;
+   border-left:none !important;
+   border-bottom:1px solid#797a7a59;
+   border-radius: unset;
+   background-color: #fafafa;
+   font-size: 14px;
+}
+.search-input:focus{
+    outline: none;
+}
+.search-input::-webkit-input-placeholder { 
+    font-family: FontAwesome;
 }
 .tab-menus a:hover,a:active
 {
@@ -80,16 +94,16 @@ ul
 {
     margin-top:20px;
 }
-.icons
+/* .icons
 {
     padding:5px;
-}
+} */
 
-.dp
+/* .dp
 {
     margin-right:5px;
-}
-.data-table-extensions
+} */
+/* .data-table-extensions
 {
     position:absolute;
     top:13.2em !important;
@@ -105,22 +119,21 @@ ul
 {
     width:100px;
     padding:0px !important;
-}
-.info {
+} */
+.info 
+{
     box-shadow: 1px 2px 8px 0px #d6d5d5;
     background-color: rgb(255, 255, 255);
-    /* border-radius: 1px 0px 0px 1px; */
     height: 80px;
-    margin-top:-15px;
-    
-    /* box-shadow: 1px 2px 8px 0px #f1f1f1; */
-  }
+    margin-top:-15px;   
+}
   
-  .rone i {
-    /* width: 80%; */
+.rone i 
+{
     color:white;
-  }
-  .rone {
+}
+.rone 
+{
     background-color: #b6a1bb;
     /* background-color: #a3bfd0b8; */
     padding-top: 25px;
@@ -128,39 +141,41 @@ ul
     text-align: center;
     height: 80px;
     margin-left: 0px;
-  }
-  .rtwo
-  {
+}
+.rtwo
+{
       
-      background-color:#f7bd6cb8;
-  }
-  .rthree
-  { 
+    background-color:#f7bd6cb8;
+}
+.rthree
+{ 
     
-      background-color: #6cc78591;
-  }
-  .fontsty {
+    background-color: #6cc78591;
+}
+.fontsty 
+{
     margin-right: -15px;
-  }
+}
   
-  .fontsty h4{
+.fontsty h4
+{
     /* color: #6E6E6E; */
     font-size:18px;
     margin-top: 2px;
     text-align: left;
     margin-left: 20px;
-  }
+}
   
-  .status-text{
+.status-text
+{
     /* color: #6E6E6E; */
     font-size: 16px;
     margin-top: 8px;
     text-align: left;
     margin-left: 20px;
-  }
-  .tab-values
-  {
-      width:100%;
-      background-color:white;
-      padding:10px;
-  }
+}
+.tab-values
+{
+    width:100%;
+    background-color:white;
+}
