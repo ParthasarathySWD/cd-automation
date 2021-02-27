@@ -2,9 +2,9 @@
 {
     background-color: rgb(255, 255, 255);
 } */
-.child-container.status-container
+.child-container
 {
-    width:1000px;
+    width:90%;
     margin-left:20px;  
 }
 .first-child
@@ -22,7 +22,7 @@
 .btn-order
 {
     position:absolute;
-    left: 62em;
+    right: 6.0em;
     top:1.0em;
     text-transform: none;
     /* float:right; */
@@ -185,4 +185,26 @@ ul
 {
     width:100%;
     background-color:white;
+}
+.closing-table tr td{
+    font-size:12px;
+    padding-top:3px;
+    padding-bottom:3px;
+    padding-left:0;
+    padding-right:10px;
+    vertical-align: top;
+}
+.closing-table tr td label{
+    color:#000;
+    margin:0;
+}
+.loanterms-table tr td.text-black{
+    color:#000;
+}
+.loanterms-table tr td{
+    font-size:12px;
+    padding-top:2px;
+    padding-bottom:2px;
+    padding-left:0;
+    padding-right:10px;
 }

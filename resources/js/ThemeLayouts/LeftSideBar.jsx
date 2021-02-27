@@ -35,16 +35,11 @@ class LeftSideBar extends React.Component {
                   <ul id="main-menu" className="metismenu animation-li-delay">
                      <li className="header">Hospital</li>
                      <li className=""><Link to={'/dashboard'} className="nav-link"><i className="fa fa-dashboard"></i> <span>Dashboard</span></Link></li>
-                     <li  className="active"><Link to={'/orderentry'} className="nav-link"><i className="fa fa-external-link-square" aria-hidden="true"></i> <span>Order Entry</span></Link></li>
-                     <li  className="active"><Link to={'/myorders'} className="nav-link"><i className="fa fa-list" aria-hidden="true"></i> <span>My Orders</span></Link></li>
+                     <li className=""><Link to={'/orderentry'} className="nav-link"><i className="fa fa-external-link-square" aria-hidden="true"></i> <span>Order Entry</span></Link></li>
+                     <li className=""><Link to={'/myorders'} className="nav-link"><i className="fa fa-list" aria-hidden="true"></i> <span>My Orders</span></Link></li>
+                     <li className=""><Link to={'/clientlogin'} className="nav-link"><i className="fa fa-sign-in" aria-hidden="true"></i> <span>Clients</span></Link></li>
+                     <li className=""><Link to={'/cddetails'} className="nav-link"><i className="fa fa-sign-in" aria-hidden="true"></i> <span>CDDetails</span></Link></li>
 
-                     <li>
-                        <a href="#!" className="has-arrow"><i className="fa fa-sign-in"></i><span>Clients</span></a>
-                        <ul>
-                           <li><Link to={'/allclients'} className="nav-link">All Clients</Link></li>
-                           <li><Link to={'/addclient'} className="nav-link">Add Client</Link></li>
-                        </ul>
-                     </li>
                      <li>
                         <a href="#!" className="has-arrow"><i className="fa fa-users"></i><span>User</span></a>
                         <ul>
