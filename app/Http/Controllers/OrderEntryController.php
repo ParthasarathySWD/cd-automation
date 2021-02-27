@@ -42,19 +42,32 @@ class OrderEntryController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
-    {
+    {   
+        // echo '<pre> Prelim';print_r($PrelimDocumentType);
+        // echo '<pre> Support';print_r($SupportDocumentType);
+        // exit;
+
         $validation = Validator::make($request->all(), [
             'LoanNumer' => 'required',
-            'CustomerUID' => 'required',
             'PrelimFile' => 'required|max:20000|mimes:pdf',
             // 'File.*' => 'mimes:pdf,xlsx,docx,txt,zip'
         ]);
 
         /** form validation */
         if ($validation->fails()) {
-            return response()->json($validation->messages(), 402);
+            return response()->json([
+                'errors'=> $validation->messages(),
+                'status' => false
+            ]);
         } else {
 
+            $UserDetails = $request->user()->toArray();
+            $DocumentType = $request->input('DocumentTypeUID');
+
+            if (!empty($DocumentType)) {
+                $PrelimDocumentType = array_shift($DocumentType);
+                $SupportDocumentType = $DocumentType;
+            }    
             $OrderNumber = $this->GenerateOrderNumber();
 
             /** check order number is empty or not empty */
@@ -62,15 +75,13 @@ class OrderEntryController extends Controller
 
                 $InsertData = new OrderEntry([
                     'OrderNumber' => $OrderNumber['OrderNumber'],
-                    'OrderEntryDate' => date('Y-m-d H:m:s', strtotime($request->input('OrderEntryDate'))),
+                    'OrderEntryDate' => Carbon::now(),
                     'LoanNumer' => $request->input('LoanNumer'),
                     'LoanTypeUID' => $request->input('LoanTypeUID'),
-                    'CustomerUID' => $request->input('CustomerUID'),
-                    'LenderUID' => $request->input('LenderUID'),
-                    'ClosingDate' => date('Y-m-d H:m:s', strtotime($request->input('ClosingDate'))),
+                    'ClientUID' => $UserDetails['ClientUID'],
                     'StatusUID' => 1,
-                    'CreatedByUserUID' => $request->input('CreatedByUserUID'),
-                    'CreatedByDateTime' => date('Y-m-d H:m:s')
+                    'CreatedByUserUID' => $UserDetails['UserUID'],
+                    'CreatedByDateTime' =>Carbon::now()
                 ]);
 
                 /** check insert or not insert */
@@ -94,7 +105,7 @@ class OrderEntryController extends Controller
                             $PrelimFileInsertArray = new OrderEntryFile([
                                 'OrderUID' => $InsertData->OrderUID,
                                 'DocumentName' => $NewFileName,
-                                'DocumentTypeUID' => 1,
+                                'DocumentTypeUID' => $PrelimDocumentType,
                                 'FilePath' => $FilePath,
                                 'CreatedByUserUID' => $request->input('CreatedByUserUID'),
                                 'CreatedByDateTime' => date('Y-m-d H:m:s')
@@ -112,7 +123,7 @@ class OrderEntryController extends Controller
                                 'status' => false,
                                 'errors' => 'Prelim File Not Found', 
                                 'message' => 'File Is Not Available'
-                            ], 404);
+                            ]);
                         }
                         /** end */
 
@@ -138,7 +149,7 @@ class OrderEntryController extends Controller
                                         'status' => false,
                                         'errors' => 'Should Allowed PDF Files Only', 
                                         'message' => 'Supporting Files are <b> '.$NewFileName.' </b> Should Allowed PDF Only'
-                                    ], 406);
+                                    ]);
                                     
                                 } else {
 
@@ -147,7 +158,7 @@ class OrderEntryController extends Controller
                                     $FileInsertArray = new OrderEntryFile([
                                         'OrderUID' => $InsertData->OrderUID,
                                         'DocumentName' => $NewFileName,
-                                        'DocumentTypeUID' => $DocumentType[$key],
+                                        'DocumentTypeUID' => $SupportDocumentType[$key],
                                         'FilePath' => $FilePath,
                                         'CreatedByUserUID' => $request->input('CreatedByUserUID'),
                                         'CreatedByDateTime' => date('Y-m-d H:m:s')
@@ -174,14 +185,14 @@ class OrderEntryController extends Controller
                                 'status' => true,
                                 'errors' => '', 
                                 'message' => 'Order Created Successfully'
-                            ], 200);
+                            ]);
                         } else {
                             return response()->json([
                                 'type' => 'Order Insert', 
                                 'status' => false,
                                 'errors' => '', 
                                 'message' => 'Order Created Faild'
-                            ], 417);
+                            ]);
                         }
                         /** end */
                     }
@@ -191,7 +202,7 @@ class OrderEntryController extends Controller
                             'status' => false,
                             'errors' => 'Database Error', 
                             'message' => 'Order Files Created Faild'
-                        ], 500);
+                        ]);
                     }
                     /** end */
                 }
@@ -201,7 +212,7 @@ class OrderEntryController extends Controller
                         'status' => false,
                         'errors' => 'Database Error', 
                         'message' => 'Order Created Faild'
-                    ], 500);  
+                    ]);  
                 }
                 /** end */
             } else {
@@ -210,7 +221,7 @@ class OrderEntryController extends Controller
                     'status' => false,
                     'errors' => 'Database Error',
                     'message' => $OrderNumber['message']
-                ], $OrderNumber['Response State']);
+                ]);
             }
             /** end */
         }

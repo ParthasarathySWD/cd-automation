@@ -52,7 +52,7 @@ export const UploadFileBtn = styled.button `
   cursor: pointer;
   font-size: 1rem;
   line-height: 1;
-  padding: 1.1em 2.8em;
+  padding: 10px 40px;
   text-align: center;
   text-transform: uppercase;
   font-weight: 700;

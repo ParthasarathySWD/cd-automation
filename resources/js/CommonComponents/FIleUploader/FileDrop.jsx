@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 import FileUpload from "./file-upload.component";
 
-function FileDrop(){
-
+function FileDrop(props){
+  
 	const [OrderDocuments, setOrderDocments] = useState({
         OrderDocuments: []
       });
@@ -11,12 +11,15 @@ function FileDrop(){
         OrderDocumentType:[]
     });
 
-    const OrderDocumentTypes = (types) =>
+    const OrderDocumentTypes = (types) => {
         setOrderDocumentType({ ...OrderDocumentType, OrderDocumentType: types });
+        props.setTypes({...types, types});
+    }
 
-    const updateUploadedFiles = (files) =>
+    const updateUploadedFiles = (files) => {
         setOrderDocments({ ...OrderDocuments, OrderDocuments: files });
-
+        props.setFiles({...files, files});
+    }
       return (
         <div>
             <FileUpload

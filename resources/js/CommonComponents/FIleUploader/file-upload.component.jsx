@@ -72,13 +72,13 @@ const FileUpload = ({
   };
 
   const DocTypeChange = (event) => {
-    let name = event.target.name;
+    let name = event.target.id;
     let value = event.target.value;
-    let obj = [{
+    const data = {
         'FileName': name,
         'DocumentTypeUID':value
-    }];
-    callDocumentType(obj)
+    };
+    callDocumentType(data)
   };
 
   const btntext = files.length >= 1 ? 'Supporting' : 'Prelim';
@@ -141,7 +141,7 @@ const FileUpload = ({
                                 <div className="col-md-4">
                                     <div className="file_doc_type">
                                         <div className="form-group">
-                                            <select className="form-control show-tick" name={file.name} onChange={DocTypeChange}>
+                                            <select className="form-control show-tick" name="DocumentTypeUID[]" id={file.name} onChange={DocTypeChange}>
                                                 <option value=""></option>
                                                 <option value="1">Prelim</option>
                                                 <option value="2">Closing</option>
