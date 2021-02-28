@@ -42,7 +42,7 @@ class OrderEntryController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
-    {   
+    {
         // echo '<pre> Prelim';print_r($PrelimDocumentType);
         // echo '<pre> Support';print_r($SupportDocumentType);
         // exit;
@@ -56,6 +56,7 @@ class OrderEntryController extends Controller
         /** form validation */
         if ($validation->fails()) {
             return response()->json([
+                'type' => 'Form Validation',
                 'errors'=> $validation->messages(),
                 'status' => false
             ]);
@@ -67,7 +68,7 @@ class OrderEntryController extends Controller
             if (!empty($DocumentType)) {
                 $PrelimDocumentType = array_shift($DocumentType);
                 $SupportDocumentType = $DocumentType;
-            }    
+            }
             $OrderNumber = $this->GenerateOrderNumber();
 
             /** check order number is empty or not empty */
@@ -113,14 +114,14 @@ class OrderEntryController extends Controller
                             if ($PrelimFileInsertArray->save()) {
                                 $PrelimFileInsertState = '200';
                             } else {
-                                $PrelimFileInsertState = '500';                              
+                                $PrelimFileInsertState = '500';
                             }
 
                         } else {
                             return response()->json([
                                 'type' => 'Order Insert',
                                 'status' => false,
-                                'errors' => 'Prelim File Not Found', 
+                                'errors' => 'Prelim File Not Found',
                                 'message' => 'File Is Not Available'
                             ]);
                         }
@@ -128,15 +129,15 @@ class OrderEntryController extends Controller
 
                         /** check supporting file is exits or not empty */
                         if($request->hasFile('SupportingFile'))
-                        {                           
+                        {
                             /**
                              * Order Document Supporting File Processing
                              * @var $request->file('File')
                              */
-                            echo '<pre>';print_r($request->file('SupportingFile'));
-                            
+                            // echo '<pre>';print_r($request->file('SupportingFile'));
+
                             foreach($request->file('SupportingFile') as $key => $file)
-                            {                                
+                            {
                                 $DocumentType = $request->input('DocumentTypeUID');
                                 $FileName = $file->getClientOriginalName();
                                 $Extension = $file->getClientOriginalExtension();
@@ -148,10 +149,10 @@ class OrderEntryController extends Controller
                                     return response()->json([
                                         'type' => 'Order Insert',
                                         'status' => false,
-                                        'errors' => 'Should Allowed PDF Files Only', 
+                                        'errors' => 'Should Allowed PDF Files Only',
                                         'message' => 'Supporting Files are <b> '.$NewFileName.' </b> Should Allowed PDF Only'
                                     ]);
-                                    
+
                                 } else {
 
                                     $FilePath = $file->storeAs('OrderDocuments', $NewFileName);
@@ -168,12 +169,11 @@ class OrderEntryController extends Controller
                                     if ($FileInsertArray->save()) {
                                         $SupportFileInsertState['State'] = '200';
                                     } else {
-                                        $SupportFileInsertState['State'] = '500';                              
+                                        $SupportFileInsertState['State'] = '500';
                                     }
 
                                 }
                             }
-                            echo '<pre>';print_r('each exit');exit;
                             /** end */
                         }
                         /** end */
@@ -185,14 +185,14 @@ class OrderEntryController extends Controller
                             return response()->json([
                                 'type' => 'Order Insert',
                                 'status' => true,
-                                'errors' => '', 
-                                'message' => 'Order Created Successfully'
+                                'errors' => '',
+                                'message' => 'Order '. $OrderNumber['OrderNumber'].' Created Successfully'
                             ]);
                         } else {
                             return response()->json([
-                                'type' => 'Order Insert', 
+                                'type' => 'Order Insert',
                                 'status' => false,
-                                'errors' => '', 
+                                'errors' => '',
                                 'message' => 'Order Created Faild'
                             ]);
                         }
@@ -202,24 +202,24 @@ class OrderEntryController extends Controller
                         return response()->json([
                             'type' => 'Order Insert',
                             'status' => false,
-                            'errors' => 'Database Error', 
+                            'errors' => 'Database Error',
                             'message' => 'Order Files Created Faild'
                         ]);
                     }
                     /** end */
                 }
-                else {            
+                else {
                     return response()->json([
                         'type' => 'Order Insert',
                         'status' => false,
-                        'errors' => 'Database Error', 
+                        'errors' => 'Database Error',
                         'message' => 'Order Created Faild'
-                    ]);  
+                    ]);
                 }
                 /** end */
             } else {
                 return response()->json([
-                    'type' => 'Order Insert', 
+                    'type' => 'Order Insert',
                     'status' => false,
                     'errors' => 'Database Error',
                     'message' => $OrderNumber['message']
@@ -290,7 +290,7 @@ class OrderEntryController extends Controller
 
         $Prefix = "";
         $StartNumber = "";
-        $OrderNumber = "";        
+        $OrderNumber = "";
 
         /** check order setting is empty or not empty */
         if (!empty($GetOrderSettings)) {
@@ -313,15 +313,15 @@ class OrderEntryController extends Controller
                     case 'Starting Number':
                     $StartNumber = $settings['OrderSettingValue'];
                     break;
-                    
+
                     default:
                     $Prefix = "";
                     $StartNumber = "1";
                     break;
                 }
                 /** end */
-                
-            } 
+
+            }
             /** end */
 
             $checktOrders = OrderEntry::latest('OrderNumber')->first();
@@ -354,15 +354,15 @@ class OrderEntryController extends Controller
                 );
 
             }
-            /** end */            
+            /** end */
         } else {
             $ResponseData = array(
                 'Response State' => '500',
                 'message' => 'Configure in your Order Settings'
             );
         }
-        /** end */ 
-        return $ResponseData;       
+        /** end */
+        return $ResponseData;
     }
     /** end */
 }

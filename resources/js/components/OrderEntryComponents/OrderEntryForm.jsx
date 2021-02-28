@@ -5,7 +5,11 @@ import FileDrop from '../../CommonComponents/FIleUploader/FileDrop';
 
 import Swal from 'sweetalert2'
 import withReactContent from 'sweetalert2-react-content'
-import { useToasts } from 'react-toast-notifications'
+import { useToasts } from 'react-toast-notifications';
+
+import { confirmAlert } from 'react-confirm-alert'
+import 'react-confirm-alert/src/react-confirm-alert.css';
+
 
 const SwalAlert = withReactContent(Swal)
 
@@ -25,21 +29,78 @@ function OrderEntryForm() {
         Object.keys(files).map((fileName, index) => {
             let file = files[fileName];
             if (index == 0) {
-                formData.append('PrelimFile', file);                                
+                formData.append('PrelimFile', file);
             } else {
-                formData.append('SupportingFile', file);
+                formData.append('SupportingFile[]', file);
             }
         });
 
         axios.post('orderentry', formData).then(response =>{
-            
+            console.log(response);
             if (response.data.status != true) {
-                console.log(response);
-                addToast(response.data.errors, { appearance: 'error', autoDismiss: true, });
+                if (response.data.type == 'Form Validation') {
+                    let form_errors = response.data.errors;
+                    console.log(form_errors.LoanNumber);
+                    if (form_errors.LoanNumber) {
+                        addToast(form_errors.LoanNumber, { appearance: 'error', autoDismiss: true, });
+                    }
+                    if (form_errors.PrelimFile) {
+                        addToast(form_errors.PrelimFile, { appearance: 'error', autoDismiss: true, });
+                    }
+                } else {
+                    let CustomeContent = response.data.errors+' : '+response.data.message;
+                    addToast(CustomeContent, { appearance: 'error', autoDismiss: true, });
+                }
             } else {
-                addToast(response.data.errors, { appearance: 'success', autoDismiss: true, });
+                addToast(response.data.message, { appearance: 'success', autoDismiss: true, });
+                //Modal Customization
+                const options = {
+                    title: response.data.message,
+                    message: '',
+                    buttons: [
+                        {
+                          label: 'Goto My Orders',
+                          onClick: () => alert('Click Yes'),
+                          className: 'btn btn-md btn-outline-primary'
+                        },
+                        {
+                          label: 'Stay Back',
+                          onClick: () => alert('Click No'),
+                          className: 'btn btn-md btn-outline-success'
+                        }
+                    ],
+                    childrenElement: () => <div />,
+                    // customUI: ({ onClose }) => {
+                    //     return (
+                    //         <div className="card">
+                    //             <div className="card-body">
+                    //                 <h5 className="card-title">{response.data.message}</h5>
+                    //                 <button onClick={onClose} className="btn btn-md btn-outline-info">
+                    //                     Go To My Orders
+                    //                 </button>
+                    //                 <button
+                    //                     onClick={() => {
+                    //                         alert('Stay Back')
+                    //                     }}
+                    //                     className="btn btn-md btn-outline-success"
+                    //                     >
+                    //                         Stay Back
+                    //                 </button>
+                    //             </div>
+                    //         </div>
+                    //     );
+                    // },
+                    closeOnEscape: false,
+                    closeOnClickOutside: false,
+                    willUnmount: () => {},
+                    afterClose: () => {},
+                    onClickOutside: () => {},
+                    onKeypressEscape: () => {},
+                    overlayClassName: "overlay-custom-class-name"
+                };
+                confirmAlert(options);
             }
-                        
+
         })
 
     }
@@ -135,7 +196,7 @@ function OrderEntryForm() {
                                             </table>
                                         </div>
                                     </div>
-                                    
+
                                     <div className="row clearfix">
                                         <div className="col-sm-12">
                                             <div className="pull-right">
