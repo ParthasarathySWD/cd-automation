@@ -103,9 +103,9 @@ const FileUpload = ({
       </FileUploadContainer>
         <FilePreviewContainer>
             {/* <span>To Upload</span> */}
-            <table className="table table-borderless table-sm text-sm upload-table">
-                <tbody>
-                    <PreviewList>
+            {/* <table className="table table-borderless table-sm text-sm upload-table">
+                <tbody> */}
+                    {/* <PreviewList> */}
                         {Object.keys(files).map((fileName, index) => {
                             let file = files[fileName];
                             let isPdfFile = file.type.split("/")[0] === "pdf";
@@ -118,6 +118,8 @@ const FileUpload = ({
                                     alt={`file preview ${index}`}
                                     />
                                 )} */}
+                                <table className="table table-borderless table-sm text-sm upload-table">
+                                <tbody>
                                 <FileMetaData isPdfFile={isPdfFile}>
                                     <tr>
                                         <td className="w-40px"><i className="fa fa-file-pdf-o text-danger"></i></td>
@@ -178,13 +180,15 @@ const FileUpload = ({
                                         </div>
                                     </div> */}
                                 </FileMetaData>
+                                </tbody>
+                                </table>
                                 </div>
                             </PreviewContainer>
                             );
                         })}
-                    </PreviewList>
-                </tbody>
-            </table>
+                    {/* </PreviewList> */}
+                {/* </tbody>
+            </table> */}
         </FilePreviewContainer>
     </>
   );

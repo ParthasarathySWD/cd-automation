@@ -144,7 +144,7 @@ export const FileMetaData = styled.div `
   left: 0;
   right: 0;
   bottom: 0;
-  padding: 10px;
+  padding: 0px;
   border-radius: 6px;
   color: #0080807a;
   font-weight: bold;
@@ -166,7 +166,7 @@ export const RemoveFileIcon = styled.i `
 export const PreviewContainer = styled.section `
   padding: 0.25rem;
   width: 100%;
-  height: 120px;
+  height: 60px;
   border-radius: 6px;
   box-sizing: border-box;
   &:hover {
