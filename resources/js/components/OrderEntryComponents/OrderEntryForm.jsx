@@ -136,7 +136,7 @@ function OrderEntryForm() {
                                     </div>
 
 
-                                    <div className="row clearfix">
+                                    {/* <div className="row clearfix">
                                         <div className="col-sm-8">
                                              <table className="table table-borderless table-sm text-sm upload-table">
                                                 <tbody>
@@ -195,7 +195,7 @@ function OrderEntryForm() {
                                                 </tbody>
                                             </table>
                                         </div>
-                                    </div>
+                                    </div> */}
 
                                     <div className="row clearfix">
                                         <div className="col-sm-12">

@@ -101,71 +101,91 @@ const FileUpload = ({
           {...otherProps}
         />
       </FileUploadContainer>
-      <FilePreviewContainer>
-        {/* <span>To Upload</span> */}
-        <PreviewList>
-          {Object.keys(files).map((fileName, index) => {
-            let file = files[fileName];
-            let isPdfFile = file.type.split("/")[0] === "pdf";
-            return (
-              <PreviewContainer key={fileName}>
-                <div>
-                  {/* {isPdfFile && (
-                    <ImagePreview
-                      src={URL.createObjectURL(file)}
-                      alt={`file preview ${index}`}
-                    />
-                  )} */}
-                  <FileMetaData isPdfFile={isPdfFile}>
-                    {/* <span>{file.name}</span>
-                    <aside>
-                      <span>{convertBytesToKB(file.size)} kb</span>
-                      <RemoveFileIcon
-                        className="fa fa-trash-o"
-                        onClick={() => removeFile(fileName)}
-                      />
-                    </aside> */}
-
-                    <div className="card">
-                        <div className="card-body">
-                            <div className="row">
-                                <div className="col-md-4">
-                                    <img src="../../../../images/pdf.png" className="img-thumbnail rounded float-left" alt="..."/>
-                                    <div className="file_name">
-                                        {file.name}
-                                        <h6 className="file_status">
-
-                                        </h6>
-                                    </div>
-                                </div>
-                                <div className="col-md-4">
-                                    <div className="file_doc_type">
-                                        <div className="form-group">
-                                            <select className="form-control show-tick" name="DocumentTypeUID[]" id={file.name} onChange={DocTypeChange}>
-                                                <option value=""></option>
+        <FilePreviewContainer>
+            {/* <span>To Upload</span> */}
+            <table className="table table-borderless table-sm text-sm upload-table">
+                <tbody>
+                    <PreviewList>
+                        {Object.keys(files).map((fileName, index) => {
+                            let file = files[fileName];
+                            let isPdfFile = file.type.split("/")[0] === "pdf";
+                            return (
+                            <PreviewContainer key={fileName}>
+                                <div>
+                                {/* {isPdfFile && (
+                                    <ImagePreview
+                                    src={URL.createObjectURL(file)}
+                                    alt={`file preview ${index}`}
+                                    />
+                                )} */}
+                                <FileMetaData isPdfFile={isPdfFile}>
+                                    <tr>
+                                        <td className="w-40px"><i className="fa fa-file-pdf-o text-danger"></i></td>
+                                        <td className="w-25">{file.name}</td>
+                                        <td className="w-25">
+                                            <select className="border form-control form-control-sm" name="DocumentTypeUID[]" id={file.name} onChange={DocTypeChange}>
+                                                <option>Select</option>
                                                 <option value="1">Prelim</option>
                                                 <option value="2">Closing</option>
                                                 <option value="3">Mortgage</option>
                                             </select>
-                                            <label>Doc Type <span className="text-danger"></span></label>
+                                        </td>
+                                        <td className="text-center">
+                                            {/* <i title="View" className="fa fa-eye text-primary mr-3"></i> */}
+                                            <i title="Remove" className="fa fa-trash-o text-danger" onClick={() => removeFile(fileName)}></i>
+                                        </td>
+                                    </tr>
+                                    {/* <span>{file.name}</span>
+                                    <aside>
+                                    <span>{convertBytesToKB(file.size)} kb</span>
+                                    <RemoveFileIcon
+                                        className="fa fa-trash-o"
+                                        onClick={() => removeFile(fileName)}
+                                    />
+                                    </aside> */}
+
+                                    {/* <div className="card">
+                                        <div className="card-body">
+                                            <div className="row">
+                                                <div className="col-md-4">
+                                                    <img src="../../../../images/pdf.png" className="img-thumbnail rounded float-left" alt="..."/>
+                                                    <div className="file_name">
+                                                        {file.name}
+                                                        <h6 className="file_status">
+
+                                                        </h6>
+                                                    </div>
+                                                </div>
+                                                <div className="col-md-4">
+                                                    <div className="file_doc_type">
+                                                        <div className="form-group">
+                                                            <select className="form-control show-tick" name="DocumentTypeUID[]" id={file.name} onChange={DocTypeChange}>
+                                                                <option value=""></option>
+                                                                <option value="1">Prelim</option>
+                                                                <option value="2">Closing</option>
+                                                                <option value="3">Mortgage</option>
+                                                            </select>
+                                                            <label>Doc Type <span className="text-danger"></span></label>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div className="col-md-4">
+                                                    <i className="fa fa-trash-o file_action" onClick={() => removeFile(fileName)}></i>
+                                                </div>
+
+
+                                            </div>
                                         </div>
-                                    </div>
+                                    </div> */}
+                                </FileMetaData>
                                 </div>
-                                <div className="col-md-4">
-                                    <i className="fa fa-trash-o file_action" onClick={() => removeFile(fileName)}></i>
-                                </div>
-
-
-                            </div>
-                        </div>
-                    </div>
-                  </FileMetaData>
-                </div>
-              </PreviewContainer>
-            );
-          })}
-        </PreviewList>
-      </FilePreviewContainer>
+                            </PreviewContainer>
+                            );
+                        })}
+                    </PreviewList>
+                </tbody>
+            </table>
+        </FilePreviewContainer>
     </>
   );
 };
