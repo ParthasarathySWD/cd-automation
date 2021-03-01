@@ -149,7 +149,7 @@ function LoginPage(props) {
     }
     return (
             <>
-                    <div className="container" style={{display:'flex', justifyContent: 'space-evenly',marginTop:'50px'}}>
+                    <div className="container login-container" style={{display:'flex', justifyContent: 'space-evenly',marginTop:'50px'}}>
                     <div className="row" >
                         <div className="cont">
                             <div className="form sign-in">
