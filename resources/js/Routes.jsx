@@ -15,6 +15,7 @@ import Dashboard from './components/DashboardComponents/Dashboard';
 import Members from './components/UsersComponents/Members';
 import AddClient from './components/ClientComponents/AddClient';
 import ClientList from './components/ClientComponents/ClientList';
+import EditClient from './components/ClientComponents/EditClient';
 import CDDetails from './Views/CDDetails';
 
 // import Admins from './components/UsersComponents/Admins';
@@ -39,6 +40,7 @@ class Routes extends React.Component
                 <Route exact path='/dashboard' component={Dashboard} />
                 <Route exact path='/allclients' component={ClientList} />
                 <Route exact path='/addclient' component={AddClient} />
+                <Route exact path='/editclient/:id' component={EditClient} />
                 <Route exact path='/cddetails' component={CDDetails} />
             </Switch>
         )

@@ -43,7 +43,7 @@ const columndata = [
         cell: row => <div>
                          <p key={row.UserUID}>
                           <TableLink ><span className="fa fa-eye text-primary p-1"></span></TableLink>
-                          <TableLink to={'/edituser/'+row.ClientUID}><span className="fa fa-edit text-secondary p-1"></span></TableLink>
+                          <TableLink to={'/editclient/'+row.ClientUID}><span className="fa fa-edit text-secondary p-1"></span></TableLink>
                           <TableLink ><span className="fa fa-trash text-danger p-1"></span></TableLink> 
                           </p>
                     </div>

@@ -96,6 +96,13 @@ class ClientsController extends Controller
             }
         }
     }
+
+
+    public function show($id)
+    {
+        $GetClient = mClients::find($id);
+        return response()->json($GetClient);
+    }
     /*
      * Update the specified resource in storage.
      *
@@ -125,20 +132,20 @@ class ClientsController extends Controller
         //     return response()->json($result, 200);
         // } 
 
-        // $val=mClients::findOrFail($id);
-        // $val->ClientNumber = $request->ClientNumber;
-        // $val->save();
+        $ClientUID=mClients::findOrFail($id);
+        $ClientUID->ClientNumber = $request->ClientNumber;
+        $ClientUID->save();
 
 
-        // $updateDetails=$request->all();
+        $updateDetails=$request->all();
 
-        // $val->update($updateDetails);
-        // return response()->json([
-        //     'type' => 'Update',
-        //     'status' => true,
-        //     'errors' => '',
-        //     'message' => 'Update Successfully'
-        // ], 200);
+        $ClientUID->update($updateDetails);
+        return response()->json([
+            'type' => 'Update',
+            'status' => true,
+            'errors' => '',
+            'message' => 'Update Successfully'
+        ], 200);
 
 
     }

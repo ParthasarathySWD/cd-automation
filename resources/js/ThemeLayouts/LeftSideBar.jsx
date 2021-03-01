@@ -37,9 +37,16 @@ class LeftSideBar extends React.Component {
                      <li className=""><Link to={'/dashboard'} className="nav-link"><i className="fa fa-dashboard"></i> <span>Dashboard</span></Link></li>
                      <li className=""><Link to={'/orderentry'} className="nav-link"><i className="fa fa-external-link-square" aria-hidden="true"></i> <span>Order Entry</span></Link></li>
                      <li className=""><Link to={'/myorders'} className="nav-link"><i className="fa fa-list" aria-hidden="true"></i> <span>My Orders</span></Link></li>
-                     <li className=""><Link to={'/clientlogin'} className="nav-link"><i className="fa fa-sign-in" aria-hidden="true"></i> <span>Clients</span></Link></li>
-                     <li className=""><Link to={'/cddetails'} className="nav-link"><i className="fa fa-sign-in" aria-hidden="true"></i> <span>CDDetails</span></Link></li>
+                     
 
+                     <li className=""><Link to={'/cddetails'} className="nav-link"><i className="fa fa-sign-in" aria-hidden="true"></i> <span>CDDetails</span></Link></li>
+                     <li>
+                        <a href="#!"  className="has-arrow"><i className="fa fa-list"></i><span>Clients</span></a>
+                        <ul>
+                           <li><Link to={'/allclients'} className="nav-link"><span>All Clients</span></Link></li>
+                           <li><Link to={'/addclient'} className="nav-link"><span>Add Client</span></Link></li>
+                        </ul>
+                     </li>
                      <li>
                         <a href="#!" className="has-arrow"><i className="fa fa-users"></i><span>User</span></a>
                         <ul>

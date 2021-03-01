@@ -170,7 +170,7 @@ function AddClient(){
          }else{
             const data = new FormData();
 
-            axios.post("clients", data, {
+            axios.post("client", data, {
             })
                 .then(res => {
                     addToast("Invalid Input", { appearance: 'error' });
@@ -299,7 +299,7 @@ function AddClient(){
                                     <div className="col-sm-12">
                                         <div className="form-group">
                                         <label className="field-label" >Notes<span className="text-danger">*</span></label>
-                                        <input type="textarea" name="Notes" className="form-control" value={state.Notes} onChange={onChangeHandler}/>
+                                        <input type="textarea" name="Notes" className="form-control text-area" value={state.Notes} onChange={onChangeHandler}/>
                                         <span style={spanStyle}>{state.errors["Notes"]}</span>
                                         </div>
                                     </div>
