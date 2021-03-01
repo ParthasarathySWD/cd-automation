@@ -16,7 +16,7 @@ function LoginPage(props) {
 
     const { addToast } = useToasts();
 
-    const [username, setUsername] = useState('');
+    const [formdata, setFormdata] = useState({Username:"", Password:""});
     const [password, setPassword] = useState('');
     const [errors, setErrors] = useState([]);
     const [color, setColor] = useState('blue');
@@ -34,11 +34,11 @@ function LoginPage(props) {
 
         //  setErrors([]);
         let validationErrors = [];
-        if (!username || username == '') {
+        if (!formdata.Username || formdata.Username == '') {
             validationErrors.push('Email is required');
         }
 
-        if (!password || password == '') {
+        if (!formdata.Password || formdata.Password == '') {
             validationErrors.push('Password is required');
         }
 
@@ -101,6 +101,15 @@ function LoginPage(props) {
 
     }
 
+    function onPasswordChange(e) {
+        let val = e.target.value;
+        setFormdata((prevState)=>{ return {...prevState, Password: val}});
+    }
+
+    function onUserNameChange(e) {
+        let val = e.target.value;
+        setFormdata((prevState)=>{ return {...prevState, Username: val}});
+    }
 
     function setErrorMessage(errors) {
 
@@ -139,65 +148,67 @@ function LoginPage(props) {
         }
     }
     return (
-        <>
+            <>
+                    <div className="container" style={{display:'flex', justifyContent: 'space-evenly',marginTop:'50px'}}>
+                    <div className="row" >
+                        <div className="cont">
+                            <div className="form sign-in">
+                        <form onSubmit={handleSubmit} >
+                                <input type="hidden" name="device_name" value="pc"/>
+                                <p className="tip" style={{ fontSize: '32px',color:'#00acc7',fontWeight:'bolder'}}>Get CDNOW </p>
+                                <h5 style={{ textTransform: 'uppercase', textAlign: 'center', fontWeight:'600' }}>We Automate your work in a simple way</h5>
+                                <label>
+                                    <span>Email</span>
+                                    <input type="email" name="Email" value={formdata.Username} onChange={onUserNameChange} />
+                                </label>
+                                <label>
+                                    <span>Password</span>
+                                    <input type="password" name="Password" value={formdata.Password} onChange={onPasswordChange}/>
+                                </label>
+                                <p className="forgot-pass">Forgot password?</p>
+                                <button type="Submit" className="submit">Sign In</button>
+                                                            </form>
 
-
-                            <div class="container" style={{display:'flex', justifyContent: 'space-evenly',marginTop:'50px'}}>
-                            <div className="row" >
-                                <div className="cont">
-                                    <div className="form sign-in">
-                                        <p className="tip" style={{ fontSize: '32px',color:'#00acc7',fontWeight:'bolder'}}>Get CDNOW </p>
-                                        <h5 style={{ textTransform: 'uppercase', textAlign: 'center', fontWeight:'600' }}>We Automate your work in a simple way</h5>
-                                        <label>
-                                            <span>Email</span>
-                                            <input type="email" />
-                                        </label>
-                                        <label>
-                                            <span>Password</span>
-                                            <input type="password" />
-                                        </label>
-                                        <p className="forgot-pass">Forgot password?</p>
-                                        <button type="button" className="submit">Sign In</button>
+                            </div>
+                            <div className="sub-cont">
+                                <div className="img">
+                                    <div className="img__text m--up">
+                                        <h2>Need CD?</h2>
+                                        <p>Discover new opportunities with great Flexibility !</p>
                                     </div>
-                                    <div className="sub-cont">
-                                        <div className="img">
-                                            <div className="img__text m--up">
-                                                <h2>Need CD?</h2>
-                                                <p>Discover new opportunities with great Flexibility !</p>
-                                            </div>
-                                            <div className="img__text m--in">
-                                                <h2>One of us?</h2>
-                                                <p>If you already has an account, just sign in. We've missed you!</p>
-                                            </div>
-                                            {/* <div className="img__btn">
-                                                <span className="m--up">Sign Up</span>
-                                                <span className="m--in">Sign In</span>
-                                            </div> */}
-                                        </div>
-                                        <div className="form sign-up">
-                                            <h2>Please Fill and log in</h2>
-                                            <label>
-                                                <span>Name</span>
-                                                <input type="text" />
-                                            </label>
-                                            <label>
-                                                <span>Email</span>
-                                                <input type="email" />
-                                            </label>
-                                            <label>
-                                                <span>Password</span>
-                                                <input type="password" />
-                                            </label>
-                                            <button type="button" className="submit">Sign Up</button>
-                                        </div>
+                                    <div className="img__text m--in">
+                                        <h2>One of us?</h2>
+                                        <p>If you already has an account, just sign in. We've missed you!</p>
                                     </div>
+                                    {/* <div className="img__btn">
+                                        <span className="m--up">Sign Up</span>
+                                        <span className="m--in">Sign In</span>
+                                    </div> */}
+                                </div>
+                                <div className="form sign-up">
+                                    <h2>Please Fill and log in</h2>
+                                    <label>
+                                        <span>Name</span>
+                                        <input type="text" />
+                                    </label>
+                                    <label>
+                                        <span>Email</span>
+                                        <input type="email" />
+                                    </label>
+                                    <label>
+                                        <span>Password</span>
+                                        <input type="password" />
+                                    </label>
+                                    <button type="button" className="submit">Sign Up</button>
                                 </div>
                             </div>
+                        </div>
                     </div>
+            </div>
             {/* <p className="signup-text">By signing up you agree to our T&C and Privacy Policy </p> */}
 
 
-        </>
+            </>
 
     )
 }
