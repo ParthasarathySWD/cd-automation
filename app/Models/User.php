@@ -23,6 +23,7 @@ class User extends Model implements Auditable
     'UserName',
     'Password',
     'RoleUID',
+    'Active',
     'CreatedByUserUID',
     'CreatedByDateTime',
     'ModifiedByUserUID',

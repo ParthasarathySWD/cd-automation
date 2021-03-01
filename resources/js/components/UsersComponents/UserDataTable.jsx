@@ -4,8 +4,11 @@ import DataTable from 'react-data-table-component';
 import DataTableExtensions from "react-data-table-component-extensions";
 import "react-data-table-component-extensions/dist/index.css";
 // import { columns, data } from './DataTab';
-import axios from 'axios';
+import axios from '../../repository/api';
 import { Link } from 'react-router-dom';
+import { useToasts } from 'react-toast-notifications'
+import { useHistory } from 'react-router-dom';
+
 
 /*Datatable values*/
 
@@ -14,8 +17,10 @@ import { Link } from 'react-router-dom';
 // class MyOrder extends React.Component{
   function UserDataTable(){
     // render(){
+  const history = useHistory();
   const [users, setUsers] = useState();
   const [page, setPage] = useState(1);
+  const {addToast} = useToasts();
   const countPerPage = 3;
   // const data=[
 //     {
@@ -73,6 +78,23 @@ import { Link } from 'react-router-dom';
 
   //                         });
     
+    const statusChange = (e) => {
+    const activeStatus = {Active: e.target.value};
+    const ID = e.target.dataset.uid;
+
+    axios.put('/users/'+ID, activeStatus)
+      .then(res => {
+        if(res.data.status)
+        {
+          addToast('Status Updated Successfully', { appearance: 'success', autoDismiss: 'true' });
+          history.push("/dashboard");
+          history.push("/alluser");
+        }
+        else{
+          addToast('Status Updation Failed', { appearance: 'error', autoDismiss: 'true' });
+        }
+      })
+  }
 
   const columns = [
     {
@@ -99,7 +121,12 @@ import { Link } from 'react-router-dom';
     },
     {
       name: <b>Status</b>,
-      selector: "Status",
+      cell: row => <div key={row.UserUID}>
+                        <div class="custom-control custom-switch">
+                          <input type="checkbox" class="custom-control-input" id={row.UserUID} data-uid={row.UserUID} onChange={statusChange} value={(row.Active == 1) ? 0 : 1} checked={(row.Active == 1) ? true : false}/>
+                          <label class="custom-control-label mt-0" htmlFor={row.UserUID}></label>
+                        </div>
+                  </div>,
       sortable: true
         
     },
@@ -107,9 +134,9 @@ import { Link } from 'react-router-dom';
       name:<b>Action</b>,
       cell: row => <div key={row.UserUID}>
                        
-                        <Td ><span className="fa fa-eye text-primary p-1"></span></Td>
+                        <Td to={'/userview/'+row.UserUID}><span className="fa fa-eye text-primary p-1"></span></Td>
                         <Td to={'/edituser/'+row.UserUID}><span className="fa fa-edit text-secondary p-1"></span></Td>
-                        <Td ><span className="fa fa-trash text-danger p-1"></span></Td> 
+                        {/* <Td ><span className="fa fa-trash text-danger p-1"></span></Td>  */}
                         
                   </div>
     }
