@@ -10,6 +10,8 @@ import { useToasts } from 'react-toast-notifications';
 import { confirmAlert } from 'react-confirm-alert'
 import 'react-confirm-alert/src/react-confirm-alert.css';
 
+import { BrowserRouter as Router, Switch, Route, Link, useHistory } from 'react-router-dom';
+
 
 const SwalAlert = withReactContent(Swal)
 
@@ -18,6 +20,7 @@ function OrderEntryForm() {
     const [files, setFiles] = useState([]);
     const [types, setTypes] = useState([]);
     const { addToast } = useToasts();
+    let history = useHistory();
 
     function handleSubmit(event){
         event.preventDefault();
@@ -60,13 +63,17 @@ function OrderEntryForm() {
                     buttons: [
                         {
                           label: 'Goto My Orders',
-                          onClick: () => alert('Click Yes'),
-                          className: 'btn btn-md btn-outline-primary'
+                          onClick: () => {                            
+                            history.push('/myorders');
+                          },
+                          className: 'btn btn-sm btn-outline-primary'
                         },
                         {
                           label: 'Stay Back',
-                          onClick: () => alert('Click No'),
-                          className: 'btn btn-md btn-outline-success'
+                          onClick: () => {                            
+                            history.push('/orderentry');
+                          },
+                          className: 'btn btn-sm btn-outline-success'
                         }
                     ],
                     childrenElement: () => <div />,

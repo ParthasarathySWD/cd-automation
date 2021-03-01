@@ -117,12 +117,12 @@ const FileUpload = ({
                                     src={URL.createObjectURL(file)}
                                     alt={`file preview ${index}`}
                                     />
-                                )} */}
-                                <table className="table table-borderless table-sm text-sm upload-table">
-                                <tbody>
+                                )} */}                                
                                 <FileMetaData isPdfFile={isPdfFile}>
+                                <table className="table table-borderless table-sm text-sm upload-table">
+                                  <tbody>
                                     <tr>
-                                        <td className="w-40px"><i className="fa fa-file-pdf-o text-danger"></i></td>
+                                        <td className="w-25"><i className="fa fa-file-pdf-o text-danger"></i></td>
                                         <td className="w-25">{file.name}</td>
                                         <td className="w-25">
                                             <select className="border form-control form-control-sm" name="DocumentTypeUID[]" id={file.name} onChange={DocTypeChange}>
@@ -132,7 +132,7 @@ const FileUpload = ({
                                                 <option value="3">Mortgage</option>
                                             </select>
                                         </td>
-                                        <td className="text-center">
+                                        <td className="text-center w-25">
                                             {/* <i title="View" className="fa fa-eye text-primary mr-3"></i> */}
                                             <i title="Remove" className="fa fa-trash-o text-danger" onClick={() => removeFile(fileName)}></i>
                                         </td>
@@ -179,9 +179,9 @@ const FileUpload = ({
                                             </div>
                                         </div>
                                     </div> */}
-                                </FileMetaData>
-                                </tbody>
+                                    </tbody>
                                 </table>
+                                </FileMetaData>                                
                                 </div>
                             </PreviewContainer>
                             );
