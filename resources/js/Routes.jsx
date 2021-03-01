@@ -17,6 +17,7 @@ import AddClient from './components/ClientComponents/AddClient';
 import ClientList from './components/ClientComponents/ClientList';
 import EditClient from './components/ClientComponents/EditClient';
 import CDDetails from './Views/CDDetails';
+import OrderDocument from './components/OrderSummary/OrderDocuments';
 
 // import Admins from './components/UsersComponents/Admins';
 
@@ -42,6 +43,7 @@ class Routes extends React.Component
                 <Route exact path='/addclient' component={AddClient} />
                 <Route exact path='/editclient/:id' component={EditClient} />
                 <Route exact path='/cddetails' component={CDDetails} />
+                <Route exact path='/orderdoc' component={OrderDocument} />
             </Switch>
         )
     }

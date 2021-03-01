@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
+use Illuminate\Support\Facades\DB;
 
 use Illuminate\Http\Request;
 use App\Models\OrderEntry;
@@ -365,4 +366,9 @@ class OrderEntryController extends Controller
         return $ResponseData;
     }
     /** end */
+
+    public function GetOrderDocumentsByOrderUID($OrderUID)
+    {
+        
+    }
 }
