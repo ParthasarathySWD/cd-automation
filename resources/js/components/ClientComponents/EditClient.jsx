@@ -1,13 +1,16 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { useToasts } from 'react-toast-notifications'
-import {useState, useEffect } from 'react'
-import { Router, Route, Link, browserHistory, IndexRoute } from 'react-router'
+import { BrowserRouter as Router, Switch, Route, Link, useHistory } from 'react-router-dom';
+import { useToasts } from 'react-toast-notifications';
+import {useState, useEffect } from 'react';
+// import { Router, Route, Link, browserHistory, IndexRoute } from 'react-router';
 import {Form,FormLabel, FormGroup, FormControl, ControlLabel, Col, Button,Card} from 'react-bootstrap';
 import axios from 'axios';
 
 function EditClient(props){
     const id = props.match.params.id;
+    const history = useHistory();
+    // history.push('/clientslist');
     
     const spanStyle = {
         color: 'red',
@@ -213,7 +216,7 @@ function onClickHandler(){
                     Notes:'',
                     errors: {}
 
-                 });
+                 });history.push("/allclients");
 
             })
 
