@@ -6,8 +6,10 @@ import {useState, useEffect } from 'react';
 // import { Router, Route, Link, browserHistory, IndexRoute } from 'react-router';
 import {Form,FormLabel, FormGroup, FormControl, ControlLabel, Col, Button,Card} from 'react-bootstrap';
 import axios from 'axios';
+import { forEach } from 'lodash';
 
 function EditClient(props){
+
     const id = props.match.params.id;
     const history = useHistory();
     // history.push('/clientslist');
@@ -28,6 +30,7 @@ function EditClient(props){
             CountyName: '',
             StateName: '',
             Notes:'',
+            Active:'',
             errors: {}
 
         });
@@ -48,7 +51,7 @@ function EditClient(props){
             
         axios.get("/clients/"+id)
             .then(res => {
-
+                
                  setState({ 
                     
                     ClientNumber: res.data.ClientNumber,
@@ -60,6 +63,7 @@ function EditClient(props){
                     CountyName: res.data.CountyName,
                     StateName: res.data.StateName,
                     Notes:res.data.Notes,
+                    Active:res.data.Active,
                     errors: {}
 
                         });
@@ -122,14 +126,7 @@ function EditClient(props){
             formIsValid = false;
             errors["AddressLine1"] = "Address is Required";
          }
-        //  else{
-        //     if(typeof state.UserName !== "undefined"){
-        //         if(!state.UserName.match(/^[a-zA-Z]+$/)){
-        //            formIsValid = false;
-        //            errors["UserName"] = "Only letters";
-        //         }        
-        //      }
-        //  }
+      
 
          //  City
         if(!state.CityName){
@@ -162,12 +159,12 @@ function EditClient(props){
 
     }
 
-function onChangeHandler(e){
-    console.log(e);
-    const { name, value } = e.target;
-    setState(prevState => ({ ...prevState, [name]: value }));
+    function onChangeHandler(e){
+        console.log(e);
+        const { name, value } = e.target;
+        setState(prevState => ({ ...prevState, [name]: value }));
 
-};
+    };
 
 function onClickHandler(){
     // addToast("Hi", { appearance: 'success' });
@@ -186,8 +183,8 @@ function onClickHandler(){
             CityName: state.CityName,
             CountyName: state.CountyName,
             StateName: state.StateName,
-            Notes:state.Notes
-
+            Notes:state.Notes,
+            Active:state.Active
         };
 
         // data.append('ClientNumber', state.ClientNumber);
@@ -351,13 +348,20 @@ function reset(){
                                 <span style={spanStyle}>{state.errors["StateName"]}</span>
                                 </div>
                             </div>
-                            <div className="col-sm-12">
+                            <div className="col-sm-8">
                                 <div className="form-group">
                                 <label className="field-label" >Notes<span className="text-danger">*</span></label>
                                 <input type="textarea" name="Notes" className="form-control text-area" value={state.Notes} onChange={onChangeHandler}/>
                                 <span style={spanStyle}>{state.errors["Notes"]}</span>
                                 </div>
                             </div>
+                            <div className="col-sm-4">
+                                <div className="form-group">
+                                    <label className="field-label">Active</label>
+                                    {state.Active == '1'? <input type="checkbox" className="form-control" value="1" checked/>: <input type="checkbox" value="0" className="form-control"/>}
+
+                                </div>
+                             </div>
                             <div className="col-sm-12 align-right">
                                 <button type="submit" className="btn btn-sm btn-primary" onClick={onClickHandler} >Submit</button>
                                 <button type="submit" className="btn  btn-sm btn-danger" onClick={reset} >Cancel</button>

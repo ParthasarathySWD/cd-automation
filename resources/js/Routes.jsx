@@ -15,6 +15,7 @@ import Dashboard from './components/DashboardComponents/Dashboard';
 import Members from './components/UsersComponents/Members';
 import AddClient from './components/ClientComponents/AddClient';
 import ClientList from './components/ClientComponents/ClientList';
+import ViewClient from './components/ClientComponents/ViewClient';
 import EditClient from './components/ClientComponents/EditClient';
 import CDDetails from './Views/CDDetails';
 import OrderDocument from './components/OrderSummary/OrderDocuments';
@@ -40,6 +41,7 @@ class Routes extends React.Component
                 <Route exact path='/myorders' component={MyOrder}/>
                 <Route exact path='/dashboard' component={Dashboard} />
                 <Route exact path='/allclients' component={ClientList} />
+                <Route exact path='/viewclient/:id' component={ViewClient} />
                 <Route exact path='/addclient' component={AddClient} />
                 <Route exact path='/editclient/:id' component={EditClient} />
                 <Route exact path='/cddetails' component={CDDetails} />

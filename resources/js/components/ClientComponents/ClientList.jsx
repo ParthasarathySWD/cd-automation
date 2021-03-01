@@ -28,11 +28,11 @@ const columndata = [
       selector: "Email",
       sortable: true
     },
-    {
-        name: "AddressLine",
-        selector: "AddressLine1",
-        sortable: true
-    },
+    // {
+    //     name: "AddressLine",
+    //     selector: "AddressLine1",
+    //     sortable: true
+    // },
     {
         name: "City",
         selector: "CityName",
@@ -40,14 +40,15 @@ const columndata = [
     },
     {
         name:<b>Action</b>,
-        cell: row => <div>
-                         <p key={row.UserUID}>
-                          <TableLink ><span className="fa fa-eye text-primary p-1"></span></TableLink>
-                          <TableLink to={'/editclient/'+row.ClientUID}><span className="fa fa-edit text-secondary p-1"></span></TableLink>
-                          <TableLink ><span className="fa fa-trash text-danger p-1"></span></TableLink> 
-                          </p>
-                    </div>
-      }
+        cell: row => 
+        <div>
+            <p key={row.UserUID}>
+              <TableLink to={'/viewclient/'+row.ClientUID}><span className="fa fa-eye text-primary p-1"></span></TableLink>
+              <TableLink to={'/editclient/'+row.ClientUID}><span className="fa fa-edit text-secondary p-1"></span></TableLink>
+              {/* <TableLink ><span className="fa fa-trash text-danger p-1"></span></TableLink>  */}
+            </p>
+        </div>
+    }
   ];
 
 function ClientList(){
@@ -133,7 +134,7 @@ function ClientList(){
                                 <li className="nav-item">
                                 <a className="nav-link" href="#completed" role="tab" data-toggle="pill">Inactive</a>
                                 </li>
-                              </ul>
+                            </ul>
                               {/* <div className="search-div">
                                   <input type="text" className="search-input" placeholder="&#61442; search"></input>
                               </div> */}

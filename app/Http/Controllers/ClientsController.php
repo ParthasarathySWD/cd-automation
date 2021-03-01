@@ -100,8 +100,36 @@ class ClientsController extends Controller
 
     public function show($id)
     {
-        $GetClient = mClients::find($id);
-        return response()->json($GetClient);
+        // $GetClient = mClients::find($id);
+        // return response()->json($GetClient);
+
+        $GetClient=DB::table('mclients')
+                    ->select('mclients.*','musers.UserName')
+                    ->join('musers','mclients.CreatedByUserUID','=','musers.UserUID')
+                    ->where('ClientUID',$id)
+                    ->get();
+        // return response()->json($GetClient);
+    // $Client=array();
+    // $data=count($GetClient);
+   foreach($GetClient as $key=>$val)
+    {
+        $joinarray=array(
+            'ClientNumber'=>$val->ClientNumber,
+            'ClientName'=>$val->ClientName,
+            'Phone'=>$val->Phone,
+            'Email'=>$val->Email,
+            'AddressLine1'=>$val->AddressLine1,
+            'CityName'=>$val->CityName,
+            'CountyName'=>$val->CountyName,
+            'StateName'=>$val->StateName,
+            'Notes'=>$val->Notes,
+            'Active'=>$val->Active,
+            'UserName'=>$val->UserName
+            
+        );
+    }
+    return response()->json($joinarray);
+
     }
     /*
      * Update the specified resource in storage.

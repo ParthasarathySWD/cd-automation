@@ -31,8 +31,8 @@ class mClients extends Model
         'StateName',
         'Notes',
     	'CreatedByDateTime',
-    	'ModifiedByDateTime'
-
+    	'ModifiedByDateTime',
+        'Active'
     ];
 
     protected $auiditInclude = [
