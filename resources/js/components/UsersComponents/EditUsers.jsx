@@ -2,9 +2,11 @@ import React from 'react';
 import { useToasts } from 'react-toast-notifications'
 import {useState, useEffect } from 'react'
 import { useHistory } from 'react-router-dom';
+import axios from '../../repository/api';
 
 function EditUser(props){
 
+    const ID = props.match.params.id;
     const history = useHistory();
     const RoleOptions = [
         {value: '1', label: 'Admin'},
@@ -27,7 +29,7 @@ function EditUser(props){
             errors: {}
 
         });
-        const ID = '';
+        
         const [isFetched, setIsFetched] = useState(false);
 
         useEffect(()=>{
@@ -42,7 +44,7 @@ function EditUser(props){
 
         function getUser(){
             
-            axios.get("users/"+ID)
+            axios.get("/users/"+ID)
                 .then(res => {
 
                      setState({ 

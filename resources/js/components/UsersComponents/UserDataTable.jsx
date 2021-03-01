@@ -105,12 +105,12 @@ import { Link } from 'react-router-dom';
     },
     {
       name:<b>Action</b>,
-      cell: row => <div>
-                       <p key={row.UserUID}>
+      cell: row => <div key={row.UserUID}>
+                       
                         <Td ><span className="fa fa-eye text-primary p-1"></span></Td>
                         <Td to={'/edituser/'+row.UserUID}><span className="fa fa-edit text-secondary p-1"></span></Td>
                         <Td ><span className="fa fa-trash text-danger p-1"></span></Td> 
-                        </p>
+                        
                   </div>
     }
      
