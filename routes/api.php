@@ -38,6 +38,6 @@ Route::middleware([])->group(function () {
     Route::resource('/users', UserController::class);
     Route::resource('/clients', ClientsController::class);
     Route::resource('orderentry', OrderEntryController::class);
-    Route::resource('orderentry', OrderEntryController::class);
+    Route::get('fetchOrderDocs/{OrderUID}', 'App\Http\Controllers\OrderEntryController@GetOrderDocumentsByOrderUID');
 
 });

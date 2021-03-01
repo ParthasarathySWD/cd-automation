@@ -1,4 +1,4 @@
-import React, { Component, useState } from "react";
+import React, { Component, useState, useEffect } from "react";
 import axios from 'axios';
 import { useToasts } from 'react-toast-notifications';
 import { confirmAlert } from 'react-confirm-alert'
@@ -14,6 +14,7 @@ function OrderDocuments(params) {
     let history = useHistory();
 
     const [orderdocs, setOrderDocs] = useState([]);
+
     /** Data Table Custome Style */
     const customStyles = {
         headCells:{
@@ -34,22 +35,25 @@ function OrderDocuments(params) {
         );
     }
     /** end */
-    const data = [
-        {
-            id : '1',
-            document : 'Closing',
-            type : 'Prelim',
-            uploadedon : '03-01-2021 11:20:00',
-            uploadedby : 'Mohindar'
-        },
-        {
-            id : '2',
-            document : 'Closing Encloser',
-            type : 'Closing',
-            uploadedon : '03-01-2021 11:30:00',
-            uploadedby : 'Mohindar'
-        }
-    ];
+
+    // const data = [
+    //     {
+    //         id : '1',
+    //         document : 'Closing',
+    //         type : 'Prelim',
+    //         uploadedon : '03-01-2021 11:20:00',
+    //         uploadedby : 'Mohindar'
+    //     },
+    //     {
+    //         id : '2',
+    //         document : 'Closing Encloser',
+    //         type : 'Closing',
+    //         uploadedon : '03-01-2021 11:30:00',
+    //         uploadedby : 'Mohindar'
+    //     }
+    // ];
+
+    /** Table Columns */
     const columns = [
         {
             name: '#',
@@ -79,13 +83,32 @@ function OrderDocuments(params) {
         {
             name: 'Action',
             sortable: false,
-            cell: row => <div key={1}>                       
-                <Td ><span className="fa fa-eye text-primary p-1"></span></Td>
+            cell: row => <div key={row.documentid}>                       
+                <Td ><a href = {row.filepath} target = "_blank">
+                    <span className="fa fa-eye text-primary p-1"></span>
+                    </a>
+                </Td>
                 {/* <Td to={'/edituser/'+row.UserUID}><span className="fa fa-edit text-secondary p-1"></span></Td>
                 <Td ><span className="fa fa-trash text-danger p-1"></span></Td>  */}
             </div>
         },
     ];
+    /** end */
+
+    /** Get Order Documents */
+    const fetchOrderDocs = () => {
+        axios.get('fetchOrderDocs/'+21).then( response =>{
+            console.log(response);
+            setOrderDocs(response.data.TableData);
+        })
+    }
+    /** end */
+    const [page, setPage] = useState(1);
+    useEffect(() => {
+        fetchOrderDocs();
+    },[page]);
+
+    const data = orderdocs;
 
     const tableData = {
         columns,

@@ -12,6 +12,7 @@ use App\Models\OrderStatus;
 use Carbon\Carbon;
 
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Facades\Storage;
 
 class OrderEntryController extends Controller
 {
@@ -101,6 +102,7 @@ class OrderEntryController extends Controller
                             $FileName=$PrelimFile->getClientOriginalName();
 
                             $NewFileName = $FileName;
+                            
                             $FilePath = $PrelimFile->storeAs('OrderDocuments', $NewFileName);
 
                             $PrelimFileInsertArray = new OrderEntryFile([
@@ -367,8 +369,44 @@ class OrderEntryController extends Controller
     }
     /** end */
 
+    /**
+     * Get Order Documents By OrderUID
+     * @author mohindarkumar-v <mohindar.kumar@avanzegroup.com>
+     * @param OrderUID
+     * @throws exceptions
+     * @version CD Automation [CD-05]
+     * @since 01-MAR-2021
+     * @return Order Documents
+    */
     public function GetOrderDocumentsByOrderUID($OrderUID)
     {
-        
+        // echo '<pre>';print_r($OrderUID);exit;
+        $OrderDocs = DB::table('tOrdersDocuments')    
+            ->select('tOrdersDocuments.*', 'mDocumentTypes.DocumentTypeName', 'mUsers.UserName')        
+            ->join('mDocumentTypes', 'mDocumentTypes.DocumentTypeUID', '=', 'tOrdersDocuments.DocumentTypeUID')
+            ->join('mUsers', 'mUsers.UserUID', '=', 'tOrdersDocuments.CreatedByUserUID')            
+            ->where('tOrdersDocuments.OrderUID', '=', $OrderUID)
+            ->get();
+        $RowArray = array();
+        $count = 0;
+        foreach ($OrderDocs as $resKey => $resValue) {
+            $count++;
+            $ColumnArray = array(
+                'id' => $count,
+                'documentid' => $resValue->DocumentUID,
+                'document' => $resValue->DocumentName,
+                'type' => $resValue->DocumentTypeName,
+                'uploadedon' => $resValue->CreatedByDateTime,
+                'uploadedby' => $resValue->UserName,
+                'filepath' => Storage::path('OrderDocuments'.$resValue->DocumentName) 
+            );
+            array_push($RowArray, $ColumnArray);            
+        }
+
+        return response()->json([
+            'OrginalData' => $OrderDocs->toArray(),
+            'TableData' => $RowArray
+        ]);
     }
+    /** end */
 }

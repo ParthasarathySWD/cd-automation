@@ -70,7 +70,7 @@ function OrderEntryForm() {
                         },
                         {
                           label: 'Stay Back',
-                          onClick: () => {                            
+                          onClick: () => {                      
                             history.push('/orderentry');
                           },
                           className: 'btn btn-sm btn-outline-success'
