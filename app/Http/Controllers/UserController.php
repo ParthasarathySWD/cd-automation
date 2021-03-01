@@ -116,7 +116,8 @@ class UserController extends Controller
      */
     public function edit(User $user)
     {
-        echo '<pre>';print_r('edit');exit;
+        $GetUser = User::find($id);
+        return response()->json($GetUser);
     }
 
     /**
@@ -126,17 +127,17 @@ class UserController extends Controller
      * @param  \App\Models\User  $user
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request,User $id)
+    public function update(Request $request, $id)
     {
-        echo '<pre>';print_r($id);exit;
+        // echo '<pre>';print_r($id);exit;
         DB::beginTransaction();
         $UpdateDetails = User::find($id);
         $UpdateData = $request->all();
 
         $UpdateData['ModifiedByDateTime'] = Carbon::now();
-        $UpdateData['ModifiedByUserUID'] = '1';
-        
+        $UpdateData['ModifiedByUserUID'] = '1';        
         if ($UpdateDetails->update($UpdateData)) {
+            
             DB::commit();
             return response()->json([
                 'type' => 'Update',

@@ -191,17 +191,17 @@ function EditUser(props){
 
         if(handleValidation()){
             
-            const data = new FormData();
+            const formData = {
+                FirstName: state.FirstName,
+                LastName: state.LastName,
+                PhoneNumber: state.PhoneNumber,
+                Email: state.Email,
+                UserName: state.UserName,                
+                RoleUID: state.RoleUID
+            };
 
-            data.append('FirstName', state.FirstName);
-            data.append('LastName', state.LastName);
-            data.append('PhoneNumber', state.PhoneNumber);
-            data.append('Email', state.Email);
-            data.append('UserName',state.UserName);
-            // data.append('Password',state.Password);
-            // data.append('ConfirmPassword',state.ConfirmPassword);
-            data.append('RoleUID',state.RoleUID);
-            axios.put("users/"+ID, data)
+            
+            axios.put("users/"+ID, formData)
                 .then(res => {
                     addToast('Data Updated Successfully', { appearance: 'success', autoDismiss: 'true' });
 	                 setState({ 
