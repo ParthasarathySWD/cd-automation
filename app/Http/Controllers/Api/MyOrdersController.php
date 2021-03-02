@@ -51,4 +51,27 @@ class MyOrdersController extends Controller
 
     }
 
+    /**
+     * Store a newly created resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function fetchOptions(Request $request)
+    {
+
+
+        $clients = DB::table('mClients')->get();
+        $allusers = DB::table('mUsers')->get();
+        $status = DB::table('mOrderStatus')->get();
+
+        return response()->json([
+            'clients' => $clients,
+            'allusers' => $allusers,
+            'status' => $status
+        ], 200);
+
+
+    }
+
 }

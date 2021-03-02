@@ -103,8 +103,21 @@ const tableData = {
   const [page, setPage] = useState(1);
   const [countPerPage, setCountPerPage] = useState(10);
   
+  const [status, setstatus]  = useState([]);
+  const [allusers, setallusers]  = useState([]);
+  const [clients, setclients]  = useState([]);
 
+  useEffect(() => {
+    async function fetchOptions () {
+    let response = await fetchDetails();
+    
+    setstatus(response.data.status);
+    setallusers(response.data.allusers);
+    setclients(response.data.clients);
 
+  }
+    fetchOptions();
+  }, [])
   
   /* Should be passed from props starts */
   const fetchUsers = async (page, size = countPerPage, searchText = "") => {
@@ -120,6 +133,17 @@ const tableData = {
       console.log(response);
       return response;
     };
+
+    const fetchDetails = async () => {
+            
+      const response = await axios.get(
+        `myorders/fetchOptions`,
+        {
+
+        }
+        );
+        return response;
+    }
     
     const handleDelete = async (row) => {
         await axios.delete(`https://reqres.in/api/users/${row.id}`);
@@ -159,7 +183,9 @@ const tableData = {
     /* Should be passed from props Ends */
 
 
-
+    let clientOptions = clients.map((value, key)=>{
+                        return <option value={value.ClientUID}>{value.ClientName}</option>
+                      });
 
 
   
@@ -238,6 +264,19 @@ const tableData = {
                         <div className="tab-values p-10">
                           <div className="tab-content">
                               <div id="all" className="order-table tab-pane in active">
+                                <div className="row">
+                                  <div className="col-md-3 col-sm-12">
+                                    <label class="form-label">Clients </label>
+                                  <select className="form-control input-height" name="select" value={''}>
+                                  <option value="">Select...</option>
+                                  {
+                                    clients.map((value, key)=>{
+                                    return <option key={key} value={value.ClientUID}>{value.ClientName}</option>
+                                    })
+                                  }
+                                  </select>
+                                  </div>
+                                </div>
                                 <input type="text" className="search-input" placeholder="&#61442; search"></input>
                                 {/* <h4>Active Order List</h4> */}
                                 {/* <DataTableExtensions {...tableData} filterPlaceholder={'Search'} export={false} print={false}>  */}

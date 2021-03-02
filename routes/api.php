@@ -30,6 +30,7 @@ Route::middleware([])->group(function () {
     
     Route::get('logout', 'App\Http\Controllers\Api\AuthController@logout');
     Route::get('myorders/fetchorders', 'App\Http\Controllers\Api\MyOrdersController@fetchMyOrders');
+    Route::get('myorders/fetchOptions', 'App\Http\Controllers\Api\MyOrdersController@fetchOptions');
     // Route::get('showclient','App\Http\Controllers\ClientsController@show');
 
     Route::post('client','App\Http\Controllers\ClientsController@index');
