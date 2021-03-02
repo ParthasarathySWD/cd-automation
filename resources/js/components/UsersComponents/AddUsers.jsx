@@ -3,6 +3,7 @@ import { useToasts } from 'react-toast-notifications'
 import {useState, useEffect } from 'react'
 import { useHistory } from 'react-router-dom';
 
+
 function AddUser(props){
     const history = useHistory();
     const spanStyle = {
@@ -212,7 +213,7 @@ function AddUser(props){
 			RoleUID: '',
 			errors: {}
 
-         });
+         });history.push('/alluser');
     };
     
 
@@ -233,12 +234,6 @@ function AddUser(props){
                                 </div>
                             </div>
                         </div>
-                    </div>
-
-                    <div className="row clearfix">
-                        
-                        <AddUserTab />
-                            
                     </div>
 
 
