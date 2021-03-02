@@ -36,9 +36,9 @@ class MyOrdersController extends Controller
         $searchText = $request->searchText;
 
         $schema = DB::table('tOrders')
-                ->select('tOrders.*','morderstatus.StatusName','mclients.ClientName')
-                ->join('morderstatus','tOrders.StatusUID','=','morderstatus.StatusUID')
-                ->join('mclients','tOrders.CustomerUID','=','mclients.ClientUID')
+                ->select('tOrders.*','mOrderStatus.StatusName','mClients.ClientName')
+                ->join('mOrderStatus','tOrders.StatusUID','=','mOrderStatus.StatusUID')
+                ->join('mClients','tOrders.ClientUID','=','mClients.ClientUID')
                 ->get();
 
         $Torders = array();
