@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import FileUpload from "./file-upload.component";
+import PrelimUpload from "./PrelimFile";
 
 function FileDrop(props){
   

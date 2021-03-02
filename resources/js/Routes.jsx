@@ -7,7 +7,7 @@ import {
 // import AllUsers from "./components/UsersComponents/AllUsers";
 import AddUser from "./components/UsersComponents/AddUsers";
 import EditUser from "./components/UsersComponents/EditUsers";
-import OrderEntry from "./components/OrderEntryComponents/OrderEntryForm";
+import OrderEntry from "./components/OrderEntryComponents/OrderEntry";
 import Login from "./Login";
 import ForgotPassword from './components/LoginComponents/ForgotPassword';
 import MyOrder from './components/MyOrderPageComponents/MyOrder';
