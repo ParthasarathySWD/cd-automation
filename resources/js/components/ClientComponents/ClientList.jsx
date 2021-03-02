@@ -5,9 +5,16 @@ import "react-data-table-component-extensions/dist/index.css";
 import { BrowserRouter as Router, Switch, Route, Link, useHistory } from 'react-router-dom';
 import MyOrders from '../Datatablecomponents/MyOrders';
 import TableLink from  '../../CommonComponents/TableLink';
+import { useToasts } from 'react-toast-notifications';
 
 
-const columndata = [
+
+ 
+
+function ClientList(){
+  const { addToast } = useToasts();
+  const history = useHistory();
+  const columndata = [
     {
       name: "Client Number",
       selector: "ClientNumber",
@@ -28,21 +35,26 @@ const columndata = [
       selector: "Email",
       sortable: true
     },
-    // {
-    //     name: "AddressLine",
-    //     selector: "AddressLine1",
-    //     sortable: true
-    // },
+    
     {
         name: "City",
         selector: "CityName",
         sortable: true
     },
     {
+      name: <b>Status</b>,
+      cell: row => <div key={row.ClientUID}>
+                        <div class="custom-control custom-switch">
+                          <input type="checkbox" class="custom-control-input" id={row.ClientUID} data-uid={row.ClientUID} onChange={statusChange} value={(row.Active == 1) ? 0 : 1} checked={(row.Active == 1) ? true : false}/>
+                          <label class="custom-control-label mt-0" htmlFor={row.ClientUID}></label>
+                        </div>
+                  </div> 
+    },
+    {
         name:<b>Action</b>,
         cell: row => 
         <div>
-            <p key={row.UserUID}>
+            <p key={row.ClientUID}>
               <TableLink to={'/viewclient/'+row.ClientUID}><span className="fa fa-eye text-primary p-1"></span></TableLink>
               <TableLink to={'/editclient/'+row.ClientUID}><span className="fa fa-edit text-secondary p-1"></span></TableLink>
               {/* <TableLink ><span className="fa fa-trash text-danger p-1"></span></TableLink>  */}
@@ -51,7 +63,25 @@ const columndata = [
     }
   ];
 
-function ClientList(){
+
+
+  const statusChange = (e) => {
+    const activeStatus = {Active: e.target.value};
+    const id = e.target.dataset.uid;
+    // console.log(id,activeStatus);
+    axios.put('clients/'+id, activeStatus)
+      .then(res => {
+        if(res.data.status)
+        {
+          addToast('Status Updated Successfully', { appearance: 'success', autoDismiss: 'true' });
+          history.push("/dashboard");
+          history.push("/allclients");
+        }
+        else{
+          addToast('Status Updation Failed', { appearance: 'error', autoDismiss: 'true' });
+        }
+      })
+  }
 
     const [page, setPage] = useState(1);
     const [countPerPage, setCountPerPage] = useState(10);     /* Should be passed from props starts */

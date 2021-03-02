@@ -160,21 +160,31 @@ class ClientsController extends Controller
         //     return response()->json($result, 200);
         // } 
 
-        $ClientUID=mClients::findOrFail($id);
-        $ClientUID->ClientNumber = $request->ClientNumber;
-        $ClientUID->save();
+        $ClientUID=mClients::find($id);
+        // $ClientUID->ClientUID = $request->ClientUID;
+        // $ClientUID->save();
 
 
         $updateDetails=$request->all();
 
-        $ClientUID->update($updateDetails);
-        return response()->json([
-            'type' => 'Update',
-            'status' => true,
-            'errors' => '',
-            'message' => 'Update Successfully'
-        ], 200);
-
+        if($ClientUID->update($updateDetails)){
+            return response()->json([
+                'type' => 'Update',
+                'status' => true,
+                'errors' => '',
+                'message' => 'Update Successfully'
+            ], 200);
+        }
+        else
+        {
+            return response()->json([
+                'status' => false,
+                'type' => 'Update',
+                'errors' => '',
+                'message' => 'Failed'
+            ], 200);
+        }
+        
 
     }
 

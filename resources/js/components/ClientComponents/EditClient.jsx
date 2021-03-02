@@ -159,16 +159,17 @@ function EditClient(props){
 
     }
 
-    function onChangeHandler(e){
-        console.log(e);
+    function onChangeHandler(e)
+    {
+      
+        // const activeStatus = e.target.value;
         const { name, value } = e.target;
         setState(prevState => ({ ...prevState, [name]: value }));
-
     };
 
 function onClickHandler(){
     // addToast("Hi", { appearance: 'success' });
-
+   
     if(handleValidation()){
         
         // const data = new FormData();
@@ -213,7 +214,8 @@ function onClickHandler(){
                     Notes:'',
                     errors: {}
 
-                 });history.push("/allclients");
+                 });
+                 history.push("/allclients");
 
             })
 
@@ -329,7 +331,7 @@ function reset(){
                             </div>
                             <div className="col-sm-3">
                                 <div className="form-group">
-                                <label className="field-label" >City<span className="text-danger">*</span></label>
+                                <label className="field-label">City<span className="text-danger">*</span></label>
                                 <input type="text" name="CityName" className="form-control" value={state.CityName} onChange={onChangeHandler}/>
                                 <span style={spanStyle}>{state.errors["CityName"]}</span>
                                 </div>
@@ -350,16 +352,18 @@ function reset(){
                             </div>
                             <div className="col-sm-8">
                                 <div className="form-group">
-                                <label className="field-label" >Notes<span className="text-danger">*</span></label>
-                                <input type="textarea" name="Notes" className="form-control text-area" value={state.Notes} onChange={onChangeHandler}/>
-                                <span style={spanStyle}>{state.errors["Notes"]}</span>
+                                    <label className="field-label" >Notes<span className="text-danger">*</span></label>
+                                    <input type="textarea" name="Notes" className="form-control text-area" value={state.Notes} onChange={onChangeHandler}/>
+                                    <span style={spanStyle}>{state.errors["Notes"]}</span>
                                 </div>
                             </div>
                             <div className="col-sm-4">
-                                <div className="form-group">
-                                    <label className="field-label">Active</label>
-                                    {state.Active == '1'? <input type="checkbox" className="form-control" value="1" checked/>: <input type="checkbox" value="0" className="form-control"/>}
-
+                                <div className="form-group row" style={{marginTop:'35px',marginLeft:'10px'}}>
+                                    <label className="field-label pt-10">Active</label>
+                                    <div class="col-sm-4">
+                                    {/* {state.Active == '1'? <input type="checkbox" className="form-control" value={state.Active} checked/>: <input type="checkbox" value="0" className="form-control"/>} */}
+                                    <input type="checkbox" name="Active" id={state.ClientUID} class="form-control  pt-10" value={(state.Active == 1) ? 0 : 1} checked={(state.Active == 1) ? true : false} onChange={onChangeHandler}/>
+                                    </div>
                                 </div>
                              </div>
                             <div className="col-sm-12 align-right">
