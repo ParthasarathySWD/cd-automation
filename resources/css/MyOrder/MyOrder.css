@@ -57,24 +57,23 @@
 } */
 .search-input
 {
-    /* position: -webkit-sticky; */
-    position: absolute;
-   top:14.5em;
-   left:60em;
-   /* padding-top:2px; */
-   /* float:right !important; */
+  
+   position: absolute;
+   top:2em;
+   left:10em;
    width: 150px;
-   border-top:none !important;
+   float:right;
+   /* border-top:none !important;
    border-right:none !important;
    border-left:none !important;
    border-bottom:1px solid#797a7a59;
    border-radius: unset;
-   background-color: #fafafa;
+   background-color: #fafafa; */
    font-size: 14px;
 }
-.search-input:focus{
+/* .search-input:focus{
     outline: none;
-}
+} */
 .search-input::-webkit-input-placeholder { 
     font-family: FontAwesome;
 }
@@ -207,4 +206,21 @@ ul
     padding-bottom:2px;
     padding-left:0;
     padding-right:10px;
+}
+/* .react-datepicker-ignore-onclickoutside
+{
+    width:120px;
+    height:20px;
+} */
+.react-datepicker-wrapper,
+.react-datepicker__input-container,
+.react-datepicker__input-container input {
+    display: block;
+    width: 120px;
+    height:25px;
+    /* border-left: 0mm !important; */
+}
+.form-label
+{
+    font-size:14px;
 }

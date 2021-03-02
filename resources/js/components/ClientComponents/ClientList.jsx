@@ -84,15 +84,17 @@ function ClientList(){
   }
 
     const [page, setPage] = useState(1);
-    const [countPerPage, setCountPerPage] = useState(10);     /* Should be passed from props starts */
+    const [countPerPage, setCountPerPage] = useState(10);   
+    // const[status,setStatus]=useState(0);  /* Should be passed from props starts */
     const fetchUsers = async (page, size = countPerPage, searchText = "") => {
-    
+    // const activeState="0";
     const response = await axios.post(
-      `client`,
+      'client',
       {
         rowCount: size,
         page: page,
         searchText: searchText,
+        // activeState:activeState
       }
       );
       console.log(response);
@@ -111,13 +113,13 @@ function ClientList(){
                             <div className="col-lg-4 col-md-4 col-sm-6 col-12 mb-2 mt-4 w-25">
                                 <div className="client-info">
                                     <div className="row">
-                                    <div className="col-lg-3 col-md-4 col-sm-4 col-4 one all-one">
-                                        <i className="fa fa-users fa-2x"></i>
-                                    </div>
-                                    <div class="col-lg-9 col-md-8 col-sm-8 col-8 fontst">
-                                        <label className="c-status-text">All Clients</label>
-                                        <h4>2,210</h4>
-                                    </div>
+                                      <div className="col-lg-3 col-md-4 col-sm-4 col-4 one all-one">
+                                          <i className="fa fa-users fa-2x"></i>
+                                      </div>
+                                      <div class="col-lg-9 col-md-8 col-sm-8 col-8 fontst">
+                                          <label className="c-status-text">All Clients</label>
+                                          <h4>2,210</h4>
+                                      </div>
                                     </div>
                                 </div>
                             </div>
@@ -154,21 +156,22 @@ function ClientList(){
                     <div className="child-container first-child">
                         <div className="tabs">
                           <div className="tab-menus">
-                            <ul className="nav nav-pills nav-menu" role="tablist">
+                            <h4 className="p-2">Clients List</h4>
+                            {/* <ul className="nav nav-pills nav-menu" role="tablist">
                                 <li className="nav-item">
-                                <a className="nav-link active" href="#all" role="tab" data-toggle="pill">All Clients</a>
+                                <a className="nav-link active" eventKey="all" href="#all" role="tab" data-toggle="pill">All Clients</a>
                                 </li>
                                 <li className="nav-item">
-                                <a className="nav-link" href="#pending" role="tab" data-toggle="pill">Active</a>
+                                <a className="nav-link" id="1" href="#pending" role="tab" data-toggle="pill">Active</a>
                                 </li>
                                 <li className="nav-item">
-                                <a className="nav-link" href="#completed" role="tab" data-toggle="pill">Inactive</a>
+                                <a className="nav-link" id="2" href="#completed" role="tab" data-toggle="pill">Inactive</a>
                                 </li>
-                            </ul>
+                            </ul> */} 
                               {/* <div className="search-div">
                                   <input type="text" className="search-input" placeholder="&#61442; search"></input>
                               </div> */}
-                          </div>
+                           </div> 
                            
                         </div>
                         <div className="tab-values p-10">

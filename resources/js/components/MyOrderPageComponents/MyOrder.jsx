@@ -5,6 +5,9 @@ import DataTableExtensions from "react-data-table-component-extensions";
 import "react-data-table-component-extensions/dist/index.css";
 import { BrowserRouter as Router, Switch, Route, Link, useHistory } from 'react-router-dom';
 import MyOrders from '../../components/Datatablecomponents/MyOrders';
+import DatePicker from "react-datepicker";
+
+import "react-datepicker/dist/react-datepicker.css";
 
 // import { columns, data } from './DataTab';
 import axios from 'axios';
@@ -31,15 +34,15 @@ const columns = [
   },   
   {
     name: <b>Customer</b>,
-    selector: "Customer",
+    selector: "Client",
     sortable: true
 
   },
-  {
-    name: <b>Loan Type</b>,
-    selector: "LoanType",
-    sortable: true
-  },
+  // {
+  //   name: <b>Loan Type</b>,
+  //   selector: "LoanType",
+  //   sortable: true
+  // },
   {
     name: <b>Status</b>,
     selector: "status",
@@ -106,8 +109,10 @@ const tableData = {
   const [status, setstatus]  = useState([]);
   const [allusers, setallusers]  = useState([]);
   const [clients, setclients]  = useState([]);
+  const [startDate, setStartDate] = useState();
+  const [endDate, setEndDate] = useState();
 
-  const [filter, setFilter] = useState({'client': '', 'user': '', 'status': ''});
+  const [filter, setFilter] = useState({ 'user': '', 'status': '','fromdate':'','todate':''});
 
   function onClientChange(e){
     let val = e.target.value;
@@ -251,34 +256,32 @@ const tableData = {
                         </div>
                       </div>
                       <div className="child-container first-child">
-                        {/* <div className="tabs">
-                          <div className="tab-menus">
-                            <ul className="nav nav-pills nav-menu" role="tablist">
-                                <li className="nav-item">
-                                <a className="nav-link active" href="#all" role="tab" data-toggle="pill">Active orders</a>
-                                </li>
-                                <li className="nav-item">
-                                <a className="nav-link" href="#pending" role="tab" data-toggle="pill">Pending</a>
-                                </li>
-                                <li className="nav-item">
-                                <a className="nav-link" href="#completed" role="tab" data-toggle="pill">Completed</a>
-                                </li>
-                              </ul>
-                          </div>
-                           
-                        </div> */}
-                        <div className="tab-values p-10">
-                          <div className="tab-content">
-                              <div id="all" className="order-table tab-pane in active">
-                                <div className="row">
-                                <div className="col-sm-12 col-md-12">
+                         <div className="tabs" style={{marginTop:'30px'}}>
+                          {/* <div className="tab-menus"> */}
+                        
+                          <div className="row m-0 pt-2">
+                                  
 
-                                <div className="row m-0">
+                                  <div className="col-md-2 col-sm-12">
+                                    <div className="form-group">
+
+                                    <label className="form-label">Status </label>
+                                  <select className="border w-100 input-height border-secondary" name="status" value={filter.status} onChange={onClientChange} style={{height:'25px'}}>
+                                  <option value="">Select...</option>
+                                  {
+                                    status.map((value, key)=>{
+                                      return <option key={key} value={value.StatusUID}>{value.StatusName}</option>
+                                    })
+                                  }
+                                  </select>
+                                  </div>
+                                  </div>
+
                                   <div className="col-md-2 col-sm-12">
                                     <div className="form-group">
 
                                     <label className="form-label">Users </label>
-                                  <select className="border w-100 input-height border-secondary" name="user" value={filter.user} onChange={onClientChange}>
+                                  <select className="border w-100 input-height border-secondary" name="user" value={filter.user} onChange={onClientChange} style={{height:'25px'}}>
                                   <option value="">Select...</option>
                                   {
                                     allusers.map((value, key)=>{
@@ -292,44 +295,84 @@ const tableData = {
                                   <div className="col-md-2 col-sm-12">
                                     <div className="form-group">
 
-                                    <label className="form-label">Status </label>
-                                  <select className="border w-100 input-height border-secondary" name="status" value={filter.status} onChange={onClientChange}>
-                                  <option value="">Select...</option>
-                                  {
-                                    status.map((value, key)=>{
-                                      return <option key={key} value={value.StatusUID}>{value.StatusName}</option>
-                                    })
-                                  }
-                                  </select>
+                                    <label className="form-label">From Date </label>
+                     
+                                  <div className="input-group">
+                                        <div className="input-group-prepend" >
+                                            <i className="fa fa-calendar p-1" style={{border:'1px solid black',borderRight:'0mm'}}></i>
+                                        {/* </div><input type="text" id="TodDate" className="form-control datepicker" placeholder="Ex: 19/02/2021"/> */}
+                                        <DatePicker name="fromDate" placeholderText="mm/dd/yyyy" selected={startDate} onChange={date => setStartDate(date)}/>
+                                    </div>
+                                  </div>
                                   </div>
                                   </div>
 
-                                  <div className="col-md-2 col-lg-2 mt-1">
+                                  <div className="col-md-2 col-sm-12">
                                             <div className="form-group">
                                                 <label className="form-label">To Date </label>
                                                 <div className="input-group">
                                                     <div className="input-group-prepend">
-                                                        <span className="input-group-text"><i className="icon-calendar"></i></span>
+                                                        <i className="fa fa-calendar p-1" style={{border:'1px solid black',borderRight:'0mm'}}></i>
+                                                        <DatePicker  placeholderText="mm/dd/yyyy" name="toDate" selected={endDate} onChange={date => setEndDate(date)}/>
                                                     </div>
-                                                    <input type="text" id="TodDate" className="form-control datepicker AdvanceFilter" placeholder="Ex: 19/02/2021"/>
+                                                    {/* <input type="text" id="TodDate" className="form-control datepicker" placeholder="Ex: 19/02/2021"/> */}
+                                                   
                                                 </div>
                                             </div>
                                         </div>
+                                    <div className="col-md-2 col-sm-12">
+                                      <div className="form-group">
+                                      <input type="text" className="search-input float-right" placeholder="&#61442; search"></input>
+                                      </div>
+                                    </div>
+                                  
 
-                                        <div className="form-group">
-    <label htmlFor="exampleFormControlSelect1">Example select</label>
-    <select className="form-control" id="exampleFormControlSelect1">
-      <option>1</option>
-      <option>2</option>
-      <option>3</option>
-      <option>4</option>
-      <option>5</option>
-    </select>
-  </div>
+                                        {/* <div className="form-group">
+                                          <label htmlFor="exampleFormControlSelect1">Example select</label>
+                                          <select className="form-control" id="exampleFormControlSelect1">
+                                            <option>1</option>
+                                            <option>2</option>
+                                            <option>3</option>
+                                            <option>4</option>
+                                            <option>5</option>
+                                          </select>
+                                      </div> */}
                                   </div>
+                           
+                                {/* <select className="form-control" name="select" value={''}>
+                                  <option value="">Select...</option>
+                                  {
+                                    clients.map((value, key)=>{
+                                    return <option key={key} value={value.ClientUID}>{value.ClientName}</option>
+                                    })
+                                  }
+                                </select> */}
+                            {/* <ul className="nav nav-pills nav-menu" role="tablist">
+                                <li className="nav-item">
+                                <a className="nav-link active" href="#all" role="tab" data-toggle="pill">Active orders</a>
+                                </li>
+                                <li className="nav-item">
+                                <a className="nav-link" href="#pending" role="tab" data-toggle="pill">Pending</a>
+                                </li>
+                                <li className="nav-item">
+                                <a className="nav-link" href="#completed" role="tab" data-toggle="pill">Completed</a>
+                                </li>
+                              </ul> */}
+                              {/* <div className="search-div">
+                                  <input type="text" className="search-input" placeholder="&#61442; search"></input>
+                              </div> */}
+                          {/* </div>*/}
+                           
+                        </div>  
+                        <div className="tab-values p-10">
+                          <div className="tab-content">
+                              <div id="all" className="order-table tab-pane in active">
+                                <div className="row">
+                                <div className="col-sm-12 col-md-12">
+                                
                                   </div>
                                 </div>
-                                <input type="text" className="search-input" placeholder="&#61442; search"></input>
+                               
                                 {/* <h4>Active Order List</h4> */}
                                 {/* <DataTableExtensions {...tableData} filterPlaceholder={'Search'} export={false} print={false}>  */}
                                   

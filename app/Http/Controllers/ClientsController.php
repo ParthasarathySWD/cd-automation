@@ -19,7 +19,13 @@ class ClientsController extends Controller
     {
         //
         // return mClients::all();
+        // $status=array('Active')
         $UserLists = mClients::all()->toArray();
+        // $status=$request->activeState;
+        // $UserLists=DB::table('mClients')
+        //             ->select('*')
+        //             // ->where('Active',$status)
+        //             ->get();
         return response()->json([
             'status'=>'success',
             'data'=>$UserLists
@@ -70,9 +76,9 @@ class ClientsController extends Controller
                     'CountyName' => $request->input('CountyName'),
                     'StateName' => $request->input('StateName'),
                     'Notes' => $request->input('Notes'),
-                    'Active' => '1'
-                    // 'CreatedByUserUID' => '1',
-                    // 'CreatedDateTime' => Carbon::now(),
+                    'Active' => '1',
+                    'CreatedByUserUID' => '1',
+                    'CreatedDateTime' => Carbon::now()
                     // 'ModifiedByUserUID' => '1',
                     // 'ModifiedDateTime' =>Carbon::now()
             ]);
@@ -166,6 +172,8 @@ class ClientsController extends Controller
 
 
         $updateDetails=$request->all();
+        $updateDetails['ModifiedByDateTime'] = Carbon::now();
+        $updateDetails['ModifiedByUserUID'] = '1';       
 
         if($ClientUID->update($updateDetails)){
             return response()->json([

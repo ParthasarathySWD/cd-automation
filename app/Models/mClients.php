@@ -30,8 +30,10 @@ class mClients extends Model
         'CountyName',
         'StateName',
         'Notes',
+        'CreatedByUserUID',
     	'CreatedByDateTime',
-    	'ModifiedByDateTime',
+        // 'ModifiedByUserUID',
+    	// 'ModifiedByDateTime',
         'Active'
     ];
 
@@ -46,7 +48,9 @@ class mClients extends Model
         'CountyName',
         'StateName',
         'Notes',
+        'CreatedByUserUID',
     	'CreatedByDateTime',
+        'ModifiedByUserUID',
     	'ModifiedByDateTime'
 
     ];
