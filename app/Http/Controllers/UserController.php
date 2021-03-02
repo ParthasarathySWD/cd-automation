@@ -103,9 +103,14 @@ class UserController extends Controller
      */
     public function show($id)
     {
-        
-        $GetUser = User::find($id);
-        return response()->json($GetUser);
+        // $GetUser = User::find($id);
+        // return response()->json($GetUser);
+        $UserRole = DB::table('mUsers')    
+        ->select('mUsers.*', 'mRoles.RoleName')        
+        ->join('mRoles', 'mRoles.RoleUID', '=', 'mUsers.RoleUID')
+        ->where('mUsers.UserUID', '=', $id)
+        ->get();
+        return response()->json($UserRole);
     }
 
     /**
@@ -129,7 +134,7 @@ class UserController extends Controller
      */
     public function update(Request $request, $id)
     {
-        // echo '<pre>';print_r($id);exit;
+        // echo '<pre>';print_r($request->all());exit;
         DB::beginTransaction();
         $UpdateDetails = User::find($id);
         $UpdateData = $request->all();

@@ -20,6 +20,7 @@ import EditClient from './components/ClientComponents/EditClient';
 import CDDetails from './Views/CDDetails';
 import OrderDocument from './components/OrderSummary/OrderDocuments';
 import OrderSummary from './components/OrderSummary/OrderSummary';
+import UserView from './components/UsersComponents/UserView';
 
 // import Admins from './components/UsersComponents/Admins';
 
@@ -37,6 +38,7 @@ class Routes extends React.Component
 
                 <Route exact path='/adduser' component={AddUser} />
                 <Route exact path='/edituser/:id' component={EditUser} />
+                <Route exact path='/userview/:id' component={UserView} />
                 <Route exact path='/orderentry' component={OrderEntry} />
                 <Route exact path='/forgotpassword' component={ForgotPassword} />
                 <Route exact path='/myorders' component={MyOrder}/>

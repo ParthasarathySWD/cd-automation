@@ -26,6 +26,7 @@ function EditUser(props){
             Email: '',
             UserName: '',
             RoleUID: '',
+            Active: '', 
             errors: {}
 
         });
@@ -47,19 +48,20 @@ function EditUser(props){
             axios.get("/users/"+ID)
                 .then(res => {
 
-                     setState({ 
+                     res.data.map((user,index) => {
+                        setState({ 
                         
-                        FirstName: res.data.FirstName,
-                        LastName: res.data.LastName,
-                        PhoneNumber: res.data.PhoneNumber,
-                        Email: res.data.Email,
-                        UserName: res.data.UserName,
-                        RoleUID: res.data.RoleUID,
-                        Password: '',
-                        ConfirmPassword: '',
-                        errors: {}
-    
-                     });
+                            FirstName: user.FirstName,
+                            LastName: user.LastName,
+                            PhoneNumber: user.PhoneNumber,
+                            Email: user.Email,
+                            UserName: user.UserName,
+                            RoleUID: user.RoleUID,
+                            Active: user.Active,
+                            errors: {}
+        
+                         });
+                     })
     
                 })
         }
@@ -197,8 +199,11 @@ function EditUser(props){
                 PhoneNumber: state.PhoneNumber,
                 Email: state.Email,
                 UserName: state.UserName,                
-                RoleUID: state.RoleUID
+                RoleUID: state.RoleUID,
+                Active: state.Active
             };
+            // console.log(formData)
+            // return false;
 
             
             axios.put("users/"+ID, formData)
@@ -214,6 +219,7 @@ function EditUser(props){
 						Password: '',
 						ConfirmPassword: '',
 						RoleUID: '',
+                        Active: '',
 						errors: {}
 
 	                 });history.push("/alluser");
@@ -240,7 +246,7 @@ function EditUser(props){
 			RoleUID: '',
 			errors: {}
 
-         });
+         });history.push('/alluser');
     };
             
 
@@ -352,6 +358,17 @@ function EditUser(props){
                                                 </select>
                                             
                                             <span style={spanStyle}>{state.errors["RoleUID"]}</span>
+                                        </div>
+                                    </div>
+                                    <div className="col-sm-6">
+                                        <div className="form-group c_form_group">
+                                            <label>Status <span className="text-danger">*</span></label>
+                                            {/* <input className="form-control" type="password" name="ConfirmPassword" onChange={onChangeHandler} value={state.ConfirmPassword} /> */}
+                                            {/* <input type="checkbox" name="Active" class="custom-control-input" onChange={onChangeHandler} value={(state.Active == 1) ? 0 : 1} checked={(state.Active == 1) ? true : false}/> */}
+                                            <div class="custom-control custom-switch">
+                                                <input type="checkbox" class="custom-control-input" id='{row.UserUID}' name="Active" onChange={onChangeHandler} value={(state.Active == 1) ? 0 : 1} checked={(state.Active == 1) ? true : false}/>
+                                                <label class="custom-control-label mt-0" htmlFor='{row.UserUID}'></label>
+                                            </div>
                                         </div>
                                     </div>
                                     <div className="col-sm-12 align-right mt-3">
