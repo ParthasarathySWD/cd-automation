@@ -11,67 +11,68 @@ import {
     FileMetaData,
     RemoveFileIcon,
     InputLabel
-  } from "./file-upload.styles";
+} from "./file-upload.styles";
 
-  const KILO_BYTES_PER_BYTE = 1000;
+const KILO_BYTES_PER_BYTE = 1000;
 const DEFAULT_MAX_FILE_SIZE_IN_BYTES = 500000;
 
 const convertNestedObjectToArray = (nestedObj) =>
-  Object.keys(nestedObj).map((key) => nestedObj[key]);
+Object.keys(nestedObj).map((key) => nestedObj[key]);
 
 const convertBytesToKB = (bytes) => Math.round(bytes / KILO_BYTES_PER_BYTE);
 
-const FileUpload = ({
-  label,
-  updateFilesCb,
-  DocumentTypes,
-  maxFileSizeInBytes = DEFAULT_MAX_FILE_SIZE_IN_BYTES,
-  ...otherProps
+const PrelimUpload = ({
+    label,
+    updateFilesCb,
+    DocumentTypes,
+    uploadType,
+    maxFileSizeInBytes = DEFAULT_MAX_FILE_SIZE_IN_BYTES,
+    ...otherProps
 }) => {
-  const fileInputField = useRef(null);
-  const [files, setFiles] = useState({});
+    const fileInputField = useRef(null);
+    const [files, setFiles] = useState({});
 
-  const handleUploadBtnClick = () => {
+    const handleUploadBtnClick = () => {
     fileInputField.current.click();
-  };
+    };
 
-  const addNewFiles = (newFiles) => {
+    const addNewFiles = (newFiles) => {
     for (let file of newFiles) {
-      if (file.size <= maxFileSizeInBytes) {
+        if (file.size <= maxFileSizeInBytes) {
         if (!otherProps.multiple) {
-          return { file };
+            return { file };
         }
         files[file.name] = file;
-      }
+        }
     }
     return { ...files };
-  };
+    };
 
-  const callUpdateFilesCb = (files) => {
+    const callUpdateFilesCb = (files) => {
     const filesAsArray = convertNestedObjectToArray(files);
     updateFilesCb(filesAsArray);
-  };
+    };
 
-  const callDocumentType = (types) => {
+    const callDocumentType = (types) => {
     DocumentTypes(types);
-  };
+    };
 
-  const handleNewFileUpload = (e) => {
+    const handleNewFileUpload = (e) => {
     const { files: newFiles } = e.target;
     if (newFiles.length) {
-      let updatedFiles = addNewFiles(newFiles);
-      setFiles(updatedFiles);
-      callUpdateFilesCb(updatedFiles);
+        let updatedFiles = addNewFiles(newFiles);
+        setFiles(updatedFiles);
+        callUpdateFilesCb(updatedFiles);
     }
-  };
+    };
 
-  const removeFile = (fileName) => {
+    const removeFile = (fileName) => {
     delete files[fileName];
     setFiles({ ...files });
     callUpdateFilesCb({ ...files });
-  };
+    };
 
-  const DocTypeChange = (event) => {
+    const DocTypeChange = (event) => {
     let name = event.target.id;
     let value = event.target.value;
     const data = {
@@ -79,67 +80,60 @@ const FileUpload = ({
         'DocumentTypeUID':value
     };
     callDocumentType(data)
-  };
+    };
 
-  const btntext = files.length >= 1 ? 'Supporting' : 'Prelim';
-
-  return (
+    return (
     <>
-      <FileUploadContainer>        
+        <FileUploadContainer>        
         <DragDropText>Drag and drop your files anywhere or</DragDropText>
         <UploadFileBtn type="button" onClick={handleUploadBtnClick}>
-          <i className="fa fa-file-pdf-o" />
-          <span> Upload {btntext} {otherProps.multiple ? "files" : "a file"}</span>
+            <i className="fa fa-file-pdf-o" />
+            <span> Upload your file</span>
         </UploadFileBtn>
         <FormField
-          type="file"
-          ref={fileInputField}
-          onChange={handleNewFileUpload}
-          title=""
-          value=""
-          {...otherProps}
+            type="file"
+            ref={fileInputField}
+            onChange={handleNewFileUpload}
+            title=""
+            name={uploadType}
+            {...otherProps}
         />
-      </FileUploadContainer>
-        <FilePreviewContainer>           
-                    {/* <PreviewList> */}
-                        {Object.keys(files).map((fileName, index) => {
-                            let file = files[fileName];
-                            let isPdfFile = file.type.split("/")[0] === "pdf";
-                            return (
-                            <PreviewContainer key={fileName}>
-                                <div>
-                                                           
-                                <FileMetaData isPdfFile={isPdfFile}>
-                                <table className="table table-borderless table-sm text-sm upload-table">
-                                  <tbody>
-                                    <tr>
-                                        <td className="w-25"><i className="fa fa-file-pdf-o text-danger"></i></td>
-                                        <td className="w-25">{file.name}</td>
-                                        <td className="w-25">
-                                            <select className="border form-control form-control-sm" name="DocumentTypeUID[]" id={file.name} onChange={DocTypeChange}>
-                                                <option>Select</option>
-                                                <option value="1">Prelim</option>
-                                                <option value="2">Closing</option>
-                                                <option value="3">Mortgage</option>
-                                            </select>
-                                        </td>
-                                        <td className="text-center w-25">
-                                            {/* <i title="View" className="fa fa-eye text-primary mr-3"></i> */}
-                                            <i title="Remove" className="fa fa-trash-o text-danger" onClick={() => removeFile(fileName)}></i>
-                                        </td>
-                                    </tr>
-                                    
-                                    </tbody>
-                                </table>
-                                </FileMetaData>                                
-                                </div>
-                            </PreviewContainer>
-                            );
-                        })}
-                    {/* </PreviewList> */}                
+        </FileUploadContainer>
+        <FilePreviewContainer>
+            {Object.keys(files).map((fileName, index) => {
+                let file = files[fileName];
+                let isPdfFile = file.type.split("/")[0] === "pdf";
+                return (
+                <PreviewContainer key={fileName}>
+                    <div>
+                                                
+                    <FileMetaData isPdfFile={isPdfFile}>
+                    <table className="table table-borderless table-sm text-sm upload-table">
+                        <tbody>
+                            <tr>
+                                <td className="w-40px">1</td>                            
+                                <td className="w-25">
+                                    <b className="table-bold form-control form-control-sm">Prelim</b>
+                                    <input type="hidden" className="" name="DocumentTypeUID[]" value="1"/>
+                                </td>
+                                <td className="w-25">
+                                    <i className="fa fa-file-pdf-o text-success mr-1"></i>
+                                    {file.name}
+                                </td>
+                                <td className="w-25 text-center">                                
+                                    <i title="Remove" className="fa fa-trash-o text-danger" onClick={() => removeFile(fileName)}></i>
+                                </td>
+                            </tr>                        
+                        </tbody>
+                    </table>
+                    </FileMetaData>                                
+                    </div>
+                </PreviewContainer>
+                );
+            })}                
         </FilePreviewContainer>
     </>
-  );
+    );
 };
 
-export default FileUpload;
+export default PrelimUpload;

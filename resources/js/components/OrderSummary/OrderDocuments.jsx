@@ -8,8 +8,10 @@ import '../../../css/MyOrder/MyOrder.css';
 import OrderDocumentTable from 'react-data-table-component';
 import DataTableExtensions from "react-data-table-component-extensions";
 import "react-data-table-component-extensions/dist/index.css";
+import './style.css';
 
-function OrderDocuments(params) {
+
+function OrderDocuments(props) {
     const { addToast } = useToasts();
     let history = useHistory();
 
@@ -26,12 +28,14 @@ function OrderDocuments(params) {
     /** end */
 
     /** Action Columns Custome Function */
-    function Td({ children, to }) {
+    function CustomColumn({ children, to }) {
         const ContentTag = to ? Link : 'div';      
         return (
-          <td>
-            <ContentTag to={to}>{children}</ContentTag>
-          </td>
+            <>
+                <td>
+                    <ContentTag to={to}>{children}</ContentTag>
+                </td>
+            </>
         );
     }
     /** end */
@@ -84,12 +88,11 @@ function OrderDocuments(params) {
             name: 'Action',
             sortable: false,
             cell: row => <div key={row.documentid}>                       
-                <Td ><a href = {row.filepath} target = "_blank">
-                    <span className="fa fa-eye text-primary p-1"></span>
+                <CustomColumn>
+                    <a href = {row.filepath} target = "_blank">
+                        <span className="fa fa-eye text-primary p-1"></span>
                     </a>
-                </Td>
-                {/* <Td to={'/edituser/'+row.UserUID}><span className="fa fa-edit text-secondary p-1"></span></Td>
-                <Td ><span className="fa fa-trash text-danger p-1"></span></Td>  */}
+                </CustomColumn>
             </div>
         },
     ];
@@ -97,7 +100,7 @@ function OrderDocuments(params) {
 
     /** Get Order Documents */
     const fetchOrderDocs = () => {
-        axios.get('fetchOrderDocs/'+21).then( response =>{
+        axios.get('fetchOrderDocs/'+props.orderid).then( response =>{
             console.log(response);
             setOrderDocs(response.data.TableData);
         })
@@ -118,7 +121,7 @@ function OrderDocuments(params) {
     return (
         <div className="div-order-docs">
             {/* <input type="text" className="search-input" placeholder="&#61442; search"></input> */}
-            {/* <DataTableExtensions {...tableData}> */}
+            {/* <DataTableExtensions {...tableData}> */}                
                 <OrderDocumentTable                                                                  
                     title=""
                     columns={columns}

@@ -54,3 +54,8 @@
 .w-40px{
     width:40px;
 }
+
+.table-bold{
+    font-size: 14px;
+    font-weight: 600;
+}

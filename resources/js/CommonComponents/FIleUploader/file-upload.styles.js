@@ -121,7 +121,7 @@ export const UploadFileBtn = styled.button `
 `;
 
 export const FilePreviewContainer = styled.article `
-  margin-bottom: 35px;
+  margin-bottom: 0px;
   span {
     font-size: 14px;
   }

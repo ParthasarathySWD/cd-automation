@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import FileUpload from "./file-upload.component";
 import PrelimUpload from "./PrelimFile";
+import SupportUpload from "./SupportFile";
 
 function FileDrop(props){
   
@@ -23,13 +24,25 @@ function FileDrop(props){
     }
       return (
         <div>
-            <FileUpload
-              accept=".pdf"
-              label=""
-              multiple
-              updateFilesCb={updateUploadedFiles}
-              DocumentTypes ={OrderDocumentTypes}
-            />
+            {
+              (props.doctype == "PrelimFile") ? 
+                <PrelimUpload
+                  accept=".pdf"
+                  label=""
+                  updateFilesCb={updateUploadedFiles}
+                  DocumentTypes ={OrderDocumentTypes}
+                  uploadType={props.doctype}
+                />
+              :
+                <SupportUpload
+                  accept=".pdf"
+                  label=""
+                  multiple
+                  updateFilesCb={updateUploadedFiles}
+                  DocumentTypes ={OrderDocumentTypes}
+                  uploadType={props.doctype}
+                />
+            }
         </div>
       );
 }

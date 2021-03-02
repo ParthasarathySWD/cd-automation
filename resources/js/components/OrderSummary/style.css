@@ -1,0 +1,21 @@
+.search-input
+{
+  
+    position: absolute;
+    top:16px;
+    left:60em;
+    width: 150px;
+    border-top:none !important;
+    border-right:none !important;
+    border-left:none !important;
+    border-bottom:1px solid#797a7a59;
+    border-radius: unset;
+    background-color: #fafafa;
+    font-size: 14px;
+}
+.search-input:focus{
+    outline: none;
+}
+.search-input::-webkit-input-placeholder { 
+    font-family: FontAwesome;
+}

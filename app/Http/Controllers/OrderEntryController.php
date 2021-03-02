@@ -45,8 +45,9 @@ class OrderEntryController extends Controller
      */
     public function store(Request $request)
     {
-        // echo '<pre> Prelim';print_r($PrelimDocumentType);
-        // echo '<pre> Support';print_r($SupportDocumentType);
+        // echo '<pre> Prelim';print_r($request->input());
+        // echo '<pre> Support';print_r($request->file('PrelimFile'));
+        // echo '<pre> Support';print_r($request->file('SupportingFile'));
         // exit;
 
         $validation = Validator::make($request->all(), [
@@ -387,6 +388,7 @@ class OrderEntryController extends Controller
             ->join('mUsers', 'mUsers.UserUID', '=', 'tOrdersDocuments.CreatedByUserUID')            
             ->where('tOrdersDocuments.OrderUID', '=', $OrderUID)
             ->get();
+        // echo '<pre>';print_r($OrderDocs);exit;
         $RowArray = array();
         $count = 0;
         foreach ($OrderDocs as $resKey => $resValue) {
