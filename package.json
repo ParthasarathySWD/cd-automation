@@ -26,30 +26,25 @@
         "sass-loader": "^8.0.0"
     },
     "dependencies": {
+        "chart.js": "^2.9.4",
         "datatables.net": "^1.10.23",
         "fontawesome-4.7": "^4.7.0",
         "html5-file-selector": "^2.1.0",
-        "mdbreact": "^4.27.0",
-        "react-bootstrap": "^1.5.0",
         "react-chartjs-2": "^2.11.1",
         "react-confirm-alert": "^2.7.0",
         "react-data-table-component": "^7.0.0-alpha-6",
         "react-data-table-component-extensions": "^1.5.2",
         "react-datepicker": "^3.5.0",
-        "react-dropzone": "^11.3.1",
         "react-dropzone-uploader": "^2.11.0",
-        "react-dynamic-dropzone": "^1.0.4",
         "react-redux": "^7.2.2",
         "react-router": "^5.2.0",
         "react-router-dom": "^5.2.0",
-        "react-tabulator": "^0.14.4",
         "react-toast-notifications": "^2.4.3",
         "react-top-loading-bar": "^2.0.1",
         "react-transition-group": "^1.2.1",
         "redux": "^4.0.5",
         "styled-components": "^5.2.1",
         "sweetalert2": "^10.15.5",
-        "sweetalert2-react-content": "^3.3.1",
-        "tabulator-tables": "^4.9.3"
+        "sweetalert2-react-content": "^3.3.1"
     }
 }

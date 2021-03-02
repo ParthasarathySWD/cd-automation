@@ -107,6 +107,15 @@ const tableData = {
   const [allusers, setallusers]  = useState([]);
   const [clients, setclients]  = useState([]);
 
+  const [filter, setFilter] = useState({'client': '', 'user': '', 'status': ''});
+
+  function onClientChange(e){
+    let val = e.target.value;
+    let name = e.target.name;
+    setFilter((prevState)=>{
+      return {...prevState, [name]: val};
+    })
+  }
   useEffect(() => {
     async function fetchOptions () {
     let response = await fetchDetails();
@@ -204,7 +213,7 @@ const tableData = {
                                   <div className="col-lg-3 col-md-4 col-sm-4 col-4 rone">
                                     <i className="fa fa-file-text fa-2x"></i>
                                   </div>
-                                  <div class="col-lg-9 col-md-8 col-sm-8 col-8 fontsty">
+                                  <div className="col-lg-9 col-md-8 col-sm-8 col-8 fontsty">
                                       <label className="status-text">All Orders</label>
                                       <h4>2,210</h4>
                                   </div>
@@ -242,7 +251,7 @@ const tableData = {
                         </div>
                       </div>
                       <div className="child-container first-child">
-                        <div className="tabs">
+                        {/* <div className="tabs">
                           <div className="tab-menus">
                             <ul className="nav nav-pills nav-menu" role="tablist">
                                 <li className="nav-item">
@@ -255,26 +264,69 @@ const tableData = {
                                 <a className="nav-link" href="#completed" role="tab" data-toggle="pill">Completed</a>
                                 </li>
                               </ul>
-                              {/* <div className="search-div">
-                                  <input type="text" className="search-input" placeholder="&#61442; search"></input>
-                              </div> */}
                           </div>
                            
-                        </div>
+                        </div> */}
                         <div className="tab-values p-10">
                           <div className="tab-content">
                               <div id="all" className="order-table tab-pane in active">
                                 <div className="row">
-                                  <div className="col-md-3 col-sm-12">
-                                    <label class="form-label">Clients </label>
-                                  <select className="form-control input-height" name="select" value={''}>
+                                <div className="col-sm-12 col-md-12">
+
+                                <div className="row m-0">
+                                  <div className="col-md-2 col-sm-12">
+                                    <div className="form-group">
+
+                                    <label className="form-label">Users </label>
+                                  <select className="border w-100 input-height border-secondary" name="user" value={filter.user} onChange={onClientChange}>
                                   <option value="">Select...</option>
                                   {
-                                    clients.map((value, key)=>{
-                                    return <option key={key} value={value.ClientUID}>{value.ClientName}</option>
+                                    allusers.map((value, key)=>{
+                                      return <option key={key} value={value.UserUID}>{value.UserName}</option>
                                     })
                                   }
                                   </select>
+                                  </div>
+                                  </div>
+
+                                  <div className="col-md-2 col-sm-12">
+                                    <div className="form-group">
+
+                                    <label className="form-label">Status </label>
+                                  <select className="border w-100 input-height border-secondary" name="status" value={filter.status} onChange={onClientChange}>
+                                  <option value="">Select...</option>
+                                  {
+                                    status.map((value, key)=>{
+                                      return <option key={key} value={value.StatusUID}>{value.StatusName}</option>
+                                    })
+                                  }
+                                  </select>
+                                  </div>
+                                  </div>
+
+                                  <div className="col-md-2 col-lg-2 mt-1">
+                                            <div className="form-group">
+                                                <label className="form-label">To Date </label>
+                                                <div className="input-group">
+                                                    <div className="input-group-prepend">
+                                                        <span className="input-group-text"><i className="icon-calendar"></i></span>
+                                                    </div>
+                                                    <input type="text" id="TodDate" className="form-control datepicker AdvanceFilter" placeholder="Ex: 19/02/2021"/>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div className="form-group">
+    <label htmlFor="exampleFormControlSelect1">Example select</label>
+    <select className="form-control" id="exampleFormControlSelect1">
+      <option>1</option>
+      <option>2</option>
+      <option>3</option>
+      <option>4</option>
+      <option>5</option>
+    </select>
+  </div>
+                                  </div>
                                   </div>
                                 </div>
                                 <input type="text" className="search-input" placeholder="&#61442; search"></input>

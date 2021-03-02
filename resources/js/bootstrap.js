@@ -53,5 +53,5 @@ require('../js/bundles/knob.bundle.js');
 require('../js/bundles/libscripts.bundle.js');
 require('../js/bundles/mainscripts.bundle.js');
 require('../js/bundles/vendorscripts.bundle.js');
-require('mdbreact/dist/mdbreact.js');
+// require('mdbreact/dist/mdbreact.js');
 // require('../js/themejs/index.js');
