@@ -2,7 +2,7 @@ import store from "./store";
 import { SignIn, SignOut } from "./action";
 
 function getToken() {
-    return localStorage.getItem('access-token');
+    return localStorage.getItem('loggedin');
 }
 
 export const getAccessToken = () => {
@@ -10,14 +10,14 @@ export const getAccessToken = () => {
 }
 
 export const setAccessToken = (token) => {
-    localStorage.setItem('access-token', token);
-    axios.defaults.headers.common = { 'Authorization': `Bearer ${token}` }
+    localStorage.setItem('loggedin', 'true');
+    // axios.defaults.headers.common = { 'Authorization': `Bearer ${token}` }
     store.dispatch(SignIn());
     return true;
 }
 
 export const removeAccessToken = () => {
-    localStorage.removeItem('access-token');
+    localStorage.removeItem('loggedin');
     store.dispatch(SignOut());
     return true;
 }

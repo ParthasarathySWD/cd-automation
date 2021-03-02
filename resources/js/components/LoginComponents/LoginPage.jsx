@@ -64,11 +64,8 @@ function LoginPage(props) {
             if (response) {
 
                 if (response.data.status == "success") {
-                    if (response.data['access-token'] != "") {
-
-                        setAccessToken(response.data['access-token'])
-                        addToast(response.data.message, { appearance: 'success' });
-                    }
+                    addToast(response.data.message, { appearance: 'success' });
+                    setAccessToken('true')
                 }
                 else {
 

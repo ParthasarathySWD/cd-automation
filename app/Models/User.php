@@ -4,7 +4,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Laravel\Sanctum\HasApiTokens;
 use OwenIt\Auditing\Contracts\Auditable;
-class User extends Model implements Auditable
+class User extends Model implements Auditable, \Illuminate\Contracts\Auth\Authenticatable
 {
   use \Illuminate\Auth\Authenticatable;
   use HasApiTokens, HasFactory;
@@ -21,7 +21,7 @@ class User extends Model implements Auditable
     'PhoneNumber',
     'Email',
     'UserName',
-    'Password',
+    // 'Password',
     'RoleUID',
     'Active',
     'CreatedByUserUID',
@@ -42,4 +42,19 @@ class User extends Model implements Auditable
     'ModifiedByUserUID',
     'ModifiedByDateTime'
   ];
+
+    public function getAuthPassword()
+    {
+      return $this->Password;
+    }
+
+    //     /**
+    //  * Get the login username to be used by the controller.
+    //  *
+    //  * @return string
+    //  */
+    public function username()
+    {
+        return 'Email';
+    }
 }

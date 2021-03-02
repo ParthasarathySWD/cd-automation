@@ -21,7 +21,7 @@ use App\Http\Controllers\OrderEntryController;
 
 Route::post('login', 'App\Http\Controllers\Api\AuthController@login');
 
-Route::middleware([])->group(function () {
+Route::middleware(['auth:sanctum'])->group(function () {
     
     Route::get('user', function (Request $request) {
         return $request->user();

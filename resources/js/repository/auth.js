@@ -12,9 +12,10 @@ class Auth {
     login(formData){
         return new Promise((resolve, reject) => {
             axios({'method': 'get', url: '/sanctum/csrf-cookie', baseURL: '/' }).then((r) => {
+            axios({'method': 'post', url: '/login', baseURL: '/', data: formData }).then((response) => {
 
-                axios.post('login', formData)
-                .then((response) => {
+                /*  axios.post('login', formData) */
+                /*  .then((response) => { */
                     resolve(response);
                 })
                 .catch((error) => {
@@ -30,8 +31,7 @@ class Auth {
         removeAccessToken();
 
 
-        axios.get('logout')
-            .then((response) => {
+       axios({'method': 'get', url: '/logout', baseURL: '/' }).then((response) => {
                 resolve(response);
             })
             .catch((error) => {
