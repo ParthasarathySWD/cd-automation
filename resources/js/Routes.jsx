@@ -18,6 +18,8 @@ import ClientList from './components/ClientComponents/ClientList';
 import ViewClient from './components/ClientComponents/ViewClient';
 import EditClient from './components/ClientComponents/EditClient';
 import CDDetails from './Views/CDDetails';
+import CDsecondpage from './Views/CDsecondpage';
+import CDthirdpage from './Views/CDthirdpage';
 import OrderDocument from './components/OrderSummary/OrderDocuments';
 import OrderSummary from './components/OrderSummary/OrderSummary';
 import UserView from './components/UsersComponents/UserView';
@@ -48,6 +50,8 @@ class Routes extends React.Component
                 <Route exact path='/addclient' component={AddClient} />
                 <Route exact path='/editclient/:id' component={EditClient} />
                 <Route exact path='/cddetails' component={CDDetails} />
+                <Route exact path='/cdsecondpage' component={CDsecondpage} />
+                <Route exact path='/cdthirdpage' component={CDthirdpage} />
                 <Route exact path='/orderdoc' component={OrderDocument} />
                 <Route exact path='/summary' component={OrderSummary} />
             </Switch>
