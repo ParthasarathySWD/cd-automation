@@ -141,6 +141,81 @@ function AddUser(props){
         return formIsValid;
 
     }
+
+    function onChangeHandler(e){
+        const { name, value } = e.target;
+        setState(prevState => ({ ...prevState, [name]: value }));
+
+    };
+
+    function onClickHandler(){
+        // addToast("Hi", { appearance: 'success' });
+
+        if(handleValidation()){
+            
+            const data = new FormData();
+
+            data.append('FirstName', state.FirstName);
+            data.append('LastName', state.LastName);
+            data.append('PhoneNumber', state.PhoneNumber);
+            data.append('Email', state.Email);
+            data.append('UserName',state.UserName);
+            data.append('Password',state.Password);
+            data.append('ConfirmPassword',state.ConfirmPassword);
+            data.append('RoleUID',state.RoleUID);
+
+            
+
+            axios.post("users", data, {
+                
+            }).then(res => {
+                    addToast("User Created Successfully", { appearance: 'success' , autoDismiss: 'true'});
+	                 setState({ 
+
+						FirstName: '',
+						LastName: '',
+						PhoneNumber: '',
+						Email: '',
+						UserName: '',
+						Password: '',
+						ConfirmPassword: '',
+						RoleUID: '',
+						errors: {}
+
+	                 });history.push("/alluser");
+                })
+                
+
+         }else{
+            const data = new FormData();
+
+            axios.post("users", data, {
+            })
+                .then(res => {
+                    addToast("Invalid Input", { appearance: 'error', autoDismiss: 'true' });
+                })
+         }
+
+        
+    };
+
+    function reset(){
+         setState({ 
+
+			FirstName: '',
+			LastName: '',
+			PhoneNumber: '',
+			Email: '',
+			UserName: '',
+			Password: '',
+			ConfirmPassword: '',
+			RoleUID: '',
+			errors: {}
+
+         });
+    };
+    
+
 		return (
 			<div>
 
@@ -170,21 +245,7 @@ function AddUser(props){
                     
 
 
-				{/* <div className="block-header">
-					<div className="row clearfix">
-                        <div className="col-lg-4 col-md-12 col-sm-12">
-                            <h1>Add User</h1>
-                            <span></span>
-                        </div>
-                        <div className="col-lg-8 col-md-12 col-sm-12 text-lg-right">
-                            <div className="d-flex align-items-center justify-content-lg-end mt-4 mt-lg-0 flex-wrap vivify pullUp delay-550">
-                                <div className="mb-3 mb-xl-0">
-                                    
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-				</div>
+				 
 				<div className="row clearfix">
                     <div className="col-lg-12 col-md-12 col-sm-12">
                         <div className="card">
@@ -206,12 +267,7 @@ function AddUser(props){
                                     </div>
                                 </div>
                                 <div className="row clearfix">
-                                    {/* <div className="col-sm-6">
-                                        <div className="form-group c_form_group">
-                                            <label>Date of Birth <span className="text-danger">*</span></label>
-                                            <input type="text" data-provide="datepicker" data-date-autoclose="true" className="form-control" placeholder=""/>
-                                        </div>
-                                    </div> */}
+                                    
                                     <div className="col-sm-6">
                                         <div className="form-group c_form_group">
                                             <label>Phone <span className="text-danger">*</span></label>
@@ -226,15 +282,7 @@ function AddUser(props){
                                             <span style={spanStyle}>{state.errors["Email"]}</span>
                                         </div>
                                     </div>
-                                    
-                                    {/* <div className="col-lg-12">
-                                        <input type="file" className="dropify"/>
-                                    </div>
-                                    <div className="col-sm-12">
-                                        <div className="form-group mt-3">
-                                            <textarea rows="4" className="form-control no-resize" placeholder="Please type what you want..."></textarea>
-                                        </div>
-                                    </div> */}
+            
                                     <div className="col-sm-6">
                                         <div className="form-group c_form_group">
                                             <label>User Name <span className="text-danger">*</span></label>
@@ -277,87 +325,6 @@ function AddUser(props){
                         </div>
                     </div>
                 </div>
-                {/* <div className="row clearfix">
-                    <div className="col-md-12">
-                        <div className="card">
-                            <div className="header">
-                                <h3>Account Information</h3>
-                            </div>
-                            <div className="body">
-                                <div className="row clearfix">
-                                    
-                                    
-                                    
-                                    <div className="col-sm-12">
-                                        <button type="submit" className="btn btn-sm btn-primary">Submit</button>
-                                        <button type="submit" className="btn  btn-sm btn-danger">Cancel</button>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div> */}
-                {/* <div className="row clearfix">
-                    <div className="col-md-12">
-                        <div className="card">
-                            <div className="header">
-                                <h3>Doctor Social Media Info</h3>
-                            </div>
-                            <div className="body">
-                                <div className="row clearfix">
-                                    <div className="col-md-6">
-                                        <div className="form-group c_form_group">
-                                            <label>Facebook</label>
-                                            <div className="input-group">
-                                                <div className="input-group-prepend">
-                                                    <span className="input-group-text"><i className="fa fa-facebook"></i></span>
-                                                </div>
-                                                <input type="text" className="form-control" placeholder=""/>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div className="col-md-6">
-                                        <div className="form-group c_form_group">
-                                            <label>Twitter</label>
-                                            <div className="input-group">
-                                                <div className="input-group-prepend">
-                                                    <span className="input-group-text"><i className="fa fa-twitter"></i></span>
-                                                </div>
-                                                <input type="text" className="form-control" placeholder=""/>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div className="col-md-6">
-                                        <div className="form-group c_form_group">
-                                            <label>Linkedin</label>
-                                            <div className="input-group">
-                                                <div className="input-group-prepend">
-                                                    <span className="input-group-text"><i className="fa fa-linkedin"></i></span>
-                                                </div>
-                                                <input type="text" className="form-control" placeholder=""/>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div className="col-md-6">
-                                        <div className="form-group c_form_group">
-                                            <label>Instagram</label>
-                                            <div className="input-group">
-                                                <div className="input-group-prepend">
-                                                    <span className="input-group-text"><i className="fa fa-instagram"></i></span>
-                                                </div>
-                                                <input type="text" className="form-control" placeholder=""/>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div className="col-sm-12">
-                                        <button type="submit" className="btn btn-sm btn-primary">Submit</button>
-                                        <button type="submit" className="btn  btn-sm btn-danger">Cancel</button>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div> */}
 			</div>
 		);
 }
