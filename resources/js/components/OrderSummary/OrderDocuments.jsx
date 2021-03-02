@@ -10,6 +10,8 @@ import DataTableExtensions from "react-data-table-component-extensions";
 import "react-data-table-component-extensions/dist/index.css";
 import './style.css';
 
+import Table from '../../CommonComponents/DataTable/DataTable';
+
 
 function OrderDocuments(props) {
     const { addToast } = useToasts();
@@ -59,42 +61,37 @@ function OrderDocuments(props) {
 
     /** Table Columns */
     const columns = [
-        {
-            name: '#',
-            selector: 'id',
-            sortable: true,
+        [{
+            title: '#',
+            field: 'id'
         },
         {
-            name: 'Documnet',
-            selector: 'document',
-            sortable: true,
+            title: 'Documnet',
+            field: 'document'
         },
         {
-            name: 'Type',
-            selector: 'type',
-            sortable: true,
+            title: 'Type',
+            field: 'type'
         },
         {
-            name: 'Uploaded On',
-            selector: 'uploadedon',
-            sortable: true,
+            title: 'Uploaded On',
+            field: 'uploadedon'
         },
         {
-            name: 'Uploaded By',
-            selector: 'uploadedby',
-            sortable: true,
+            title: 'Uploaded By',
+            field: 'uploadedby'
         },
         {
-            name: 'Action',
-            sortable: false,
-            cell: row => <div key={row.documentid}>                       
-                <CustomColumn>
-                    <a href = {row.filepath} target = "_blank">
-                        <span className="fa fa-eye text-primary p-1"></span>
-                    </a>
-                </CustomColumn>
-            </div>
-        },
+            title: 'Action',
+            // sortable: false,
+            // cell: row => <div key={row.documentid}>                       
+            //     <CustomColumn>
+            //         <a href = {row.filepath} target = "_blank">
+            //             <span className="fa fa-eye text-primary p-1"></span>
+            //         </a>
+            //     </CustomColumn>
+            // </div>
+        }]
     ];
     /** end */
 
@@ -122,7 +119,7 @@ function OrderDocuments(props) {
         <div className="div-order-docs">
             {/* <input type="text" className="search-input" placeholder="&#61442; search"></input> */}
             {/* <DataTableExtensions {...tableData}> */}                
-                <OrderDocumentTable                                                                  
+                {/* <OrderDocumentTable                                                                  
                     title=""
                     columns={columns}
                     data={data}
@@ -130,8 +127,10 @@ function OrderDocuments(props) {
                     customStyles={customStyles}
                     defaultSortField="title"
                     pagination
-                />
+                /> */}
             {/* </DataTableExtensions>             */}
+
+            <Table setColumns={columns} setData={data}/>
         </div>
     );
 }

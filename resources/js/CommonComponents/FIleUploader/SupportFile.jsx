@@ -85,19 +85,29 @@ const SupportUpload = ({
     return (
         <>
             <FileUploadContainer>        
-            <DragDropText>Drag and drop your files anywhere or</DragDropText>
-            <UploadFileBtn type="button" onClick={handleUploadBtnClick}>
-                <i className="fa fa-file-pdf-o" />
-                <span> Upload your file</span>
-            </UploadFileBtn>
-            <FormField
-                type="file"
-                ref={fileInputField}
-                onChange={handleNewFileUpload}
-                title=""
-                name={uploadType}
-                {...otherProps}
-            />
+            <DragDropText>Drag and drop your files here</DragDropText>     
+            <div className="row">
+                <div className="col-md-6">
+                    <ul>
+                        <li>Upload a multiple supporting document. </li>
+                        <li>Files should be PDF format. </li>
+                    </ul>
+                </div>
+                <div className="col-md-6">
+                    <UploadFileBtn type="button" onClick={handleUploadBtnClick}>
+                        <i className="fa fa-file-pdf-o" />
+                        <span> Upload your file</span>
+                    </UploadFileBtn>
+                    <FormField
+                        type="file"
+                        ref={fileInputField}
+                        onChange={handleNewFileUpload}
+                        title=""
+                        name={uploadType}
+                        {...otherProps}
+                    />
+                </div>
+            </div>
             </FileUploadContainer>
             <FilePreviewContainer>
                 {Object.keys(files).map((fileName, index) => {

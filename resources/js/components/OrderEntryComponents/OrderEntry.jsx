@@ -162,35 +162,38 @@ function OrderEntry() {
                             <form id="frm-order-entry" encType="multipart/form-data" onSubmit={handleSubmit}>
                                 <div className="row clearfix">
 
-                                    <div className="col-md-8">
+                                    <div className="col-md-6">
                                         <div className="step-1">
-                                            <h6>Setp 1 :</h6>
+                                            <h6>Step 1 :</h6>
                                             <div className="form-group">
                                                 <label>Loan Number <span className="text-danger">*</span></label>
                                                 <input className="form-control" type="text" value={loannumber} name="LoanNumber" onChange={loanChange}/>
                                             </div>
                                         </div>
                                     </div>
+                                </div>
 
-                                    <div className="col-md-8">
-                                        <div className="steps" style={setpOne}></div>
+                                <div className="row clearfix">
+                                    <div className="col-md-6">
+                                        <div className="steps"></div>
                                         <div className="step-2">
-                                            <h6>Setp 2 : Uploading Your Prelim Document</h6>
+                                            <h6>Step 2 : Uploading Your Prelim Document</h6>
                                             <FileDrop setFiles={setFiles} setTypes={setTypes} doctype={'PrelimFile'}/>
                                         </div>
                                     </div>
-
-                                    <div className="col-md-8">
-                                        <div className="steps" style={setpTwo}></div>
+                                </div>
+                                <div className="row clearfix">
+                                    <div className="col-md-6">
+                                        <div className="steps"></div>
                                         <div className="step-3">
-                                            <h6>Setp 3 : Uploading Your Supporting Documents</h6>
+                                            <h6>Step 3 : Uploading Your Supporting Documents</h6>
                                             <FileDrop setFiles={setFiles} setTypes={setTypes} doctype={'SupportingFile[]'}/>
                                         </div>
                                     </div>
 
                                     <div className="col-sm-12">
                                         <div className="pull-right">
-                                            <button type="submit" className="btn btn-sm btn-primary" >Save</button>
+                                            <button type="submit" className="btn btn-sm btn-success mr-2" >Save</button>
                                             <button type="button" className="btn  btn-sm btn-danger">Cancel</button>
                                         </div>
                                     </div>
