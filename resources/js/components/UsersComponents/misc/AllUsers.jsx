@@ -1,10 +1,11 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 class AllUsers extends React.Component{
 	render() {
 		return (
 			<div>
-				<div className="block-header">
+				{/* <div className="block-header">
 					<div className="row clearfix">
                         <div className="col-lg-4 col-md-12 col-sm-12">
                             <h1>All Users</h1>
@@ -55,7 +56,22 @@ class AllUsers extends React.Component{
 						  </tbody>
 						</table>
 					</div>
-				</div>
+				</div> */}
+
+				<div className="col-lg-8 col-md-12">
+                    <div className="card">
+                        <ul className="nav nav-tabs3">
+                            <li className="nav-item">
+                                <Link to={'/members'} className="nav-link">Members</Link>
+                            </li>
+							<li className="nav-item">
+                                <Link to={'/admins'} className="nav-link">Admins</Link>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+
+
 			</div>
 		);
 	}

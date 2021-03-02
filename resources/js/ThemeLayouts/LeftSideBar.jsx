@@ -6,6 +6,7 @@ import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom';
  * LeftSideBar Component
  */
 class LeftSideBar extends React.Component {
+
    render() {
       return (
          <header>

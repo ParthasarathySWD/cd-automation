@@ -141,84 +141,36 @@ function AddUser(props){
         return formIsValid;
 
     }
-
-    function onChangeHandler(e){
-        const { name, value } = e.target;
-        setState(prevState => ({ ...prevState, [name]: value }));
-
-    };
-
-    function onClickHandler(){
-        // addToast("Hi", { appearance: 'success' });
-
-        if(handleValidation()){
-            
-            const data = new FormData();
-
-            data.append('FirstName', state.FirstName);
-            data.append('LastName', state.LastName);
-            data.append('PhoneNumber', state.PhoneNumber);
-            data.append('Email', state.Email);
-            data.append('UserName',state.UserName);
-            data.append('Password',state.Password);
-            data.append('ConfirmPassword',state.ConfirmPassword);
-            data.append('RoleUID',state.RoleUID);
-
-            
-
-            axios.post("users", data, {
-                
-            }).then(res => {
-                    addToast("User Created Successfully", { appearance: 'success' , autoDismiss: 'true'});
-	                 setState({ 
-
-						FirstName: '',
-						LastName: '',
-						PhoneNumber: '',
-						Email: '',
-						UserName: '',
-						Password: '',
-						ConfirmPassword: '',
-						RoleUID: '',
-						errors: {}
-
-	                 });history.push("/alluser");
-                })
-                
-
-         }else{
-            const data = new FormData();
-
-            axios.post("users", data, {
-            })
-                .then(res => {
-                    addToast("Invalid Input", { appearance: 'error', autoDismiss: 'true' });
-                })
-         }
-
-        
-    };
-
-    function reset(){
-         setState({ 
-
-			FirstName: '',
-			LastName: '',
-			PhoneNumber: '',
-			Email: '',
-			UserName: '',
-			Password: '',
-			ConfirmPassword: '',
-			RoleUID: '',
-			errors: {}
-
-         });
-    };
-    
-
 		return (
 			<div>
-				<div className="block-header">
+
+                    <div className="block-header">
+                        <div className="row clearfix">
+                            <div className="col-lg-4 col-md-12 col-sm-12">
+                                <h1>Add User</h1>
+                                <span></span>
+                            </div>
+                            <div className="col-lg-8 col-md-12 col-sm-12 text-lg-right">
+                                <div className="d-flex align-items-center justify-content-lg-end mt-4 mt-lg-0 flex-wrap vivify pullUp delay-550">
+                                    <div className="mb-3 mb-xl-0">
+                                        
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div className="row clearfix">
+                        
+                        <AddUserTab />
+                            
+                    </div>
+
+
+                    
+
+
+				{/* <div className="block-header">
 					<div className="row clearfix">
                         <div className="col-lg-4 col-md-12 col-sm-12">
                             <h1>Add User</h1>
