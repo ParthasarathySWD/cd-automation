@@ -176,12 +176,12 @@ const tableData = {
       },
       {
         name: "Client",
-        selector: "ClientUID",
+        selector: "ClientName",
         sortable: true
       },
       {
         name: "Status",
-        selector: "StatusUID",
+        selector: "StatusName",
         sortable: true
       },
       {

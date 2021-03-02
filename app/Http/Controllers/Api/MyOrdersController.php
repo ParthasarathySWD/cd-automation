@@ -38,28 +38,14 @@ class MyOrdersController extends Controller
         $schema = DB::table('tOrders')
                 ->select('tOrders.*','mOrderStatus.StatusName','mClients.ClientName')
                 ->join('mOrderStatus','tOrders.StatusUID','=','mOrderStatus.StatusUID')
-                ->join('mClients','tOrders.ClientUID','=','mClients.ClientUID')
-                ->get();
+                ->join('mClients','tOrders.ClientUID','=','mClients.ClientUID');
 
-        $Torders = array();
-                $count = 0;
-                foreach ($schema as $Key => $Value) {
-                    $count++;
-                    $ColumnArray = array(
-                        'OrderNumber' => $Value->OrderNumber,
-                        'LoanNumer' => $Value->LoanNumer,
-                        'ClientUID' => $Value->ClientName,
-                        'StatusUID' => $Value->StatusName
-                    );
-                    array_push($Torders, $ColumnArray);            
-                }
-        $schemacount = DB::table('tOrders');
 
-        // $data = $schema->skip($rowCount * $page)->take($rowCount)->get();
-        $count = $schemacount->count();
+        $data = $schema->skip($rowCount * $page)->take($rowCount)->get();
+        $count = $schema->count();
 
         return response()->json([
-            'data' => $Torders,
+            'data' => $data,
             'total' => $count,
             'per_page' => $rowCount,
             'total_pages' => abs( $count/$rowCount )

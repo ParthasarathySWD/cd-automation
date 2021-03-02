@@ -27,12 +27,12 @@ const MyOrders = (props) => {
   
   useEffect(() => {
     async function fetchAPI () {
-    let response = await props.fetchData(1);
-    
-    setCurrentPage(page);
-    setData(response.data.data);
-    setTotalRows(response.data.total);
-    setLoading(false);
+      let response = await props.fetchData(1);
+      
+      setCurrentPage(page);
+      setData(response.data.data);
+      setTotalRows(response.data.total);
+      setLoading(false);
     }
     fetchAPI();
   }, []);
