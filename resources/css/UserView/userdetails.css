@@ -1,0 +1,25 @@
+.userdetails .card .body {
+    font-weight: 400;
+    padding: 10px !important;
+}
+.userdetails-table tr td{
+    font-size:12px;
+    padding-top:3px;
+    padding-bottom:3px;
+    padding-left:0;
+    padding-right:10px;
+    vertical-align: top;
+}
+.userdetails-table tr td label{
+    color:#000;
+    margin:0;
+    padding-right:10px;
+}
+.w-td{
+    width: 3px !important;
+}
+.btn.btn-sm {
+    padding: .5rem 1.6rem;
+    font-size: 20px;
+    color: #e3342fd6;
+}
