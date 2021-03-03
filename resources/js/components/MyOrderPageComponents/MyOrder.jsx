@@ -109,11 +109,14 @@ const tableData = {
   const [status, setstatus]  = useState([]);
   const [allusers, setallusers]  = useState([]);
   const [clients, setclients]  = useState([]);
-  const [startDate, setStartDate] = useState();
-  const [endDate, setEndDate] = useState();
-  
+  const newdate = new Date();
+  newdate.setDate(newdate.getDate() - 32);
+  const [startDate, setStartDate] = useState(newdate);
+  const [endDate, setEndDate] = useState(new Date());
+  const [skey, setKey] = useState(Math.random());
+
   // const[filter,setFilter]=useState([]);
-  const [filter, setFilter] = useState({ 'user': '', 'status': '','fromdate':'','todate':''});
+  const [filter, setFilter] = useState({ 'user': '', 'status': ''});
   
 
   function onClientChange(e){
@@ -122,14 +125,26 @@ const tableData = {
     setFilter((prevState)=>{
       return {...prevState, [name]: val};
     })
+
+  }
+ 
+
+  // Build filter data and make async req to api
+  useEffect(()=>{
+
     const data={
       user:filter.user,
       status:filter.status,
-      fromdate:filter.fromdate,
-      todate:filter.todate
+      fromdate:startDate,
+      todate:endDate
     }
-    
-  }
+
+    setKey(Math.random());
+
+    fetchUsers(page, countPerPage, '', data);
+
+  }, [filter, startDate, endDate]);
+
   useEffect(() => {
     async function fetchOptions () {
     let response = await fetchDetails();
@@ -143,7 +158,7 @@ const tableData = {
   }, [])
   
   /* Should be passed from props starts */
-  const fetchUsers = async (page, size = countPerPage, searchText = "") => {
+  const fetchUsers = async (page, size = countPerPage, searchText = "", filterData={}) => {
     
     const response = await axios.get(
       `myorders/fetchorders`, {
@@ -151,6 +166,12 @@ const tableData = {
           rowCount: size,
           page: page,
           searchText: searchText,
+          // filterData: filterData,
+          user:filter.user,
+          status:filter.status,
+          fromdate:startDate,
+          todate:endDate
+
         }
       }
       );
@@ -180,6 +201,7 @@ const tableData = {
         sortable: true
       },
       {
+        name:<b>Loan Number</b>,
         selector: "LoanNumer",
         sortable: true
       },
@@ -281,7 +303,7 @@ const tableData = {
 
                                     <label className="form-label">Status </label>
                                   <select className="border w-100 input-height border-secondary" name="status" value={filter.status} onChange={onClientChange} style={{height:'25px'}}>
-                                  <option value="" selected disabled>Select...</option>
+                                  <option value="" selected >Select...</option>
                                   {
                                     status.map((value, key)=>{
                                       return <option key={key} value={value.StatusUID}>{value.StatusName}</option>
@@ -296,7 +318,7 @@ const tableData = {
 
                                     <label className="form-label">Users </label>
                                   <select className="border w-100 input-height border-secondary" name="user" value={filter.user} onChange={onClientChange} style={{height:'25px'}}>
-                                  <option value="" selected disabled>Select...</option>
+                                  <option value="" selected >Select...</option>
                                   {
                                     allusers.map((value, key)=>{
                                       return <option key={key} value={value.UserUID}>{value.UserName}</option>
@@ -315,7 +337,7 @@ const tableData = {
                                         <div className="input-group-prepend" >
                                             <i className="fa fa-calendar p-1" style={{border:'1px solid black',borderRight:'0mm'}}></i>
                                         {/* </div><input type="text" id="TodDate" className="form-control datepicker" placeholder="Ex: 19/02/2021"/> */}
-                                        <DatePicker name="fromdate" placeholderText="mm/dd/yyyy" selected={startDate} onChange={date => setStartDate(date)}/>
+                                        <DatePicker name="fromdate" placeholderText="mm/dd/yyyy" selected={startDate} onChange={date=>setStartDate(date)}/>
                                     </div>
                                   </div>
                                   </div>
@@ -336,7 +358,7 @@ const tableData = {
                                         </div>
                                     <div className="col-md-2 col-sm-12">
                                       <div className="form-group">
-                                      <input type="text" className="search-input-right" placeholder="&#61442; search"></input>
+
                                       </div>
                                     </div>
                                   
@@ -390,21 +412,15 @@ const tableData = {
                                 {/* <h4>Active Order List</h4> */}
                                 {/* <DataTableExtensions {...tableData} filterPlaceholder={'Search'} export={false} print={false}>  */}
                                   
-                                  <MyOrders                                                                  
+                                  <MyOrders            
+                                    key={skey}                                                      
                                     title = ""
                                     columndata = {columndata}
                                     fetchData = {fetchUsers}
                                     setPerPage = {setCountPerPage}
+                                    setCurrentPage = {setPage}
                                     />
-                                {/* </DataTableExtensions> */}
-                                {/* <DataTable
-                                        columns={columns}
-                                        data={DataTab}
-                                        defaultSortField="title"
-                                        pagination
-                                        selectableRows
-                                        selectableRowsComponent={Checkbox}
-                                        /> */}
+
                               </div>
                               <div id="pending" className="order-table tab-pane fade">
                                 <input type="text" className="search-input" placeholder="&#61442; search"></input>

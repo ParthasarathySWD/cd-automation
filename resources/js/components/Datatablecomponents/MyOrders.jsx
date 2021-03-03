@@ -24,7 +24,6 @@ const MyOrders = (props) => {
   const [totalRows, setTotalRows] = useState(0);
   const [perPage, setPerPage] = useState(10);
   const [currentPage, setCurrentPage] = useState(1);
-  
   useEffect(() => {
     async function fetchAPI () {
       let response = await props.fetchData(1);
@@ -47,6 +46,7 @@ const MyOrders = (props) => {
     setCurrentPage(page);
     setData(response.data.data);
     setTotalRows(response.data.total);
+    props.setCurrentPage(page);
     setLoading(false);
 
   };
@@ -55,6 +55,7 @@ const MyOrders = (props) => {
     let response = await props.fetchData(page, newPerPage);
     setPerPage(newPerPage);
     props.setPerPage(newPerPage);
+    props.setCurrentPage(page);
     setCurrentPage(page);
     setData(response.data.data);
     setTotalRows(response.data.total);
@@ -78,6 +79,8 @@ const MyOrders = (props) => {
     [currentPage, perPage, totalRows]
     );
   return (
+    <>
+    <input type="text" className="search-input-right p-1" placeholder="&#61442; search"></input>
 
     <DataTable
       title={title}
@@ -95,6 +98,7 @@ const MyOrders = (props) => {
       onSelectedRowsChange={({ selectedRows }) => console.log(selectedRows)}
       customStyles={customStyles}
     />
+    </>
   );
 };
 

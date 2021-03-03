@@ -34,13 +34,34 @@ class MyOrdersController extends Controller
         $rowCount   = $request->rowCount | 10;
         $page       = ($request->page - 1);
         $searchText = $request->searchText;
+        $user=$request->user;
+        $status=$request->status;
+        $fromdate=$request->fromdate;
+        $startDate=date('Y-m-d', strtotime($fromdate));
+        $todate=$request->todate;
+        $endDate=date('Y-m-d',strtotime($todate));
 
-        $schema = DB::table('tOrders')
+            // print_r($status);
+    
+            $schema = DB::table('tOrders')
                 ->select('tOrders.*','mOrderStatus.StatusName','mClients.ClientName')
                 ->join('mOrderStatus','tOrders.StatusUID','=','mOrderStatus.StatusUID')
                 ->join('mClients','tOrders.ClientUID','=','mClients.ClientUID');
 
-
+            if(!empty($status))
+            {
+                $schema->where('tOrders.StatusUID','=',$status);
+            }
+            if(!empty($user))
+            {
+                $schema->where('tOrders.ClientUID','=',$user);
+            }
+            if((!empty($startDate))&&(!empty($endDate)))
+            {
+                $schema->where('tOrders.OrderEntryDate','>=',$startDate);
+                $schema->where('tOrders.OrderEntryDate','<=',$endDate);
+            }
+        
         $data = $schema->skip($rowCount * $page)->take($rowCount)->get();
         $count = $schema->count();
 
@@ -48,7 +69,11 @@ class MyOrdersController extends Controller
             'data' => $data,
             'total' => $count,
             'per_page' => $rowCount,
-            'total_pages' => abs( $count/$rowCount )
+            'total_pages' => abs( $count/$rowCount ),
+            'status' => $status,
+            'user' => $user,
+            'fromdate' => $startDate,
+            'todate' => $endDate
         ], 200);
 
 
