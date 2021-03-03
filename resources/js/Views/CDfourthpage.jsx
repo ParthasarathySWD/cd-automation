@@ -111,8 +111,8 @@ function CDfourthpage(props) {
                                                 over Year 1 
                                                 </p>
                                             </td>
-                                            <td>$8,054.00</td>
-                                            <td>
+                                            <td contentEditable >$8,054.00</td>
+                                            <td contentEditable >
                                                 <p>
                                                 Estimated total amount over year 1 for <br/>
                                                 your escrowed property cons: <br/>
@@ -129,8 +129,8 @@ function CDfourthpage(props) {
                                                 over Year 1
                                                 </p>
                                             </td>
-                                            <td>$ 1,900.00</td>
-                                            <td>
+                                            <td contentEditable>$ 1,900.00</td>
+                                            <td contentEditable>
                                                 <p>
                                                 Estimated total amount over year 1 for <br/> 
                                                 your non-escrowed property costs: <br/>
@@ -146,8 +146,8 @@ function CDfourthpage(props) {
                                                 Payment 
                                                 </p>
                                             </td>
-                                            <td>$ 412.25</td>
-                                            <td>
+                                            <td contentEditable>$ 412.25</td>
+                                            <td contentEditable>
                                                 <p>
                                                 A cushion for the escrow account you <br/>
                                                 pay at closing. See Section G on page 2.
@@ -161,8 +161,8 @@ function CDfourthpage(props) {
                                                 Payment 
                                                 </p>
                                             </td>
-                                            <td>$206.13</td>
-                                            <td>
+                                            <td contentEditable>$206.13</td>
+                                            <td contentEditable>
                                                 <p>
                                                 The amount included in your total <br/>
                                                 monthly payment
@@ -194,8 +194,8 @@ function CDfourthpage(props) {
                                                 over Year 1 
                                                 </p>
                                             </td>
-                                            <td></td>
-                                            <td>
+                                            <td contentEditable></td>
+                                            <td contentEditable>
                                                 <p>
                                                 Estimated total amount over year 1. You <br/>
                                                 must pay these costs directly, possibly <br/>
@@ -209,8 +209,8 @@ function CDfourthpage(props) {
                                                 Escrow Waiver Fee 
                                                 </p>
                                             </td>
-                                            <td></td>
-                                            <td></td>
+                                            <td contentEditable></td>
+                                            <td contentEditable></td>
                                         </tr>
                                     </tbody>
                                 </Table>  
