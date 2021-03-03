@@ -179,7 +179,6 @@ const tableData = {
         sortable: true
       },
       {
-        name:<b>Loan Number</b>,
         selector: "LoanNumer",
         sortable: true
       },
