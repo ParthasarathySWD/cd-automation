@@ -10,3 +10,20 @@
 {
     color: black;
 }
+.title
+{
+    font-weight: 500;
+    color:black
+}
+.align
+{
+    padding-left: 20px;
+}
+.align-sell
+{
+    padding-left: 33px;
+}
+.paidby
+{
+    padding-bottom: 48px;
+}

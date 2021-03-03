@@ -10,7 +10,7 @@ import { getAccessToken, setAccessToken, removeAccessToken, checkUserAuthenticat
 import { Link } from 'react-router-dom';
 import './CDDetails.css';
 import CDTab from './CDTab.jsx';
-function CDthirdpage(props) {
+function CDfifthpage(props) {
     
 
         return(
@@ -23,8 +23,8 @@ function CDthirdpage(props) {
                            </div>
                <div className="card"> 
                    <div className="row">
-                           
-                           <CDTab></CDTab>
+                   
+                        <CDTab></CDTab>
 
                        <div className="col-lg-4 col-md-4 col-sm-4">
                        {/* <h5 className="font300 font-16 mb-3">Loan Costs</h5> */}
@@ -108,4 +108,4 @@ function CDthirdpage(props) {
         
        )
 }
-export default CDthirdpage;
+export default CDfifthpage;

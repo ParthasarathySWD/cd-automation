@@ -8,7 +8,8 @@ import auth from '../repository/auth';
 import { SignIn, SignOut } from "../store/action";
 import { getAccessToken, setAccessToken, removeAccessToken, checkUserAuthentication } from "../store/localstorage";
 import { Link } from 'react-router-dom';
-import './style.css';
+import './CDDetails.css';
+import CDTab from './CDTab.jsx';
 function CDsecondpage(props) {
     
 
@@ -21,16 +22,8 @@ function CDsecondpage(props) {
                            </div>
                <div className="card"> 
                    <div className="row">
-                           <div className="col-lg-12 col-md-12 col-sm-12">
-                               <ul className="nav nav-tabs3">
-                               <li className="nav-item" ><Link to={'/CDDetails'} className="nav-link">Page 1</Link></li>
-                                   
-                                   <li className="nav-item"><a className="nav-link active" data-toggle="tab">Page 2</a></li>
-                                   <li className="nav-item"><a className="nav-link" data-toggle="tab">Page 3</a></li>
-                                   <li className="nav-item"><a className="nav-link" data-toggle="tab" href="#General">Page 4</a></li>
-                                   <li className="nav-item"><a className="nav-link" data-toggle="tab" href="#General">Page 5</a></li>
-                               </ul>
-                           </div>
+                           
+                           <CDTab></CDTab>
 
                        <div className="col-lg-4 col-md-4 col-sm-4">
                        {/* <h5 className="font300 font-16 mb-3">Loan Costs</h5> */}

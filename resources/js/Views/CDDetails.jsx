@@ -10,6 +10,7 @@ import { Link } from 'react-router-dom';
 import './CDDetails.css';
 import './CDsecondpage.jsx';
 import './CDthirdpage.jsx';
+import CDTab from './CDTab.jsx';
 function CDDetails(props) {
     
 
@@ -22,16 +23,8 @@ function CDDetails(props) {
                            </div>
                <div className="card"> 
                    <div className="row">
-                           <div className="col-lg-12 col-md-12 col-sm-12">
-                               <ul className="nav nav-tabs3">
-                                   <li className="nav-item"><a className="nav-link active" data-toggle="tab" href="#Basic">Page 1</a></li>
-                                   
-                                   <li className="nav-item" ><Link to="/CDsecondpage" className="nav-link">Page 2</Link></li>
-                                   <li className="nav-item"><Link to="/CDthirdpage" className="nav-link" >Page 3</Link></li>
-                                   <li className="nav-item"><a className="nav-link" data-toggle="tab" href="#General">Page 4</a></li>
-                                   <li className="nav-item"><a className="nav-link" data-toggle="tab" href="#General">Page 5</a></li>
-                               </ul>
-                           </div>
+                           
+                           <CDTab/>
 
                        <div className="col-lg-4 col-md-4 col-sm-4">
 
