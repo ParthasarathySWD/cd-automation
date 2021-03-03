@@ -27,6 +27,15 @@ Route::middleware(['auth:sanctum'])->group(function () {
         return $request->user();
     });
 
+    Route::get('profile', function(Request $request){
+        $user = $request->user();
+        if (!empty($user)) {
+            return $user[0];
+        }
+        else{
+            return stdClass();
+        }
+    });
     
     Route::get('logout', 'App\Http\Controllers\Api\AuthController@logout');
     Route::get('myorders/fetchorders', 'App\Http\Controllers\Api\MyOrdersController@fetchMyOrders');

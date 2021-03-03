@@ -1,4 +1,4 @@
-import React, { Component, useRef, useState  } from 'react';
+import React, { Component, useRef, useState } from 'react';
 import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
 import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom';
@@ -22,16 +22,18 @@ import store from './store/store.js';
 import { getAccessToken, setAccessToken, removeAccessToken, checkUserAuthentication } from "./store/localstorage";
 import { ToastProvider } from 'react-toast-notifications';
 import LoadingBar from 'react-top-loading-bar'
+import {fetchProfileData} from './repository/App';
+import Loader from "./CommonComponents/Loader";
 
 function App(props) {
 
     
     const isAuthenticated = useSelector(state => state.IsAuthenticated);
     const dispatch = useDispatch();
-    
+
     useEffect(()=>{
         checkUserAuthentication();
-    });
+    }, []);
 
 
 
@@ -39,80 +41,94 @@ function App(props) {
         return (<LoginRoutes />);            
     }
     else{
-        return (
+
+
+            return (
+    
                 <Main />
-            );
+                );
         }
     }
 export default App;
 
 function Main() {
-      const ref = useRef(null)
+    
+    const ref = useRef(null)
+    const [user, setUser] = useState([]);
 
     useEffect( ()=> {
-        ref.current.continuousStart();
 
-        setTimeout(()=>ref.current.complete(), 10000);
-    });
+        if (user.length > 0) {
 
+            ref.current.continuousStart();
+            
+            setTimeout(()=>ref.current.complete(), 10000);
+            jquery_init.init();
+        }
 
-    useEffect( ()=> {
-        jquery_init.init();
+        const promiseResource = fetchProfileData();
+        promiseResource.then((data)=>{
+            setUser(data.user);
+        })
+
     }, []);
 
-        return (
-            <>
-                <div className="page-loader-wrapper" style={{display:'none', backgroundColor: '#999'}} >
-                    <div className="loader">
-                        <div className="mt-3"><img src="assets/images/icon.svg" width="40" height="40" alt="Mooli"/></div>
-                        <p>Please wait...</p>
-                    </div>
-                </div>
-                <div>
-                
-                <div className="themesetting">
-                <ThemeSetting />
-                </div>
-                
-                
-                <div className="overlay"></div>
-                
-                <div id="wrapper">
-                
-                
-                <nav className="navbar navbar-fixed-top">
-                <Header />
-                <LoadingBar color="#f11946" ref={ref} shadow={true} />
-                </nav>
-                
-                
-                <div id="left-sidebar" className="sidebar light_active">
-                <LeftSideBar />
-                </div>
-                
-                
-                <div id="rightbar" className="rightbar">
-                <RightSideBar />
-                </div>
-                
-                
-                <div className="sticky-note">
-                <StickyNote />
-                </div>
-                
-                
-                <div id="main-content">
-                <div className="container-fluid" id="ContentBody">
-                <Routes />
-                </div>
-                </div>
-                
-                </div>
-                </div>
-            </>
-            );
+
+
+        if (user.length == 0) {
+            return <Loader />
         }
+        else{
+
+            return (
+                <>
+                    <div>
+                    
+                    <div className="themesetting">
+                    <ThemeSetting />
+                    </div>
+                    
+                    
+                    <div className="overlay"></div>
+                    
+                    <div id="wrapper">
+                    
+                    
+                    <nav className="navbar navbar-fixed-top">
+                    <Header />
+                    <LoadingBar color="#f11946" ref={ref} shadow={true} />
+                    </nav>
+                    
+                    
+                    <div id="left-sidebar" className="sidebar light_active">
+                    <LeftSideBar />
+                    </div>
+                    
+                    
+                    <div id="rightbar" className="rightbar">
+                    <RightSideBar />
+                    </div>
+                    
+                    
+                    <div className="sticky-note">
+                    <StickyNote />
+                    </div>
+                    
+                    
+                    <div id="main-content">
+                    <div className="container-fluid" id="ContentBody">
+                    <Routes />
+                    </div>
+                    </div>
+                    
+                    </div>
+                    </div>
+                </>
+                );
+            }
         
+
+        }
 
         
         ReactDOM.render(
