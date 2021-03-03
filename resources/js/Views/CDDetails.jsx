@@ -34,15 +34,15 @@ function CDDetails(props) {
                                 <tbody>
                                     <tr>
                                         <td><label>Date Issued </label></td>
-                                        <td contentEditable><span className="change_input_field">07/31/2020 </span></td>
+                                        <td><input type="date"/></td>
                                     </tr>
                                     <tr>
                                         <td><label>Closing Date </label></td>
-                                        <td contentEditable><span className="change_input_field">08/08/2020 </span></td>
+                                        <td><input type="date"/></td>
                                     </tr>
                                     <tr>
                                         <td><label>Disbursement Date </label></td>
-                                        <td contentEditable><span className="change_input_field">08/13/2020  </span></td>
+                                        <td><input type="date"/></td>
                                     </tr>
                                     <tr>
                                         <td><label>Settlement Agent  </label></td>
@@ -75,7 +75,7 @@ function CDDetails(props) {
                                         <td contentEditable><span className="change_input_field">Kevin Kahlfeldt <br/>6823 Rene St <br/>Shawnee, KS 66216  </span></td>
                                     </tr>
                                     <tr>
-                                        <td><label>Lender </label></td>
+                                        <td><label>Lender</label></td>
                                         <td contentEditable><span className="change_input_field">Freedom Mortgage Corporation  </span></td>
                                     </tr>
                                 </tbody>
@@ -130,28 +130,43 @@ function CDDetails(props) {
                                     <tr>
                                         <td className="text-black">Loan Amount  </td>
                                         <td contentEditable><span className="change_input_field">$182,998 </span>  </td>
-                                        <td contentEditable><span className="change_input_field">NO</span></td>
+                                        <td><select id="value">
+                                        <option>YES</option>
+                                        <option>NO</option>
+                                        </select></td>
                                     </tr>
                                     <tr>
                                         <td className="text-black">Interest Rate  </td>
                                         <td contentEditable><span className="change_input_field">2.875%</span></td>
-                                        <td contentEditable><span className="change_input_field">NO</span></td>
+                                       <td><select id="Value">
+                                        <option>YES</option>
+                                        <option>NO</option>
+                                        </select></td>
                                     </tr>
                                     <tr>
                                         <td className="text-black">Monthly Principal & Interest<br/><span className="small">See Projected Payments below for your
                                         Estimated Total Monthly Payment </span>  </td>
                                         <td contentEditable><span className="change_input_field">$806.20</span></td>
-                                        <td contentEditable><span className="change_input_field">NO</span></td>
+                                        <td><select id="Value">
+                                        <option>YES</option>
+                                        <option>NO</option>
+                                        </select></td>
                                     </tr>
                                     <tr>
                                         <td className="text-black">Prepayment Penalty</td>
                                         <td></td>
-                                        <td>Does the loan have these features?<br/><span contentEditable className="change_input_field">NO</span> </td>
+                                        <td>Does the loan have these features?<br/><select id="Value">
+                                        <option>YES</option>
+                                        <option>NO</option>
+                                        </select> </td>
                                     </tr>
                                     <tr>
                                         <td className="text-black">Balloon Payment </td>
                                         <td></td>
-                                        <td contentEditable><span className="change_input_field">NO</span></td>
+                                        <td><select id="Value">
+                                        <option>YES</option>
+                                        <option>NO</option>
+                                        </select></td>
                                     </tr>
                                 </tbody>
                             </table>
@@ -166,8 +181,8 @@ function CDDetails(props) {
            <thead>
             <tr>
                 <th className="data-heading">Payment calculation </th>
-                <th>Years 1-7 </th>
-                <th>Year 8-30</th>
+                <th className="data-heading">Years 1-7 </th>
+                <th className="data-heading">Year 8-30</th>
             </tr>
         </thead>
         <tbody>
@@ -178,13 +193,13 @@ function CDDetails(props) {
      </tr>
     <tr>
             <td className="data-heading">Mortgage Insurance </td>
-             <td>+ 82.35</td>
-             <td>+  -</td>
+             <td contentEditable>+ 82.35</td>
+             <td contentEditable>+  -</td>
     </tr>
     <tr>
            <td className="data-heading">Estimated Escrow <br/><span className="small">Amount can increase over time </span></td>
-            <td>+ 206.13 </td>
-            <td>+ 206.13 </td>
+            <td contentEditable>+ 206.13 </td>
+            <td contentEditable>+ 206.13 </td>
     </tr>
     <tr>
            <td className="data-heading">Estlmatod Total Monthly Payment </td>
@@ -207,9 +222,18 @@ function CDDetails(props) {
                <tr> <label>Other:Homeowner's Association Dues </label> <input type="checkbox"/></tr></td>
                 <tr>
                     <tr className="align data-heading"><p>In escrow? </p> </tr>
-                    <tr contentEditable>Yes</tr>
-                    <tr contentEditable>Yes</tr>
-                    <tr contentEditable>NO</tr>
+                    <tr><select id="Value">
+                                        <option>YES</option>
+                                        <option>NO</option>
+                                        </select></tr>
+                    <tr><select id="Value">
+                                        <option>YES</option>
+                                        <option>NO</option>
+                                        </select></tr>
+                    <tr><select id="Value">
+                                        <option>YES</option>
+                                        <option>NO</option>
+                                        </select></tr>
                 </tr>
             </tr>
         </tbody>

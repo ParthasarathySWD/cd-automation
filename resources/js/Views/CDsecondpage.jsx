@@ -30,23 +30,23 @@ function CDsecondpage(props) {
                            <Table >
                                <thead>
                                 <tr>
-                                    <th>Loan Costs</th>
-                                    <th><p className="align">Borrower-Paid</p><br></br>
+                                    <th className="title">Loan Costs</th>
+                                    <th><p className="align title">Borrower-Paid</p><br></br>
                                     <span>At Closing</span> &nbsp;
                                     <span>Before Closing</span>
                                     </th>
                                     
-                                    <th><p className="align-sell">Seller-Paid</p><br></br>
+                                    <th><p className="align-sell title">Seller-Paid</p><br></br>
                                     <span>At Closing</span>&nbsp;
                                     <span>Before Closing</span> 
                                     </th>
-                                    <th><p className="paidby">Paid by others</p></th>
+                                    <th><p className="paidby title">Paid by others</p></th>
                                  </tr>
                                </thead>
                                <tbody>
                             <tr>
                                 <th className="title">A.Orgination Charge</th>
-                                <th contentEditable>$1,802.00</th>
+                                <th className="title" contentEditable>$1,802.00</th>
                             </tr>
                             <tr>
                                 <td> 0.25 % of loanAmount(Points.)</td>
@@ -62,7 +62,7 @@ function CDsecondpage(props) {
                             </tr>
                            <tr>
                                  <th className="title">B.Service Borrower Did Not Shop For</th>
-                                  <th contentEditable>$236.55</th>
+                                  <th contentEditable className="title">$236.55</th>
                                    </tr>
                                    <tr>
                                 <td> Appraisal Fee to John Smith Appraisers Inc. </td>
@@ -154,7 +154,7 @@ function CDsecondpage(props) {
                                   </tr>
                                   <tr>
                                       <td>Aggregate Adjustment </td>
-                                      <td>-0.01</td>
+                                      <td contentEditable>-0.01</td>
                                   </tr>
                                   <tr>
                                       <th className="title">H. Other</th>

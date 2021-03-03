@@ -36,13 +36,13 @@ function CDfourthpage(props) {
                             <div className="body">
                                 <p>
                                 <b>Assumption</b><br/>
-                                If you sell or transfer this property to an other person, your lender <br/>
-                                <input type="checkbox"/>  will allow, under certain conditions, this person to assume this<br/>
+                                If you sell or transfer this property to another person, your lender <br/>
+                                <input type="checkbox"/> will not allow assumption of this loan on the original terms<br/>
                                 &nbsp; loan on the original terms,<br/>
                                 <input type="checkbox"/> will not allow assumption of this loan on the original terms.
                                 </p>
                                 <p>
-                                <b>Demand feature</b><br/>
+                                <b>Demand Feature</b><br/>
                                 Your loan<br/>
                                 <input type="checkbox"/> has a demand feature, which permits your lender to require early repayment of the loan, You should review your note for details. <br/>  
                                 <input type="checkbox"/> does not have a demand feature. 

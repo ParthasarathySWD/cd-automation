@@ -43,14 +43,20 @@ function CDthirdpage(props) {
                                        <td>Total Closing Costs(J)</td>
                                        <td contentEditable>$8,054.00</td>
                                        <td contentEditable>$9,712,10</td>
-                                       <td><p contentEditable>YES</p><br/><span className="change_input_field">.See Total loan Cost(D) and Total Other Costs(I)
+                                       <td><select id="Value">
+                                        <option>YES</option>
+                                        <option>NO</option>
+                                        </select><br/><span className="change_input_field">.See Total loan Cost(D) and Total Other Costs(I)
                                             </span></td>
                                    </tr>
                                    <tr>
                                        <td>Closing Costs Paid Before Closing</td>
                                        <td contentEditable>$0</td>
                                        <td contentEditable>-$29,90</td>
-                                       <td><p contentEditable>YES </p><br/><span className="change_input_field">You paid these Closing Costs before closing.
+                                       <td><select id="Value">
+                                        <option>YES</option>
+                                        <option>NO</option>
+                                        </select><br/><span className="change_input_field">You paid these Closing Costs before closing.
                                             </span></td>
                                    </tr>
                                    <tr>
@@ -58,38 +64,56 @@ function CDthirdpage(props) {
                                             </span></td>
                                         <td contentEditable>$0</td>
                                         <td contentEditable>$0</td>
-                                        <td contentEditable>NO</td>
+                                        <td><select id="Value">
+                                        <option>YES</option>
+                                        <option>NO</option>
+                                        </select></td>
                                     </tr>
                                     <tr>
                                         <td>Down Payment/Funds from Borrower</td>
                                         <td contentEditable>$18,000.00 </td>
                                         <td contentEditable>$18,000.00</td>
-                                        <td contentEditable>NO</td>
+                                        <td><select id="Value">
+                                        <option>YES</option>
+                                        <option>NO</option>
+                                        </select></td>
                                     </tr>
                                     <tr>
                                         <td>Deposit</td>
                                         <td contentEditable>-$10,000.00</td>
                                         <td contentEditable>-$10,000.00</td>
-                                        <td contentEditable>NO</td>
+                                        <td><select id="Value">
+                                        <option>YES</option>
+                                        <option>NO</option>
+                                        </select></td>
                                     </tr>
                                     <tr>
                                         <td>Funds for Borrower</td>
                                         <td contentEditable>$0</td>
                                         <td contentEditable>$0</td>
-                                        <td contentEditable>NO</td>
+                                        <td><select id="Value">
+                                        <option>YES</option>
+                                        <option>NO</option>
+                                        </select></td>
                                     </tr>
                                     <tr>
                                         <td>Seller Credits</td>
                                         <td contentEditable>$0</td>
                                         <td contentEditable>-$2,.500,00</td>
-                                        <td><p contentEditable>Yes</p><br/><span className="change_input_field">• See Seller Credits in Section L 
+                                        <td><select id="Value">
+                                        <option>YES</option>
+                                        <option>NO</option>
+                                        </select><br/><span className="change_input_field">• See Seller Credits in Section L 
                                             </span></td>
                                     </tr>
                                     <tr>
                                         <td>Adjustment and Other Credits</td>
                                         <td contentEditable>$0</td>
                                         <td contentEditable>-$1,035,04</td>
-                                        <td><p contentEditable>Yes</p><br/><span className="change_input_field">See details in Section K and L 
+                                        <td><select id="Value">
+                                        <option>YES</option>
+                                        <option>NO</option>
+                                        </select><br/><span className="change_input_field">See details in Section K and L 
                                             </span></td>
                                     </tr>
                                     <tr>
