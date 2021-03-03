@@ -187,7 +187,7 @@ function CDDetails(props) {
         </thead>
         <tbody>
         <tr>
-                <td className="data-heading">Prindpal & Interest </td>
+                <td className="data-heading">Principal & Interest </td>
                 <td contentEditable>$761.78 </td>
                 <td contentEditable>$761 .78</td>
      </tr>
