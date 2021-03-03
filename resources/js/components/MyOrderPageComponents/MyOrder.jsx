@@ -23,35 +23,34 @@ const customStyles = {
 const columns = [
   {
     name: <b>Order Number</b>,
-    selector: "OrderId",
+    selector: row => row["OrderId"],
     sortable: true
     
   },
   {
     name: <b>Loan Number</b>,
-    selector: "LoanNumber",
+    selector: row => row["LoanNumber"],
     sortable: true
   },   
   {
     name: <b>Customer</b>,
-    selector: "Client",
+    selector: row => row["Client"],
     sortable: true
 
   },
   // {
   //   name: <b>Loan Type</b>,
-  //   selector: "LoanType",
+  //   selector: row => row["LoanType"],
   //   sortable: true
   // },
   {
     name: <b>Status</b>,
-    selector: "status",
+    selector: row => row["status"],
     sortable: true
       
   },
   {
     name:<b>Action</b>,
-    selector:"action",
     cell: row => <div><a href="#"><span className="fa fa-eye text-primary p-1"></span></a>
     <a href="#"><span className="fa fa-edit text-secondary p-1"></span></a>
     <a href="#"><span className="fa fa-trash text-danger p-1"></span></a>
@@ -197,28 +196,27 @@ const tableData = {
     const columndata = [
       {
         name:<b>Order Number</b>,
-        selector: "OrderNumber",
+        selector: row => row["OrderNumber"],
         sortable: true
       },
       {
         name:<b>Loan Number</b>,
-        selector: "LoanNumer",
+        selector: row => row["LoanNumer"],
         sortable: true
       },
       {
         name: <b>Client</b>,
-        selector: "ClientName",
+        selector: row => row["ClientName"],
         sortable: true
       },
       {
         name: <b>Status</b>,
-        selector: "StatusName",
+        selector: row => row["StatusName"],
         sortable: true
       },
       {
         // eslint-disable-next-line react/button-has-type
         name:<b>Action</b>,
-        selector:"action",
         cell: row => 
         <div>
           <p key={row.OrderUID}>
