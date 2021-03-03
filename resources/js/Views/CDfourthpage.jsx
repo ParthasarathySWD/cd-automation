@@ -114,10 +114,10 @@ function CDfourthpage(props) {
                                             <td>$8,054.00</td>
                                             <td>
                                                 <p>
-                                                Estimated total amount over year 1 for
-                                                your escrowed property cons:
-                                                Homeowner Insurance
-                                                Property taxes
+                                                Estimated total amount over year 1 for <br/>
+                                                your escrowed property cons: <br/>
+                                                Homeowner Insurance <br/>
+                                                Property taxes <br/>
                                                 </p>
                                             </td>
                                         </tr>
@@ -132,7 +132,10 @@ function CDfourthpage(props) {
                                             <td>$ 1,900.00</td>
                                             <td>
                                                 <p>
-                                                Estimated total amount over year 1 for your non-escrowed Homeowner's  Association Dues  You may have other property costs.
+                                                Estimated total amount over year 1 for <br/> 
+                                                your non-escrowed property costs: <br/>
+                                                Homeowner's  Association Dues: <br/> <br/>
+                                                You may have other property costs.
                                                 </p>
                                             </td>
                                         </tr>
