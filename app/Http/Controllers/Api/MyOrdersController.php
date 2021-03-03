@@ -38,7 +38,7 @@ class MyOrdersController extends Controller
         $schema = DB::table('tOrders')
                 ->select('tOrders.*','mOrderStatus.StatusName','mClients.ClientName')
                 ->join('mOrderStatus','tOrders.StatusUID','=','mOrderStatus.StatusUID')
-                ->join('mClients','tOrders.ClientUID','=','mClients.ClientUID');
+                ->join('mClients','tOrders.CustomerUID','=','mClients.ClientUID');
 
 
         $data = $schema->skip($rowCount * $page)->take($rowCount)->get();

@@ -6,7 +6,7 @@ import "react-data-table-component-extensions/dist/index.css";
 import { BrowserRouter as Router, Switch, Route, Link, useHistory } from 'react-router-dom';
 import MyOrders from '../../components/Datatablecomponents/MyOrders';
 import DatePicker from "react-datepicker";
-
+import TableLink from  '../../CommonComponents/TableLink';
 import "react-datepicker/dist/react-datepicker.css";
 
 // import { columns, data } from './DataTab';
@@ -111,8 +111,10 @@ const tableData = {
   const [clients, setclients]  = useState([]);
   const [startDate, setStartDate] = useState();
   const [endDate, setEndDate] = useState();
-
+  
+  // const[filter,setFilter]=useState([]);
   const [filter, setFilter] = useState({ 'user': '', 'status': '','fromdate':'','todate':''});
+  
 
   function onClientChange(e){
     let val = e.target.value;
@@ -120,6 +122,13 @@ const tableData = {
     setFilter((prevState)=>{
       return {...prevState, [name]: val};
     })
+    const data={
+      user:filter.user,
+      status:filter.status,
+      fromdate:filter.fromdate,
+      todate:filter.todate
+    }
+    
   }
   useEffect(() => {
     async function fetchOptions () {
@@ -165,22 +174,22 @@ const tableData = {
     
     const columndata = [
       {
-        name: "Order Number",
+        name:<b>Order Number</b>,
         selector: "OrderNumber",
         sortable: true
       },
       {
-        name: "Loan Number",
+        name:<b>Loan Number</b>,
         selector: "LoanNumer",
         sortable: true
       },
       {
-        name: "Client",
+        name: <b>Client</b>,
         selector: "ClientName",
         sortable: true
       },
       {
-        name: "Status",
+        name: <b>Status</b>,
         selector: "StatusName",
         sortable: true
       },
@@ -188,9 +197,14 @@ const tableData = {
         // eslint-disable-next-line react/button-has-type
         name:<b>Action</b>,
         selector:"action",
-        cell: row => <div><a href="#"><span className="fa fa-eye text-primary p-1"></span></a>
-        <a href="#"><span className="fa fa-edit text-secondary p-1"></span></a>
-        <a href="#"><span className="fa fa-trash text-danger p-1"></span></a>
+        cell: row => 
+        <div>
+          <p key={row.OrderUID}>
+            <TableLink><span className="fa fa-eye text-primary p-1"></span></TableLink>
+            {/* <a href="#"><span className="fa fa-edit text-secondary p-1"></span></a> */}
+            <TableLink to={'/summary/'+row.OrderUID}><span className="fa fa-edit text-secondary p-1"></span></TableLink>
+            {/* <a href="#"><span className="fa fa-trash text-danger p-1"></span></a> */}
+          </p>
         </div>
       }
     ];
@@ -267,7 +281,7 @@ const tableData = {
 
                                     <label className="form-label">Status </label>
                                   <select className="border w-100 input-height border-secondary" name="status" value={filter.status} onChange={onClientChange} style={{height:'25px'}}>
-                                  <option value="">Select...</option>
+                                  <option value="" selected disabled>Select...</option>
                                   {
                                     status.map((value, key)=>{
                                       return <option key={key} value={value.StatusUID}>{value.StatusName}</option>
@@ -282,7 +296,7 @@ const tableData = {
 
                                     <label className="form-label">Users </label>
                                   <select className="border w-100 input-height border-secondary" name="user" value={filter.user} onChange={onClientChange} style={{height:'25px'}}>
-                                  <option value="">Select...</option>
+                                  <option value="" selected disabled>Select...</option>
                                   {
                                     allusers.map((value, key)=>{
                                       return <option key={key} value={value.UserUID}>{value.UserName}</option>
@@ -301,7 +315,7 @@ const tableData = {
                                         <div className="input-group-prepend" >
                                             <i className="fa fa-calendar p-1" style={{border:'1px solid black',borderRight:'0mm'}}></i>
                                         {/* </div><input type="text" id="TodDate" className="form-control datepicker" placeholder="Ex: 19/02/2021"/> */}
-                                        <DatePicker name="fromDate" placeholderText="mm/dd/yyyy" selected={startDate} onChange={date => setStartDate(date)}/>
+                                        <DatePicker name="fromdate" placeholderText="mm/dd/yyyy" selected={startDate} onChange={date => setStartDate(date)}/>
                                     </div>
                                   </div>
                                   </div>
@@ -313,7 +327,7 @@ const tableData = {
                                                 <div className="input-group">
                                                     <div className="input-group-prepend">
                                                         <i className="fa fa-calendar p-1" style={{border:'1px solid black',borderRight:'0mm'}}></i>
-                                                        <DatePicker  placeholderText="mm/dd/yyyy" name="toDate" selected={endDate} onChange={date => setEndDate(date)}/>
+                                                        <DatePicker  placeholderText="mm/dd/yyyy" name="todate" selected={endDate} onChange={date => setEndDate(date)}/>
                                                     </div>
                                                     {/* <input type="text" id="TodDate" className="form-control datepicker" placeholder="Ex: 19/02/2021"/> */}
                                                    
@@ -322,7 +336,7 @@ const tableData = {
                                         </div>
                                     <div className="col-md-2 col-sm-12">
                                       <div className="form-group">
-                                      <input type="text" className="search-input float-right" placeholder="&#61442; search"></input>
+                                      <input type="text" className="search-input-right" placeholder="&#61442; search"></input>
                                       </div>
                                     </div>
                                   

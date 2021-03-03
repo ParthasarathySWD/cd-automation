@@ -53,7 +53,7 @@ class Routes extends React.Component
                 <Route exact path='/cdsecondpage' component={CDsecondpage} />
                 <Route exact path='/cdthirdpage' component={CDthirdpage} />
                 <Route exact path='/orderdoc' component={OrderDocument} />
-                <Route exact path='/summary' component={OrderSummary} />
+                <Route exact path='/summary/:id' component={OrderSummary} />
             </Switch>
         )
     }

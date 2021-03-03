@@ -16,28 +16,28 @@ function ClientList(){
   const history = useHistory();
   const columndata = [
     {
-      name: "Client Number",
+      name: <b>Client Number</b>,
       selector: "ClientNumber",
       sortable: true
     },
     {
-      name: "Client Name",
+      name: <b>Client Name</b>,
       selector: "ClientName",
       sortable: true
     },
     {
-      name: "Phone",
+      name: <b>Phone</b>,
       selector: "Phone",
       sortable: true
     },
     {
-      name: "Email",
+      name: <b>Email</b>,
       selector: "Email",
       sortable: true
     },
     
     {
-        name: "City",
+        name: <b>City</b>,
         selector: "CityName",
         sortable: true
     },

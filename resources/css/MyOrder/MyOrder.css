@@ -55,7 +55,7 @@
 {
     float:left;
 } */
-.search-input
+.search-input-right
 {
   
    position: absolute;
@@ -74,7 +74,7 @@
 /* .search-input:focus{
     outline: none;
 } */
-.search-input::-webkit-input-placeholder { 
+.search-input-right::-webkit-input-placeholder { 
     font-family: FontAwesome;
 }
 .tab-menus a:hover,a:active
