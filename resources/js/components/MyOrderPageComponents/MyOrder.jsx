@@ -146,11 +146,12 @@ const tableData = {
   const fetchUsers = async (page, size = countPerPage, searchText = "") => {
     
     const response = await axios.get(
-      `myorders/fetchorders`,
-      {
-        rowCount: size,
-        page: page,
-        searchText: searchText,
+      `myorders/fetchorders`, {
+        params: {
+          rowCount: size,
+          page: page,
+          searchText: searchText,
+        }
       }
       );
       console.log(response);
