@@ -56,60 +56,64 @@ function Main() {
     });
 
 
+    useEffect( ()=> {
+        jquery_init.init();
+    }, []);
 
         return (
             <>
-            <div className="page-loader-wrapper" style={{display:'none', backgroundColor: '#999'}} >
-<div className="loader">
-<div className="mt-3"><img src="assets/images/icon.svg" width="40" height="40" alt="Mooli"/></div>
-<p>Please wait...</p>
-</div>
-</div>
-            <div>
-            
-            <div className="themesetting">
-            <ThemeSetting />
-            </div>
-            
-            
-            <div className="overlay"></div>
-            
-            <div id="wrapper">
-            
-            
-            <nav className="navbar navbar-fixed-top">
-            <Header />
-            <LoadingBar color="#f11946" ref={ref} shadow={true} />
-            </nav>
-            
-            
-            <div id="left-sidebar" className="sidebar light_active">
-            <LeftSideBar />
-            </div>
-            
-            
-            <div id="rightbar" className="rightbar">
-            <RightSideBar />
-            </div>
-            
-            
-            <div className="sticky-note">
-            <StickyNote />
-            </div>
-            
-            
-            <div id="main-content">
-            <div className="container-fluid" id="ContentBody">
-            <Routes />
-            </div>
-            </div>
-            
-            </div>
-            </div>
-            < />
+                <div className="page-loader-wrapper" style={{display:'none', backgroundColor: '#999'}} >
+                    <div className="loader">
+                        <div className="mt-3"><img src="assets/images/icon.svg" width="40" height="40" alt="Mooli"/></div>
+                        <p>Please wait...</p>
+                    </div>
+                </div>
+                <div>
+                
+                <div className="themesetting">
+                <ThemeSetting />
+                </div>
+                
+                
+                <div className="overlay"></div>
+                
+                <div id="wrapper">
+                
+                
+                <nav className="navbar navbar-fixed-top">
+                <Header />
+                <LoadingBar color="#f11946" ref={ref} shadow={true} />
+                </nav>
+                
+                
+                <div id="left-sidebar" className="sidebar light_active">
+                <LeftSideBar />
+                </div>
+                
+                
+                <div id="rightbar" className="rightbar">
+                <RightSideBar />
+                </div>
+                
+                
+                <div className="sticky-note">
+                <StickyNote />
+                </div>
+                
+                
+                <div id="main-content">
+                <div className="container-fluid" id="ContentBody">
+                <Routes />
+                </div>
+                </div>
+                
+                </div>
+                </div>
+            </>
             );
         }
         
+
         
         ReactDOM.render(
             <Provider store={store}>

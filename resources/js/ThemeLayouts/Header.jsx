@@ -22,68 +22,6 @@ function Header(props) {
             <div className="navbar-right">
                <div id="navbar-menu">
                   <ul className="nav navbar-nav">
-                     {/* <li><a href="#!" className="right_note icon-menu" title="Right Menu">Notes</a></li>
-                     <li className="dropdown hidden-xs">
-                        <a href="#!" className="dropdown-toggle icon-menu" data-toggle="dropdown">Create</a>
-                        <div className="dropdown-menu pb-0 mt-0">
-                           <a className="dropdown-item pt-2 pb-2" href="#!">User</a>
-                           <a className="dropdown-item pt-2 pb-2" href="#!">Invoce</a>
-                           <a className="dropdown-item pt-2 pb-2" href="#!">Report</a>
-                        </div>
-                     </li> */}
-                     {/* <li className="dropdown hidden-xs">
-                        <a href="#!" className="dropdown-toggle icon-menu" data-toggle="dropdown">
-                           <i className="fa fa-envelope-o"></i>
-                           <span className="notification-dot msg">4</span>
-                        </a>
-                        <ul className="dropdown-menu right_chat email mt-0 animation-li-delay">
-                           <li className="header theme-bg gradient mt-0 text-light">You have 4 New eMail</li>
-                           <li>
-                              <a href="#!">
-                                 <div className="media">
-                                    <img src="../../images/xs/avatar1.jpg" className="media-object " alt=""/>
-                                    <div className="media-body">
-                                       <span className="name">Dr. James Wert <small className="float-right font-12">Just now</small></span>
-                                       <span className="message">Update GitHub</span>
-                                    </div>
-                                 </div>
-                              </a>
-                           </li>
-                           <li>
-                              <a href="#!">
-                                 <div className="media">
-                                    <img src="../../images/xs/avatar2.jpg" className="media-object" alt=""/>
-                                    <div className="media-body">
-                                       <span className="name">Dr. Folisise Chosielie <small className="float-right font-12">12min ago</small></span>
-                                       <span className="message">New Messages</span>
-                                    </div>
-                                 </div>
-                              </a>
-                           </li>
-                           <li>
-                              <a href="#!">
-                                 <div className="media">
-                                    <img className="media-object" alt=""/>
-                                    <div className="media-body">
-                                       <span className="name">As.Louis Henry <small className="float-right font-12">38min ago</small></span>
-                                       <span className="message">Design bug fix</span>
-                                    </div>
-                                 </div>
-                              </a>
-                           </li>
-                           <li>
-                              <a href="#!">
-                                 <div className="media mb-0">
-                                    <img src="../../images/xs/avatar3.jpg" className="media-object" alt=""/>
-                                    <div className="media-body">
-                                       <span className="name">Dr. Debra Stewart <small className="float-right font-12">2hr ago</small></span>
-                                       <span className="message">Fix Bug</span>
-                                    </div>
-                                 </div>
-                              </a>
-                           </li>
-                        </ul>
-                     </li> */}
                      <li className="dropdown">
                         <a href="#!" className="dropdown-toggle icon-menu" data-toggle="dropdown">
                            <i className="fa fa-bell-o"></i>
