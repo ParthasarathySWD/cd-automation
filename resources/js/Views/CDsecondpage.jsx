@@ -102,7 +102,7 @@ function CDsecondpage(props) {
                                     <td contentEditable>$4,664,25 </td>
                                     <td contentEditable>$29,80 </td>
                                 </tr>
-                                <h5 className="font300 font-16 mb-3">Other Costs </h5>
+                                <div className="title">Other Costs </div>
                                 <tr>
                                 <th className="title">E. taxes and Other Governnment fees</th>
                                 <th className="title" contentEditable>$85.00</th>
