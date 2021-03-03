@@ -1,7 +1,4 @@
-/* .main-container
-{
-    background-color: rgb(255, 255, 255);
-} */
+
 .child-container
 {
     width:90%;
@@ -10,7 +7,6 @@
 .first-child
 {
     margin-left:20px;
-    /* background-color: white; */
     box-shadow: 2px 2px 8px 0px #d6d5d5;
     width: 950px;
 }
@@ -25,7 +21,6 @@
     right: 6.0em;
     top:1.0em;
     text-transform: none;
-    /* float:right; */
 }
 .status-row
 {
@@ -35,59 +30,21 @@
     height:90px;
 }
 
-/* .status-val
-{
-    padding-left:5px;
-    padding-top:10px;
-    background-color:rgb(255, 255, 255);
-    border-radius:2px solid black;
-    font-size: 18px;
-} */
-
-.tab-menus
-{
-    margin-top:40px;
-    overflow: hidden;
-    border-bottom: 1px solid #f0f2f5;
-    font-size: 16px;
-}
-/* .nav-menu
-{
-    float:left;
-} */
 .search-input-right
 {
-  
    position: relative;
-   /* top:2em;
-   left:10em; */
    width: 150px;
    float:right;
    font-size: 14px;
+   margin-top: 10px;
+   margin-bottom: 10px;
+   margin-right: 2px;
 }
 
 .search-input-right::-webkit-input-placeholder { 
     font-family: FontAwesome;
 }
-.tab-menus a:hover,a:active
-{
-    border-top:none !important;
-    border-right:none !important;
-    border-left:none !important;
-    border-bottom: 2px solid#0392cf;
-    border-radius: unset;
-    color:#0392cf;
- } 
- 
-ul
-{
-    margin-block-start: unset !important;
-    margin-block-end: unset !important;
-    margin-inline-start: unset !important;
-    margin-inline-end: unset !important;
-    padding-inline-start: unset !important;
 
-}
 .order-table
 {
     margin-top:20px;
@@ -108,9 +65,7 @@ ul
 .rone 
 {
     background-color: #b6a1bb;
-    /* background-color: #a3bfd0b8; */
     padding-top: 25px;
-    /* border-radius: 8px 0px 0px 8px; */
     text-align: center;
     height: 80px;
     margin-left: 0px;
@@ -132,7 +87,6 @@ ul
   
 .fontsty h4
 {
-    /* color: #6E6E6E; */
     font-size:18px;
     margin-top: 2px;
     text-align: left;
@@ -141,7 +95,6 @@ ul
   
 .status-text
 {
-    /* color: #6E6E6E; */
     font-size: 16px;
     margin-top: 8px;
     text-align: left;
@@ -174,18 +127,13 @@ ul
     padding-left:0;
     padding-right:10px;
 }
-/* .react-datepicker-ignore-onclickoutside
-{
-    width:120px;
-    height:20px;
-} */
+
 .react-datepicker-wrapper,
 .react-datepicker__input-container,
 .react-datepicker__input-container input {
     display: block;
     width: 120px;
     height:25px;
-    /* border-left: 0mm !important; */
 }
 .form-label
 {

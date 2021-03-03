@@ -80,7 +80,7 @@ const MyOrders = (props) => {
     );
   return (
     <>
-    <input type="text" className="search-input-right p-1" placeholder="&#61442; search"></input>
+    <input type="text" className="search-input-right" placeholder="&#61442; Search"></input>
 
     <DataTable
       title={title}

@@ -13,7 +13,7 @@ class LeftSideBar extends React.Component {
             
                <a href="#!" className="menu_toggle"><i className="fa fa-angle-left"></i></a>
                <div className="navbar-brand">
-                  <a href="index.html"><img src="../../images/robot.png" alt="CD Automation" className="img-fluid logo"/><span>CD Automation</span></a>
+                  <a href="index.html"><img src="../../images/robot.png" alt="CD Automation" className="img-fluid logo"/><span>Get CDNOW</span></a>
                   <button type="button" className="btn-toggle-offcanvas btn btn-sm float-right"><i className="fa fa-close"></i></button>
                </div>
                <div className="slimScrollDiv">
@@ -36,7 +36,7 @@ class LeftSideBar extends React.Component {
                      </div>
                      <nav id="left-sidebar-nav" className="sidebar-nav">
                         <ul id="main-menu" className="metismenu animation-li-delay">
-                           <li className="header">CD Automation</li>
+                           <li className="header">Get CDNOW</li>
                            <li className=""><Link to={'/dashboard'} className="nav-link"><i className="fa fa-dashboard"></i> <span>Dashboard</span></Link></li>
                            <li className=""><Link to={'/orderentry'} className="nav-link"><i className="fa fa-external-link-square" aria-hidden="true"></i> <span>Order Entry</span></Link></li>
                            <li className=""><Link to={'/myorders'} className="nav-link"><i className="fa fa-list" aria-hidden="true"></i> <span>My Orders</span></Link></li>

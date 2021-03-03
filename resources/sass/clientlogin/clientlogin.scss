@@ -1,33 +1,4 @@
-// .clientlogin
-// {
-//     width:500px;
-//     height:1200px;
-//     //  background-image: url("/images/clogin.jpg");
-//     // background-color: rgb(84, 84, 170);
-//     background-size: 100%;
-//     position: absolute;
-//     left: 9px;
-//     background-repeat: no-repeat;
-   
-// }
 
-// #button {
-//     border-radius: 12px;
-//     background-color: white;
-//     color: black;
-//     border: 2px solid #4CAF50; /* Green */
-//   }
-// .card-align   
-// {
-// width: 500px;
-// position: absolute;
-// left: 5px;
-
-// }
-// .main-container.add-client
-// {
-//     box-shadow: 1px 1px 1px 1px #d6d5d5;
-// }
 .form-control
 {
     border-right: none !important;
@@ -91,41 +62,36 @@ input[type=text]:focus
 
 .c-status-text
 {
-    /* color: #6E6E6E; */
     font-size: 16px;
     margin-top: 8px;
     text-align: left;
     float:left;
-    // margin-left: 20px;
 }
 .fontst h4
 {
-    /* color: #6E6E6E; */
     font-size:18px;
     float: left;
     margin-top:10px;
     margin-left: 20px;
 }
-.c-search-input
-{
-    /* position: -webkit-sticky; */
-    position: absolute;
-   top:10.5em;
-   left:60em;
-   /* padding-top:2px; */
-   /* float:right !important; */
-   width: 150px;
-   border-top:none !important;
-   border-right:none !important;
-   border-left:none !important;
-   border-bottom:1px solid#797a7a59;
-   border-radius: unset;
-   background-color: #fafafa;
-   font-size: 14px;
-}
-.c-search-input:focus{
-    outline: none;
-}
-.c-search-input::-webkit-input-placeholder { 
-    font-family: FontAwesome;
-}
+// .c-search-input
+// {
+//     position: absolute;
+//    top:10.5em;
+//    left:60em;
+//    width: 150px;
+//    border-top:none !important;
+//    border-right:none !important;
+//    border-left:none !important;
+//    border-bottom:1px solid#797a7a59;
+//    border-radius: unset;
+//    background-color: #fafafa;
+//    font-size: 14px;
+// }
+// .c-search-input:focus{
+//     // outline: none;
+//     outline-color: blue;
+// }
+// .c-search-input::-webkit-input-placeholder { 
+//     font-family: FontAwesome;
+// }
