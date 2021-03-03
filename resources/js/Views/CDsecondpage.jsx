@@ -25,7 +25,7 @@ function CDsecondpage(props) {
                                <ul className="nav nav-tabs3">
                                <li className="nav-item" ><Link to={'/CDDetails'} className="nav-link">Page 1</Link></li>
                                    
-                                   <li className="nav-item" className="nav-link">Page 2</li>
+                                   <li className="nav-item"><a className="nav-link active" data-toggle="tab">Page 2</a></li>
                                    <li className="nav-item"><a className="nav-link" data-toggle="tab">Page 3</a></li>
                                    <li className="nav-item"><a className="nav-link" data-toggle="tab" href="#General">Page 4</a></li>
                                    <li className="nav-item"><a className="nav-link" data-toggle="tab" href="#General">Page 5</a></li>
