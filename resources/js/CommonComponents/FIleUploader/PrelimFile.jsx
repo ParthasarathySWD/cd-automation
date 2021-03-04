@@ -14,7 +14,7 @@ import {
 } from "./file-upload.styles";
 
 const KILO_BYTES_PER_BYTE = 1000;
-const DEFAULT_MAX_FILE_SIZE_IN_BYTES = 500000;
+const DEFAULT_MAX_FILE_SIZE_IN_BYTES = 500000000;
 
 const convertNestedObjectToArray = (nestedObj) =>
 Object.keys(nestedObj).map((key) => nestedObj[key]);
@@ -33,19 +33,22 @@ const PrelimUpload = ({
     const [files, setFiles] = useState({});
 
     const handleUploadBtnClick = () => {
-    fileInputField.current.click();
+        fileInputField.current.click();
     };
 
     const addNewFiles = (newFiles) => {
-    for (let file of newFiles) {
-        if (file.size <= maxFileSizeInBytes) {
-        if (!otherProps.multiple) {
-            return { file };
+        
+        for (let file of newFiles) {
+            if (file.size <= maxFileSizeInBytes) {
+
+                if (!otherProps.multiple) {
+                    return { file };
+                }
+                files[file.name] = file;
+            }
         }
-        files[file.name] = file;
-        }
-    }
-    return { ...files };
+        console.log(files)
+        return { ...files };
     };
 
     const callUpdateFilesCb = (files) => {
@@ -59,6 +62,7 @@ const PrelimUpload = ({
 
     const handleNewFileUpload = (e) => {
     const { files: newFiles } = e.target;
+    
     if (newFiles.length) {
         let updatedFiles = addNewFiles(newFiles);
         setFiles(updatedFiles);

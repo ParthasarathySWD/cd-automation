@@ -27,7 +27,7 @@ function FileDrop(props){
             {
               (props.doctype == "PrelimFile") ? 
                 <PrelimUpload
-                  accept=".pdf"
+                 
                   label=""
                   updateFilesCb={updateUploadedFiles}
                   DocumentTypes ={OrderDocumentTypes}
@@ -35,7 +35,7 @@ function FileDrop(props){
                 />
               :
                 <SupportUpload
-                  accept=".pdf"
+                 
                   label=""
                   multiple
                   updateFilesCb={updateUploadedFiles}

@@ -14,7 +14,7 @@ import {
 } from "./file-upload.styles";
 
 const KILO_BYTES_PER_BYTE = 1000;
-const DEFAULT_MAX_FILE_SIZE_IN_BYTES = 500000;
+const DEFAULT_MAX_FILE_SIZE_IN_BYTES = 500000000;
 
 const convertNestedObjectToArray = (nestedObj) =>
 Object.keys(nestedObj).map((key) => nestedObj[key]);
