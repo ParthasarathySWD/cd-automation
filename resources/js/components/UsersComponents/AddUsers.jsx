@@ -235,11 +235,6 @@ function AddUser(props){
                             </div>
                         </div>
                     </div>
-
-
-                    
-
-
 				 
 				<div className="row clearfix">
                     <div className="col-lg-12 col-md-12 col-sm-12">
@@ -247,16 +242,16 @@ function AddUser(props){
                             <div className="body">
                                 <div className="row clearfix">
                                     <div className="col-sm-6">
-                                        <div className="form-group c_form_group">
-                                            <label>First Name <span className="text-danger">*</span></label>
-                                            <input className="form-control" type="text" name="FirstName"  onChange={onChangeHandler} value={state.FirstName}/>
+                                        <div className="form-group">
+                                            <label>First Name <span className="text-danger">*</span></label><br/>
+                                            <input className="border" size="50" autoFocus="autofocus" type="text" name="FirstName"  onChange={onChangeHandler} value={state.FirstName}/>
                                             {state.errors["FirstName"] ? <span style={spanStyle}>{state.errors["FirstName"]}</span> : ""}
                                         </div>
                                     </div>
                                     <div className="col-sm-6">
-                                        <div className="form-group c_form_group">
-                                            <label>Last Name <span className="text-danger">*</span></label>
-                                            <input className="form-control" type="text" name="LastName" onChange={onChangeHandler} value={state.LastName}/>
+                                        <div className="form-group">
+                                            <label>Last Name <span className="text-danger">*</span></label><br/>
+                                            <input className="border" size="50" type="text" name="LastName" onChange={onChangeHandler} value={state.LastName}/>
                                             <span style={spanStyle}>{state.errors["LastName"]}</span>
                                         </div>
                                     </div>
@@ -264,45 +259,45 @@ function AddUser(props){
                                 <div className="row clearfix">
                                     
                                     <div className="col-sm-6">
-                                        <div className="form-group c_form_group">
-                                            <label>Phone <span className="text-danger">*</span></label>
-                                            <input className="form-control" type="text" name="PhoneNumber" onChange={onChangeHandler} value={state.PhoneNumber}/>
+                                        <div className="form-group">
+                                            <label>Phone <span className="text-danger">*</span></label><br/>
+                                            <input className="border" size="50" type="text" name="PhoneNumber" onChange={onChangeHandler} value={state.PhoneNumber}/>
                                             <span style={spanStyle}>{state.errors["PhoneNumber"]}</span>
                                         </div>
                                     </div>
                                     <div className="col-sm-6">
-                                        <div className="form-group c_form_group">
-                                            <label>Enter Your Email <span className="text-danger">*</span></label>
-                                            <input className="form-control" type="email" name="Email" onChange={onChangeHandler} value={state.Email}/>
+                                        <div className="form-group">
+                                            <label>Enter Your Email <span className="text-danger">*</span></label><br/>
+                                            <input className="border" size="50" type="email" name="Email" onChange={onChangeHandler} value={state.Email}/>
                                             <span style={spanStyle}>{state.errors["Email"]}</span>
                                         </div>
                                     </div>
             
                                     <div className="col-sm-6">
-                                        <div className="form-group c_form_group">
-                                            <label>User Name <span className="text-danger">*</span></label>
-                                            <input className="form-control" type="text" name="UserName" onChange={onChangeHandler} value={state.UserName}/>
+                                        <div className="form-group">
+                                            <label>User Name <span className="text-danger">*</span></label><br/>
+                                            <input className="border" size="50" type="text" name="UserName" onChange={onChangeHandler} value={state.UserName}/>
                                             <span style={spanStyle}>{state.errors["UserName"]}</span>
                                         </div>
                                     </div>
                                     <div className="col-sm-6">
-                                        <div className="form-group c_form_group">
-                                            <label>Password <span className="text-danger">*</span></label>
-                                            <input className="form-control" type="password" name="Password" onChange={onChangeHandler} value={state.Password}/>
+                                        <div className="form-group">
+                                            <label>Password <span className="text-danger">*</span></label><br/>
+                                            <input className="border" size="50" type="password" name="Password" onChange={onChangeHandler} value={state.Password}/>
                                             <span style={spanStyle}>{state.errors["Password"]}</span>
                                         </div>
                                     </div>
                                     <div className="col-sm-6">
-                                        <div className="form-group c_form_group">
-                                            <label>Confirm Password <span className="text-danger">*</span></label>
-                                            <input className="form-control" type="password" name="ConfirmPassword" onChange={onChangeHandler} value={state.ConfirmPassword} />
+                                        <div className="form-group">
+                                            <label>Confirm Password <span className="text-danger">*</span></label><br/>
+                                            <input className="border" size="50" type="password" name="ConfirmPassword" onChange={onChangeHandler} value={state.ConfirmPassword} />
                                             <span style={spanStyle}>{state.errors["ConfirmPassword"]}</span>
                                         </div>
                                     </div>
                                     <div className="col-sm-6">
-                                        <div className="form-group c_form_group">
-                                            <label>RoleUID <span className="text-danger">*</span></label>
-                                            <select name="RoleUID" id="" className="form-control show-tick" onChange={onChangeHandler} >
+                                        <div className="form-group">
+                                            <label>RoleUID <span className="text-danger">*</span></label><br/>
+                                            <select name="RoleUID" id="" style={{width:'440px',height:'30px'}} className="border show-tick" onChange={onChangeHandler} >
                                                 <option value="">-Select-</option>
                                                 <option value="1">Admin</option>
                                                 <option value="2">Customer</option>
@@ -312,8 +307,8 @@ function AddUser(props){
                                         </div>
                                     </div>
                                     <div className="col-sm-12 align-right mt-3">
-                                        <button type="submit" className="btn btn-sm btn-primary" onClick={onClickHandler} >Submit</button>
-                                        <button type="submit" className="btn  btn-sm btn-danger" onClick={reset} >Cancel</button>
+                                        <button type="submit" className="btn btn-xs btn-primary mr-2" onClick={onClickHandler} >Submit</button>
+                                        <button type="submit" className="btn  btn-xs btn-danger" onClick={reset} >Cancel</button>
                                     </div>
                                 </div>
                             </div>

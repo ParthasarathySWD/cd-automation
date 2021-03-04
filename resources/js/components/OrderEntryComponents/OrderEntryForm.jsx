@@ -207,8 +207,8 @@ function OrderEntryForm() {
                                     <div className="row clearfix">
                                         <div className="col-sm-12">
                                             <div className="pull-right">
-                                                <button type="submit" className="btn btn-sm btn-primary" >Submit</button>
-                                                <button type="submit" className="btn  btn-sm btn-danger">Cancel</button>
+                                                <button type="submit" className="btn btn-sm" >Submit</button>
+                                                <button type="submit" className="btn btn-sm">Cancel</button>
                                             </div>
                                         </div>
                                     </div>

@@ -98,13 +98,13 @@ function ClientList()
 
     return(
 
-        <div className="main-container clearfix">
+        <div className="main-container clearfix" >
 
               <div className="myorder-header">
                   <h5>Clients List</h5>
               </div> 
 
-              <div className="child-container status-container">
+              <div className="child-container status-container" >
 
                   {/* client page widget cards */}
                   <div className="row mb-2 c-status-row">
@@ -152,7 +152,7 @@ function ClientList()
                   </div>
               </div>
 
-              <div className="child-container first-child">
+              <div className="child-container first-child" style={{marginTop:'20px'}}>
                   <div className="tabs" style={{height:'25px'}}>
                       <div className="tab-menus">
                           <h4 className="p-2">Clients List</h4>

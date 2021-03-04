@@ -222,32 +222,25 @@ function AddClient(){
                             <div className="body">
                                 <div className="row clearfix">
                                     <div className="col-sm-3">
-                                    <div className="form-group">
-                                     <label className="field-label" >Client Number<span className="text-danger">*</span></label>
-                                     <input type="text" name="ClientNumber" className="form-control" autoFocus="autofocus" value={state.ClientNumber} onChange={onChangeHandler}/>
-                                     <span style={spanStyle}>{state.errors["ClientNumber"]}</span>
-                                 </div>
+                                        <div className="form-group">
+                                            <label className="field-label" >Client Number<span className="text-danger">*</span></label>
+                                            <input type="text" name="ClientNumber" className="border" autoFocus="autofocus" value={state.ClientNumber} onChange={onChangeHandler}/>
+                                            <span style={spanStyle}>{state.errors["ClientNumber"]}</span>
+                                        </div>
                                     </div>
                                     <div className="col-sm-3">
                                        
                                         <div className="form-group">
                                             <label className="field-label" >Client Name<span className="text-danger">*</span></label>
-                                            <input type="text" name="ClientName" className="form-control" value={state.ClientName} onChange={onChangeHandler}/>
+                                            <input type="text" name="ClientName" className="border" value={state.ClientName} onChange={onChangeHandler}/>
                                             <span style={spanStyle}>{state.errors["ClientName"]}</span>
                                         </div>
                                     </div>
                                 
-                                
-                                    {/* <div className="col-sm-6">
-                                        <div className="form-group c_form_group">
-                                            <label>Date of Birth <span className="text-danger">*</span><span className="text-danger">*</span></label>
-                                            <input type="text" data-provide="datepicker" data-date-autoclose="true" className="form-control" placeholder=""/>
-                                        </div>
-                                    </div> */}
                                     <div className="col-sm-3">
                                         <div className="form-group">
                                         <label className="field-label" >Phone<span className="text-danger">*</span></label>
-                                        <input type="text" name="Phone" className="form-control" value={state.Phone} onChange={onChangeHandler}/>
+                                        <input type="text" name="Phone" className="border" value={state.Phone} onChange={onChangeHandler}/>
                                         <span style={spanStyle}>{state.errors["Phone"]}</span>
                                         </div>
                                     </div>
@@ -255,57 +248,49 @@ function AddClient(){
                                         <div className="form-grouo">
                                             
                                         <label className="field-label" >Email<span className="text-danger">*</span></label>
-                                        <input type="email" name="Email" className="form-control" value={state.Email} onChange={onChangeHandler}/>
+                                        <input type="email" name="Email" className="border" value={state.Email} onChange={onChangeHandler}/>
                                         <span style={spanStyle}>{state.errors["Email"]}</span>
                                         </div>
                                     </div>
                                     
-                                    {/* <div className="col-lg-12">
-                                        <input type="file" className="dropify"/>
-                                    </div>
-                                    <div className="col-sm-12">
-                                        <div className="form-group mt-3">
-                                            <textarea rows="4" className="form-control no-resize" placeholder="Please type what you want..."></textarea>
-                                        </div>
-                                    </div> */}
                                     <div className="col-sm-3">
                                         <div className="form-group">
                                         <label className="field-label" >Address Line1<span className="text-danger">*</span></label>
-                                        <input type="text" name="AddressLine1" className="form-control" value={state.AddressLine1} onChange={onChangeHandler}/>
+                                        <input type="text" name="AddressLine1" className="border" value={state.AddressLine1} onChange={onChangeHandler}/>
                                         <span style={spanStyle}>{state.errors["AddressLine1"]}</span>
                                         </div>
                                     </div>
                                     <div className="col-sm-3">
                                         <div className="form-group">
-                                        <label className="field-label" >City<span className="text-danger">*</span></label>
-                                        <input type="text" name="CityName" className="form-control" value={state.CityName} onChange={onChangeHandler}/>
+                                        <label className="field-label" >City<span className="text-danger">*</span></label><br/>
+                                        <input type="text" name="CityName" className="border" value={state.CityName} onChange={onChangeHandler}/>
                                         <span style={spanStyle}>{state.errors["CityName"]}</span>
                                         </div>
                                     </div>
                                     <div className="col-sm-3">
                                         <div className="form-group">
                                         <label className="field-label">County<span className="text-danger">*</span></label>
-                                        <input type="text" name="CountyName" className="form-control" value={state.CountyName} onChange={onChangeHandler}/>
+                                        <input type="text" name="CountyName" className="border" value={state.CountyName} onChange={onChangeHandler}/>
                                         <span style={spanStyle}>{state.errors["CountyName"]}</span>
                                         </div>
                                     </div>
                                     <div className="col-sm-3">
                                         <div className="form-group">
                                         <label className="field-label">State<span className="text-danger">*</span></label>
-                                        <input type="text" name="StateName" className="form-control" value={state.StateName} onChange={onChangeHandler}/>
+                                        <input type="text" name="StateName" className="border" value={state.StateName} onChange={onChangeHandler}/>
                                         <span style={spanStyle}>{state.errors["StateName"]}</span>
                                         </div>
                                     </div>
                                     <div className="col-sm-12">
                                         <div className="form-group">
-                                        <label className="field-label" >Notes<span className="text-danger">*</span></label>
-                                        <input type="textarea" name="Notes" className="form-control text-area" value={state.Notes} onChange={onChangeHandler}/>
+                                        <label className="field-label" >Notes<span className="text-danger">*</span></label><br/>
+                                        <textarea name="Notes" rows="1" cols="115" className="border text-area" value={state.Notes} onChange={onChangeHandler}></textarea>
                                         <span style={spanStyle}>{state.errors["Notes"]}</span>
                                         </div>
                                     </div>
                                     <div className="col-sm-12 align-right">
-                                        <button type="submit" className="btn btn-sm btn-primary" onClick={onClickHandler} >Submit</button>
-                                        <button type="submit" className="btn  btn-sm btn-danger" onClick={reset} >Cancel</button>
+                                        <button type="submit" className="btn btn-xs btn-primary mr-2" onClick={onClickHandler} >SUBMIT</button>
+                                        <button type="submit" className="btn btn-xs btn-danger mr-4" onClick={reset} >CANCEL</button>
                                     </div>
                                 </div>
                             </div>

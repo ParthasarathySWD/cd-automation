@@ -1,9 +1,11 @@
 import react from 'react';
 import axios from 'axios';
 import {useState, useEffect } from 'react';
+import { BrowserRouter as Router, Switch, Route, Link, useHistory } from 'react-router-dom';
 
 function ViewClient(props){
-
+    
+    const history = useHistory();
     const id = props.match.params.id;
     console.log(id);
     const [state, setState] = useState({

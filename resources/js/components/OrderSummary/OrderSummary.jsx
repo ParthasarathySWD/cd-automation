@@ -46,7 +46,7 @@ function OrderSummary(props) {
                                             <div className="header">
                                                 <div className="has-search-form has-search">
                                                     <span className="fa fa-search form-control-feedback"></span>
-                                                    <input type="text" id="search" className="border rounded pull-right" placeholder="Search" />
+                                                    <input type="text" id="search" className="border rounded pull-right p-1" placeholder="Search" />
                                                 </div>
                                                 {/* <input className="border rounded pull-right" type="search" name="search" id="search" placeholder="&#61442; Search"/> */}
                                             </div>

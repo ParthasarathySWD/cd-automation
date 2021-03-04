@@ -1,17 +1,7 @@
 
-.form-control
-{
-    border-right: none !important;
-    border-left:none !important;
-    border-top:none !important;
-    border-color: #a9a9a95e;
-    caret-color: darkgray;
-    color:darkslategray;  
-
-}
 input[type=text]:focus
 {
-    border-color: darkgray;
+    // border-color: darkgray;
     color:darkslategray;
 }
 .text-area:focus{
@@ -73,6 +63,15 @@ input[type=text]:focus
     float: left;
     margin-top:10px;
     margin-left: 20px;
+}
+.border:focus{
+    // outline-color: #73b440;
+    // box-shadow: 0 1px 1px rgba(0, 0, 0, 0.075) inset, 0 0 6px #73b440;
+    box-shadow: 0 0 5px #73b440;
+    // padding: 3px 0px 3px 3px;
+    // margin: 5px 1px 3px 0px;
+    border: 1px solid #73b440;
+    outline: 0 none;
 }
 // .c-search-input
 // {

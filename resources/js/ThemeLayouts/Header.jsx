@@ -14,14 +14,17 @@ function Header(props) {
                   <a href="index.html"><img src="../../images/icon.svg" alt="Mooli Logo" className="img-fluid logo"/></a>
                   <button type="button" className="btn-toggle-offcanvas"><i className="fa fa-align-left"></i></button>
                </div>
-               <form id="navbar-search" className="navbar-form search-form">
-                  <button type="button" className="btn btn-default"><i className="icon-magnifier"></i></button>
-                  <input className="form-control" placeholder="Search here..." type="text"/>
-               </form>
+              
             </div>
             <div className="navbar-right">
                <div id="navbar-menu">
                   <ul className="nav navbar-nav">
+                     <li>
+                        <div id="navbar-search" className="has-search-form has-search" >
+                              <span className="fa fa-search form-control-feedback" style={{position:'absolute',paddingLeft:'30px'}}></span>
+                              <input type="text" id="search" className="border rounded pull-right" placeholder="Search"/>
+                        </div>
+                     </li>
                      <li className="dropdown">
                         <a href="#!" className="dropdown-toggle icon-menu" data-toggle="dropdown">
                            <i className="fa fa-bell-o"></i>

@@ -283,76 +283,49 @@ function EditUser(props){
                             <div className="body">
                                 <div className="row clearfix">
                                     <div className="col-sm-6">
-                                        <div className="form-group c_form_group">
-                                            <label>First Name <span className="text-danger">*</span></label>
-                                            <input className="form-control" type="text" name="FirstName"  onChange={onChangeHandler} value={state.FirstName}/>
+                                        <div className="form-group">
+                                            <label>First Name <span className="text-danger">*</span></label><br/>
+                                            <input className="border" size="50" type="text" name="FirstName"  onChange={onChangeHandler} value={state.FirstName}/>
                                             {state.errors["FirstName"] ? <span style={spanStyle}>{state.errors["FirstName"]}</span> : ""}
                                         </div>
                                     </div>
                                     <div className="col-sm-6">
-                                        <div className="form-group c_form_group">
-                                            <label>Last Name <span className="text-danger">*</span></label>
-                                            <input className="form-control" type="text" name="LastName" onChange={onChangeHandler} value={state.LastName}/>
+                                        <div className="form-group">
+                                            <label>Last Name <span className="text-danger">*</span></label><br/>
+                                            <input className="border" size="50" type="text" name="LastName" onChange={onChangeHandler} value={state.LastName}/>
                                             <span style={spanStyle}>{state.errors["LastName"]}</span>
                                         </div>
                                     </div>
                                 </div>
                                 <div className="row clearfix">
-                                    {/* <div className="col-sm-6">
-                                        <div className="form-group c_form_group">
-                                            <label>Date of Birth <span className="text-danger">*</span></label>
-                                            <input type="text" data-provide="datepicker" data-date-autoclose="true" className="form-control" placeholder=""/>
-                                        </div>
-                                    </div> */}
                                     <div className="col-sm-6">
-                                        <div className="form-group c_form_group">
-                                            <label>Phone <span className="text-danger">*</span></label>
-                                            <input className="form-control" type="text" name="PhoneNumber" onChange={onChangeHandler} value={state.PhoneNumber}/>
+                                        <div className="form-group">
+                                            <label>Phone <span className="text-danger">*</span></label><br/>
+                                            <input className="border" size="50" type="text" name="PhoneNumber" onChange={onChangeHandler} value={state.PhoneNumber}/>
                                             <span style={spanStyle}>{state.errors["PhoneNumber"]}</span>
                                         </div>
                                     </div>
                                     <div className="col-sm-6">
-                                        <div className="form-group c_form_group">
-                                            <label>Enter Your Email <span className="text-danger">*</span></label>
-                                            <input className="form-control" type="email" name="Email" onChange={onChangeHandler} value={state.Email}/>
+                                        <div className="form-group">
+                                            <label>Enter Your Email <span className="text-danger">*</span></label><br/>
+                                            <input className="border" size="50" type="email" name="Email" onChange={onChangeHandler} value={state.Email}/>
                                             <span style={spanStyle}>{state.errors["Email"]}</span>
                                         </div>
                                     </div>
                                     
-                                    {/* <div className="col-lg-12">
-                                        <input type="file" className="dropify"/>
-                                    </div>
-                                    <div className="col-sm-12">
-                                        <div className="form-group mt-3">
-                                            <textarea rows="4" className="form-control no-resize" placeholder="Please type what you want..."></textarea>
-                                        </div>
-                                    </div> */}
                                     <div className="col-sm-6">
-                                        <div className="form-group c_form_group">
-                                            <label>User Name <span className="text-danger">*</span></label>
-                                            <input className="form-control" type="text" name="UserName" onChange={onChangeHandler} value={state.UserName}/>
+                                        <div className="form-group">
+                                            <label>User Name <span className="text-danger">*</span></label><br/>
+                                            <input className="border" size="50" type="text" name="UserName" onChange={onChangeHandler} value={state.UserName}/>
                                             <span style={spanStyle}>{state.errors["UserName"]}</span>
                                         </div>
                                     </div>
-                                    {/* <div className="col-sm-6">
-                                        <div className="form-group c_form_group">
-                                            <label>Password <span className="text-danger">*</span></label>
-                                            <input className="form-control" type="password" name="Password" onChange={onChangeHandler} value={state.Password}/>
-                                            <span style={spanStyle}>{state.errors["Password"]}</span>
-                                        </div>
-                                    </div>
+                                    
                                     <div className="col-sm-6">
-                                        <div className="form-group c_form_group">
-                                            <label>Confirm Password <span className="text-danger">*</span></label>
-                                            <input className="form-control" type="password" name="ConfirmPassword" onChange={onChangeHandler} value={state.ConfirmPassword} />
-                                            <span style={spanStyle}>{state.errors["ConfirmPassword"]}</span>
-                                        </div>
-                                    </div> */}
-                                    <div className="col-sm-6">
-                                        <div className="form-group c_form_group">
-                                            <label>RoleUID <span className="text-danger">*</span></label>
+                                        <div className="form-group">
+                                            <label>RoleUID <span className="text-danger">*</span></label><br/>
                                             
-                                                <select name="RoleUID" id="RoleUID" className="form-control show-tick" onChange={onChangeHandler} >
+                                                <select name="RoleUID" id="RoleUID" className="border show-tick" onChange={onChangeHandler} style={{width:'440px',height:'30px'}}>
                                                     <option  value="">-Select-</option>
                                                     {RoleOption}                                                    
                                                 </select>
@@ -361,10 +334,9 @@ function EditUser(props){
                                         </div>
                                     </div>
                                     <div className="col-sm-6">
-                                        <div className="form-group c_form_group">
-                                            <label>Status <span className="text-danger">*</span></label>
-                                            {/* <input className="form-control" type="password" name="ConfirmPassword" onChange={onChangeHandler} value={state.ConfirmPassword} /> */}
-                                            {/* <input type="checkbox" name="Active" class="custom-control-input" onChange={onChangeHandler} value={(state.Active == 1) ? 0 : 1} checked={(state.Active == 1) ? true : false}/> */}
+                                        <div className="form-group">
+                                            <label>Status <span className="text-danger">*</span></label><br/>
+                                
                                             <div class="custom-control custom-switch">
                                                 <input type="checkbox" class="custom-control-input" id='{row.UserUID}' name="Active" onChange={onChangeHandler} value={(state.Active == 1) ? 0 : 1} checked={(state.Active == 1) ? true : false}/>
                                                 <label class="custom-control-label mt-0" htmlFor='{row.UserUID}'></label>
@@ -372,95 +344,15 @@ function EditUser(props){
                                         </div>
                                     </div>
                                     <div className="col-sm-12 align-right mt-3">
-                                        <button type="submit" className="btn btn-sm btn-primary" onClick={onClickHandler} >Submit</button>
-                                        <button type="submit" className="btn  btn-sm btn-danger" onClick={reset} >Cancel</button>
+                                        <button type="submit" className="btn btn-xs btn-primary" onClick={onClickHandler} >Submit</button>
+                                        <button type="submit" className="btn  btn-xs btn-danger" onClick={reset} >Cancel</button>
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
-                {/* <div className="row clearfix">
-                    <div className="col-md-12">
-                        <div className="card">
-                            <div className="header">
-                                <h3>Account Information</h3>
-                            </div>
-                            <div className="body">
-                                <div className="row clearfix">
-                                    
-                                    
-                                    
-                                    <div className="col-sm-12">
-                                        <button type="submit" className="btn btn-sm btn-primary">Submit</button>
-                                        <button type="submit" className="btn  btn-sm btn-danger">Cancel</button>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div> */}
-                {/* <div className="row clearfix">
-                    <div className="col-md-12">
-                        <div className="card">
-                            <div className="header">
-                                <h3>Doctor Social Media Info</h3>
-                            </div>
-                            <div className="body">
-                                <div className="row clearfix">
-                                    <div className="col-md-6">
-                                        <div className="form-group c_form_group">
-                                            <label>Facebook</label>
-                                            <div className="input-group">
-                                                <div className="input-group-prepend">
-                                                    <span className="input-group-text"><i className="fa fa-facebook"></i></span>
-                                                </div>
-                                                <input type="text" className="form-control" placeholder=""/>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div className="col-md-6">
-                                        <div className="form-group c_form_group">
-                                            <label>Twitter</label>
-                                            <div className="input-group">
-                                                <div className="input-group-prepend">
-                                                    <span className="input-group-text"><i className="fa fa-twitter"></i></span>
-                                                </div>
-                                                <input type="text" className="form-control" placeholder=""/>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div className="col-md-6">
-                                        <div className="form-group c_form_group">
-                                            <label>Linkedin</label>
-                                            <div className="input-group">
-                                                <div className="input-group-prepend">
-                                                    <span className="input-group-text"><i className="fa fa-linkedin"></i></span>
-                                                </div>
-                                                <input type="text" className="form-control" placeholder=""/>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div className="col-md-6">
-                                        <div className="form-group c_form_group">
-                                            <label>Instagram</label>
-                                            <div className="input-group">
-                                                <div className="input-group-prepend">
-                                                    <span className="input-group-text"><i className="fa fa-instagram"></i></span>
-                                                </div>
-                                                <input type="text" className="form-control" placeholder=""/>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div className="col-sm-12">
-                                        <button type="submit" className="btn btn-sm btn-primary">Submit</button>
-                                        <button type="submit" className="btn  btn-sm btn-danger">Cancel</button>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div> */}
+
 			</div>
 		);
 }

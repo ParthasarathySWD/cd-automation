@@ -1,35 +1,22 @@
 import React, { Component } from 'react';
 import Charts from './Charts';
+
 class Dashboard extends Component {
     render() {
         return (
             <div>
                 <section>
-                
-                        
-                        {/* <div className="row clearfix text-center">
-                                <div className="col"></div>
-                                    <div className="col">
-                                        <div className="col-xl-6 col-md-5 mt-3 col-sm-12">
-                                            <div className="card">
-                                                <span>Total count - 40</span>
-                                            </div>
-                                        </div>
-                                </div>
-
-                        </div> */}
-
                             <div className="row clearfix loanOrder">
                                 
                                 <div className="col-lg-3 col-md-6 col-sm-12">
                                     <div className="card todayOrder">
                                         <div className="body">
-                                            <div className="row clearfix">
-                                                <div className="col-12">
-                                                    <h5 className="mb-0">Today’s Order</h5>
-                                                    <p className="info">0</p>
+                                            {/* <div className="row clearfix"> */}
+                                                <div className="col-12 card-content">
+                                                    <h5 className="card-head">Today’s Order</h5>
+                                                    <p className="card-info pt-20">0</p>
                                                 </div>
-                                            </div>
+                                            {/* </div> */}
                                         </div>
                                     </div>
                                 </div>
@@ -38,9 +25,9 @@ class Dashboard extends Component {
                                     <div className="card openOrder">
                                         <div className="body">
                                             <div className="row clearfix">
-                                                <div className="col-12">
-                                                    <h5 className="mb-0">Open</h5>
-                                                    <p className="info">12</p>
+                                                <div className="col-12 card-content">
+                                                    <h5 className="card-head">Open</h5>
+                                                    <p className="card-info pt-20">12</p>
                                                 </div>
                                             </div>
                                         </div>
@@ -51,9 +38,9 @@ class Dashboard extends Component {
                                     <div className="card pendingOrder">
                                         <div className="body">
                                             <div className="row clearfix">
-                                                <div className="col-12">
-                                                    <h5 className="mb-0">In-Progress</h5>
-                                                    <p className="info">23</p>
+                                                <div className="col-12 card-content">
+                                                    <h5 className="card-head">In-Progress</h5>
+                                                    <p className="card-info pt-20">23</p>
                                                 </div>
                                             </div>
                                         </div>
@@ -64,9 +51,9 @@ class Dashboard extends Component {
                                     <div className="card closedOrder">
                                         <div className="body">
                                             <div className="row clearfix">
-                                                <div className="col-12">
-                                                    <h5 className="mb-0">Closed</h5>
-                                                    <p className="info">5</p>
+                                                <div className="col-12 card-content">
+                                                    <h5 className="card-head">Closed</h5>
+                                                    <p className="card-info pt-20">5</p>
                                                 </div>
                                             </div>
                                         </div>
