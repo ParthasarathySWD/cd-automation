@@ -103,7 +103,6 @@ const PrelimUpload = ({
                         ref={fileInputField}
                         onChange={handleNewFileUpload}
                         title=""
-                        name={uploadType}
                         {...otherProps}
                     />
                 </div>

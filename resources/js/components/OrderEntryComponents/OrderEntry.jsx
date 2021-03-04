@@ -18,45 +18,19 @@ const SwalAlert = withReactContent(Swal)
 
 function OrderEntry() {
 
-    const [files, setFiles] = useState([]);
-    const [types, setTypes] = useState([]);
+    const [prelimFile, setPrelimFile] = useState([]);
+    const [prelimDocType, setprelimDocType] = useState(1);
+
+    const [supportFile, setSupportFile] = useState([]);
+    const [supportDocType, setsupportDocType] = useState([]);
+
     const { addToast } = useToasts();
     let history = useHistory();
-
-    const [isStepOne, setStepOne] = useState(true);
-    const [isStepTow, setStepTow] = useState(true);
     const [loannumber, setLoanNumber] = useState("");
-
-    function IsStepOneDisable() {
-        setStepOne(false);
-    }
-    function IsStepOneEnable() {
-        setStepOne(true);
-    }
-
-    function IsStepTowDisable() {
-        setStepTow(false);
-    }
-    function IsStepTowEnable() {
-        setStepTow(true);
-    }
-
-    let setpOne = {
-        display:isStepOne ? 'block':'none'
-    };
-
-    let setpTwo = {
-        display:isStepTow ? 'block':'none'
-    }
-
+    
     const loanChange = (event) => {            
         if (event.target.value != '') {
-            IsStepOneDisable();   
-            IsStepTowDisable();
             setLoanNumber(event.target.value);         
-        } else{
-            IsStepOneEnable();
-            IsStepTowEnable()
         }
     }
 
@@ -71,14 +45,16 @@ function OrderEntry() {
         var formData = new FormData(event.target);
         console.log(formData);
 
-        // Object.keys(files).map((fileName, index) => {
-        //     let file = files[fileName];
-        //     if (index == 0) {
-        //         formData.append('PrelimFile', file);
-        //     } else {
-        //         formData.append('SupportingFile[]', file);
-        //     }
-        // });
+        Object.keys(prelimFile).map((fileName, index) => {
+            let file = prelimFile[fileName];
+            formData.append('PrelimFile', file);
+            // formData.append('DocumentTypeUID', prelimDocType);
+        });
+
+        Object.keys(supportFile).map((fileName, index) => {
+            let file = supportFile[fileName];
+            formData.append('SupportingFile[]', file);
+        });
 
         axios.post('orderentry', formData).then(response =>{
             console.log(response);
@@ -108,14 +84,19 @@ function OrderEntry() {
                           onClick: () => {                            
                             history.push('/myorders');
                           },
-                          className: 'btn btn-sm btn-outline-primary'
+                          className: 'btn btn-xs btn-outline-primary'
                         },
                         {
                           label: 'Stay Back',
-                          onClick: () => {                      
-                            history.push('/orderentry');
+                          onClick: () => {                     
+                                history.push('/orderentry');
+                                setPrelimFile([]);
+                                setprelimDocType(1);
+                                setSupportFile([]);
+                                setsupportDocType([]);
+                                setLoanNumber('');
                           },
-                          className: 'btn btn-sm btn-outline-success'
+                          className: 'btn btn-xs btn-outline-success'
                         }
                     ],
                     childrenElement: () => <div />,
@@ -178,7 +159,7 @@ function OrderEntry() {
                                         <div className="steps"></div>
                                         <div className="step-2">
                                             <h6>Step 2 : Uploading Your Prelim Document</h6>
-                                            <FileDrop setFiles={setFiles} setTypes={setTypes} doctype={'PrelimFile'}/>
+                                            <FileDrop setFiles={setPrelimFile} setTypes={setprelimDocType} doctype={'PrelimFile'}/>
                                         </div>
                                     </div>
                                 </div>
@@ -187,14 +168,14 @@ function OrderEntry() {
                                         <div className="steps"></div>
                                         <div className="step-3">
                                             <h6>Step 3 : Uploading Your Supporting Documents</h6>
-                                            <FileDrop setFiles={setFiles} setTypes={setTypes} doctype={'SupportingFile[]'}/>
+                                            <FileDrop setFiles={setSupportFile} setTypes={setsupportDocType} doctype={'SupportingFile[]'}/>
                                         </div>
                                     </div>
 
                                     <div className="col-sm-12">
                                         <div className="pull-right">
-                                            <button type="submit" className="btn btn-sm btn-success mr-2" >Save</button>
-                                            <button type="button" className="btn  btn-sm btn-danger">Cancel</button>
+                                            <button type="submit" className="btn btn-xs btn-primary mr-2" >Save</button>
+                                            <button type="button" className="btn  btn-xs btn-danger">Cancel</button>
                                         </div>
                                     </div>
                                 </div>                                

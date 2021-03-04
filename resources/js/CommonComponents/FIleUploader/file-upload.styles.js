@@ -181,13 +181,7 @@ export const PreviewContainer = styled.section `
   width: 100%;
   height: 60px;
   border-radius: 6px;
-  box-sizing: border-box;
-  &:hover {
-    opacity: 0.55;
-    ${FileMetaData} {
-      display: flex;
-    }
-  }
+  box-sizing: border-box; 
   & > div:first-of-type {
     height: 100%;
     position: relative;

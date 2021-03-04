@@ -103,7 +103,6 @@ const SupportUpload = ({
                         ref={fileInputField}
                         onChange={handleNewFileUpload}
                         title=""
-                        name={uploadType}
                         {...otherProps}
                     />
                 </div>

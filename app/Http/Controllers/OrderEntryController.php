@@ -112,7 +112,7 @@ class OrderEntryController extends Controller
                                 'DocumentName' => $NewFileName,
                                 'DocumentTypeUID' => $PrelimDocumentType,
                                 'FilePath' => $FilePath,
-                                'CreatedByUserUID' => $request->input('CreatedByUserUID'),
+                                'CreatedByUserUID' => $UserDetails['UserUID'],
                                 'CreatedByDateTime' => date('Y-m-d H:m:s')
                             ]);
 
@@ -167,7 +167,7 @@ class OrderEntryController extends Controller
                                         'DocumentName' => $NewFileName,
                                         'DocumentTypeUID' => $SupportDocumentType[$key],
                                         'FilePath' => $FilePath,
-                                        'CreatedByUserUID' => $request->input('CreatedByUserUID'),
+                                        'CreatedByUserUID' => $UserDetails['UserUID'],
                                         'CreatedByDateTime' => date('Y-m-d H:m:s')
                                     ]);
 
