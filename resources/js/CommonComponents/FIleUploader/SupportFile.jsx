@@ -119,7 +119,7 @@ const SupportUpload = ({
                                 <table className="table table-borderless table-sm text-sm upload-table">
                                     <tbody>
                                         <tr>
-                                            <td className="w-40px">1</td>                            
+                                            <td className="w-40px">{index+1}</td>                            
                                             <td className="w-25">
                                                 <select className="table-bold border form-control form-control-sm" name="DocumentTypeUID[]" id={file.name} onChange={DocTypeChange}>
                                                     <option>Select</option>

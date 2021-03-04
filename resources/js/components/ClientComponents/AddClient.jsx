@@ -5,6 +5,9 @@ import {useState, useEffect } from 'react'
 import { Router, Route, Link, browserHistory, IndexRoute } from 'react-router'
 // import {Form,FormLabel, FormGroup, FormControl, ControlLabel, Col, Button,Card} from 'react-bootstrap';
 
+import Select from '../../CommonComponents/ReactSelect/SelectBox';
+import { template } from 'lodash';
+
 function AddClient(){
 
     const spanStyle = {
@@ -196,6 +199,14 @@ function AddClient(){
 
         });
    };
+
+   const templateOptions = [
+        { value: '1', label: 'Closing Template'},
+        { value: '2', label: 'Mortage Template' },
+        { value: '3', label: 'Signing Template' }
+    ]
+
+    const selected = [{label: 'Closing Template', value: '1'}];
    
        
       return (
@@ -203,8 +214,7 @@ function AddClient(){
        <div className="main-container add-client">
 				<div className="block-header" id="headername">
 					<div className="row clearfix">
-                        <div className="col-lg-4 col-md-12 col-sm-12">
-                            <h1 className="Add">Add Client</h1>
+                        <div className="col-lg-4 col-md-12 col-sm-12">                            
                             <span></span>
                         </div>
                         <div className="col-lg-8 col-md-12 col-sm-12 text-lg-right">
@@ -219,6 +229,9 @@ function AddClient(){
 				<div className="row clearfix">
                     <div className="col-lg-12 col-md-12 col-sm-12">
                         <div className="card">
+                            <div className="card-title">
+                                <h6 className="Add">Add Client</h6>
+                            </div>
                             <div className="body">
                                 <div className="row clearfix">
                                     <div className="col-sm-3">
@@ -279,6 +292,12 @@ function AddClient(){
                                         <label className="field-label">State<span className="text-danger">*</span></label>
                                         <input type="text" name="StateName" className="border" value={state.StateName} onChange={onChangeHandler}/>
                                         <span style={spanStyle}>{state.errors["StateName"]}</span>
+                                        </div>
+                                    </div>
+                                    <div className="col-sm-3">
+                                        <div className="form-group">
+                                            <label className="field-label">State<span className="text-danger">*</span></label>
+                                            <Select options={templateOptions} selected={selected}/>
                                         </div>
                                     </div>
                                     <div className="col-sm-12">
