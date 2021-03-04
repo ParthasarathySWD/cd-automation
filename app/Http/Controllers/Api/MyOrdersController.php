@@ -58,8 +58,8 @@ class MyOrdersController extends Controller
             }
             if((!empty($startDate))&&(!empty($endDate)))
             {
-                $schema->where('tOrders.OrderEntryDate','>=',$startDate);
-                $schema->where('tOrders.OrderEntryDate','<=',$endDate);
+                $schema->whereDate('tOrders.OrderEntryDate','>=',$startDate);
+                $schema->whereDate('tOrders.OrderEntryDate','<=',$endDate);
             }
         
         $data = $schema->skip($rowCount * $page)->take($rowCount)->get();
