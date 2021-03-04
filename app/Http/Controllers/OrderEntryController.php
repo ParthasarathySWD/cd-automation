@@ -81,7 +81,7 @@ class OrderEntryController extends Controller
                 $InsertData = new OrderEntry([
                     'OrderNumber' => $OrderNumber['OrderNumber'],
                     'OrderEntryDate' => Carbon::now(),
-                    'LoanNumer' => $request->input('LoanNumer'),
+                    'LoanNumer' => $request->input('LoanNumber'),
                     'ClientUID' => $UserDetails['ClientUID'],
                     'StatusUID' => 1,
                     'CreatedByUserUID' => $UserDetails['UserUID'],

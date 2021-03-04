@@ -174,8 +174,8 @@ function OrderEntry() {
 
                                     <div className="col-sm-12">
                                         <div className="pull-right">
-                                            <button type="submit" className="btn btn-xs btn-primary mr-2" >SUBMIT</button>
-                                            <button type="button" className="btn  btn-xs btn-danger">CANCEL</button>
+                                            <button type="submit" className="btn btn-xs btn-primary mr-2" >Save</button>
+                                            <button type="button" className="btn  btn-xs btn-danger">Cancel</button>
                                         </div>
                                     </div>
                                 </div>                                
