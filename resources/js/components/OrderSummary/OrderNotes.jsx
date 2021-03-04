@@ -47,7 +47,7 @@ function OrderNotes(props) {
                                     <a href="#!" className="smily"><i className="fa fa-smile-o"></i></a>
                                     <span>Hi Aiden, how are you?<br />> How is the project coming along?</span>
                                 </div>
-                                <span className="data_time">10:12 AM, Today</span>
+                                <span className="data_time">10:12 AM</span>
                             </li>
                             <li className="left clearfix">
                                 <img className="user_pix" src="../../../images/user.png" alt="avatar"/>
@@ -58,7 +58,7 @@ function OrderNotes(props) {
                                     <i className="fa fa-file-word-o mr-2"></i> <span>finame12.doc</span>
                                     </div>
                                 </div>
-                                <span className="data_time">10:12 AM, Today</span>
+                                <span className="data_time">10:12 AM</span>
                             </li>
                             
                             {/* <li className="right clearfix">
@@ -100,8 +100,8 @@ function OrderNotes(props) {
                                 <textarea type="text" row="" className="form-control" placeholder="Enter text here..."></textarea>
                             </div>
                             <div className="m-1">
-                                <a href="javascript:void(0);" className="btn btn-sm btn-default hidden-xs"><i className="fa fa-paperclip"></i></a>
-                                <a href="javascript:void(0);" className="btn btn-sm btn-default pull-right"><i className="fa fa-paper-plane-o"></i></a>
+                                <a href="javascript:void(0);" className="btn btn-xs hidden-xs"><i className="fa fa-paperclip text-danger"></i></a>
+                                <a href="javascript:void(0);" className="btn btn-xs pull-right"><i className="fa fa-paper-plane-o text-primary"></i></a>
                                 {/* <a href="javascript:void(0);" className="btn btn-sm btn-default"><i className="fa fa-video-camera"></i></a>
                                 <a href="javascript:void(0);" className="btn btn-sm btn-default"><i className="fa fa-plus"></i></a> */}
                             </div>
