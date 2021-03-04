@@ -4,7 +4,7 @@ import axios from "axios";
 import DataTable from "react-data-table-component";
 import "react-data-table-component-extensions/dist/index.css";
 import { BrowserRouter as Router, Switch, Route, Link, useHistory } from 'react-router-dom';
-
+import Spinner from "../../CommonComponents/Spinner";
 // import "./styles.css";
 
 
@@ -97,6 +97,7 @@ const MyOrders = (props) => {
       selectableRows
       onSelectedRowsChange={({ selectedRows }) => console.log(selectedRows)}
       customStyles={customStyles}
+      LoadingComponent={Spinner}
     />
     </>
   );
