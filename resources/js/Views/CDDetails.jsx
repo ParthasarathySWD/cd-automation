@@ -1,21 +1,20 @@
-import React, {useState} from 'react';
+import React, {useState,Component} from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import store from '../store/store.js';
 import { useToasts } from 'react-toast-notifications';
 import auth from '../repository/auth';
 import Table from 'react-bootstrap/Table';
-import { SignIn, SignOut } from "../store/action";
-import { getAccessToken, setAccessToken, removeAccessToken, checkUserAuthentication } from "../store/localstorage";
-import { Link } from 'react-router-dom';
+import ContentEditable from 'react-contenteditable';
 import './CDDetails.css';
 import './CDsecondpage.jsx';
 import './CDthirdpage.jsx';
-import CDTab from './CDTab.jsx';
+import CDTab from './CDTab.jsx'; 
 function CDDetails(props) {
     
 
         return(
          <>
+
          <div className="row clearfix">
            <div className="col-lg-12 col-md-12 col-sm-12">
                            <div className="header mt-3 mb-3">
@@ -58,10 +57,10 @@ function CDDetails(props) {
                                     </tr>
                                     <tr>
                                         <td><label>Estimated Prop. Value </label> </td>
-                                        <td contentEditable><span className="change_input_field">$200,000  </span></td>
+                                       <td>$<span contentEditable> 200,000</span></td>
                                     </tr>
                                 </tbody>
-                            </table>
+                            </table>    
                         </div>
                     </div>
                     <div className="col-lg-4 col-md-4 col-sm-4">
@@ -123,13 +122,13 @@ function CDDetails(props) {
                                <table className="table table-sm loanterms-table">
                                 <tbody>
                                     <tr>
-                                        <td className="text-black"><h5>Loan Terms</h5></td>
+                                        <td><h5>Loan Terms</h5></td>
                                         <td></td>
                                         <td>Can this amount increase after closing?</td>
                                     </tr>
                                     <tr>
-                                        <td className="text-black">Loan Amount  </td>
-                                        <td contentEditable><span className="change_input_field">$182,998 </span>  </td>
+                                        <td className="text-black">Loan Amount</td>
+                                      <td >$<span contentEditable> 182,998</span></td>
                                         <td><select id="value">
                                         <option>YES</option>
                                         <option>NO</option>
@@ -146,7 +145,7 @@ function CDDetails(props) {
                                     <tr>
                                         <td className="text-black">Monthly Principal & Interest<br/><span className="small">See Projected Payments below for your
                                         Estimated Total Monthly Payment </span>  </td>
-                                        <td contentEditable><span className="change_input_field">$806.20</span></td>
+                                        <td >$<span contentEditable> 806.20</span></td>
                                         <td><select id="Value">
                                         <option>YES</option>
                                         <option>NO</option>
@@ -174,7 +173,7 @@ function CDDetails(props) {
                    </div>
                    <div className="col-12">
                    <div className="size">
-                   <div className="header mt-3 mb-3">
+                   <div >
                                <h5>Projected Payments</h5>
                            </div>
                    <Table >
@@ -188,8 +187,8 @@ function CDDetails(props) {
         <tbody>
         <tr>
                 <td className="data-heading">Principal & Interest </td>
-                <td contentEditable>$761.78 </td>
-                <td contentEditable>$761 .78</td>
+                <td>$<span contentEditable> 761.78</span></td>
+                <td>$<span contentEditable> 761 .78</span></td>
      </tr>
     <tr>
             <td className="data-heading">Mortgage Insurance </td>
@@ -203,8 +202,8 @@ function CDDetails(props) {
     </tr>
     <tr>
            <td className="data-heading">Estlmatod Total Monthly Payment </td>
-            <td contentEditable><span className="change_input_field">$1,050.26</span></td>
-            <td contentEditable> <span className="change_input_field">$967.91</span> </td>
+            <td >$<span className="change_input_field" contentEditable> 1,050.26</span></td>
+            <td>$<span className="change_input_field" contentEditable> 967.91</span> </td>
     </tr>
   </tbody>
 
@@ -212,8 +211,8 @@ function CDDetails(props) {
             <tr>
             <td className="data-heading"><label>Estimated Taxes, Insurance & Asessments <br/><span className="small">Amount can increase over time
                         See page4 for details </span></label></td>
-                <td contentEditable><span className="change_input_field">$356.13
-                       a month </span></td>
+                <td >$<span className="change_input_field" contentEditable> 356.13
+                        </span><p>a month</p></td>
                  
                 <td>
                 <tr className="data-heading">This estimate Includes</tr>
@@ -244,23 +243,24 @@ function CDDetails(props) {
     <tbody>
         <tr>
             <td className="data-heading">Closing Costs</td>
-            <td><p contentEditable>$9,712.10</p> <br/><span className="change_input_field">Includes $4,694.05 in Loan Costs+ $5,018.05 in Other Costs- $0
+            <td>$<span contentEditable> 9,712.10</span> <br/><span className="change_input_field">Includes $4,694.05 in Loan Costs+ $5,018.05 in Other Costs- $0
 in lender Credits. See page 2 for details.</span></td>
         </tr>
         <tr>
             <td className="data-heading">Cash to Close</td>
-            <td><p contentEditable> $14,147.26<br/></p><span className="change_input_field">Includes Closing Costs. See Calculating Cash to Close on page 3 for details. 
+            <td>$<span contentEditable> 14,147.26<br/></span><span className="change_input_field">Includes Closing Costs. See Calculating Cash to Close on page 3 for details. 
 </span></td>
         </tr>
     </tbody>
 </Table>
+<button className="edittable">Edit</button>
 </div>
 </div>
                    </div>
                 </div>
             </div>
         </div>
-    
+ 
       
         </>
         

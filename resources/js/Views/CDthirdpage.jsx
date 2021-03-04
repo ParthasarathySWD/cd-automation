@@ -41,8 +41,8 @@ function CDthirdpage(props) {
                                <tbody>
                                    <tr>
                                        <td>Total Closing Costs(J)</td>
-                                       <td contentEditable>$8,054.00</td>
-                                       <td contentEditable>$9,712,10</td>
+                                       <td>$<span contentEditable>8,054.00</span></td>
+                                       <td>$<span contentEditable>9,712,10</span></td>
                                        <td><select id="Value">
                                         <option>YES</option>
                                         <option>NO</option>
@@ -51,8 +51,8 @@ function CDthirdpage(props) {
                                    </tr>
                                    <tr>
                                        <td>Closing Costs Paid Before Closing</td>
-                                       <td contentEditable>$0</td>
-                                       <td contentEditable>-$29,90</td>
+                                       <td>$<span contentEditable> 0</span></td>
+                                       <td>$<span contentEditable> 29,90</span></td>
                                        <td><select id="Value">
                                         <option>YES</option>
                                         <option>NO</option>
@@ -62,8 +62,8 @@ function CDthirdpage(props) {
                                    <tr>
                                        <td>Closing Costs Financed <span className="change_input_field">(Paid fran your Loan Amount)
                                             </span></td>
-                                        <td contentEditable>$0</td>
-                                        <td contentEditable>$0</td>
+                                        <td>$<span contentEditable> 0</span></td>
+                                        <td>$<span contentEditable> 0</span></td>
                                         <td><select id="Value">
                                         <option>YES</option>
                                         <option>NO</option>
@@ -71,8 +71,8 @@ function CDthirdpage(props) {
                                     </tr>
                                     <tr>
                                         <td>Down Payment/Funds from Borrower</td>
-                                        <td contentEditable>$18,000.00 </td>
-                                        <td contentEditable>$18,000.00</td>
+                                        <td>$<span contentEditable> 18,000.00</span></td>
+                                        <td>$<span contentEditable> 18,000.00</span></td>
                                         <td><select id="Value">
                                         <option>YES</option>
                                         <option>NO</option>
@@ -80,8 +80,8 @@ function CDthirdpage(props) {
                                     </tr>
                                     <tr>
                                         <td>Deposit</td>
-                                        <td contentEditable>-$10,000.00</td>
-                                        <td contentEditable>-$10,000.00</td>
+                                        <td>$<span contentEditable> 10,000.00</span></td>
+                                        <td>$<span contentEditable> 10,000.00</span></td>
                                         <td><select id="Value">
                                         <option>YES</option>
                                         <option>NO</option>
@@ -89,8 +89,8 @@ function CDthirdpage(props) {
                                     </tr>
                                     <tr>
                                         <td>Funds for Borrower</td>
-                                        <td contentEditable>$0</td>
-                                        <td contentEditable>$0</td>
+                                        <td>$<span contentEditable> 0</span></td>
+                                        <td>$<span contentEditable> 0</span></td>
                                         <td><select id="Value">
                                         <option>YES</option>
                                         <option>NO</option>
@@ -98,8 +98,8 @@ function CDthirdpage(props) {
                                     </tr>
                                     <tr>
                                         <td>Seller Credits</td>
-                                        <td contentEditable>$0</td>
-                                        <td contentEditable>-$2,.500,00</td>
+                                        <td>$<span contentEditable> 0</span></td>
+                                        <td>$<span contentEditable> 2,500.00</span></td>
                                         <td><select id="Value">
                                         <option>YES</option>
                                         <option>NO</option>
@@ -108,8 +108,8 @@ function CDthirdpage(props) {
                                     </tr>
                                     <tr>
                                         <td>Adjustment and Other Credits</td>
-                                        <td contentEditable>$0</td>
-                                        <td contentEditable>-$1,035,04</td>
+                                        <td>$<span contentEditable> 0</span></td>
+                                        <td>$<span contentEditable> 1,035.04</span></td>
                                         <td><select id="Value">
                                         <option>YES</option>
                                         <option>NO</option>
@@ -118,8 +118,8 @@ function CDthirdpage(props) {
                                     </tr>
                                     <tr>
                                         <td>Cash to Close</td>
-                                        <td contentEditable>$16,054,00</td>
-                                        <td contentEditable>$14, 147,26</td>
+                                        <td>$<span contentEditable> 16,054,00</span></td>
+                                        <td>$<span contentEditable> 14, 147,26</span></td>
                                     </tr>
                                </tbody>
                            </Table>
@@ -134,20 +134,20 @@ function CDthirdpage(props) {
                                              <thead>
                                                <tr>
                                                    <th>K. Due fro in Borrower at Closing</th>
-                                                   <th contentEditable>$189,762.50</th>
+                                                   <th>$<span contentEditable> 189,762.50</span></th>
                                                    </tr> 
                                             </thead>
                                             <tbody>
                                                 <tr>
                                                     <td>Sale Price of Property</td>
-                                                    <td contentEditable>$180,000,00</td>
+                                                    <td>$<span contentEditable> 180,000,00</span></td>
                                                 </tr>
                                                 <tr>
                                                     <td>Sale Price of Any Personal I Property Included in Sale </td>
                                                 </tr>
                                                 <tr>
                                                     <td>Closing Costs Paid at Closing (J) </td>
-                                                    <td contentEditable>$9,682,30</td>
+                                                    <td>$<span contentEditable> 9,682,30</span></td>
                                                 </tr>
                                                 <tr>
                                                     <th>Adjustments</th>
@@ -181,7 +181,7 @@ function CDthirdpage(props) {
                                                 </tr>
                                                 <tr>
                                                 <td>HOA Dues 4/5/13 to 4/30/13</td>
-                                                <td contentEditable>$80.00</td>
+                                                <td>$<span contentEditable>80.00</span></td>
                                                 </tr>
                                             </tbody>
                                         </Table>
@@ -189,17 +189,17 @@ function CDthirdpage(props) {
                                             <thead>
                                                 <tr>
                                                     <td>L. Paid Already by or on Behalf of Borrower at Closing</td>
-                                                    <td contentEditable>$175,615.04</td>
+                                                    <td>$<span contentEditable> 175,615.04</span></td>
                                                 </tr>
                                             </thead>
                                             <tbody>
                                                 <tr>
                                                     <td>Deposit</td>
-                                                    <td contentEditable>$10,000,00 </td>
+                                                    <td>$<span contentEditable> 10,000,00 </span></td>
                                                 </tr>
                                                 <tr>
                                                     <td>LoanAmount</td>
-                                                    <td contentEditable>$162,000,00</td>
+                                                    <td>$<span contentEditable> 162,000,00</span></td>
                                                 </tr>
                                                 <tr>
                                                     <td> Existing loan(s) Assumed or Taken Subject to </td>
@@ -224,7 +224,7 @@ function CDthirdpage(props) {
                                                 </tr>
                                                 <tr>
                                                     <td>City/Town Taxes 1/1/13 to 4/ 14/ 13</td>
-                                                    <td contentEditable>$365.04</td>
+                                                    <td>$<span contentEditable> 365.04</span></td>
                                                 </tr>
                                                 <tr>
                                                     <td>CountyTaxes to</td>
@@ -239,15 +239,15 @@ function CDthirdpage(props) {
                                                 </tr>
                                                 <tr>
                                                     <td>Total Due from Borrower at Closing (k)</td>
-                                                    <td contentEditable>$189,762,30</td>
+                                                    <td>$<span contentEditable> 189,762,30</span></td>
                                                 </tr>
                                                 <tr>
                                                     <td>Total Paid Aleady by oron Behalf of Borrower at Closing (L)</td>
-                                                    <td contentEditable>-$175,615,04</td>
+                                                    <td>$<span contentEditable> 175,615,04</span></td>
                                                 </tr>
                                                 <tr>
                                                     <td>Cash to Close<input type="checkbox"/>From<input type="checkbox"/>To Borrower</td>
-                                                    <td contentEditable>$14,147.26</td>
+                                                    <td>$<span contentEditable> 14,147.26</span></td>
                                                 </tr>
                                             </tbody>
                                         </Table>
@@ -261,14 +261,14 @@ function CDthirdpage(props) {
                                             <thead>
                                                 <tr>
                                                     <th>M.Due to Seller at Closing</th>
-                                                    <th contentEditable>$180,080.00</th>
+                                                    <td>$<span contentEditable> 180,080.00</span></td>
                                                 </tr>
                                                 
                                             </thead>
                                             <tbody>
                                                 <tr>
                                                     <td>Sale Price of Property</td>
-                                                    <td contentEditable>$180,000,00 </td>
+                                                    <td>$<span contentEditable> 180,000,00</span></td>                                                   
                                                 </tr>
                                                 <tr>
                                                     <td>Sale Price of Any Personal Property Included in Sale</td>
@@ -295,7 +295,7 @@ function CDthirdpage(props) {
                                                 </tr>
                                                 <tr>
                                                     <td>HOA Dues 4/15/13 to 4/30/13</td>
-                                                    <td contentEditable>$80,00</td>
+                                                    <td>$<span contentEditable> 80,00</span></td>   
                                                 </tr>
                                             </tbody>
                                         </Table>
@@ -303,7 +303,7 @@ function CDthirdpage(props) {
                                             <thead>
                                                 <tr>
                                                     <th>N, Due from Seller at Closing</th>
-                                                    <th contentEditable>$1 15,665,04</th>
+                                                    <td>$<span contentEditable> 1,15,665.04</span></td>  
                                                 </tr>
                                             </thead>
                                             <tbody>
@@ -313,7 +313,7 @@ function CDthirdpage(props) {
                                                 </tr>
                                                 <tr>
                                                     <td>Closing Costs Paid at Closing (J)</td>
-                                                    <td contentEditable>$12,800.00</td>
+                                                    <td>$<span contentEditable> 12,800.00</span></td>  
                                                 </tr>
                                                 <tr>
                                                     <td>Existing loan(s) Assumed or Tak.en Subject to</td>
@@ -321,7 +321,7 @@ function CDthirdpage(props) {
                                                 </tr>
                                                 <tr>
                                                     <td>Payoff of First Mon gage Loan </td>
-                                                    <td contentEditable>$100,00000</td>
+                                                    <td>$<span contentEditable> 100,00000</span></td>   
                                                 </tr>
                                                 <tr>
                                                     <td> Payoff of Second Mortgage loan</td>
@@ -329,14 +329,14 @@ function CDthirdpage(props) {
                                                 </tr>
                                                 <tr>
                                                     <td>Seller Credit </td>
-                                                    <td contentEditable>$2,50000</td>
+                                                    <td>$<span contentEditable> 2,50000</span></td>     
                                                 </tr>
                                                 <tr>
                                                     <th>Adjustment for Items Unpaid by Seller</th>
                                                 </tr>
                                                 <tr>
                                                     <td>City/TownTaxes 1/1/13 to 4/4/13</td>
-                                                    <td contentEditable>$365.04</td>
+                                                    <td>$<span contentEditable> 365.04</span></td>     
                                                 </tr>
                                                 <tr>
                                                     <td> CountyTaxes to </td>
@@ -352,15 +352,15 @@ function CDthirdpage(props) {
                                                 </tr>
                                                 <tr>
                                                     <td>Total Due to Seller at Closing (M) </td>
-                                                    <td contentEditable>$180,09000</td>
+                                                    <td>$<span contentEditable> 180,09000</span></td>   
                                                 </tr>
                                                 <tr>
                                                     <td>Total Due from Seller at Oosing (N)</td>
-                                                    <td contentEditable>$115,665.04</td>
+                                                    <td>$<span contentEditable> 115,665.04</span></td> 
                                                 </tr>
                                                 <tr>
                                                     <td>Cash to Close<input type="checkbox"/>From<input type="checkbox"/>To Borrower</td>
-                                                    <td contentEditable>$64,414.96</td>
+                                                    <td>$<span contentEditable> 64,414.96</span></td> 
                                                 </tr>
                                             </tbody>
                                         </Table>

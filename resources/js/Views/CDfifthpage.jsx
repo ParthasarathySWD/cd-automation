@@ -36,22 +36,23 @@ function CDfifthpage(props) {
                                     <td><b>Total of Payments.</b><p>Total you will have paid after <br/>
                                         you make all payments of principal interest,<br/>
                                     mortgage insurance, and loan costs, as scheduled  </p></td>
-                                    <td contentEditable>$285,803.36</td>
+                                    <td>$<span contentEditable> 285,803.36</span></td>   
                                 </tr>
                                 <tr>
                                     <td><b>Finance Charge.</b><p> The dollar amount the loan will<br/>
                                         cost you. </p> </td>
-                                    <td contentEditable>$118,830.27</td>
+                                        <td>$<span contentEditable> 118,830.27</span></td>    
                                 </tr>
                                 <tr>
                                     <td><b>Amount Financed.</b><p> The loan amount available after<br/>
                                     paying your upfront finance charge. </p> </td>
-                                    <td contentEditable>$162,000.00</td>
+                                    <td>$<span contentEditable> 162,000.00</span></td>   
                                 </tr>
                                 <tr>
                                     <td><b>Annual Percent.age Rate (APR).</b><p> Your costs over<br/>
                                     the loan term expressed as a rate. This is not your<br/>
                                     interest rate,</p></td>
+                                    
                                         <td contentEditable>4.174%</td>
                                 </tr>
                                 <tr>

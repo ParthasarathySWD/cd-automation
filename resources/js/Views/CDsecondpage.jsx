@@ -53,7 +53,7 @@ function CDsecondpage(props) {
                                <tbody>
                             <tr>
                                 <th className="title">A.Orgination Charge</th> 
-                               <th className="title align-title" contentEditable>$1,802.00</th>
+                               <th className="title align-title">$<span contentEditable> 1,802.00</span></th>
                                 <td contentEditable></td>
                                 <td contentEditable></td>
                                 <td contentEditable></td>
@@ -61,7 +61,7 @@ function CDsecondpage(props) {
                             </tr>
                             <tr>
                                 <td> 0.25 % of loanAmount(Points.)</td>
-                                <td contentEditable>$405.00</td>
+                                <td >$<span contentEditable> 405.00</span></td>
                                 <td contentEditable></td>
                                 <td contentEditable></td>
                                 <td contentEditable></td>
@@ -69,7 +69,7 @@ function CDsecondpage(props) {
                             </tr>
                             <tr>
                                 <td> Application Fee </td>
-                                <td contentEditable>$300.00</td>
+                                <td >$<span contentEditable> 300.00</span></td>
                                 <td contentEditable></td>
                                 <td contentEditable></td>
                                 <td contentEditable></td>
@@ -77,7 +77,7 @@ function CDsecondpage(props) {
                             </tr>
                             <tr>
                                 <td> Underwriting Fee</td>
-                                <td contentEditable>$1,097.00</td>
+                                <td>$<span contentEditable> 1,097.00</span></td>
                                 <td contentEditable></td>
                                 <td contentEditable></td>
                                 <td contentEditable></td>
@@ -85,27 +85,27 @@ function CDsecondpage(props) {
                             </tr>
                            <tr>
                                  <th className="title">B.Service Borrower Did Not Shop For</th>
-                                  <th contentEditable className="title align-title">$236.55</th>
+                                  <th className="title align-title">$<span contentEditable> 236.55</span></th>
                                    </tr>
                                    <tr>
                                 <td> Appraisal Fee to John Smith Appraisers Inc. </td>
                                 <td contentEditable></td>
                                 <td contentEditable></td>
                                 <td contentEditable></td>
-                                <td contentEditable>$405,00</td>
+                                <td>$<span contentEditable> 405,00</span></td>
                                 <td contentEditable></td>
                                </tr>
                                <tr>
                                    <td>Credit Aepon Fee to Information Inc.</td>
                                    <td contentEditable></td>
-                                   <td contentEditable>$29,80</td>
+                                   <td>$<span contentEditable> 29,80</span></td>
                                    <td contentEditable></td>
                                    <td contentEditable></td>
                                    <td contentEditable></td>    
                                </tr>
                                <tr>
                                    <td> Flood Determination Fee to Info Co,</td>
-                                   <td contentEditable>$20,00</td>
+                                   <td>$<span contentEditable> 20,00</span></td>
                                    <td contentEditable></td>    
                                    <td contentEditable></td>    
                                    <td contentEditable></td>    
@@ -113,7 +113,7 @@ function CDsecondpage(props) {
                                </tr>
                                <tr>
                                    <td>Flood Monitoring Fee to Info Co. </td>
-                                   <td contentEditable>$31,75</td>
+                                   <td>$<span contentEditable> 31,75</span></td>
                                    <td contentEditable></td>    
                                    <td contentEditable></td>    
                                    <td contentEditable></td>    
@@ -121,7 +121,7 @@ function CDsecondpage(props) {
                                </tr>
                                <tr>
                                    <td>TaxMonitoring Fee</td>
-                                   <td contentEditable>$75,00</td>
+                                   <td>$<span contentEditable> 75,00</span></td>
                                    <td contentEditable></td>    
                                    <td contentEditable></td>    
                                    <td contentEditable></td>    
@@ -129,7 +129,7 @@ function CDsecondpage(props) {
                                </tr>
                                <tr>
                                    <td>Tax Status Agent Fee</td>
-                                   <td contentEditable>$80.00</td>
+                                   <td>$<span contentEditable> 80.00</span></td>
                                    <td contentEditable></td>    
                                    <td contentEditable></td>    
                                    <td contentEditable></td>    
@@ -138,12 +138,12 @@ function CDsecondpage(props) {
                                <tr>
 
                                 <th className="title">D. TOTAL LOAN COSTS (Borrower.Paid) </th>
-                                <th  className="title align-title" contentEditable>$4,694.05</th>
+                                <th  className="title align-title">$<span contentEditable> 4,694.05</span></th>
                                 </tr>
                                 <tr>
                                     <td>Loan Costs Subtotals (A+ B + c)</td>
-                                    <td contentEditable>$4,664,25 </td>
-                                    <td contentEditable>$29,80 </td>
+                                    <td>$<span contentEditable> 4,664,25</span></td>
+                                    <td>$<span contentEditable> 29,80</span></td>
                                     <td contentEditable></td>  
                                     <td contentEditable></td>  
                                     <td contentEditable></td>  
@@ -151,12 +151,12 @@ function CDsecondpage(props) {
                                 <div className="title">Other Costs </div>
                                 <tr>
                                 <th className="title">E. taxes and Other Governnment fees</th>
-                                <th className="title align-title" contentEditable>$85.00</th>
+                                <th className="title align-title">$<span contentEditable> 85.00</span></th>
 
                                 </tr>
                                 <tr>
                                     <td> Recording Fees Deed: $40,00 Mongage: $45,00 </td>
-                                    <td contentEditable>$85.00</td>
+                                    <td>$<span contentEditable> 85.00</span></td>
                                     <td contentEditable></td>  
                                     <td contentEditable></td>  
                                     <td contentEditable></td>  
@@ -166,17 +166,17 @@ function CDsecondpage(props) {
                                     <td> TransferTax  to state  </td>
                                     <td contentEditable></td>
                                     <td contentEditable></td>
-                                    <td contentEditable>$950.00 </td>
+                                    <td>$<span contentEditable> 950.00</span></td>
                                     <td contentEditable></td>  
                                     <td contentEditable></td>  
                                 </tr>
                                 <tr>
                                     <th className="title">F. Prepaids </th>
-                                    <th className="title align-title" contentEditable>$2,120.80</th>
+                                    <th className="title align-title">$<span contentEditable> 2,120.80</span></th>
                                 </tr>
                                 <tr>
                                     <td> Homeowner's Insurance Premium ( 12 mo) to Insurance Co, </td>
-                                    <td contentEditable>$1,209.96</td>
+                                    <td >$<span contentEditable> 1,209.96</span></td>
                                     <td contentEditable></td>  
                                     <td contentEditable></td>  
                                     <td contentEditable></td>  
@@ -192,7 +192,7 @@ function CDsecondpage(props) {
                                 </tr>
                                 <tr>
                                     <td>Prepaid Interest ($ 1744 per day form 4/15/13 to 5/1/13)</td>
-                                    <td contentEditable>$279,04 </td>
+                                    <td>$<span contentEditable> 279,04</span></td>
                                     <td contentEditable></td>  
                                     <td contentEditable></td>  
                                     <td contentEditable></td>  
@@ -200,7 +200,7 @@ function CDsecondpage(props) {
                                   </tr>
                                   <tr>
                                     <td>PropertyTaxes ( 6 mo) toAnyCounty USA </td>
-                                    <td contentEditable>$631.90 </td>
+                                    <td>$<span contentEditable> 631.90</span></td>
                                     <td contentEditable></td>  
                                     <td contentEditable></td>  
                                     <td contentEditable></td>  
@@ -208,11 +208,11 @@ function CDsecondpage(props) {
                                   </tr>
                                   <tr>
                                   <th className="title">G Initial Escrow Payment at Closing </th>
-                                    <th className="title align-title" contentEditable>$412.25</th>
+                                    <th className="title align-title">$<span contentEditable> 412.25</span></th>
                                   </tr>
                                   <tr>
                                       <td> Horneowner's Insurance S 100,83 per month for 2 mo, </td>
-                                      <td contentEditable>$201,66</td>
+                                      <td>$<span contentEditable> 201,66</span></td>
                                       <td contentEditable></td>  
                                       <td contentEditable></td>  
                                       <td contentEditable></td>  
@@ -224,7 +224,7 @@ function CDsecondpage(props) {
                                   </tr>
                                   <tr>
                                       <td>Property Taxes $105,30 per month for 2 mo,  </td>
-                                      <td contentEditable>$210,60</td>
+                                      <td>$<span contentEditable> 210,60</span></td>
                                       <td contentEditable></td>  
                                       <td contentEditable></td>  
                                       <td contentEditable></td>  
@@ -240,11 +240,11 @@ function CDsecondpage(props) {
                                   </tr>
                                   <tr>
                                       <th className="title">H. Other</th>
-                                      <th className="title align-title" contentEditable>$2,400.00 </th>
+                                      <th className="title align-title">$<span contentEditable>2,400.00</span></th>
                                   </tr>
                                     <tr>
                                    <td> HOA Capital Contribution to HOA Acre Inc</td>
-                                   <td contentEditable>$500,00</td>
+                                   <td>$<span contentEditable> 500,00</span></td>
                                    <td contentEditable></td>  
                                    <td contentEditable></td>  
                                    <td contentEditable></td>  
@@ -252,7 +252,7 @@ function CDsecondpage(props) {
                                     </tr>
                                     <tr>
                                    <td>HOA Processing Fee to HOA Acre Inc.</td>
-                                   <td contentEditable>$150,00 </td>
+                                   <td>$<span contentEditable> 150,00</span></td>
                                    <td contentEditable></td>  
                                    <td contentEditable></td>  
                                    <td contentEditable></td>  
@@ -261,17 +261,17 @@ function CDsecondpage(props) {
                                     </tr>
                                     <tr>
                                    <td>Home Inspection Fee to Engineers Inc. </td>
-                                   <td contentEditable>$750,00 </td>
+                                   <td>$<span contentEditable> 750,00</span></td>
                                    <td contentEditable></td>
                                    <td contentEditable></td>
-                                   <td contentEditable>$750,00</td>
+                                   <td>$<span contentEditable> 750,00</span></td>
                                    <td contentEditable></td>
                                     </tr>
                                     <tr>
                                    <td> Home Warranty Fee to XVZ Warranty Inc, </td>
                                    <td contentEditable></td>
                                    <td contentEditable></td>
-                                   <td contentEditable>$450.00</td>
+                                   <td>$<span contentEditable> 450.00</span></td>
                                    <td contentEditable></td>
                                    <td contentEditable></td>
                                     </tr>
@@ -279,7 +279,7 @@ function CDsecondpage(props) {
                                    <td>Real Estate Commision to Alpha Real Estate Broker</td>
                                    <td contentEditable></td>
                                    <td contentEditable></td>
-                                   <td contentEditable>$5,700.00</td>
+                                   <td>$<span contentEditable> 5,700.00</span></td>
                                    <td contentEditable></td>
                                    <td contentEditable></td>
                                     </tr>
@@ -287,13 +287,13 @@ function CDsecondpage(props) {
                                    <td>Real Estate Commisiion  to Omega Real Estate Broker </td>
                                    <td contentEditable></td>
                                    <td contentEditable></td>
-                                   <td contentEditable>$5,700.00</td>
+                                   <td>$<span contentEditable> 5,700.00</span></td>
                                    <td contentEditable></td>
                                    <td contentEditable></td>
                                     </tr>
                                     <tr>
                                    <td> Title-Owner's Title Insurance (optional) to Epiilon Title Co.</td>
-                                   <td contentEditable>$1,000,00 </td>
+                                   <td>$<span contentEditable> 1,000,00</span></td>
                                    <td contentEditable></td>
                                    <td contentEditable></td>
                                    <td contentEditable></td>
@@ -301,27 +301,27 @@ function CDsecondpage(props) {
                                     </tr>
                                     <tr>
                                         <th className="title">I TOTAL OTHER COSTS (Borrower-Paid) </th>
-                                        <th contentEditable className="title align-title">$5,018.05</th>
+                                        <th className="title align-title">$<span contentEditable>5,018.05</span></th>
                                     </tr>
                                     <tr>
-                                        <td >OtherCoihSubtotali (E + F + G + H) </td>
-                                        <td contentEditable>$5,018.05</td>
-                                        <td contentEditable></td>
+                                    <td>OtherCoihSubtotali (E + F + G + H) </td>
+                                    <td>$<span contentEditable> 5,018.05</span></td>
+                                    <td contentEditable></td>
                                    <td contentEditable></td>
                                    <td contentEditable></td>
                                    <td contentEditable></td>
                                     </tr>
                                     <tr>
                                         <th className="title">J. TOTAL CLOSING COSTS (Borrower-Paid)</th>
-                                        <th className="title align-title" contentEditable>$9,712,10</th>
+                                        <th className="title align-title">$<span contentEditable> 9,712,10</span></th>
                                     </tr>
                                     <tr>
                                         <td>Closing Costs Subtotals (D + I)</td>
-                                        <td contentEditable>$9,682,30</td>
-                                        <td contentEditable>$29,80</td>
-                                        <td contentEditable>$12900.00</td>
-                                        <td contentEditable>$750.00</td>
-                                        <td contentEditable>$405.00</td>
+                                        <td>$<span contentEditable> 9,682,30</span></td>
+                                        <td>$<span contentEditable> 29,80</span></td>
+                                        <td>$<span contentEditable> 12900.00</span></td>
+                                        <td>$<span contentEditable> 750.00</span></td>
+                                        <td>$<span contentEditable> 405.00</span></td>
                                     </tr>
                                     <tr>
                                         <td>lender Credits</td>
