@@ -38,3 +38,24 @@ b
 {
     color: black;
 }
+.borrower
+{
+    position: absolute;
+    right: -141px;  
+}
+.seller
+{
+    position: absolute;
+    right: -311px;  
+}
+.paid
+{
+    position: absolute;
+    right: -466px;
+
+}
+.align-title
+{
+    position: absolute;
+    right: -129px;
+}

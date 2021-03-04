@@ -143,7 +143,7 @@ function CDthirdpage(props) {
                                                     <td contentEditable>$180,000,00</td>
                                                 </tr>
                                                 <tr>
-                                                    <td>Sale Price of Any Persona I Ptoperty Included in Sale </td>
+                                                    <td>Sale Price of Any Personal I Property Included in Sale </td>
                                                 </tr>
                                                 <tr>
                                                     <td>Closing Costs Paid at Closing (J) </td>
@@ -151,6 +151,14 @@ function CDthirdpage(props) {
                                                 </tr>
                                                 <tr>
                                                     <th>Adjustments</th>
+                                                </tr>
+                                                <tr>
+                                                    <th contentEditable></th>
+                                                    <th contentEditable></th>
+                                                </tr>
+                                                <tr>
+                                                    <th contentEditable></th>
+                                                    <th contentEditable></th>
                                                 </tr>
                                                 <tr>
                                                     <td></td>
@@ -161,15 +169,15 @@ function CDthirdpage(props) {
                                                 </tr>
                                                 <tr>
                                                     <td>Oty/Town Taxes to </td>
-                                                    <td></td>
+                                                    <td contentEditable></td>
                                                 </tr>
                                                 <tr>
                                                     <td>CountyTaxes to </td>
-                                                    <td></td>
+                                                    <td contentEditable></td>
                                                 </tr>
                                                 <tr>
                                                     <td>Assessments to</td>
-                                                    <td></td>
+                                                    <td contentEditable></td>
                                                 </tr>
                                                 <tr>
                                                 <td>HOA Dues 4/5/13 to 4/30/13</td>
@@ -195,10 +203,18 @@ function CDthirdpage(props) {
                                                 </tr>
                                                 <tr>
                                                     <td> Existing loan(s) Assumed or Taken Subject to </td>
-                                                    <td></td>
+                                                    <td contentEditable></td>
                                                 </tr>
                                                 <tr>
                                                     <th>Adjustments</th>
+                                                </tr>
+                                                <tr>
+                                                    <th contentEditable></th>
+                                                    <th contentEditable></th>
+                                                </tr>
+                                                <tr>
+                                                    <th contentEditable></th>
+                                                    <th contentEditable></th>
                                                 </tr>
                                                 <tr>
                                                     <td></td>
@@ -212,14 +228,14 @@ function CDthirdpage(props) {
                                                 </tr>
                                                 <tr>
                                                     <td>CountyTaxes to</td>
-                                                    <td></td>
+                                                    <td contentEditable></td>
                                                 </tr>
                                                 <tr>
                                                     <td>Assessments to</td>
-                                                    <td></td>
+                                                    <td contentEditable></td>
                                                 </tr>
                                                 <tr>
-                                                    <th>CALCULATION</th>
+                                                    <th className="title">CALCULATION</th>
                                                 </tr>
                                                 <tr>
                                                     <td>Total Due from Borrower at Closing (k)</td>
@@ -236,8 +252,11 @@ function CDthirdpage(props) {
                                             </tbody>
                                         </Table>
                                     </div>
+                                    
                                     <div className="col-6">
                                     <div className="title">SELLER'S TRANSACTION</div>
+                                    <br/>
+                                    
                                         <Table>
                                             <thead>
                                                 <tr>
@@ -253,7 +272,7 @@ function CDthirdpage(props) {
                                                 </tr>
                                                 <tr>
                                                     <td>Sale Price of Any Personal Property Included in Sale</td>
-                                                    <td></td>
+                                                    <td contentEditable></td>
                                                 </tr>
                                                 <tr>
                                                     <td></td>
@@ -264,15 +283,15 @@ function CDthirdpage(props) {
                                                 </tr>
                                                 <tr>
                                                     <td>City/Town Taxes to</td>
-                                                    <td></td>
+                                                    <td contentEditable></td>
                                                 </tr>
                                                 <tr>
                                                     <td>CountyTaxes to</td>
-                                                    <td></td>
+                                                    <td contentEditable></td>
                                                 </tr>
                                                 <tr>
                                                     <td>Assessments to </td>
-                                                    <td></td>
+                                                    <td contentEditable></td>
                                                 </tr>
                                                 <tr>
                                                     <td>HOA Dues 4/15/13 to 4/30/13</td>
@@ -290,7 +309,7 @@ function CDthirdpage(props) {
                                             <tbody>
                                                 <tr>
                                                     <td>Excess Deposit </td>
-                                                    <td></td>
+                                                    <td contentEditable></td>
                                                 </tr>
                                                 <tr>
                                                     <td>Closing Costs Paid at Closing (J)</td>
@@ -306,7 +325,7 @@ function CDthirdpage(props) {
                                                 </tr>
                                                 <tr>
                                                     <td> Payoff of Second Mortgage loan</td>
-                                                    <td></td>
+                                                    <td contentEditable></td>
                                                 </tr>
                                                 <tr>
                                                     <td>Seller Credit </td>
@@ -320,7 +339,15 @@ function CDthirdpage(props) {
                                                     <td contentEditable>$365.04</td>
                                                 </tr>
                                                 <tr>
-                                                    <th>CALCULATION</th>
+                                                    <td> CountyTaxes to </td>
+                                                    <td contentEditable></td>
+                                                </tr>
+                                                <tr>
+                                                    <td>Assessments to</td>
+                                                    <td contentEditable></td>
+                                                </tr>
+                                                <tr>
+                                                    <th className="title">CALCULATION</th>
                                                     <th></th>
                                                 </tr>
                                                 <tr>
