@@ -139,10 +139,10 @@ function MyOrder(){
       {
         name:<b>Action</b>,
         cell: row => 
-        <div>
+        <div style={{marginTop:'10px'}}>
           <p key={row.OrderUID}>
-            <TableLink><span className="fa fa-eye text-primary p-1"></span></TableLink>
-            <TableLink to={'/summary/'+row.OrderUID}><span className="fa fa-edit text-secondary p-1"></span></TableLink>
+            <TableLink><span className="fa fa-eye p-1" style={{fontSize:'15px',color:'#464bac',fontWeight:'bold'}}></span></TableLink>
+            <TableLink to={'/summary/'+row.OrderUID}><span className="fa fa-edit p-2" style={{fontSize:'15px',color:'#801f74'}}></span></TableLink>
           </p>
         </div>
       }
@@ -204,9 +204,9 @@ function MyOrder(){
                                       <label className="form-label">From Date </label>
                                       <div className="input-group">
                                             <div className="input-group-prepend" >
-                                                <i className="fa fa-calendar p-1" style={{border:'1px solid black',borderRight:'0mm'}}></i>
+                                                <i className="fa fa-calendar p-1" style={{border:'1px solid #dee2e6',borderRight:'0mm'}}></i>
                                                 {/* Datepicker for Fromdate */}
-                                                <DatePicker name="fromdate" placeholderText="mm/dd/yyyy" selected={startDate} onChange={date=>setStartDate(date)}/>
+                                                <DatePicker name="fromdate" customStyles={{dateInput:{borderBottomWidth: 0}}} placeholderText="mm/dd/yyyy" selected={startDate} onChange={date=>setStartDate(date)}/>
                                             </div>
                                       </div>
                                     </div>
@@ -217,7 +217,7 @@ function MyOrder(){
                                           <label className="form-label">To Date </label>
                                             <div className="input-group">
                                                 <div className="input-group-prepend">
-                                                    <i className="fa fa-calendar p-1" style={{border:'1px solid black',borderRight:'0mm'}}></i>
+                                                    <i className="fa fa-calendar p-1" style={{border:'1px solid #dee2e6',borderRight:'0mm'}}></i>
                                                     {/* Datepicker for Todate */}
                                                     <DatePicker  placeholderText="mm/dd/yyyy" name="todate" selected={endDate} onChange={date => setEndDate(date)}/>
                                                 </div>

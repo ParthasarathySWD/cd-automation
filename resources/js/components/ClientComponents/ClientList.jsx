@@ -51,10 +51,10 @@ function ClientList()
     {
         name:<b>Action</b>,
         cell: row => 
-        <div>
+        <div style={{marginTop:'10px'}}>
             <p key={row.ClientUID}>
-              <TableLink to={'/viewclient/'+row.ClientUID}><span className="fa fa-eye text-primary p-1"></span></TableLink>
-              <TableLink to={'/editclient/'+row.ClientUID}><span className="fa fa-edit text-secondary p-1"></span></TableLink>
+              <TableLink to={'/viewclient/'+row.ClientUID}><span className="fa fa-eye p-1" style={{fontSize:'15px',color:'#464bac',fontWeight:'bold'}}></span></TableLink>
+              <TableLink to={'/editclient/'+row.ClientUID}><span className="fa fa-edit p-1" style={{fontSize:'15px',color:'#801f74'}}></span></TableLink>
               {/* <TableLink ><span className="fa fa-trash text-danger p-1"></span></TableLink>  */}
             </p>
         </div>

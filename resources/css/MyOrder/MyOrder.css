@@ -64,7 +64,7 @@
 }
 .rone 
 {
-    background-color: #b6a1bb;
+    background-color: #17a2b8;
     padding-top: 25px;
     text-align: center;
     height: 80px;
@@ -73,12 +73,12 @@
 .rtwo
 {
       
-    background-color:#f7bd6cb8;
+    background-color:#ea6f6f;
 }
 .rthree
 { 
     
-    background-color: #6cc78591;
+    background-color: #56b55a;
 }
 .fontsty 
 {
@@ -134,8 +134,12 @@
     display: block;
     width: 120px;
     height:25px;
+    border-color:#dee2e6 !important;
 }
 .form-label
 {
     font-size:14px;
+}
+.border-secondary {
+    border-color: #dee2e6 !important;
 }
