@@ -24,7 +24,7 @@ function CDfourthpage(props) {
                 <div className="card"> 
                     <div className="row">
                    
-                        <CDTab></CDTab>
+                        {/* <CDTab></CDTab> */}
 
                         <div className="col-lg-12 col-md-12 col-sm-12 mt-3">
                             <h5 className="font300 font-16 mt-3 mb-3 pl-3">Loan Disclosures</h5>   

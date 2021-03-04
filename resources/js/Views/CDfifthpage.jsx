@@ -22,7 +22,7 @@ function CDfifthpage(props) {
                            </div> */}
                <div className="card"> 
                    <div className="row">
-                        <CDTab></CDTab>   
+                        {/* <CDTab></CDTab>    */}
                     </div>
                       
                        {/* <h5 className="font300 font-16 mb-3">Loan Costs</h5> */}

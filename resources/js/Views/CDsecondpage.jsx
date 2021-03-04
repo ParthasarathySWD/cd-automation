@@ -23,7 +23,7 @@ function CDsecondpage(props) {
                <div className="card"> 
                    <div className="row">
                            
-                           <CDTab></CDTab>
+                           {/* <CDTab></CDTab> */}
 
                        <div className="col-lg-4 col-md-4 col-sm-4">
                        {/* <h5 className="font300 font-16 mb-3">Loan Costs</h5> */}

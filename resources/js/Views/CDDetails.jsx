@@ -24,7 +24,7 @@ function CDDetails(props) {
                <div className="card"> 
                    <div className="row">
                            
-                           <CDTab/>
+                           {/* <CDTab/> */}
 
                        <div className="col-lg-4 col-md-4 col-sm-4">
 

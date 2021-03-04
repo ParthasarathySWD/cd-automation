@@ -6,6 +6,7 @@ import { BrowserRouter as Router, Switch, Route, Link, useHistory } from 'react-
 
 import OrderDocument from './OrderDocuments';
 import OrderNotes from './OrderNotes';
+import OrderCDPage from '../../Views/CDTabList';
 import './style.css';
 
 function OrderSummary(props) {
@@ -13,10 +14,7 @@ function OrderSummary(props) {
     return(
         <>
             <div className="row clearfix">
-                <div className="col-lg-12 col-md-12 col-sm-12">
-                    <div className="header mt-3 mb-3">
-                        
-                    </div>
+                <div className="col-lg-12 col-md-12 col-sm-12">                   
                     <div className="card"> 
                         <div className="row">
                             <div className="col-lg-12 col-md-12 col-sm-12">
@@ -32,11 +30,9 @@ function OrderSummary(props) {
                         <div className="tab-content padding-0">
                             {/* Order Summary Tab */}
                             <div className="tab-pane active" id="summary">
-                                <div className="row">
+                                <div className="row m-2">
                                     <div className="col-md-12">
-                                        <div className="header">
-                                            <h6>Order Details</h6>
-                                        </div>
+                                        <OrderCDPage orderid={OrderUID}></OrderCDPage>
                                     </div>
                                 </div>
                             </div>
