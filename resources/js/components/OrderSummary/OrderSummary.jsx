@@ -18,6 +18,19 @@ function OrderSummary(props) {
                     <div className="card"> 
                         <div className="row">
                             <div className="col-lg-12 col-md-12 col-sm-12">
+                                <div className="header">
+                                   <div className="row">
+                                       <div className="col-md-4">
+                                            <h6 className="ml-1">Order Number : CD10001</h6>                                   
+                                       </div>
+                                       <div className="col-md-4">
+                                            <h6 className="ml-1">Order Date : 03-04-2021</h6>
+                                       </div>
+                                       <div className="col-md-4">                                           
+                                            <h6 className="ml-1">Status : <span class="badge badge-success">Order Init</span></h6>
+                                       </div>
+                                   </div>
+                                </div>
                                 <ul className="nav nav-tabs3">
                                     <li className="nav-item"><a className="nav-link active" data-toggle="tab" href="#summary">Loan Details</a></li>
                                     <li className="nav-item"><a className="nav-link" data-toggle="tab" href="#document">Documents</a></li>
@@ -28,6 +41,7 @@ function OrderSummary(props) {
                         </div>
 
                         <div className="tab-content padding-0">
+                            
                             {/* Order Summary Tab */}
                             <div className="tab-pane active" id="summary">
                                 <div className="row m-2">

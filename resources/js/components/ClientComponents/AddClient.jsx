@@ -229,8 +229,8 @@ function AddClient(){
 				<div className="row clearfix">
                     <div className="col-lg-12 col-md-12 col-sm-12">
                         <div className="card">
-                            <div className="card-title">
-                                <h6 className="Add">Add Client</h6>
+                            <div className="">
+                                <h6 className="card-title">Add Client</h6>
                             </div>
                             <div className="body">
                                 <div className="row clearfix">
