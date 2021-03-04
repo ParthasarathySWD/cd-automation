@@ -100,8 +100,8 @@ function OrderNotes(props) {
                                 <textarea type="text" row="" className="form-control" placeholder="Enter text here..."></textarea>
                             </div>
                             <div className="m-1">
-                                <a href="javascript:void(0);" className="btn btn-xs hidden-xs"><i className="fa fa-paperclip text-danger"></i></a>
-                                <a href="javascript:void(0);" className="btn btn-xs pull-right"><i className="fa fa-paper-plane-o text-primary"></i></a>
+                                <a href="#!" className="btn btn-xs hidden-xs"><i className="fa fa-paperclip text-danger"></i></a>
+                                <a href="#!" className="btn btn-xs pull-right"><i className="fa fa-paper-plane-o text-primary"></i></a>
                                 {/* <a href="javascript:void(0);" className="btn btn-sm btn-default"><i className="fa fa-video-camera"></i></a>
                                 <a href="javascript:void(0);" className="btn btn-sm btn-default"><i className="fa fa-plus"></i></a> */}
                             </div>
