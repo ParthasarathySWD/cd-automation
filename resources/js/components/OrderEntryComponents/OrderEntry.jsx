@@ -173,7 +173,7 @@ function OrderEntry() {
                                     </div>
 
                                     <div className="col-sm-12">
-                                        <div className="pull-left">
+                                        <div className="pull-right">
                                             <button type="submit" className="btn btn-xs btn-primary mr-2" >SUBMIT</button>
                                             <button type="button" className="btn  btn-xs btn-danger">CANCEL</button>
                                         </div>

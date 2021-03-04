@@ -17,6 +17,10 @@ class CreateMusersAlterQuery extends Migration
             if (!Schema::hasColumn('mUsers', 'Active')) {
                 $table->integer('Active');
             }
+            if (!Schema::hasColumn('mUsers', 'ClientUID')) {
+                $table->unsignedBigInteger('ClientUID');
+                $table->foreign('ClientUID')->references('ClientUID')->on('mClients');
+            }
         });
 
         Schema::table('mRoles', function (Blueprint $table) {
