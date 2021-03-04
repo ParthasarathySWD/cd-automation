@@ -19,7 +19,10 @@ use Illuminate\Support\Facades\Route;
 Route::post('/login', 'App\Http\Controllers\LoginController@authenticate');
 Route::get('/logout', 'App\Http\Controllers\LoginController@logout');
 // 
-Route::view('/{path?}', 'welcome');
+Route::any('{catchall}', function(Request $req){
+    return view('welcome');
+})->where('catchall', '.*');
+
 
 // Auth::routes();
 
