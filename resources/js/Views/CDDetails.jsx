@@ -253,7 +253,6 @@ in lender Credits. See page 2 for details.</span></td>
         </tr>
     </tbody>
 </Table>
-<button className="edittable">Edit</button>
 </div>
 </div>
                    </div>
