@@ -191,7 +191,8 @@ class OrderEntryController extends Controller
                                 'type' => 'Order Insert',
                                 'status' => true,
                                 'errors' => '',
-                                'message' => 'Order '. $OrderNumber['OrderNumber'].' Created Successfully'
+                                'message' => 'Order '. $OrderNumber['OrderNumber'].' Created Successfully',
+                                'orderuid' => $InsertData->OrderUID
                             ]);
                         } else {
                             return response()->json([
@@ -386,8 +387,8 @@ class OrderEntryController extends Controller
         // echo '<pre>';print_r($OrderUID);exit;
         $OrderDocs = DB::table('tOrdersDocuments')    
             ->select('tOrdersDocuments.*', 'mDocumentTypes.DocumentTypeName', 'mUsers.UserName')        
-            ->join('mDocumentTypes', 'mDocumentTypes.DocumentTypeUID', '=', 'tOrdersDocuments.DocumentTypeUID')
-            ->join('mUsers', 'mUsers.UserUID', '=', 'tOrdersDocuments.CreatedByUserUID')            
+            ->leftJoin('mDocumentTypes', 'mDocumentTypes.DocumentTypeUID', '=', 'tOrdersDocuments.DocumentTypeUID')
+            ->leftJoin('mUsers', 'mUsers.UserUID', '=', 'tOrdersDocuments.CreatedByUserUID')            
             ->where('tOrdersDocuments.OrderUID', '=', $OrderUID)
             ->get();
         // echo '<pre>';print_r($OrderDocs);exit;
@@ -431,7 +432,7 @@ class OrderEntryController extends Controller
         // echo '<pre>';print_r($request->user());exit;
         $OrderNotes = DB::table('tOrderNotes')    
             ->select('tOrderNotes.*', 'mUsers.UserName')     
-            ->join('mUsers', 'mUsers.UserUID', '=', 'tOrderNotes.CreatedByUserUID')            
+            ->leftJoin('mUsers', 'mUsers.UserUID', '=', 'tOrderNotes.CreatedByUserUID')            
             ->where('tOrderNotes.OrderUID', '=', $OrderUID)
             ->orderBy('CreatedByDateTime', 'desc')
             ->get();

@@ -80,9 +80,9 @@ function OrderEntry() {
                     message: '',
                     buttons: [
                         {
-                          label: 'Goto My Orders',
+                          label: 'Goto The Orders',
                           onClick: () => {                            
-                            history.push('/myorders');
+                            history.push('/summary/'+response.data.orderuid);
                           },
                           className: 'btn btn-xs btn-outline-primary'
                         },
