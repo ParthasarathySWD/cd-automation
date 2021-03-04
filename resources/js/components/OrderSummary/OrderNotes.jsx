@@ -33,8 +33,8 @@ function OrderNotes(props) {
                             <div className="media mb-0">
                             <img className="rounded-circle w35" src="../../../images/user.png" alt="" />
                             <div className="media-body mr-3 ml-3 text-muted">
-                                <h6 className="m-0">Dr. Deborah Cox</h6>
-                                <small>Dental</small>
+                                <h6 className="m-0">Partha</h6>
+                                <small>Notes Follow Up</small>
                             </div>
                             </div>
                         </a>                        

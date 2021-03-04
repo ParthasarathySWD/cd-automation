@@ -51,8 +51,7 @@ function OrderDocuments(props) {
             title: 'Action',
             align: "center",
             formatter: ViewIcon,
-            cellClick:function(e, cell){
-                alert("View row data for: " + cell.getRow().getData().id)
+            cellClick:function(e, cell){               
                 console.log('Cell Data : ', cell.getData().documentid);
             }
         }
