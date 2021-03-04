@@ -20,10 +20,10 @@ function Header(props) {
                <div id="navbar-menu">
                   <ul className="nav navbar-nav">
                      <li>
-                        <div id="navbar-search" className="has-search-form has-search" >
-                              <span className="fa fa-search form-control-feedback" style={{position:'absolute',paddingLeft:'30px'}}></span>
-                              <input type="text" id="search" className="border rounded pull-right" placeholder="Search"/>
-                        </div>
+                        <form id="navbar-search" className="border navbar-form search-form" style={{height:'50px',textAlign:'center'}}>
+                           <span className="fa fa-search form-control-feedback" style={{textAlign:'center',marginLeft:'10px',marginTop:'15px',display:'inline-block'}}></span>
+                           <input className="form-control p-2" placeholder="Search here..." type="text" style={{display:'inline-block',width:'200px',marginLeft:'10px',padding:'2px'}}/>
+                        </form>
                      </li>
                      <li className="dropdown">
                         <a href="#!" className="dropdown-toggle icon-menu" data-toggle="dropdown">

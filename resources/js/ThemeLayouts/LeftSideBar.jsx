@@ -1,14 +1,13 @@
 import React from 'react';
 
 import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom';
-import {useSelector} from 'react-redux';
 
 /**
  * LeftSideBar Component
  */
-function LeftSideBar(props) {
+class LeftSideBar extends React.Component {
 
-      const ProfileDetails = useSelector(state=>state.Profile);
+   render() {
       return (
          <header>
             
@@ -25,7 +24,7 @@ function LeftSideBar(props) {
                         </div>
                         <div className="dropdown">
                            <span>Welcome</span>
-                           <a href="#!" className="dropdown-toggle user-name" data-toggle="dropdown"><strong>{ProfileDetails.UserName}</strong></a>
+                           <a href="#!" className="dropdown-toggle user-name" data-toggle="dropdown"><strong>Dr. Alan Green</strong></a>
                            <ul className="dropdown-menu dropdown-menu-right account vivify flipInY">
                               <li><a href="dr-profile.html"><i className="fa fa-user"></i>My Profile</a></li>
                               <li><a href="app-inbox.html"><i className="fa fa-envelope"></i>Messages</a></li>
@@ -45,11 +44,11 @@ function LeftSideBar(props) {
 
                            <li className=""><Link to={'/cddetails'} className="nav-link"><i className="fa fa-sign-in" aria-hidden="true"></i> <span>CDDetails</span></Link></li>
                            <li>
-                              <a href="#!"  className="has-arrow"><i className="fa fa-list"></i><span>Clients</span></a>
-                              <ul>
+                           <Link to={'/allclients'} className="nav-link"><i className="fa fa-id-badge"></i><span>Clients</span></Link>
+                              {/* <ul>
                                  <li><Link to={'/allclients'} className="nav-link"><span>All Clients</span></Link></li>
                                  <li><Link to={'/addclient'} className="nav-link"><span>Add Client</span></Link></li>
-                              </ul>
+                              </ul> */}
                            </li>
                            <li>
                               <a href="#!" className="has-arrow"><i className="fa fa-users"></i><span>User</span></a>
@@ -65,5 +64,6 @@ function LeftSideBar(props) {
             
          </header>
       );
+   }
 }
 export default LeftSideBar;

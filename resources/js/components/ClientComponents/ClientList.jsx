@@ -100,9 +100,9 @@ function ClientList()
 
         <div className="main-container clearfix" >
 
-              <div className="myorder-header">
-                  <h5>Clients List</h5>
-              </div> 
+                <div className="tab-menus">
+                          <h4 className="p-2">Clients List</h4>
+                      </div>   
 
               <div className="child-container status-container" >
 
@@ -153,16 +153,14 @@ function ClientList()
               </div>
 
               <div className="child-container first-child" style={{marginTop:'20px'}}>
-                  <div className="tabs" style={{height:'25px'}}>
-                      <div className="tab-menus">
-                          <h4 className="p-2">Clients List</h4>
-                      </div>          
-                  </div>
+                  {/* <div className="tabs" style={{height:'25px'}}>
+                          
+                  </div> */}
                   <div className="tab-values p-10">
                       <div className="tab-content">
                           <div id="all" className="order-table tab-pane in active">
                             {/* <input type="text" className="c-search-input" placeholder="&#61442; search"></input> */}
-                                  
+                            <Link to={'/addclient'} className="btn btn-primary">ADD CLIENT</Link>
                                   {/* Datatable-Client List */}
                                   <MyOrders                                                                  
                                     title = ""
