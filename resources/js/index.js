@@ -84,10 +84,10 @@ function Main() {
                 <>
                     <div>
                     
-                    <div className="themesetting">
+                    {/* <div className="themesetting">
                     <ThemeSetting />
                     </div>
-                    
+                     */}
                     
                     <div className="overlay"></div>
                     
@@ -110,9 +110,9 @@ function Main() {
                     </div>
                     
                     
-                    <div className="sticky-note">
+                    {/* <div className="sticky-note">
                     <StickyNote />
-                    </div>
+                    </div> */}
                     
                     
                     <div id="main-content">
