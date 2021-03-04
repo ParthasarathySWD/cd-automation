@@ -409,6 +409,7 @@ class OrderEntryController extends Controller
             'OrginalData' => $OrderDocs->toArray(),
             'TableData' => $RowArray
         ]);
+
     }
     /** end */
 }

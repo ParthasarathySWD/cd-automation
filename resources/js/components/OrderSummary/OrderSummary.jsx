@@ -5,10 +5,11 @@ import { useToasts } from 'react-toast-notifications';
 import { BrowserRouter as Router, Switch, Route, Link, useHistory } from 'react-router-dom';
 
 import OrderDocument from './OrderDocuments';
+import OrderNotes from './OrderNotes';
 import './style.css';
 
 function OrderSummary(props) {
-    const OrderUID = 32;
+    const OrderUID = props.match.params.id;
     return(
         <>
             <div className="row clearfix">
@@ -44,13 +45,17 @@ function OrderSummary(props) {
                             {/* Order Documnet Tab */}
                             <div className="tab-pane fade" id="document">
                                 <div className="row">
-                                    <div className="col-md-12">
-                                        <div className="header">
-                                            <h6></h6>
-                                            <input type="text" class="search-input" placeholder=" search" />
+                                    <div className="col-md-12">                               
+                                        <div className="p-4">
+                                            <div className="header">
+                                                <div className="has-search-form has-search">
+                                                    <span className="fa fa-search form-control-feedback"></span>
+                                                    <input type="text" id="search" className="border rounded pull-right" placeholder="Search" />
+                                                </div>
+                                                {/* <input className="border rounded pull-right" type="search" name="search" id="search" placeholder="&#61442; Search"/> */}
+                                            </div>
+                                            <OrderDocument orderid={OrderUID}/>
                                         </div>
-                                        <br/>
-                                        <OrderDocument orderid={OrderUID}/>
                                     </div>
                                 </div>
                             </div>
@@ -60,7 +65,7 @@ function OrderSummary(props) {
                             <div className="tab-pane fade" id="notes">
                                 <div className="row">
                                     <div className="col-md-12">
-
+                                        <OrderNotes></OrderNotes>
                                     </div>
                                 </div>
                             </div>

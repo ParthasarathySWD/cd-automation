@@ -11,6 +11,7 @@ import "react-data-table-component-extensions/dist/index.css";
 import './style.css';
 
 import Table from '../../CommonComponents/DataTable/DataTable';
+import { ReactTabulator, reactFormatter } from "react-tabulator"; 
 
 
 function OrderDocuments(props) {
@@ -19,79 +20,42 @@ function OrderDocuments(props) {
 
     const [orderdocs, setOrderDocs] = useState([]);
 
-    /** Data Table Custome Style */
-    const customStyles = {
-        headCells:{
-          style:{
-            backgroundColor:'#a3bfd054'
-          }
-        }
-    }
-    /** end */
 
-    /** Action Columns Custome Function */
-    function CustomColumn({ children, to }) {
-        const ContentTag = to ? Link : 'div';      
-        return (
-            <>
-                <td>
-                    <ContentTag to={to}>{children}</ContentTag>
-                </td>
-            </>
-        );
-    }
-    /** end */
-
-    // const data = [
-    //     {
-    //         id : '1',
-    //         document : 'Closing',
-    //         type : 'Prelim',
-    //         uploadedon : '03-01-2021 11:20:00',
-    //         uploadedby : 'Mohindar'
-    //     },
-    //     {
-    //         id : '2',
-    //         document : 'Closing Encloser',
-    //         type : 'Closing',
-    //         uploadedon : '03-01-2021 11:30:00',
-    //         uploadedby : 'Mohindar'
-    //     }
-    // ];
+    var ViewIcon = function(cell, formatterParams, onRendered){ 
+        return "<i class='fa fa-eye text-primary'></i>";
+    };
 
     /** Table Columns */
-    const columns = [
-        [{
-            title: '#',
-            field: 'id'
-        },
+    const columns = [        
         {
             title: 'Documnet',
-            field: 'document'
+            field: 'document',
         },
         {
             title: 'Type',
-            field: 'type'
+            field: 'type',
+        },
+        {
+            title: 'OCR Status',
+            field: 'id',
         },
         {
             title: 'Uploaded On',
-            field: 'uploadedon'
+            field: 'uploadedon',
         },
         {
             title: 'Uploaded By',
-            field: 'uploadedby'
-        },
+            field: 'uploadedby',
+        },        
         {
             title: 'Action',
-            // sortable: false,
-            // cell: row => <div key={row.documentid}>                       
-            //     <CustomColumn>
-            //         <a href = {row.filepath} target = "_blank">
-            //             <span className="fa fa-eye text-primary p-1"></span>
-            //         </a>
-            //     </CustomColumn>
-            // </div>
-        }]
+            align: "center",
+            formatter: ViewIcon,
+            cellClick:function(e, cell){
+                alert("View row data for: " + cell.getRow().getData().id)
+                console.log('Cell Data : ', cell.getData().documentid);
+            }
+        }
     ];
     /** end */
 
@@ -110,27 +74,9 @@ function OrderDocuments(props) {
 
     const data = orderdocs;
 
-    const tableData = {
-        columns,
-        data
-    };
-
     return (
-        <div className="div-order-docs">
-            {/* <input type="text" className="search-input" placeholder="&#61442; search"></input> */}
-            {/* <DataTableExtensions {...tableData}> */}                
-                {/* <OrderDocumentTable                                                                  
-                    title=""
-                    columns={columns}
-                    data={data}
-                    search={true}
-                    customStyles={customStyles}
-                    defaultSortField="title"
-                    pagination
-                /> */}
-            {/* </DataTableExtensions>             */}
-
-            <Table setColumns={columns} setData={data}/>
+        <div className="div-order-docs">           
+            <Table setColumns={columns} setData={orderdocs}/>
         </div>
     );
 }

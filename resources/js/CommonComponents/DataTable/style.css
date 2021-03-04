@@ -1,0 +1,8 @@
+.tabulator-header-filter input {
+    border-radius: 0.25rem !important;
+    border: 1px solid #dee2e6 !important;
+}
+
+.tabulator-header-filter input::-webkit-input-placeholder::after{
+    content: 'Search';
+}
