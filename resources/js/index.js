@@ -17,9 +17,9 @@ import StickyNote from './ThemeLayouts/StickyNote';
 import Routes from './Routes';
 import jquery_init from './jquery_init';
 
-import { SignIn } from './store/action';
+import { SignIn, setUserDetails } from './store/action';
 import store from './store/store.js';
-import { getAccessToken, setAccessToken, removeAccessToken, checkUserAuthentication } from "./store/localstorage";
+import { checkUserAuthentication } from "./store/localstorage";
 import { ToastProvider } from 'react-toast-notifications';
 import LoadingBar from 'react-top-loading-bar'
 import {fetchProfileData} from './repository/App';
@@ -29,7 +29,6 @@ function App(props) {
 
     
     const isAuthenticated = useSelector(state => state.IsAuthenticated);
-    const dispatch = useDispatch();
 
     useEffect(()=>{
         checkUserAuthentication();
@@ -42,33 +41,38 @@ function App(props) {
     }
     else{
 
-
-            return (
-    
-                <Main />
-                );
-        }
+        return (
+            <Main />
+        );
     }
+}
 export default App;
 
 function Main() {
     
     const ref = useRef(null)
-    const [user, setUser] = useState([]);
+    const [user, setUser] = useState({});
+    const dispatch = useDispatch();
 
     useEffect( ()=> {
+        
+        if (user && typeof user == 'object' && Object.keys(user).length > 0) {
 
-        if (user.length > 0) {
-
-            ref.current.continuousStart();
             
-            setTimeout(()=>ref.current.complete(), 10000);
+            ref.current.complete();
             jquery_init.init();
+            dispatch(setUserDetails(user));
         }
-
+        
+    }, [user]);
+    
+    useEffect( ()=> {
+        
+        
+        ref.current.continuousStart();
         const promiseResource = fetchProfileData();
-        promiseResource.then((data)=>{
-            setUser(data.user);
+        promiseResource.then((res)=>{
+            setUser(res.user.data);
         })
 
     }, []);

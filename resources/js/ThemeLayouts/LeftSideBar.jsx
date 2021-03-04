@@ -1,13 +1,14 @@
 import React from 'react';
 
 import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom';
+import {useSelector} from 'react-redux';
 
 /**
  * LeftSideBar Component
  */
-class LeftSideBar extends React.Component {
+function LeftSideBar(props) {
 
-   render() {
+      const ProfileDetails = useSelector(state=>state.Profile);
       return (
          <header>
             
@@ -24,7 +25,7 @@ class LeftSideBar extends React.Component {
                         </div>
                         <div className="dropdown">
                            <span>Welcome</span>
-                           <a href="#!" className="dropdown-toggle user-name" data-toggle="dropdown"><strong>Dr. Alan Green</strong></a>
+                           <a href="#!" className="dropdown-toggle user-name" data-toggle="dropdown"><strong>{ProfileDetails.UserName}</strong></a>
                            <ul className="dropdown-menu dropdown-menu-right account vivify flipInY">
                               <li><a href="dr-profile.html"><i className="fa fa-user"></i>My Profile</a></li>
                               <li><a href="app-inbox.html"><i className="fa fa-envelope"></i>Messages</a></li>
@@ -64,6 +65,5 @@ class LeftSideBar extends React.Component {
             
          </header>
       );
-   }
 }
 export default LeftSideBar;

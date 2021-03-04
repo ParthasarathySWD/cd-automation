@@ -30,10 +30,10 @@ Route::middleware(['auth:sanctum'])->group(function () {
     Route::get('profile', function(Request $request){
         $user = $request->user();
         if (!empty($user)) {
-            return $user[0];
+            return $user;
         }
         else{
-            return stdClass();
+            return new stdClass();
         }
     });
     
