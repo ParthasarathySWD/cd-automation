@@ -46,3 +46,10 @@
 .chatapp_body {
     margin-left: 0px !important;
 }
+
+@media screen and (max-width: 1440px) {
+  .chatapp_body .chat-history {
+    height: 400px !important;
+    overflow-y: auto;
+  }
+}

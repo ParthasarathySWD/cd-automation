@@ -1,6 +1,27 @@
-import React, {useState, useEffect} from 'react';
+import React, {useState, useEffect } from 'react';
+import { BrowserRouter as Router, Switch, Route, Link, useHistory } from 'react-router-dom';
 
 function OrderNotes(props) {
+    let history = useHistory();
+
+    const [ordernotes, setOrderNotes] = useState([]);
+
+    /** Get Order Notes */
+    const fetchOrderNotes = () => {
+        axios.get('ordernots/fetchOrderNotes', {
+            params: {
+                OrderUID: props.orderid
+            }
+        }).then( response =>{
+            console.log(response);
+            setOrderNotes(response.data.NotesData);
+        })
+    }
+    /** end */
+    useEffect(() => {
+        fetchOrderNotes();
+    },[]);
+
     return (
         <>
             <div className="row clearfix">
@@ -21,25 +42,26 @@ function OrderNotes(props) {
                         <div className="chat-history">
                         <ul className="message_data">
                             <li className="right clearfix">
-                            <img className="user_pix" src="../../../images/xs/avatar7.jpg" alt="avatar"/>
-                            <div className="message">
-                                <a href="#!" className="smily"><i className="fa fa-smile-o"></i></a>
-                                <span>Hi Aiden, how are you?<br />> How is the project coming along?</span>
-                            </div>
-                            <span className="data_time">10:12 AM, Today</span>
+                                <img className="user_pix" src="../../../images/xs/avatar7.jpg" alt="avatar"/>
+                                <div className="message">
+                                    <a href="#!" className="smily"><i className="fa fa-smile-o"></i></a>
+                                    <span>Hi Aiden, how are you?<br />> How is the project coming along?</span>
+                                </div>
+                                <span className="data_time">10:12 AM, Today</span>
                             </li>
                             <li className="left clearfix">
-                            <img className="user_pix" src="../../../images/user.png" alt="avatar"/>
-                            <div className="message">
-                                <a href="#!" className="smily"><i className="fa fa-smile-o"></i></a>
-                                <span>Are we meeting today?</span>
-                                <div className="alert alert-primary mb-0 mt-2">
-                                <i className="fa fa-file-word-o mr-2"></i> <span>finame12.doc</span>
+                                <img className="user_pix" src="../../../images/user.png" alt="avatar"/>
+                                <div className="message">
+                                    <a href="#!" className="smily"><i className="fa fa-smile-o"></i></a>
+                                    <span>Are we meeting today?</span>
+                                    <div className="alert alert-primary mb-0 mt-2">
+                                    <i className="fa fa-file-word-o mr-2"></i> <span>finame12.doc</span>
+                                    </div>
                                 </div>
-                            </div>
-                            <span className="data_time">10:12 AM, Today</span>
+                                <span className="data_time">10:12 AM, Today</span>
                             </li>
-                            <li className="right clearfix">
+                            
+                            {/* <li className="right clearfix">
                             <img className="user_pix" src="../../../images/xs/avatar5.jpg" alt="avatar"/>
                             <div className="message">
                                 <a href="#!" className="smily"><i className="fa fa-smile-o"></i></a>
@@ -70,7 +92,7 @@ function OrderNotes(props) {
                                 </div>
                             </div>
                             <span className="data_time">10:12 AM, Today</span>
-                            </li>
+                            </li> */}
                         </ul>
                         </div>
                         <div className="chat-message">

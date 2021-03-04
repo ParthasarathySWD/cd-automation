@@ -8,6 +8,7 @@ use App\Models\OrderEntry;
 use App\Models\OrderEntryFile;
 use App\Models\OrderSetting;
 use App\Models\OrderStatus;
+use App\Models\OrderNote;
 
 use Carbon\Carbon;
 
@@ -379,8 +380,9 @@ class OrderEntryController extends Controller
      * @since 01-MAR-2021
      * @return Order Documents
     */
-    public function GetOrderDocumentsByOrderUID($OrderUID)
+    public function GetOrderDocumentsByOrderUID(Request $request)
     {
+        $OrderUID = $request->input('OrderUID');
         // echo '<pre>';print_r($OrderUID);exit;
         $OrderDocs = DB::table('tOrdersDocuments')    
             ->select('tOrdersDocuments.*', 'mDocumentTypes.DocumentTypeName', 'mUsers.UserName')        
@@ -410,6 +412,60 @@ class OrderEntryController extends Controller
             'TableData' => $RowArray
         ]);
 
+    }
+    /** end */
+
+    /**
+     * Get Order Notes By OrderUID
+     * @author mohindarkumar-v <mohindar.kumar@avanzegroup.com>
+     * @param OrderUID
+     * @throws exceptions
+     * @version CD Automation []
+     * @since 04-MAR-2021
+     * @return Order Notes
+    */
+    public function GetOrderNotesByOrderUID(Request $request)
+    {
+        $OrderUID = $request->input('OrderUID');
+        $UserDetails = $request->user();
+        // echo '<pre>';print_r($request->user());exit;
+        $OrderNotes = DB::table('tOrderNotes')    
+            ->select('tOrderNotes.*', 'mUsers.UserName')     
+            ->join('mUsers', 'mUsers.UserUID', '=', 'tOrderNotes.CreatedByUserUID')            
+            ->where('tOrderNotes.OrderUID', '=', $OrderUID)
+            ->orderBy('CreatedByDateTime', 'desc')
+            ->get();
+        // echo '<pre>';print_r($OrderNotes);exit;   
+        $RowArray = array();
+        $count = 0;
+        foreach ($OrderNotes as $resKey => $resValue) {
+            $count++;
+            $NotesDate = date('Y-m-d',strtotime($resValue->CreatedByDateTime));
+            $NotesTime = date('H:i A',strtotime($resValue->CreatedByDateTime));
+            $FileName = 'test.pdf';
+            $Extension = 'pdf';
+
+            $ColumnArray = array(
+                'id' => $count,
+                'NotesUID' => $resValue->NotesUID,
+                'OrderUID' => $resValue->OrderUID,
+                'Notes' => $resValue->Notes,
+                'AttachedFiles' => $resValue->AttachedFiles,
+                'AttachedFilesName' => $FileName,
+                'AttachedFilesExtension' => $Extension,
+                'UserName' => $resValue->UserName,
+                'UserImage' => '',
+                'Date' => $NotesDate,
+                'Time' => $NotesTime,
+                'LoginUserID' => $UserDetails->UserUID
+            );
+            array_push($RowArray, $ColumnArray);            
+        }         
+        // echo '<pre>';print_r($RowArray);exit; 
+         return response()->json([
+            'OrginalData' => $OrderNotes->toArray(),
+            'NotesData' => $RowArray
+        ]);
     }
     /** end */
 }

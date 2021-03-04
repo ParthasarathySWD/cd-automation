@@ -102,4 +102,36 @@ class MyOrdersController extends Controller
 
     }
 
+    public function fetchMyOrdersCount(Request $request)
+    {
+        $AllCount = $this->getCount('All');
+        $InProgressCount = $this->getCount('In Progress');
+        $CompletedCount = $this->getCount('Completed');
+        
+        return response()->json([
+            'All' => $AllCount,
+            'InProgress' => $InProgressCount,
+            'Completed' => $CompletedCount
+        ]);
+    }
+
+    public function getCount($Status)
+    {
+        $schema = DB::table('tOrders')
+            ->select('tOrders.*','mOrderStatus.StatusName','mClients.ClientName')
+            ->join('mOrderStatus','tOrders.StatusUID','=','mOrderStatus.StatusUID')
+            ->join('mClients','tOrders.ClientUID','=','mClients.ClientUID');
+         
+        if($Status == 'In Progress')
+        {
+            $schema->where('tOrders.StatusUID','!=', '100');
+        } 
+        if($Status == 'Completed')
+        {
+            $schema->where('tOrders.StatusUID','=', '100');
+        } 
+        return $schema->count();       
+    }
+    
+
 }

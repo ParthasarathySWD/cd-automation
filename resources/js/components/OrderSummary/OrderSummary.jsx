@@ -65,7 +65,7 @@ function OrderSummary(props) {
                             <div className="tab-pane fade" id="notes">
                                 <div className="row">
                                     <div className="col-md-12">
-                                        <OrderNotes></OrderNotes>
+                                        <OrderNotes orderid={OrderUID}></OrderNotes>
                                     </div>
                                 </div>
                             </div>

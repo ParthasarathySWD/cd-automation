@@ -61,7 +61,11 @@ function OrderDocuments(props) {
 
     /** Get Order Documents */
     const fetchOrderDocs = () => {
-        axios.get('fetchOrderDocs/'+props.orderid).then( response =>{
+        axios.get('orderdocs/fetchOrderDocs', {
+            params: {
+                OrderUID: props.orderid
+            }
+        }).then( response =>{
             console.log(response);
             setOrderDocs(response.data.TableData);
         })

@@ -40,6 +40,7 @@ Route::middleware(['auth:sanctum'])->group(function () {
     Route::get('logout', 'App\Http\Controllers\Api\AuthController@logout');
     Route::get('myorders/fetchorders', 'App\Http\Controllers\Api\MyOrdersController@fetchMyOrders');
     Route::get('myorders/fetchOptions', 'App\Http\Controllers\Api\MyOrdersController@fetchOptions');
+    Route::get('myorders/fetchCount', 'App\Http\Controllers\Api\MyOrdersController@fetchMyOrdersCount');
     // Route::get('showclient','App\Http\Controllers\ClientsController@show');
 
     Route::post('client','App\Http\Controllers\ClientsController@index');
@@ -48,6 +49,7 @@ Route::middleware(['auth:sanctum'])->group(function () {
     Route::resource('/users', UserController::class);
     Route::resource('/clients', ClientsController::class);
     Route::resource('orderentry', OrderEntryController::class);
-    Route::get('fetchOrderDocs/{OrderUID}', 'App\Http\Controllers\OrderEntryController@GetOrderDocumentsByOrderUID');
+    Route::get('orderdocs/fetchOrderDocs', 'App\Http\Controllers\OrderEntryController@GetOrderDocumentsByOrderUID');
+    Route::get('ordernots/fetchOrderNotes', 'App\Http\Controllers\OrderEntryController@GetOrderNotesByOrderUID');
 
 });
