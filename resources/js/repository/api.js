@@ -2,7 +2,7 @@ import axios from 'axios';
 import { removeAccessToken } from "../store/localstorage";
 
 let token = '41|1c73BDWIpPAqNW8VDQzdbm4W4AcozHwCDl2bZwdA';
-axios.defaults.baseURL = 'api/'
+axios.defaults.baseURL = window.baseurl;
 // axios.defaults.headers.common = { 'Authorization': `Bearer ${token}` }
 axios.defaults.headers.post['Content-Type'] = 'application/json';
 axios.defaults.withCredentials = true

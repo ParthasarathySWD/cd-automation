@@ -18,6 +18,8 @@
     <!-- React JS -->
     <script src="{{ asset('js/app.js') }}" defer></script>
     <script src="{{ asset('js/mainscript.js') }}"></script>
-
+    <script>
+        window.baseurl = '{{ env('APIURL') }}';
+    </script>
 </body>
 </html>
