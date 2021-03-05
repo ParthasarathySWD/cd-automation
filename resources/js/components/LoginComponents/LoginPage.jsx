@@ -64,7 +64,7 @@ function LoginPage(props) {
             if (response) {
 
                 if (response.data.status == "success") {
-                    addToast(response.data.message, { appearance: 'success' });
+                    addToast(response.data.message, { appearance: 'success', autoDismiss: true,  });
                     setAccessToken('true')
                 }
                 else {
@@ -75,7 +75,7 @@ function LoginPage(props) {
         catch (e) {
             console.log(e);
 
-            addToast(e.data.message, { appearance: 'error' });
+            addToast(e.data.message, { appearance: 'error', autoDismiss: true,  });
 
 
             let $responseError = e.data.errors;
@@ -113,17 +113,17 @@ function LoginPage(props) {
         let message = errors.map((err, key) => {
             return <p key={key}>{err}</p>
         })
-        addToast(message, { appearance: 'error' });
+        addToast(message, { appearance: 'error', autoDismiss: true,  });
 
     }
 
     function showErrors(message) {
-        addToast(message, { appearance: 'error' });
+        addToast(message, { appearance: 'error', autoDismiss: true,  });
 
     }
 
     function showMessage(message) {
-        addToast(message, { appearance: 'success' });
+        addToast(message, { appearance: 'success', autoDismiss: true,  });
 
     }
 
