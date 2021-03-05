@@ -114,7 +114,7 @@ function ClientList()
                                   <div className="col-lg-3 col-md-4 col-sm-4 col-4 one all-one">
                                       <i className="fa fa-users fa-2x"></i>
                                   </div>
-                                  <div class="col-lg-9 col-md-8 col-sm-8 col-8 fontst">
+                                  <div className="col-lg-9 col-md-8 col-sm-8 col-8 fontst">
                                       <label className="c-status-text">All Clients</label>
                                       <h4>2,210</h4>
                                   </div>

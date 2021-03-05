@@ -8,18 +8,63 @@ import ContentEditable from 'react-contenteditable';
 import './CDDetails.css';
 import './CDsecondpage.jsx';
 import './CDthirdpage.jsx';
-import CDTab from './CDTab.jsx'; 
+import CDTab from './CDTab.jsx';
+import Badge from 'react-bootstrap/Badge'
+// import Select from '../CommonComponents/ReactSelect/SelectBox'; 
+import Select from 'react-select';
+
+const templateOptions = [
+    { value: '1', label: 'Closing Template'},
+    { value: '2', label: 'Mortage Template' },
+    { value: '3', label: 'Signing Template' }
+]
+
+
+const selected = [{label: 'Closing Template', value: '1'}];
 function CDDetails(props) {
     
+    const[getVal,getSelectedVal]=useState();
+    const[selectedVal,setSelectedVal]=useState();
+
+    var handleChange = (e) => {
+        // const date = e.target.value;
+        var html="<span><i className='fa fa-close'></i></span>";
+        setSelectedVal(Array.isArray(e)?e.map(x=>x.label):[],html);
+      
+        // setSelectedVal(Array.from(target.multiselect, option => option.value));
+      };
 
         return(
          <>
 
          <div className="row clearfix">
            <div className="col-lg-12 col-md-12 col-sm-12">
-                           <div className="header mt-3 mb-3">
-                               <h5>Closing Disclosure</h5>
-                           </div>
+           <div className="col-sm-12">
+                        <label className="field-label">Template</label>
+                        {/* <input type="text" className="border" onChange={handleChange} /> */}
+                        {/* <input type="text" className="border" value={getVal}/> */}
+                        <Select name="multiselect"  
+                            isMulti 
+                            hideSelectedOptions={true}
+                            controlShouldRenderValue = { false } 
+                            options={templateOptions} 
+                            onChange={handleChange}
+                        />
+                       <Badge variant="secondary">{selectedVal}</Badge>
+                        
+                    {/* <ul>
+                        {selectedVal.map(item => {
+                        return <li>{item[0]}</li>;
+                        })}
+
+                    </ul> */}
+                    </div>
+               <div className="row">
+                    <div className="col-sm-4 header mt-3 mb-3">
+                        <h5>Closing Disclosure</h5>
+                    </div>
+                   
+                </div>
                <div className="card"> 
                    <div className="row">
                            
