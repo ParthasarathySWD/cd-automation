@@ -8,7 +8,7 @@
 {
     margin-left:20px;
     box-shadow: 2px 2px 8px 0px #d6d5d5;
-    width: 950px;
+    /* width: 950px; */
 }
 .myorder-header
 {
@@ -17,15 +17,16 @@
 }
 .btn-order
 {
-    position:absolute;
-    right: 6.0em;
-    top:1.0em;
+    /* position:absolute; */
+    float:right;
+    margin-right: 6em;
+    margin-top:-2.5em;
     text-transform: none;
 }
 .status-row
 {
-    width:950px;
-    margin-left: 8px;
+    /* width:960px; */
+    margin-left: -2px;
     margin-top:20px;
     height:90px;
 }

@@ -167,202 +167,210 @@ function EditClient(props){
         setState(prevState => ({ ...prevState, [name]: value }));
     };
 
-function onClickHandler(){
-    // addToast("Hi", { appearance: 'success' });
-   
-    if(handleValidation()){
-        
-        // const data = new FormData();
-
-        const data={
-            
-            ClientNumber: state.ClientNumber,
-            ClientName: state.ClientName,
-            Phone: state.Phone,
-            Email: state.Email,
-            AddressLine1: state.AddressLine1,
-            CityName: state.CityName,
-            CountyName: state.CountyName,
-            StateName: state.StateName,
-            Notes:state.Notes,
-            Active:state.Active
-        };
-
-        // data.append('ClientNumber', state.ClientNumber);
-        // data.append('ClientName', state.ClientName);
-        // data.append('Phone', state.Phone);
-        // data.append('Email', state.Email);
-        // data.append('AddressLine1',state.AddressLine1);
-        // data.append('CityName',state.CityName);
-        // data.append('CountyName',state.CountyName);
-        // data.append('StateName',state.StateName);
-        // data.append('Notes',state.Notes);
-        
-        axios.put("clients/"+id, data)
-            .then(res => {
-                addToast(res.data.message, { appearance: 'success' });
-             setState({  
-
-                    ClientNumber: '',
-                    ClientName: '',
-                    Phone: '',
-                    Email: '',
-                    AddressLine1: '',
-                    CityName: '',
-                    CountyName: '',
-                    StateName: '',
-                    Notes:'',
-                    errors: {}
-
-                 });
-                 history.push("/allclients");
-
-            })
-
-     }else{
-        const data = new FormData();
-
-        axios.post("client", data, {
-        })
-            .then(res => {
-                addToast("Invalid Input", { appearance: 'error' });
-            })
-     }
-
+    function onClickHandler(){
+        // addToast("Hi", { appearance: 'success' });
     
-};
+        if(handleValidation()){
+            
+            // const data = new FormData();
 
-function reset(){
-    setState({ 
+            const data={
+                
+                ClientNumber: state.ClientNumber,
+                ClientName: state.ClientName,
+                Phone: state.Phone,
+                Email: state.Email,
+                AddressLine1: state.AddressLine1,
+                CityName: state.CityName,
+                CountyName: state.CountyName,
+                StateName: state.StateName,
+                Notes:state.Notes,
+                Active:state.Active
+            };
 
-        ClientNumber: '',
-        ClientName: '',
-        Phone: '',
-        Email: '',
-        AddressLine1: '',
-        CityName: '',
-        CountyName: '',
-        StateName: '',
-        Notes:'',
-        errors: {}
+            // data.append('ClientNumber', state.ClientNumber);
+            // data.append('ClientName', state.ClientName);
+            // data.append('Phone', state.Phone);
+            // data.append('Email', state.Email);
+            // data.append('AddressLine1',state.AddressLine1);
+            // data.append('CityName',state.CityName);
+            // data.append('CountyName',state.CountyName);
+            // data.append('StateName',state.StateName);
+            // data.append('Notes',state.Notes);
+            
+            axios.put("clients/"+id, data)
+                .then(res => {
+                    addToast(res.data.message, { appearance: 'success' });
+                setState({  
 
-    });
-};
+                        ClientNumber: '',
+                        ClientName: '',
+                        Phone: '',
+                        Email: '',
+                        AddressLine1: '',
+                        CityName: '',
+                        CountyName: '',
+                        StateName: '',
+                        Notes:'',
+                        errors: {}
+
+                    });
+                    history.push("/allclients");
+
+                })
+
+        }else{
+            const data = new FormData();
+
+            axios.post("client", data, {
+            })
+                .then(res => {
+                    addToast("Invalid Input", { appearance: 'error' });
+                })
+        }
+
+        
+    };
+
+    function reset(){
+        setState({ 
+
+            ClientNumber: '',
+            ClientName: '',
+            Phone: '',
+            Email: '',
+            AddressLine1: '',
+            CityName: '',
+            CountyName: '',
+            StateName: '',
+            Notes:'',
+            errors: {}
+
+        });
+    };
 
 
   
     
-      return (
-          <>
+    return (
+        <>
         <div className="main-container add-client">
-        <div className="block-header" id="headername">
+                <div className="row clearfix">
+                
+                </div>
+            
             <div className="row clearfix">
-                <div className="col-lg-4 col-md-12 col-sm-12">
-                    <h1 className="Add">Add Client</h1>
-                    <span></span>
-                </div>
-                <div className="col-lg-8 col-md-12 col-sm-12 text-lg-right">
-                    <div className="d-flex align-items-center justify-content-lg-end mt-4 mt-lg-0 flex-wrap vivify pullUp delay-550">
-                        <div className="mb-3 mb-xl-0">
-                            
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div className="row clearfix">
-            <div className="col-lg-12 col-md-12 col-sm-12">
-                <div className="card">
-                    <div className="body">
-                        <div className="row clearfix">
-                            <div className="col-sm-3">
-                                <div className="form-group">
-                                    <label className="field-label" >Client Number<span className="text-danger">*</span></label>
-                                    <input type="text" name="ClientNumber" className="border" autoFocus="autofocus" value={state.ClientNumber} onChange={onChangeHandler}/>
-                                    <span style={spanStyle}>{state.errors["ClientNumber"]}</span>
+                <div className="col-lg-12 col-md-12 col-sm-12">
+                    <div className="card">
+                        <div className="body">
+                            <div className="row clearfix">
+                                <div className="col-sm-6 align-left">
+                                    <h4>Edit Client</h4>
+                                    <span></span>
                                 </div>
-                            </div>
-                            <div className="col-sm-3">
-                               
-                                <div className="form-group">
-                                    <label className="field-label" >Client Name<span className="text-danger">*</span></label>
-                                    <input type="text" name="ClientName" className="border" value={state.ClientName} onChange={onChangeHandler}/>
-                                    <span style={spanStyle}>{state.errors["ClientName"]}</span>
-                                </div>
-                            </div>
-                        
-                            <div className="col-sm-3">
-                                <div className="form-group">
-                                <label className="field-label" >Phone<span className="text-danger">*</span></label>
-                                <input type="text" name="Phone" className="border" value={state.Phone} onChange={onChangeHandler}/>
-                                <span style={spanStyle}>{state.errors["Phone"]}</span>
-                                </div>
-                            </div>
-                            <div className="col-sm-3">
-                                <div className="form-grouo">
-                                    
-                                <label className="field-label" >Email<span className="text-danger">*</span></label>
-                                <input type="email" name="Email" className="border" value={state.Email} onChange={onChangeHandler}/>
-                                <span style={spanStyle}>{state.errors["Email"]}</span>
-                                </div>
-                            </div>
-                           
-                            <div className="col-sm-3">
-                                <div className="form-group">
-                                <label className="field-label" >Address Line1<span className="text-danger">*</span></label>
-                                <input type="text" name="AddressLine1" className="border" value={state.AddressLine1} onChange={onChangeHandler}/>
-                                <span style={spanStyle}>{state.errors["AddressLine1"]}</span>
-                                </div>
-                            </div>
-                            <div className="col-sm-3">
-                                <div className="form-group">
-                                <label className="field-label">City<span className="text-danger">*</span></label><br/>
-                                <input type="text" name="CityName" className="border" value={state.CityName} onChange={onChangeHandler}/>
-                                <span style={spanStyle}>{state.errors["CityName"]}</span>
-                                </div>
-                            </div>
-                            <div className="col-sm-3">
-                                <div className="form-group">
-                                <label className="field-label">County<span className="text-danger">*</span></label>
-                                <input type="text" name="CountyName" className="border" value={state.CountyName} onChange={onChangeHandler}/>
-                                <span style={spanStyle}>{state.errors["CountyName"]}</span>
-                                </div>
-                            </div>
-                            <div className="col-sm-3">
-                                <div className="form-group">
-                                <label className="field-label">State<span className="text-danger">*</span></label>
-                                <input type="text" name="StateName" className="border" value={state.StateName} onChange={onChangeHandler}/>
-                                <span style={spanStyle}>{state.errors["StateName"]}</span>
-                                </div>
-                            </div>
-                            <div className="col-sm-8">
-                                <div className="form-group">
-                                    <label className="field-label" >Notes<span className="text-danger">*</span></label><br/>
-                                    <textarea name="Notes" rows="1" cols="85" className="border text-area" value={state.Notes} onChange={onChangeHandler}></textarea>
-                                    <span style={spanStyle}>{state.errors["Notes"]}</span>
-                                </div>
-                            </div>
-                            <div className="col-sm-4">
-                                <div className="form-group row" style={{marginTop:'35px',marginLeft:'80px'}}>
-                                    <label className="field-label pt-10">Active</label>
-                                    <div class="col-sm-4">
-                                    <input type="checkbox" name="Active" id={state.ClientUID} class="form-control  pt-10" value={(state.Active == 1) ? 0 : 1} checked={(state.Active == 1) ? true : false} onChange={onChangeHandler}/>
+                                <div className="col-sm-6 pull-right" > 
+                                    <div className="form-group row">
+                                        <label className="field-label pt-10" style={{marginLeft:'370px'}}>Active</label>
+                                        <div className="col-sm-2">
+                                            <input type="checkbox" name="Active" id={state.ClientUID} className="form-control  pt-10" value={(state.Active == 1) ? 0 : 1} checked={(state.Active == 1) ? true : false} onChange={onChangeHandler}/>
+                                        </div>
                                     </div>
                                 </div>
-                             </div>
-                            <div className="col-sm-12 align-right">
-                                <button type="submit" className="btn btn-xs btn-primary mr-2" onClick={onClickHandler} >Submit</button>
-                                <button type="submit" className="btn  btn-xs btn-danger" onClick={reset} >Cancel</button>
+                            </div>
+                            <fieldset className="scheduler-border">
+                                <legend className="scheduler-border" style={{fontSize:'16px',fontWeight:'bold'}}>Client Information</legend>
+                                <div className="row clearfix">
+                                    <div className="col-sm-6">
+                                        <div className="form-group">
+                                            <label className="field-label" >Client Number<span className="text-danger">*</span></label>
+                                            <input type="text" name="ClientNumber" className="border" size="50" autoFocus="autofocus" value={state.ClientNumber} onChange={onChangeHandler}/>
+                                            <span style={spanStyle}>{state.errors["ClientNumber"]}</span>
+                                        </div>
+                                    </div>
+                                    <div className="col-sm-6">
+                                    
+                                        <div className="form-group">
+                                            <label className="field-label" >Client Name<span className="text-danger">*</span></label>
+                                            <input type="text" name="ClientName" className="border" size="50" value={state.ClientName} onChange={onChangeHandler}/>
+                                            <span style={spanStyle}>{state.errors["ClientName"]}</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </fieldset>
+                            <fieldset className="scheduler-border">
+                                <legend className="scheduler-border" style={{fontSize:'16px',fontWeight:'bold'}}>Contact Information</legend>
+                                <div className="row clearfix">
+                                    <div className="col-sm-6">
+                                        <div className="form-group">
+                                            <label className="field-label" >Phone<span className="text-danger">*</span></label><br/>
+                                            <input type="text" name="Phone" className="border" value={state.Phone} size="50" onChange={onChangeHandler}/>
+                                            <span style={spanStyle}>{state.errors["Phone"]}</span>
+                                        </div>
+                                    </div>
+                                    <div className="col-sm-6">
+                                        <div className="form-grouo">   
+                                            <label className="field-label" >Email<span className="text-danger">*</span></label><br/>
+                                            <input type="email" name="Email" className="border" value={state.Email} size="50" onChange={onChangeHandler}/>
+                                            <span style={spanStyle}>{state.errors["Email"]}</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div className="row clearfix">
+                                    <div className="col-sm-6">
+                                        <div className="form-group">
+                                            <label className="field-label" >Address Line1<span className="text-danger">*</span></label><br/>
+                                            <input type="text" name="AddressLine1" className="border" size="50" value={state.AddressLine1} onChange={onChangeHandler}/>
+                                            <span style={spanStyle}>{state.errors["AddressLine1"]}</span>
+                                        </div>
+                                    </div>
+                                    <div className="col-sm-6">
+                                        <div className="form-group">
+                                        <label className="field-label">City<span className="text-danger">*</span></label><br/>
+                                        <input type="text" name="CityName" className="border" size="50" value={state.CityName} onChange={onChangeHandler}/>
+                                        <span style={spanStyle}>{state.errors["CityName"]}</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div className="row clearfix">
+                                    <div className="col-sm-6">
+                                        <div className="form-group">
+                                        <label className="field-label">County<span className="text-danger">*</span></label><br/>
+                                        <input type="text" name="CountyName" className="border" size="50" value={state.CountyName} onChange={onChangeHandler}/>
+                                        <span style={spanStyle}>{state.errors["CountyName"]}</span>
+                                        </div>
+                                    </div>
+                                    <div className="col-sm-6">
+                                        <div className="form-group">
+                                        <label className="field-label">State<span className="text-danger">*</span></label><br/>
+                                        <input type="text" name="StateName" className="border" size="50" value={state.StateName} onChange={onChangeHandler}/>
+                                        <span style={spanStyle}>{state.errors["StateName"]}</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </fieldset>
+                                <div className="row clearfix">
+                                    <div className="col-sm-8">
+                                        <div className="form-group">
+                                            <label className="field-label" >Notes<span className="text-danger">*</span></label><br/>
+                                            <textarea name="Notes" rows="1" cols="118" className="border text-area" value={state.Notes} onChange={onChangeHandler}></textarea>
+                                            <span style={spanStyle}>{state.errors["Notes"]}</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div className="row clearfix">
+                                    <div className="col-sm-12 align-right">
+                                        <button type="submit" className="btn btn-xs btn-primary mr-2" onClick={onClickHandler} >Submit</button>
+                                        <button type="submit" className="btn  btn-xs btn-danger" onClick={reset} >Cancel</button>
+                                    </div>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-        </div>
-       
-</>
-      );
-   }
+        
+    </>
+    );
+}
 
 export default EditClient;

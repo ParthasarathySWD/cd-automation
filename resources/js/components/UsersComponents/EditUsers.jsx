@@ -262,25 +262,18 @@ function EditUser(props){
 		return (
 			<div>
                 
-				<div className="block-header">
+				{/* <div className="block-header">
 					<div className="row clearfix">
-                        <div className="col-lg-4 col-md-12 col-sm-12">
-                            <h1>Edit User</h1>
-                            <span></span>
-                        </div>
-                        <div className="col-lg-8 col-md-12 col-sm-12 text-lg-right">
-                            <div className="d-flex align-items-center justify-content-lg-end mt-4 mt-lg-0 flex-wrap vivify pullUp delay-550">
-                                <div className="mb-3 mb-xl-0">
-                                    
-                                </div>
-                            </div>
-                        </div>
+                        
                     </div>
-				</div>
+				</div> */}
 				<div className="row clearfix">
                     <div className="col-lg-12 col-md-12 col-sm-12">
                         <div className="card">
                             <div className="body">
+                                <h4>Edit User</h4>
+                            <fieldset className="scheduler-border">
+                                <legend className="scheduler-border" style={{fontSize:'16px',fontWeight:'bold'}}>Personal Information</legend>
                                 <div className="row clearfix">
                                     <div className="col-sm-6">
                                         <div className="form-group">
@@ -312,7 +305,11 @@ function EditUser(props){
                                             <span style={spanStyle}>{state.errors["Email"]}</span>
                                         </div>
                                     </div>
-                                    
+                                </div>
+                            </fieldset>
+                            <fieldset className="scheduler-border">
+                                <legend className="scheduler-border" style={{fontSize:'16px',fontWeight:'bold'}}>Login Information</legend>
+                                <div className="row clearfix">
                                     <div className="col-sm-6">
                                         <div className="form-group">
                                             <label>User Name <span className="text-danger">*</span></label><br/>
@@ -337,17 +334,19 @@ function EditUser(props){
                                         <div className="form-group">
                                             <label>Status <span className="text-danger">*</span></label><br/>
                                 
-                                            <div class="custom-control custom-switch">
-                                                <input type="checkbox" class="custom-control-input" id='{row.UserUID}' name="Active" onChange={onChangeHandler} value={(state.Active == 1) ? 0 : 1} checked={(state.Active == 1) ? true : false}/>
-                                                <label class="custom-control-label mt-0" htmlFor='{row.UserUID}'></label>
+                                            <div className="custom-control custom-switch">
+                                                <input type="checkbox" className="custom-control-input" id='{row.UserUID}' name="Active" onChange={onChangeHandler} value={(state.Active == 1) ? 0 : 1} checked={(state.Active == 1) ? true : false}/>
+                                                <label className="custom-control-label mt-0" htmlFor='{row.UserUID}'></label>
                                             </div>
                                         </div>
                                     </div>
+                                </div>
+                            </fieldset>
                                     <div className="col-sm-12 align-right mt-3">
                                         <button type="submit" className="btn btn-xs btn-primary" onClick={onClickHandler} >Submit</button>
                                         <button type="submit" className="btn  btn-xs btn-danger" onClick={reset} >Cancel</button>
                                     </div>
-                                </div>
+                                
                             </div>
                         </div>
                     </div>

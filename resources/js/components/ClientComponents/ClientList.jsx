@@ -100,9 +100,9 @@ function ClientList()
 
         <div className="main-container clearfix" >
 
-                <div className="tab-menus">
-                          <h4 className="p-2">Clients List</h4>
-                      </div>   
+              <div className="myorder-header">
+                <h4>Clients List</h4>
+              </div> 
 
               <div className="child-container status-container" >
 
@@ -159,8 +159,8 @@ function ClientList()
                   <div className="tab-values p-10">
                       <div className="tab-content">
                           <div id="all" className="order-table tab-pane in active">
+                            <Link to={'/addclient'} className="btn btn-primary">Add Client</Link>
                             {/* <input type="text" className="c-search-input" placeholder="&#61442; search"></input> */}
-                            <Link to={'/addclient'} className="btn btn-primary">ADD CLIENT</Link>
                                   {/* Datatable-Client List */}
                                   <MyOrders                                                                  
                                     title = ""

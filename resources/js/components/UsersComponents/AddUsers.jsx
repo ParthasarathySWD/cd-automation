@@ -241,8 +241,8 @@ function AddUser(props){
                                 <h4>Add User</h4>
                                 <span></span>
                             </div>
-                                <fieldset class="scheduler-border">
-                                    <legend class="scheduler-border" style={{fontSize:'16px',fontWeight:'bold'}}>Personal Information</legend>
+                                <fieldset className="scheduler-border">
+                                    <legend className="scheduler-border" style={{fontSize:'16px',fontWeight:'bold'}}>Personal Information</legend>
                                     <div className="row clearfix">
                                     <div className="col-sm-6">
                                         <div className="form-group">
@@ -279,8 +279,8 @@ function AddUser(props){
                                     </div>
                                 </div>
                                 </fieldset>
-                                <fieldset class="scheduler-border">
-                                <legend class="scheduler-border" style={{fontSize:'16px',fontWeight:'bold'}}>Login Information</legend>
+                                <fieldset className="scheduler-border">
+                                <legend className="scheduler-border" style={{fontSize:'16px',fontWeight:'bold'}}>Login Information</legend>
                                 <div className="row clearfix">
                                     <div className="col-sm-6">
                                         <div className="form-group">

@@ -44,19 +44,17 @@ function LeftSideBar(props) {
                            
 
                            <li>
-                              <a href="#!"  className="has-arrow"><i className="fa fa-list"></i><span>Clients</span></a>
+                              {/* <a href="#!"  className="has-arrow"><i className="fa fa-list"></i><span>Clients</span></a> */}
                            <Link to={'/allclients'} className="nav-link"><i className="fa fa-id-badge"></i><span>Clients</span></Link>
-                              {/* <ul>
-                                 <li><Link to={'/allclients'} className="nav-link"><span>All Clients</span></Link></li>
-                                 <li><Link to={'/addclient'} className="nav-link"><span>Add Client</span></Link></li>
-                              </ul> */}
                            </li>
                            <li>
-                              <a href="#!" className="has-arrow"><i className="fa fa-users"></i><span>User</span></a>
-                              <ul>
-                                 <li><Link to={'/alluser'} className="nav-link"> All User </Link></li>
-                                 <li><Link to={'/adduser'} className="nav-link">Add User</Link></li>
-                              </ul>
+                              {/* <a href="#!" className="has-arrow"><i className="fa fa-users"></i><span>User</span></a> */}
+                              <Link to={'/alluser'} className="nav-link"><i className="fa fa-users"></i><span>User</span></Link>
+                              {/* <ul> */}
+                                 {/* <li><Link to={'/alluser'} className="nav-link">All User</Link></li> */}
+                                 {/* <li><Link to={'/alluser'} className="nav-link">All User</Link></li> */}
+                                 {/* <li><Link to={'/adduser'} className="nav-link">Add User</Link></li> */}
+                              {/* </ul> */}
                            </li>
                         </ul>
                      </nav>
