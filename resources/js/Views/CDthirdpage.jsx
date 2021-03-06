@@ -133,7 +133,7 @@ function CDthirdpage(props) {
                                         <Table>
                                              <thead>
                                                <tr>
-                                                   <th>K. Due fro in Borrower at Closing</th>
+                                                   <th>K. Due from Borrower at Closing</th>
                                                    <th>$<span contentEditable> 189,762.50</span></th>
                                                    </tr> 
                                             </thead>
