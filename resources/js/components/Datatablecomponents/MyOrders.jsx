@@ -78,6 +78,8 @@ const MyOrders = (props) => {
     },
     [currentPage, perPage, totalRows]
     );
+    const headerColor = 'red';
+    const textColor = 'white';
   return (
     <>
     <input type="text" className="search-input-right" placeholder="&#61442; Search"></input>
@@ -98,6 +100,8 @@ const MyOrders = (props) => {
       onSelectedRowsChange={({ selectedRows }) => console.log(selectedRows)}
       customStyles={customStyles}
       LoadingComponent={Spinner}
+      headerBackgroundColor={headerColor}
+      headerTextColor={textColor}
     />
     </>
   );
