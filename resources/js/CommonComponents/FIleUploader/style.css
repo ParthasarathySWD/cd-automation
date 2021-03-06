@@ -59,3 +59,43 @@
     font-size: 14px;
     font-weight: 600;
 }
+
+/** Order Notes Style Begin */
+input[type="file"] {
+    display: none;
+}
+
+.mt-07{
+    margin-top: 0.7rem !important;
+}
+
+.badge-primary-notes {
+    background: #ffffff;
+    color: #212121 !important;
+    padding: 5px;
+    margin: 3px;
+    border: none !important;
+}
+.text-danger-notes {
+    color: #f97572 !important;
+}
+
+.notes-pdf{
+    color: #d35230;
+}
+.notes-doc{
+    color: #2d7fd0;
+}
+.notes-excel{
+    color: #0f773f;
+}
+.notes-image{
+    color: #db77bf;
+}
+.notes-other{
+    color: #000;
+}
+.badge {
+    text-transform: unset !important;
+}
+/** end */

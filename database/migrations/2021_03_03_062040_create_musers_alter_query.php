@@ -18,7 +18,7 @@ class CreateMusersAlterQuery extends Migration
                 $table->integer('Active');
             }
             if (!Schema::hasColumn('mUsers', 'ClientUID')) {
-                $table->unsignedBigInteger('ClientUID');
+                $table->unsignedBigInteger('ClientUID')->default(0);
                 $table->foreign('ClientUID')->references('ClientUID')->on('mClients');
             }
         });

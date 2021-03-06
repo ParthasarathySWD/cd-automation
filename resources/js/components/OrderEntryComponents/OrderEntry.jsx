@@ -28,10 +28,8 @@ function OrderEntry() {
     let history = useHistory();
     const [loannumber, setLoanNumber] = useState("");
     
-    const loanChange = (event) => {            
-        if (event.target.value != '') {
-            setLoanNumber(event.target.value);         
-        }
+    const loanChange = (event) => {  
+        setLoanNumber(event.target.value); 
     }
 
     // if (Object.keys(files).length != 0) {

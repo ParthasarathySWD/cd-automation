@@ -434,7 +434,7 @@ class OrderEntryController extends Controller
             ->select('tOrderNotes.*', 'mUsers.UserName')     
             ->leftJoin('mUsers', 'mUsers.UserUID', '=', 'tOrderNotes.CreatedByUserUID')            
             ->where('tOrderNotes.OrderUID', '=', $OrderUID)
-            ->orderBy('CreatedByDateTime', 'desc')
+            ->orderBy('CreatedByDateTime', 'asc')
             ->get();
         // echo '<pre>';print_r($OrderNotes);exit;   
         $RowArray = array();
@@ -443,7 +443,7 @@ class OrderEntryController extends Controller
             $count++;
             $NotesDate = date('Y-m-d',strtotime($resValue->CreatedByDateTime));
             $NotesTime = date('H:i A',strtotime($resValue->CreatedByDateTime));
-            $FileName = 'test.pdf';
+            $FileName = 'Closing instructions - Sample 2.pdf';
             $Extension = 'pdf';
 
             $ColumnArray = array(
@@ -456,9 +456,9 @@ class OrderEntryController extends Controller
                 'AttachedFilesExtension' => $Extension,
                 'UserName' => $resValue->UserName,
                 'UserImage' => '',
+                'UserUID' => $resValue->CreatedByUserUID,
                 'Date' => $NotesDate,
                 'Time' => $NotesTime,
-                'LoginUserID' => $UserDetails->UserUID
             );
             array_push($RowArray, $ColumnArray);            
         }         

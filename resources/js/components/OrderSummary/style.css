@@ -53,3 +53,13 @@
     overflow-y: auto;
   }
 }
+
+.right .message {
+    background: #0080f717 !important;
+    color: #212121 !important;
+}
+
+.left .message {
+    background: #dee2e68a !important;
+    color: #212121 !important;
+}

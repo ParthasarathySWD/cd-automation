@@ -1,10 +1,15 @@
 import React, {useState, useEffect } from 'react';
 import { BrowserRouter as Router, Switch, Route, Link, useHistory } from 'react-router-dom';
 
+import NotesFile from '../../CommonComponents/FIleUploader/NotesUpload';
+import {useSelector} from 'react-redux';
+
 function OrderNotes(props) {
     let history = useHistory();
 
+    /** declear a states */
     const [ordernotes, setOrderNotes] = useState([]);
+    const ProfileDetails = useSelector(state=>state.Profile);
 
     /** Get Order Notes */
     const fetchOrderNotes = () => {
@@ -18,10 +23,105 @@ function OrderNotes(props) {
         })
     }
     /** end */
+
     useEffect(() => {
         fetchOrderNotes();
     },[]);
+    
+    const LoginUserID = ProfileDetails.UserUID; 
+    
+    /** File extension base create a icon class & div class */
+    const FileExtension = (extension) => {
+        switch (extension) {
+            case 'pdf':
+                return ({
+                    divClass: 'alert alert-danger mb-0 mt-2',
+                    iconClass: 'fa fa-file-pdf-o'
+                })
+                break;
+            case 'xlsx':
+                return ({
+                    divClass: 'alert alert-success mb-0 mt-2',
+                    iconClass: 'fa fa-file-excel-o'
+                })
+                break;
+            case 'docx':
+                return ({
+                    divClass: 'alert alert-primary mb-0 mt-2',
+                    iconClass: 'fa fa-file-text'
+                })
+                break;
+            case 'txt':
+                return ({
+                    divClass: 'alert alert-primary mb-0 mt-2',
+                    iconClass: 'fa fa-file-text'
+                })
+                break;
+            case 'png':
+                return ({
+                    divClass: 'alert alert-info mb-0 mt-2',
+                    iconClass: 'fa fa-file-image-o'
+                })
+                break;
+        
+            default:
+                return ({
+                    divClass: 'alert alert-default mb-0 mt-2',
+                    iconClass: 'fa fa-files-o'
+                })
+                break;
+        }
+    }
+    /** end */
 
+    /** Create a Notes Item */
+    const Items = ordernotes.map((note, index) => {
+
+        let IconClassName = FileExtension(note.AttachedFilesExtension);
+        return (
+            /** Check Login User by Dispaly the Notes */
+            (note.UserUID == LoginUserID) ?
+               <li className="right clearfix" key={index}>
+                    <img className="user_pix" src="../../../images/xs/avatar7.jpg" alt="avatar"/>
+                    <div className="message">
+                        {}
+                        <span>{note.Notes}</span>
+                        {
+                            /** Check attached file is empty or not empty */
+                            (note.AttachedFiles == '') ?
+                            <div className={IconClassName.divClass+ "col-md-4 pull-right mt-4"}>
+                                <i className={IconClassName.iconClass}></i> <span>{note.AttachedFilesName}
+                                    <i className="fa fa-cloud-download ml-2" aria-hidden="true"></i>
+                                </span>
+                            </div> : ""
+                        }
+                        
+                    </div>
+                    <span className="data_time">{note.Date +' '+ note.Time}</span>
+                </li> 
+            : 
+                <li className="left clearfix" key={index}>
+                    <img className="user_pix" src="../../../images/user.png" alt="avatar"/>
+                    <div className="message">
+                        
+                        <span>{note.Notes}</span>
+                        {
+                            /** Check attached file is empty or not empty */
+                            (note.AttachedFiles == '') ?
+                            <div className={IconClassName.divClass+ "col-md-4"}>
+                                <i className={IconClassName.iconClass}></i> <span>{note.AttachedFilesName}
+                                    <i className="fa fa-cloud-download ml-2" aria-hidden="true"></i>
+                                </span>
+                            </div> : ""
+                        }
+                    </div>
+                    <span className="data_time">{note.Date +' '+ note.Time}</span>
+                </li> 
+        )
+
+    }); 
+    /** end */
+    
     return (
         <>
             <div className="row clearfix">
@@ -31,9 +131,9 @@ function OrderNotes(props) {
                         <div className="chat-header">
                         <a href="javascript:void(0);" className="open_detail">
                             <div className="media mb-0">
-                            <img className="rounded-circle w35" src="../../../images/user.png" alt="" />
+                            <img className="rounded-circle w35" src="../../../images/xs/avatar7.jpg" alt="" />
                             <div className="media-body mr-3 ml-3 text-muted">
-                                <h6 className="m-0">Partha</h6>
+                                <h6 className="m-0">{ProfileDetails.FirstName +' '+ ProfileDetails.LastName}</h6>
                                 <small>Notes Follow Up</small>
                             </div>
                             </div>
@@ -41,71 +141,10 @@ function OrderNotes(props) {
                         </div>
                         <div className="chat-history">
                         <ul className="message_data">
-                            <li className="right clearfix">
-                                <img className="user_pix" src="../../../images/xs/avatar7.jpg" alt="avatar"/>
-                                <div className="message">
-                                    <a href="#!" className="smily"><i className="fa fa-smile-o"></i></a>
-                                    <span>Hi Aiden, how are you?<br />> How is the project coming along?</span>
-                                </div>
-                                <span className="data_time">10:12 AM</span>
-                            </li>
-                            <li className="left clearfix">
-                                <img className="user_pix" src="../../../images/user.png" alt="avatar"/>
-                                <div className="message">
-                                    <a href="#!" className="smily"><i className="fa fa-smile-o"></i></a>
-                                    <span>Are we meeting today?</span>
-                                    <div className="alert alert-primary mb-0 mt-2">
-                                    <i className="fa fa-file-word-o mr-2"></i> <span>finame12.doc</span>
-                                    </div>
-                                </div>
-                                <span className="data_time">10:12 AM</span>
-                            </li>
-                            
-                            {/* <li className="right clearfix">
-                            <img className="user_pix" src="../../../images/xs/avatar5.jpg" alt="avatar"/>
-                            <div className="message">
-                                <a href="#!" className="smily"><i className="fa fa-smile-o"></i></a>
-                                <span>How is the project coming along?</span>
-                            </div>
-                            <span className="data_time">10:12 AM, Today</span>
-                            </li>
-                            <li className="divider clearfix">
-                            <span>yesterday</span>
-                            </li>
-                            <li className="left clearfix">
-                            <img className="user_pix" src="../../../images/user.png" alt="avatar"/>
-                            <div className="message">
-                                <a href="#!" className="smily"><i className="fa fa-smile-o"></i></a>
-                                <span>Project has been already finished and I have<br />> results to show you.</span>
-                            </div>
-                            <span className="data_time">10:16 AM, Today</span>
-                            </li>
-                            <li className="right clearfix">
-                            <img className="user_pix" src="../../../images/xs/avatar5.jpg" alt="avatar"/>
-                            <div className="message">
-                                <a href="#!" className="smily"><i className="fa fa-smile-o"></i></a>
-                                <span>How is the project coming along?</span>
-                                <div className="mt-2">
-                                <img className="w100" src="../../../images/image-gallery/1.jpg" alt="" />
-                                <img className="w100" src="../../../images/image-gallery/2.jpg" alt="" />
-                                <img className="w100" src="../../../images/image-gallery/3.jpg" alt="" />
-                                </div>
-                            </div>
-                            <span className="data_time">10:12 AM, Today</span>
-                            </li> */}
+                            {Items}
                         </ul>
                         </div>
-                        <div className="chat-message">
-                            <div className="form-group c_form_group mb-0">
-                                <textarea type="text" row="" className="form-control" placeholder="Enter text here..."></textarea>
-                            </div>
-                            <div className="m-1">
-                                <a href="#!" className="btn btn-xs hidden-xs"><i className="fa fa-paperclip text-danger"></i></a>
-                                <a href="#!" className="btn btn-xs pull-right"><i className="fa fa-paper-plane-o text-primary"></i></a>
-                                {/* <a href="javascript:void(0);" className="btn btn-sm btn-default"><i className="fa fa-video-camera"></i></a>
-                                <a href="javascript:void(0);" className="btn btn-sm btn-default"><i className="fa fa-plus"></i></a> */}
-                            </div>
-                        </div>
+                        <NotesFile></NotesFile>                        
                     </div>
                     </div>
                 </div>
@@ -113,4 +152,5 @@ function OrderNotes(props) {
         </>
     );
 }
+
 export default OrderNotes;
