@@ -3,6 +3,8 @@
 namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
+use App\Models\mFormFields;
+use Illuminate\Support\Facades\DB;
 
 class CDsecondpage extends Seeder
 {

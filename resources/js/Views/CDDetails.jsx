@@ -2,15 +2,13 @@ import React, {useState,Component} from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import store from '../store/store.js';
 import { useToasts } from 'react-toast-notifications';
-import auth from '../repository/auth';
 import Table from 'react-bootstrap/Table';
-import ContentEditable from 'react-contenteditable';
+import ContentEditable from "../CommonComponents/ContentEditable.jsx";
 import './CDDetails.css';
 import './CDsecondpage.jsx';
 import './CDthirdpage.jsx';
 import CDTab from './CDTab.jsx';
 import Badge from 'react-bootstrap/Badge'
-// import Select from '../CommonComponents/ReactSelect/SelectBox'; 
 import Select from 'react-select';
 
 const templateOptions = [
@@ -25,6 +23,7 @@ function CDDetails(props) {
     
     const[getVal,getSelectedVal]=useState();
     const[selectedVal,setSelectedVal]=useState();
+    const[html, setHtml] = useState('Sourcepoint Fulfillment <br/>Services, Inc. ');
 
     var handleChange = (e) => {
         // const date = e.target.value;
@@ -33,6 +32,11 @@ function CDDetails(props) {
       
         // setSelectedVal(Array.from(target.multiselect, option => option.value));
       };
+
+    let handleContentEditableChange = (e) => {
+        let value = e.target.value;
+        setHtml(value);
+    }
 
         return(
          <>
@@ -90,7 +94,10 @@ function CDDetails(props) {
                                     </tr>
                                     <tr>
                                         <td><label>Settlement Agent  </label></td>
-                                        <td contentEditable><span className="change_input_field">Sourcepoint Fulfillment <br/>Services, Inc. </span> </td>
+                                        
+                                        <td>
+                                            <ContentEditable html={html} onChange={handleContentEditableChange} />
+                                        </td>
                                     </tr>
                                     <tr>
                                         <td><label>File#  </label></td>

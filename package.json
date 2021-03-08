@@ -27,6 +27,7 @@
     },
     "dependencies": {
         "chart.js": "^2.9.4",
+        "create-react-class": "^15.7.0",
         "datatables.net": "^1.10.23",
         "fontawesome-4.7": "^4.7.0",
         "html5-file-selector": "^2.1.0",
@@ -50,6 +51,7 @@
         "redux": "^4.0.5",
         "styled-components": "^5.2.1",
         "sweetalert2": "^10.15.5",
-        "sweetalert2-react-content": "^3.3.1"
+        "sweetalert2-react-content": "^3.3.1",
+        "validate.js": "^0.13.1"
     }
 }
