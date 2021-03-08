@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import '../../../css/MyOrder/MyOrder.css';
+import '../../../css/orderstatus.css';
 import "react-data-table-component-extensions/dist/index.css";
 import { BrowserRouter as Router, Switch, Route, Link, useHistory } from 'react-router-dom';
 import MyOrders from '../../components/Datatablecomponents/MyOrders';
@@ -133,8 +133,7 @@ function MyOrder(){
       },
       {
         name: <b>Status</b>,
-        selector: row => row["StatusName"],
-        sortable: true
+        cell: row => <span className="badge order-initiated">{row['StatusName']}</span>
       },
       {
         name:<b>Action</b>,
