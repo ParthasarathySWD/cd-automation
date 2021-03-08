@@ -48,6 +48,31 @@ function CDDetails(props) {
         const toggle = () => setPopoverOpen(!popoverOpen);
     
 
+        const FileBadge = (template) => {
+            switch (template) {
+                case 'Closing Template':
+                    return ({
+                       variant:'success'
+                    })
+                break;
+                case 'Mortage Template':
+                    return ({
+                        variant:'secondary'
+                    })
+                break;
+                case 'Signing Template':
+                    return ({
+                        variant:'warning'
+                    })
+                break;
+                default:
+                    return ({
+                        variant:'primary'
+                    })
+                    break;
+                }
+            }
+
         return(
          <>
          <div className="row clearfix">
@@ -63,7 +88,8 @@ function CDDetails(props) {
                         />
                       
                    {selectedVal.map((item) => {
-                        return  <Badge className="selected-badge-values" variant="primary"><span className="badge-value pb-2" style={{fontSize:'12px'}}>{item}</span><button className="badge-button pr-1 pl-1" style={{background:'none',color:'white',border:'none'}}><i className='fa fa-times-circle fa-lg'></i></button></Badge>
+                        let BadgeClassName = FileBadge(item);
+                        return  <Badge className="selected-badge-values" variant={BadgeClassName.variant}><span className="badge-value pb-2" style={{fontSize:'12px'}}>{item}</span><button className="badge-button pr-1 pl-1" style={{background:'none',color:'white',border:'none'}}><i className='fa fa-times-circle fa-lg'></i></button></Badge>
                         })}
 
                     </div>
