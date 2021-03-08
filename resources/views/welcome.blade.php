@@ -13,7 +13,7 @@
 
     <!-- React root DOM -->
     <div id="body" class="theme-green">
-
+        
     </div>
     <!-- React JS -->
     <script src="{{ asset('js/app.js') }}" defer></script>

@@ -33,7 +33,7 @@ class LoginController extends Controller
                 'message'=>'Please provide the required Data',
                 'errors'=>$error
             ];
-            return response()->json($result, 402);
+            return response()->json($result, 200);
         } 
 
 
@@ -56,7 +56,7 @@ class LoginController extends Controller
             'errors'=>[
                 'Password'=> ['Invalid Credentials']
                 ]
-            ], 400);
+            ], 200);
     }
 
         

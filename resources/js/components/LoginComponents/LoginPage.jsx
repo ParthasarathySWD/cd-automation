@@ -4,7 +4,7 @@ import store from '../../store/store.js';
 import { useToasts } from 'react-toast-notifications';
 // import Button from 'react-bootstrap/Button';
 import '../../../css/login.css';
-
+import validate from "validate.js";
 
 import auth from '../../repository/auth';
 import { SignIn, SignOut } from "../../store/action";
@@ -16,9 +16,9 @@ function LoginPage(props) {
 
     const { addToast } = useToasts();
 
-    const [formdata, setFormdata] = useState({Username:"", Password:""});
+    const [formdata, setFormdata] = useState({Email:"", Password:""});
     const [password, setPassword] = useState('');
-    const [errors, setErrors] = useState([]);
+    const [errors, setErrors] = useState({});
     const [color, setColor] = useState('blue');
 
     useEffect(() => {
@@ -28,27 +28,41 @@ function LoginPage(props) {
     })
 
     let history = useHistory();
+
+    /* Validation Constraints */
+    var constraints = {
+    Email: {
+        presence: true,
+        email: {
+            message: "%{value} is not valid email"
+        },
+        length: {
+            minimum: 10,
+            message: "Email must be at least 8 characters"
+        }
+    },
+    Password: {
+        presence: true,
+        length: {
+        minimum: 6,
+        message: "must be at least 6 characters"
+        }
+    }
+    };
+
+
+    /* Handle Login Submit */
     async function handleSubmit(e) {
         e.preventDefault();
         setColor('red');
-
+        setErrors({});
         //  setErrors([]);
-        let validationErrors = [];
-        if (!formdata.Username || formdata.Username == '') {
-            validationErrors.push('Email is required');
-        }
+        let validatorError = validate(formdata, constraints);
+        console.log(validatorError);
 
-        if (!formdata.Password || formdata.Password == '') {
-            validationErrors.push('Password is required');
-        }
-
-        if (validationErrors.length > 0) {
-            setErrors(validationErrors);
-            setErrorMessage(validationErrors);
-            setTimeout(() => {
-                setColor('red');
-            }, 500);
-
+        if (validatorError && Object.keys(validatorError).length > 0) {
+            setErrors(validatorError);
+            addToast("Please provide valid data", { appearance: 'error', autoDismiss: true,  });
             return false;
         }
 
@@ -67,34 +81,27 @@ function LoginPage(props) {
                     addToast(response.data.message, { appearance: 'success', autoDismiss: true,  });
                     setAccessToken('true')
                 }
-                else {
+                else if(response.data.status == "failed") {
+                    addToast(response.data.message, { appearance: 'error', autoDismiss: true,  });
 
+                    let errors = response.data.errors;
+                    Object.keys(errors).forEach((value)=>{
+                        setErrors((prevError)=>{
+                            return {...prevError, [value]:errors[value]};
+                        })
+                    })
+                    
                 }
             }
         }
         catch (e) {
             console.log(e);
 
-            addToast(e.data.message, { appearance: 'error', autoDismiss: true,  });
+            addToast("Login Failed. Please try again...", { appearance: 'error', autoDismiss: true,  });
 
 
-            let $responseError = e.data.errors;
-
-            var generatedErrors = [];
-            Object.keys($responseError).map((value, key) => {
-                $responseError[value].map((v, k) => {
-                    generatedErrors.push(v);
-                })
-            })
-
-            setErrors(generatedErrors);
-            //  setErrorMessage(generatedErrors);
 
         }
-        setColor('red');
-
-
-        // history.push('/alluser');
 
     }
 
@@ -103,29 +110,11 @@ function LoginPage(props) {
         setFormdata((prevState)=>{ return {...prevState, Password: val}});
     }
 
-    function onUserNameChange(e) {
+    function onEmailChange(e) {
         let val = e.target.value;
-        setFormdata((prevState)=>{ return {...prevState, Username: val}});
+        setFormdata((prevState)=>{ return {...prevState, Email: val}});
     }
 
-    function setErrorMessage(errors) {
-
-        let message = errors.map((err, key) => {
-            return <p key={key}>{err}</p>
-        })
-        addToast(message, { appearance: 'error', autoDismiss: true,  });
-
-    }
-
-    function showErrors(message) {
-        addToast(message, { appearance: 'error', autoDismiss: true,  });
-
-    }
-
-    function showMessage(message) {
-        addToast(message, { appearance: 'success', autoDismiss: true,  });
-
-    }
 
     var errormessage = "";
     {
@@ -156,15 +145,21 @@ function LoginPage(props) {
                                 <h5 style={{ textTransform: 'uppercase', textAlign: 'center', fontWeight:'600' }}>We Automate your work in a simple way</h5>
                                 <label>
                                     <span>Email</span>
-                                    <input type="email" name="Email" value={formdata.Username} onChange={onUserNameChange} />
+                                    <input type="email" name="Email" value={formdata.Email} onChange={onEmailChange} />
+                                    {
+                                        errors.Email && errors.Email.map((v, i) => <span key={i} className="error" style={{display: "inline-block"}}>{v}</span>)
+                                    }
                                 </label>
                                 <label>
                                     <span>Password</span>
                                     <input type="password" name="Password" value={formdata.Password} onChange={onPasswordChange}/>
+                                    {
+                                        errors.Password && errors.Password.map((v, i) => <span key={i} className="error" style={{display: "inline-block"}}>{v}</span>)
+                                    }
                                 </label>
-                                <p className="forgot-pass">Forgot password?</p>
+                                <p className="forgot-pass"><Link to="ForgotPassword">Forgot password?</Link></p>
                                 <button type="Submit" className="submit">Sign In</button>
-                                                            </form>
+                            </form>
 
                             </div>
                             <div className="sub-cont">

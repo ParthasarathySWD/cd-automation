@@ -265,3 +265,9 @@
       max-width: fit-content;
     }
   }
+  
+.login-container .error{
+  font-size: 0.7em;
+  text-transform: none;
+  color: #e3342f;
+}

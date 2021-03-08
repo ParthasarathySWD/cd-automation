@@ -17,9 +17,10 @@ class Auth {
                 /*  axios.post('login', formData) */
                 /*  .then((response) => { */
                     resolve(response);
+                
                 })
                 .catch((error) => {
-                    reject(error.response);
+                    resolve(error);
                 })
             })
 
