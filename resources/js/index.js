@@ -59,6 +59,7 @@ function Main() {
         if (user && typeof user == 'object' && Object.keys(user).length > 0) {
 
             
+            // ref.current.continuousStart();
             ref.current.complete();
             jquery_init.init();
             dispatch(setUserDetails(user));
@@ -69,7 +70,6 @@ function Main() {
     useEffect( ()=> {
         
         
-        ref.current.continuousStart();
         const promiseResource = fetchProfileData();
         promiseResource.then((res)=>{
             setUser(res.user.data);
@@ -79,7 +79,7 @@ function Main() {
 
 
 
-        if (user.length == 0) {
+        if (Object.keys(user).length == 0) {
             return <Loader />
         }
         else{
