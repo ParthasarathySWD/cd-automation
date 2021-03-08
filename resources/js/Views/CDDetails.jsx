@@ -1,4 +1,5 @@
 import React, {useState,Component} from 'react';
+import Select from 'react-select';
 import { useSelector, useDispatch } from 'react-redux';
 import store from '../store/store.js';
 import { useToasts } from 'react-toast-notifications';
@@ -8,8 +9,11 @@ import './CDDetails.css';
 import './CDsecondpage.jsx';
 import './CDthirdpage.jsx';
 import CDTab from './CDTab.jsx';
-import Badge from 'react-bootstrap/Badge'
-import Select from 'react-select';
+import Badge from 'react-bootstrap/Badge';
+// import { Popover } from 'react-tiny-popover';
+import { Button, UncontrolledPopover, PopoverHeader, PopoverBody } from 'reactstrap';
+// import Select from '../CommonComponents/ReactSelect/SelectBox'; 
+
 
 const templateOptions = [
     { value: '1', label: 'Closing Template'},
@@ -18,56 +22,56 @@ const templateOptions = [
 ]
 
 
+
 const selected = [{label: 'Closing Template', value: '1'}];
 function CDDetails(props) {
+    // const [isPopoverOpen, setIsPopoverOpen] = useState();
+    const[selectedVal,setSelectedVal]=useState([]);
     
-    const[getVal,getSelectedVal]=useState();
-    const[selectedVal,setSelectedVal]=useState();
+    // const[getVal,getSelectedVal]=useState();
+    // const[selectedVal,setSelectedVal]=useState();
     const[html, setHtml] = useState('Sourcepoint Fulfillment <br/>Services, Inc. ');
 
     var handleChange = (e) => {
-        // const date = e.target.value;
-        var html="<span><i className='fa fa-close'></i></span>";
-        setSelectedVal(Array.isArray(e)?e.map(x=>x.label):[],html);
-      
-        // setSelectedVal(Array.from(target.multiselect, option => option.value));
+
+        setSelectedVal(Array.isArray(e)?e.map(x=>x.label):[]);
+        // console.log(selectedVal);
       };
 
     let handleContentEditableChange = (e) => {
         let value = e.target.value;
         setHtml(value);
     }
+    
+        const [popoverOpen, setPopoverOpen] = useState(false);
+      
+        const toggle = () => setPopoverOpen(!popoverOpen);
+    
 
         return(
          <>
-
          <div className="row clearfix">
            <div className="col-lg-12 col-md-12 col-sm-12">
            <div className="col-sm-12">
                         <label className="field-label">Template</label>
-                        {/* <input type="text" className="border" onChange={handleChange} /> */}
-                        {/* <input type="text" className="border" value={getVal}/> */}
                         <Select name="multiselect"  
                             isMulti 
                             hideSelectedOptions={true}
-                            controlShouldRenderValue = { false } 
+                            controlShouldRenderValue = {false} 
                             options={templateOptions} 
                             onChange={handleChange}
                         />
-                       <Badge variant="secondary">{selectedVal}</Badge>
-                        
-                    {/* <ul>
-                        {selectedVal.map(item => {
-                        return <li>{item[0]}</li>;
+                      
+                   {selectedVal.map((item) => {
+                        return  <Badge className="selected-badge-values" variant="primary"><span className="badge-value pb-2" style={{fontSize:'12px'}}>{item}</span><button className="badge-button pr-1 pl-1" style={{background:'none',color:'white',border:'none'}}><i className='fa fa-times-circle fa-lg'></i></button></Badge>
                         })}
 
-                    </ul> */}
                     </div>
                <div className="row">
                     <div className="col-sm-4 header mt-3 mb-3">
                         <h5>Closing Disclosure</h5>
                     </div>
-                   
+                    
                 </div>
                <div className="card"> 
                    <div className="row">
@@ -131,7 +135,20 @@ function CDDetails(props) {
                                     </tr>
                                 </tbody>
                             </table>
+                            <span></span>
+                           
                        </div>
+                       <div>
+                            <Button id="PopoverFocus" type="button">
+                                <i className="fa fa-circle fa-sm text-danger" style={{boxShadow: '0px 0px 10px 0px rgba(255, 0, 0, 0.46)',fontSize:'12px',padding:'0px'}}></i>
+                            </Button>
+                                {/* <i className="fa fa-circle fa-xs text-danger" style={{boxShadow: '0px 0px 10px 0px rgba(255, 0, 0, 0.46)',fontSize:'12px'}}></i>
+                            </button> */}
+                            <UncontrolledPopover trigger="focus" placement="bottom" target="PopoverFocus">
+                                <PopoverHeader>Focus Trigger</PopoverHeader>
+                                <PopoverBody>Focusing on the trigging element makes this popover appear. Blurring (clicking away) makes it disappear. You cannot select this text as the popover will disappear when you try.</PopoverBody>
+                            </UncontrolledPopover>
+                      </div>
                    </div>
                    <div className="col-lg-4 col-md-4 col-sm-4">
 
