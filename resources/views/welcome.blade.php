@@ -1,25 +1,19 @@
+    
 <!DOCTYPE html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
 
+<html lang="en" class="light">
 <head>
     <meta charset="utf-8">
+    <link href="images/logo.svg" rel="shortcut icon">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title> GetCDNow</title>
-    <!-- Styles -->
-    <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+    <meta name="description" content="CD Get Now">
+    <meta name="keywords" content="CD Get Now">
+    <meta name="author" content="CD Get Now">
+    <title>CD Get Now</title>
+    <link rel="stylesheet" href="css/app.css" />
 </head>
+<body class="main" id="ReactBody">
 
-<body>
-
-    <!-- React root DOM -->
-    <div id="body" class="theme-green">
-        
-    </div>
-    <!-- React JS -->
-    <script src="{{ asset('js/app.js') }}" defer></script>
-    <script src="{{ asset('js/mainscript.js') }}"></script>
-    <script>
-        window.baseurl = '{{ env('APIURL') }}';
-    </script>
+<script src="js/app.js"></script>
 </body>
 </html>

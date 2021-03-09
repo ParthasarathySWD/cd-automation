@@ -1,32 +1,55 @@
-/**
- * First we will load all of this project's JavaScript dependencies which
- * includes React and other helpers. It's a great starting point while
- * building robust, powerful web applications using React + Laravel.
+/*
+ |--------------------------------------------------------------------------
+ | 3rd Party Libraries
+ |--------------------------------------------------------------------------
+ |
+ | Import 3rd party library JS files.
+ |
  */
+import "./bootstrap";
+import "./tw-starter";
+import "./chart";
+import "./highlight";
+import "./feather";
+import "./tiny-slider";
+import "./tippy";
+import "./datepicker";
+import "./tail-select";
+import "./dropzone";
+import "./ckeditor";
+import "./validation";
+import "./zoom";
+import "./notification";
+import "./tabulator";
+import "./calendar";
 
-
-require('./bootstrap');
-
-/**
- * Next, we will create a fresh React component instance and attach it to
- * the page. Then, you may begin adding components to this application
- * or customize the JavaScript scaffolding to fit your unique needs.
+/*
+ |--------------------------------------------------------------------------
+ | Components
+ |--------------------------------------------------------------------------
+ |
+ | Import JS components.
+ |
  */
+import "./maps";
+import "./chat";
+import "./show-modal";
+import "./show-slide-over";
+import "./show-dropdown";
+import "./search";
+import "./copy-code";
+import "./show-code";
+import "./side-menu";
+import "./mobile-menu";
+import "./side-menu-tooltip";
+import "./dark-mode-switcher";
 
-require('./index.js');
-/* import React from 'react';
-import ReactDOM from 'react-dom';
-import LoginPage from './components/LoginComponents/LoginPage';
-import LoginMain from './LoginMain';
-// import ForgotPassword from './components/LoginComponents/ForgotPassword';
-import Main from './Main';
-// import ToDo from './ToDo';
-
-if (document.getElementById('body')) {
-    ReactDOM.render(<Main />, document.getElementById('body'));
-}
-
-if (document.getElementById('body')) {
-    ReactDOM.render(<Main />, document.getElementById('body'));
-}
+/*
+ |--------------------------------------------------------------------------
+ | React Components
+ |--------------------------------------------------------------------------
+ |
+ | Import React Components.
+ |
  */
+import "./ThemeReact/react";
