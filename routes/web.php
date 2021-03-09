@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-
+// use App\Http\Controllers\PdfController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -18,11 +18,11 @@ use Illuminate\Support\Facades\Route;
 // });
 Route::post('/login', 'App\Http\Controllers\LoginController@authenticate');
 Route::get('/logout', 'App\Http\Controllers\LoginController@logout');
+Route::get('/generate','App\Http\Controllers\PdfController@generatePDF');
 // 
 Route::any('{catchall}', function(Request $req){
     return view('welcome');
 })->where('catchall', '.*');
-
 
 // Auth::routes();
 
