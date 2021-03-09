@@ -63,17 +63,21 @@ b
 {
     margin-top:20px;
     border-radius:10px;
-    
+    height:24px;
 }
 .btn-secondary
 {
     background: none !important;
     border:none !important;
     padding:0px !important;
-    height:0px !important;
-    width:0px !important;
+    max-height:0px !important;
+    max-width:0px !important;
 }
 .btn-secondary:active{
+    background:none !important;
+    color:none !important;
+}
+.btn-secondary:focus{
     background:none !important;
     color:none !important;
 }
