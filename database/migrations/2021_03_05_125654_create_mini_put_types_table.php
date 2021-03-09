@@ -13,8 +13,8 @@ class CreateMiniPutTypesTable extends Migration
      */
     public function up()
     {
-        Schema::create ( 'mini_put_types', function (Blueprint $table) {
-            $table->primary('InputTypeUID');
+        Schema::create ( 'mInputTypes', function (Blueprint $table) {
+            $table->id('InputTypeUID');
             $table->string('InputTypeName',500)->nullable();
             $table->longText('InputTypeContent')->nullable();
             $table->tinyInteger('Active')->default(1);
@@ -28,6 +28,6 @@ class CreateMiniPutTypesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('mini_put_types');
+        Schema::dropIfExists('mInputTypes');
     }
 }

@@ -6,6 +6,7 @@ use Illuminate\Database\Seeder;
 use Database\Seeders\ClientSeeder;
 use Database\Seeders\OrderSeeder;
 use Database\Seeders\OrderStatusSeeder;
+use Database\Seeders\UserSeeder;
 
 class DatabaseSeeder extends Seeder
 {
@@ -19,6 +20,7 @@ class DatabaseSeeder extends Seeder
         // \App\Models\User::factory(10)->create();
         $this->call([
             ClientSeeder::class,
+            UserSeeder::class,
             OrderStatusSeeder::class,
             OrderSeeder::class,
         ]);

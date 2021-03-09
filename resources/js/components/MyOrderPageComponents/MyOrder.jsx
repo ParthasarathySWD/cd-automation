@@ -133,7 +133,7 @@ function MyOrder(){
       },
       {
         name: <b>Status</b>,
-        cell: row => <span className="badge order-initiated">{row['StatusName']}</span>
+        cell: row => <span className="badge {}">{row['StatusName']}</span>
       },
       {
         name:<b>Action</b>,
@@ -157,7 +157,7 @@ function MyOrder(){
             <div className="main-container clearfix">
 
                       <div className="myorder-header">
-                        <h4>Orders List</h4>
+                        <h5>Orders List</h5>
                         <Link to={'/orderentry'}><button className="btn btn-primary btn-order">CREATE ORDER</button></Link>
                       </div> 
                       <div className="child-container status-container">

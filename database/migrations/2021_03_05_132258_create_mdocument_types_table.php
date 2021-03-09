@@ -13,7 +13,7 @@ class CreateMdocumentTypesTable extends Migration
      */
     public function up()
     {
-        Schema::create('mdocument_types', function (Blueprint $table) {
+        Schema::create('mDocumentType', function (Blueprint $table) {
             $table->id('DocumentTypeUID');
             $table->string('DocumentTypeName');
             $table->integer('IsFinal')->default(0);
@@ -32,6 +32,6 @@ class CreateMdocumentTypesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('mdocument_types');
+        Schema::dropIfExists('mDocumentType');
     }
 }

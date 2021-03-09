@@ -5,13 +5,13 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class MdocumentType extends Model
+class mDocumentType extends Model
 {
     use HasFactory;
     protected $primaryKey = 'DocumentTypeUID';
     public $timestamps = false;
 
-    protected $table = 'MdocumentType';
+    protected $table = 'mDocumentType';
     
     protected $fillable = [
         'DocumentTypeUID',
