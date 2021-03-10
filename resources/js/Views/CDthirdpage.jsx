@@ -206,6 +206,21 @@ function CDthirdpage(props) {
                                                     <td contentEditable></td>
                                                 </tr>
                                                 <tr>
+                                                    <td> </td>
+                                                    <td contentEditable></td>
+                                                </tr>
+                                                <tr>
+                                                    <td>Seller Credit  </td>
+                                                    <td>$<span contentEditable>2,500,00</span></td>
+                                                </tr>
+                                                <tr>
+                                                    <th>Other Credit</th>
+                                                </tr>
+                                                <tr>
+                                                    <td>Rebate from Epsilon Title Co.  </td>
+                                                    <td>$<span contentEditable>750,00</span></td>
+                                                </tr>
+                                                <tr>
                                                     <th>Adjustments</th>
                                                 </tr>
                                                 <tr>
