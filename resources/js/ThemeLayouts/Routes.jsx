@@ -14,7 +14,7 @@ import {
 // import Dashboard from './components/DashboardComponents/Dashboard';
 // import Members from './components/UsersComponents/Members';
 // import AddClient from './components/ClientComponents/AddClient';
-// import ClientList from './components/ClientComponents/ClientList';
+// import ClientsList from './components/ClientComponents/ClientList';
 // import ViewClient from './components/ClientComponents/ViewClient';
 // import EditClient from './components/ClientComponents/EditClient';
 // import CDDetails from './Views/CDDetails';
@@ -31,12 +31,30 @@ import {
 // import Admins from './components/UsersComponents/Admins';
 
 
+import ClientsList from '../ThemeReact/views/Clients/ClientsList';
+import AddClient from '../ThemeReact/views/Clients/AddClient';
+import UsersList from '../ThemeReact/views/User/UsersList';
+import AddUser from '../ThemeReact/views/User/AddUser';
+import OrderEntry from '../ThemeReact/views/OrderEntry/OrderEntry';
+import MyOrders from '../ThemeReact/views/MyOrders/MyOrders';
+import CDDetails from '../ThemeReact/views/CD-Details/CDDetails';
+
 class Routes extends React.Component
 {
     render()
     {
         return (
             <Switch>
+
+                <Route exact path='/allclients' component={ClientsList} />
+                <Route exact path='/addclient' component={AddClient} />
+                <Route exact path='/allusers' component={UsersList} /> 
+                <Route exact path='/adduser' component={AddUser} />
+                <Route exact path='/orderentry' component={OrderEntry} />
+                <Route exact path='/myorders' component={MyOrders} />
+                <Route exact path='/cddetails' component={CDDetails} />
+
+
                 {/*<Route exact path='/' component={Dashboard} />
                  <Route exact path='/alluser' component={AllUsers} /> 
                 <Route exact path='/alluser' component={Members} />
