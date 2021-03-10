@@ -31,6 +31,8 @@ import {
 // import Admins from './components/UsersComponents/Admins';
 
 
+import Login from '../ThemeReact/views/Login/Login';
+import Dashboard from '../ThemeReact/views/Dashboard/Dashboard';
 import ClientsList from '../ThemeReact/views/Clients/ClientsList';
 import AddClient from '../ThemeReact/views/Clients/AddClient';
 import UsersList from '../ThemeReact/views/User/UsersList';
@@ -46,6 +48,8 @@ class Routes extends React.Component
         return (
             <Switch>
 
+                <Route exact path='/login' component={Login} />
+                <Route exact path='/dashboard' component={Dashboard} />
                 <Route exact path='/allclients' component={ClientsList} />
                 <Route exact path='/addclient' component={AddClient} />
                 <Route exact path='/allusers' component={UsersList} /> 

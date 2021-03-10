@@ -12,14 +12,21 @@ function TopMenu(props) {
         <nav className="top-nav">
             <ul>
                 <li>
-                    <a href="javascript:;" className="top-menu">
-                        <div className="top-menu__icon"> <i data-feather="home"></i> </div>
+                    <Link to={'/dashboard'} className="top-menu ">
+                        <div className="top-menu__icon"> <i data-feather="box"></i> </div>
                         <div className="top-menu__title"> Dashboard <i data-feather="chevron-down" className="top-menu__sub-icon"></i> </div>
-                    </a>
-                    
+                    </Link>
+
                 </li>
                 <li>
-                    <Link to={'/orderentry'} className="top-menu">
+                    <Link to={'/login'} className="top-menu">
+                        <div className="top-menu__icon"> <i data-feather="box"></i> </div>
+                        <div className="top-menu__title"> Login <i data-feather="chevron-down" className="top-menu__sub-icon"></i> </div>
+                    </Link>
+
+                </li>
+                <li>
+                    <Link to={'/orderentry'} className="top-menu top-menu--active">
                         <div className="top-menu__icon"> <i data-feather="box"></i> </div>
                         <div className="top-menu__title"> Order Entry <i data-feather="chevron-down" className="top-menu__sub-icon"></i> </div>
                     </Link>
