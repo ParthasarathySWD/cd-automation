@@ -10,17 +10,17 @@ import "./bootstrap";
 import "./tw-starter";
 import "./chart";
 import "./highlight";
-import "./feather";
+// import "./feather";
 import "./tiny-slider";
 import "./tippy";
 import "./datepicker";
-import "./tail-select";
-import "./dropzone";
+// import "./tail-select";
+// import "./dropzone";
 import "./ckeditor";
 import "./validation";
 import "./zoom";
 import "./notification";
-import "./tabulator";
+// import "./tabulator";
 import "./calendar";
 
 /*
