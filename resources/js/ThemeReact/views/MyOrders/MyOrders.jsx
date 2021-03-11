@@ -1,25 +1,117 @@
-import React from 'react';
+import React,{ useState, useEffect } from 'react';
 import 'react-tabulator/lib/styles.css';
 import { ReactTabulator } from 'react-tabulator'
 import * as Icon from 'react-feather';
+import axios from '../../../ThemeLayouts/repository/api';
+import DataTableComponents from '../../../components/DataTableComponents/DataTableComponents';
+
 function MyOrders()
 {
 
-    const Tabulator_Data = [
-   {id:1, name:"Billy Bob", age:"12", gender:"male", height:1, col:"red", dob:"", cheese:1},
-    {id:2, name:"Mary May", age:"1", gender:"female", height:2, col:"blue", dob:"14/05/1982", cheese:true}
-]
+//     const Tabulator_Data = [
+//    {id:1, name:"Billy Bob", age:"12", gender:"male", height:1, col:"red", dob:"", cheese:1},
+//     {id:2, name:"Mary May", age:"1", gender:"female", height:2, col:"blue", dob:"14/05/1982", cheese:true}
+// ]
+  const [users, setUsers] = useState({});
+  const [page, setPage] = useState(1);
+  const [countPerPage, setCountPerPage] = useState(10);
+  const [status, setstatus]  = useState([]);
+  const [allusers, setallusers]  = useState([]);
+  const [clients, setclients]  = useState([]);
+
+  // To set Default Start date
+  const newdate = new Date();
+  newdate.setDate(newdate.getDate() - 32);
+  const [startDate, setStartDate] = useState(newdate);
+  const [endDate, setEndDate] = useState(new Date());
+  const [skey, setKey] = useState(Math.random());
+  const [filter, setFilter] = useState({ 'user': '', 'status': ''});
+
+function onClientChange(e)
+  {
+    let val = e.target.value;
+    let name = e.target.name;
+    setFilter((prevState)=>{
+      return {...prevState, [name]: val};
+    })
+
+  }
+ 
+  // Build filter data and make async req to api
+  useEffect(()=>
+  {
+
+    const data=
+    {
+      user:filter.user,
+      status:filter.status,
+      fromdate:startDate,
+      todate:endDate
+    }
+
+    setKey(Math.random());
+
+    fetchUsers(page, countPerPage, '', data);
+
+  }, [filter, startDate, endDate]);
+
+  useEffect(() => 
+  {
+    async function fetchOptions () 
+    {
+      let response = await fetchDetails();
+      setstatus(response.data.status);
+      setallusers(response.data.allusers);
+      setclients(response.data.clients);
+    }
+    fetchOptions();
+  }, [])
+  
+  /* Should be passed from props starts */
+
+  const fetchUsers = async (page, size = countPerPage, searchText = "", filterData={}) => {
+    
+    const response = await axios.get(
+      `myorders/fetchorders`, {
+        params: {
+          rowCount: size,
+          page: page,
+          searchText: searchText,
+          user:filter.user,
+          status:filter.status,
+          fromdate:startDate,
+          todate:endDate
+
+        }
+      }
+    );
+      console.log(response);
+      return response;
+    };
+
+    // Fetch filter values
+    const fetchDetails = async () => {
+            
+      const response = await axios.get(
+        `myorders/fetchOptions`,
+        {
+
+        }
+        );
+        return response;
+    }
+    
     const Tabulator_Column = [
-        {title:"Order Number", minWidth: "200", field:"name"},
-        {title:"Loan Number", minWidth: "200", field:"age"},
-        {title:"Client", minWidth: "250", field:"gender"},
-        {title:"Status", minWidth: "200", field:"height"},
+        {title:"Order Number", minWidth: "200", field:"OrderNumber"},
+        {title:"Loan Number", minWidth: "200", field:"LoanNumer"},
+        {title:"Client", minWidth: "250", field:"ClientName"},
+        {title:"Status", minWidth: "200", field:"StatusName"},
         {title:"Actions", minWidth: "80",
                     headerSort:false,
                     formatter(cell, formatterParams) {
-                        return `<div class="flex lg:justify-left items-left">
-                        <a href="javascript:void(0);" class="partnertype_view_btn sm:w-auto flex items-center text-theme-1 dark:bg-dark-5 dark:text-gray-300 cursor-pointer mr-2" title="View"> View</a>
-                        <a href="javascript:void(0);" class=" sm:w-auto flex items-center text-theme-6 dark:bg-dark-5 dark:text-gray-300 cursor-pointer" title="Delete"> Delete</a>
+                        return `<div className="flex lg:justify-left items-left">
+                        <a href="javascript:void(0);" className="partnertype_view_btn sm:w-auto flex items-center text-theme-1 dark:bg-dark-5 dark:text-gray-300 cursor-pointer mr-2" title="View"> View</a>
+                        <a href="javascript:void(0);" className=" sm:w-auto flex items-center text-theme-6 dark:bg-dark-5 dark:text-gray-300 cursor-pointer" title="Delete"> <Icon.Trash className="w-4 h-4 text-theme-24" /></a>
                         </div>`
                     }
                 }
@@ -57,12 +149,17 @@ function MyOrders()
                             </div>
                         </div>
                         <div className="overflow-x-auto scrollbar-hidden mt-3">
-                                          <ReactTabulator
-                data={Tabulator_Data}
-                tooltips={true}
-                columns={Tabulator_Column}
-                layout={"fitDataStretch"}
-                />
+                                          <DataTableComponents
+                                            
+                                            // tooltips={true}
+                                            // layout={"fitDataStretch"}
+                                            key={skey}                                                      
+                                            title = ""
+                                            columndata = {Tabulator_Column}
+                                            fetchData = {fetchUsers}
+                                            setPerPage = {setCountPerPage}
+                                            setCurrentPage = {setPage}
+                                            />
                         </div>
                     </div>
  

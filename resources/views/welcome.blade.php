@@ -14,6 +14,9 @@
 </head>
 <body class="main" id="ReactBody">
 
-<script src="js/app.js"></script>
+<script>
+        window.baseurl = '{{ env("APIURL") }}';
+</script>
+<script src="js/app.js" defer></script>
 </body>
 </html>
