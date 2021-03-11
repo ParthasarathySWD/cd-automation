@@ -50,7 +50,7 @@ return (
                 </div>
                 <div className="grid grid-cols-12 gap-3">
                     <div className="mt-3 col-span-3"> <label for="regular-form-2" className="form-label">Loan Number</label> 
-                    <div className="input-group"> <div id="input-group-email" className="input-group-text">#</div> <input type="text" className="form-control form-control-sm" placeholder="Ex. 9876543224"/> </div>
+                    <div className="input-group"> <div id="input-group-email" className="input-group-text"><Icon.Hash className="w-4 h-4" /></div> <input type="text" className="form-control form-control-sm" placeholder="Ex. 9876543224"/> </div>
                     </div>
 
 

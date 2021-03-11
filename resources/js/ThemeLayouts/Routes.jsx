@@ -40,6 +40,7 @@ import AddUser from '../ThemeReact/views/User/AddUser';
 import OrderEntry from '../ThemeReact/views/OrderEntry/OrderEntry';
 import MyOrders from '../ThemeReact/views/MyOrders/MyOrders';
 import CDDetails from '../ThemeReact/views/CD-Details/CDDetails';
+import Form from '../ThemeReact/views/Form/Form';
 
 class Routes extends React.Component
 {
@@ -57,6 +58,7 @@ class Routes extends React.Component
                 <Route exact path='/orderentry' component={OrderEntry} />
                 <Route exact path='/myorders' component={MyOrders} />
                 <Route exact path='/cddetails' component={CDDetails} />
+                <Route exact path='/form' component={Form} />
 
 
                 {/*<Route exact path='/' component={Dashboard} />
