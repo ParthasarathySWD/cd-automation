@@ -4,8 +4,8 @@ import {
     Switch
 } from 'react-router-dom';
 
-import LoginPage from "./components/LoginComponents/LoginPage";
-import ForgotPassword from "./components/LoginComponents/ForgotPassword";
+import LoginPage from "../ThemeReact/views/Login/Login";
+import ForgotPassword from "../ThemeReact/views/Login/ForgotPassword";
 
 class LoginRoutes extends React.Component
 {
