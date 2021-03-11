@@ -9,8 +9,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <style>
-
-      .second
+  .second
       {
           position:absolute;
           left:300px;
@@ -96,7 +95,9 @@
       </td>
     </tr>
     <tr>
+    <!-- <div id=”props” data-entityId=”{ $change}}”> -->
       <td><b>File# </b>&nbsp; T206369 </td>
+      <!-- </div> -->
       <td></td>
       <td><b>Loan ID#</b> &nbsp; 0116000464</td>
     </tr>

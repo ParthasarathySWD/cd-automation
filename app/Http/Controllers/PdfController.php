@@ -17,7 +17,7 @@ class PdfController extends Controller
     {
 
         $data = ['title' => 'Welcome'];
-        $pdf = PDF::loadView('CDDocumentPage4', $data);
+        $pdf = PDF::loadView('CDDocument', $data);
         return $pdf->stream('CDDetails.pdf');
     }
 }
