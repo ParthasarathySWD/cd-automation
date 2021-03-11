@@ -1,4 +1,5 @@
-import React from 'react'
+import React from 'react';
+import auth from '../repository/auth';
 
 
 
@@ -198,7 +199,7 @@ function TopBar(props) {
                                 <a href="" className="flex items-center block p-2 transition duration-300 ease-in-out hover:bg-theme-1 dark:hover:bg-dark-3 rounded-md"> <i data-feather="help-circle" className="w-4 h-4 mr-2"></i> Help </a>
                             </div>
                             <div className="p-2 border-t border-theme-12 dark:border-dark-3">
-                                <a href="" className="flex items-center block p-2 transition duration-300 ease-in-out hover:bg-theme-1 dark:hover:bg-dark-3 rounded-md"> <i data-feather="toggle-right" className="w-4 h-4 mr-2"></i> Logout </a>
+                                <a onClick={() => { auth.logout(function(){}); }} className="flex items-center block p-2 transition duration-300 ease-in-out hover:bg-theme-1 dark:hover:bg-dark-3 rounded-md"> <i data-feather="toggle-right" className="w-4 h-4 mr-2"></i> Logout </a>
                             </div>
                         </div>
                     </div>
