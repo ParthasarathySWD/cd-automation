@@ -141,7 +141,7 @@ function Login(props){
                 <div className="hidden xl:flex flex-col min-h-screen">
                     <a href="" className="-intro-x flex items-center pt-5">
                         <img alt="Rubick Tailwind HTML Admin Template" className="w-6" src="images/logo.svg"/>
-                        <span className="text-white text-lg ml-3"> Ru<span className="font-medium">bick</span> </span>
+                        <span className="text-white text-lg ml-3"> Get CD<span className="font-medium">Now</span> </span>
                     </a>
                     <div className="my-auto">
                         <img alt="Rubick Tailwind HTML Admin Template" className="-intro-x w-1/2 -mt-16" src="images/illustration.svg"/>
