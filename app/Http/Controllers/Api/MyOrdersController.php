@@ -61,6 +61,7 @@ class MyOrdersController extends Controller
                 $schema->whereDate('tOrders.OrderEntryDate','>=',$startDate);
                 $schema->whereDate('tOrders.OrderEntryDate','<=',$endDate);
             }
+           
         
         $data = $schema->skip($rowCount * $page)->take($rowCount)->get();
         $count = $schema->count();

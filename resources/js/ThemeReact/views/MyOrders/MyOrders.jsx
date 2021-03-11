@@ -18,6 +18,7 @@ function MyOrders()
   const [status, setstatus]  = useState([]);
   const [allusers, setallusers]  = useState([]);
   const [clients, setclients]  = useState([]);
+  const[searchText,getSearchText]=useState("Amy");
 
   // To set Default Start date
   const newdate = new Date();
@@ -36,6 +37,7 @@ function onClientChange(e)
     })
 
   }
+ 
  
   // Build filter data and make async req to api
   useEffect(()=>
@@ -69,7 +71,7 @@ function onClientChange(e)
   
   /* Should be passed from props starts */
 
-  const fetchUsers = async (page, size = countPerPage, searchText = "", filterData={}) => {
+  const fetchUsers = async (page, size = countPerPage, searchText = "amy", filterData={}) => {
     
     const response = await axios.get(
       `myorders/fetchorders`, {
@@ -110,13 +112,20 @@ function onClientChange(e)
                     headerSort:false,
                     formatter(cell, formatterParams) {
                         return `<div className="flex lg:justify-left items-left">
-                        <a href="javascript:void(0);" className="partnertype_view_btn sm:w-auto flex items-center text-theme-1 dark:bg-dark-5 dark:text-gray-300 cursor-pointer mr-2" title="View"> View</a>
+                        <a href="javascript:void(0);" className="partnertype_view_btn sm:w-auto flex items-center text-theme-1 dark:bg-dark-5 dark:text-gray-300 cursor-pointer mr-2" title="View"> <i className="fa fa-edit"></i></a>
                         <a href="javascript:void(0);" className=" sm:w-auto flex items-center text-theme-6 dark:bg-dark-5 dark:text-gray-300 cursor-pointer" title="Delete"> <Icon.Trash className="w-4 h-4 text-theme-24" /></a>
                         </div>`
                     }
                 }
     ]
 
+//     const DocTypeOption = [
+//         status.map((val, label)=>{
+//             // return <option key={key} value={value.StatusUID}>{value.StatusName}</option>
+          
+//        return { value: {val.StatusUID}, label: {val.StatusName}}
+//     })
+// ];
 
     return(
         <div>
@@ -133,32 +142,45 @@ function onClientChange(e)
                                 </div>
                             </form>
                             <div className="flex mt-5 sm:mt-0">
-                            <button className="btn btn-sm btn-primary shadow-md mr-2"><Icon.Plus className="w-4 h-4 mr-2" />New Order</button>
-                                <button id="tabulator-print" className="btn btn-outline-secondary btn-sm w-1/2 sm:w-auto mr-2"> <Icon.Printer className="w-4 h-4 mr-2" /> Print </button>
-                                <div className="dropdown w-1/2 sm:w-auto">
-                                    <button className="dropdown-toggle btn btn-outline-secondary btn-sm w-full sm:w-auto" aria-expanded="false"> <Icon.Download className="w-4 h-4 mr-2" /> Export </button>
-                                    <div className="dropdown-menu w-40">
-                                        <div className="dropdown-menu__content box dark:bg-dark-1 p-2">
-                                            <a id="tabulator-export-csv" href="javascript:;" className="flex items-center block p-2 transition duration-300 ease-in-out bg-white dark:bg-dark-1 hover:bg-gray-200 dark:hover:bg-dark-2 rounded-md"> <i data-feather="file-text" className="w-4 h-4 mr-2"></i> Export CSV </a>
-                                            <a id="tabulator-export-json" href="javascript:;" className="flex items-center block p-2 transition duration-300 ease-in-out bg-white dark:bg-dark-1 hover:bg-gray-200 dark:hover:bg-dark-2 rounded-md"> <i data-feather="file-text" className="w-4 h-4 mr-2"></i> Export JSON </a>
-                                            <a id="tabulator-export-xlsx" href="javascript:;" className="flex items-center block p-2 transition duration-300 ease-in-out bg-white dark:bg-dark-1 hover:bg-gray-200 dark:hover:bg-dark-2 rounded-md"> <i data-feather="file-text" className="w-4 h-4 mr-2"></i> Export XLSX </a>
-                                            <a id="tabulator-export-html" href="javascript:;" className="flex items-center block p-2 transition duration-300 ease-in-out bg-white dark:bg-dark-1 hover:bg-gray-200 dark:hover:bg-dark-2 rounded-md"> <i data-feather="file-text" className="w-4 h-4 mr-2"></i> Export HTML </a>
+                                <button className="btn btn-sm btn-primary shadow-md mr-2"><Icon.Plus className="w-4 h-4 mr-2" />New Order</button>
+                                    <button id="tabulator-print" className="btn btn-outline-secondary btn-sm w-1/2 sm:w-auto mr-2"> <Icon.Printer className="w-4 h-4 mr-2" /> Print </button>
+                                    <div className="dropdown w-1/2 sm:w-auto">
+                                        <button className="dropdown-toggle btn btn-outline-secondary btn-sm w-full sm:w-auto" aria-expanded="false"> <Icon.Download className="w-4 h-4 mr-2" /> Export </button>
+                                        <div className="dropdown-menu w-40">
+                                            <div className="dropdown-menu__content box dark:bg-dark-1 p-2">
+                                                <a id="tabulator-export-csv" href="javascript:;" className="flex items-center block p-2 transition duration-300 ease-in-out bg-white dark:bg-dark-1 hover:bg-gray-200 dark:hover:bg-dark-2 rounded-md"> <i data-feather="file-text" className="w-4 h-4 mr-2"></i> Export CSV </a>
+                                                <a id="tabulator-export-json" href="javascript:;" className="flex items-center block p-2 transition duration-300 ease-in-out bg-white dark:bg-dark-1 hover:bg-gray-200 dark:hover:bg-dark-2 rounded-md"> <i data-feather="file-text" className="w-4 h-4 mr-2"></i> Export JSON </a>
+                                                <a id="tabulator-export-xlsx" href="javascript:;" className="flex items-center block p-2 transition duration-300 ease-in-out bg-white dark:bg-dark-1 hover:bg-gray-200 dark:hover:bg-dark-2 rounded-md"> <i data-feather="file-text" className="w-4 h-4 mr-2"></i> Export XLSX </a>
+                                                <a id="tabulator-export-html" href="javascript:;" className="flex items-center block p-2 transition duration-300 ease-in-out bg-white dark:bg-dark-1 hover:bg-gray-200 dark:hover:bg-dark-2 rounded-md"> <i data-feather="file-text" className="w-4 h-4 mr-2"></i> Export HTML </a>
+                                            </div>
                                         </div>
                                     </div>
-                                </div>
                             </div>
+                            
                         </div>
+                        
+                        {/* <div className="flex flex-col sm:flex-row sm:items-end xl:items-end pt-2">
+                            <form id="tabulator-html-filter-form" className="xl:flex sm:mr-auto" >
+                                    <div className="sm:flex items-center sm:mr-4 mt-2 xl:mt-0">
+                                    <div className="col-span-3 lg:col-span-3 sm:col-span-3 mt-3"> 
+                                        <label className="form-label">Status</label> 
+                                        <Select className="custom_select" options={DocTypeOption} />
+                                    </div>
+                                </div>
+                            </form>
+                        </div> */}
                         <div className="overflow-x-auto scrollbar-hidden mt-3">
                                           <DataTableComponents
                                             
-                                            // tooltips={true}
-                                            // layout={"fitDataStretch"}
+                                            tooltips={true}
+                                            layout={"fitDataStretch"}
                                             key={skey}                                                      
                                             title = ""
                                             columndata = {Tabulator_Column}
                                             fetchData = {fetchUsers}
                                             setPerPage = {setCountPerPage}
                                             setCurrentPage = {setPage}
+                                            // options={options}
                                             />
                         </div>
                     </div>

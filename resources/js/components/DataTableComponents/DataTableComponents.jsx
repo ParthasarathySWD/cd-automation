@@ -25,6 +25,7 @@ const DataTableComponents = (props) => {
   const [totalRows, setTotalRows] = useState(0);
   const [perPage, setPerPage] = useState(10);
   const [currentPage, setCurrentPage] = useState(1);
+  const [Rows,SetRows]=useState();
   useEffect(() => {
     async function fetchAPI () {
       let response = await props.fetchData(1);
@@ -32,6 +33,15 @@ const DataTableComponents = (props) => {
       setCurrentPage(page);
       setData(response.data.data);
       setTotalRows(response.data.total);
+
+      if(totalRows<0.9)
+      {
+        setRows("1");
+      }
+      else{
+        setRows(totalRows);
+      }
+
       setLoading(false);
     }
     fetchAPI();
@@ -91,6 +101,10 @@ const DataTableComponents = (props) => {
       data={data}
       search
       progressPending={loading}
+    //  
+    options={{ pagination: 'local',
+    paginationSize: 10}}
+
       pagination
       paginationServer
       paginationTotalRows={totalRows}
