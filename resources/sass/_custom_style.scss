@@ -6,3 +6,43 @@
 		border-color:#eee;
 	}
 }
+.closing-table{ 
+	tr{
+		td{
+			font-size:13px;
+			padding-top:3px;
+			padding-bottom:3px;
+			padding-left:0;
+			padding-right:10px;
+			vertical-align: top;
+			@apply text-black;
+			label{
+				margin:0;
+				@apply font-medium text-black;
+			}
+		}
+	}
+}
+.loanterms-table{
+	tr {
+		td{
+			font-size:13px;
+			padding-top:3px;
+			padding-bottom:3px;
+			padding-left:0;
+			padding-right:10px;
+			@apply font-normal text-black border-b dark:border-dark-5;
+			h3{
+				font-size: 15px;
+				@apply font-medium ;
+			}
+		}
+
+		&:first-child td{
+			@apply border-t dark:border-dark-5;
+		}
+		td.text-black{
+			color:#000;
+		}
+	}
+}
