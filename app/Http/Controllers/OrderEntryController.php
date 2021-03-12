@@ -102,25 +102,38 @@ class OrderEntryController extends Controller
                             $PrelimFile = $request->file('PrelimFile');
 
                             $FileName=$PrelimFile->getClientOriginalName();
+                            $Extension = $PrelimFile->getClientOriginalExtension();
+                            $AllowedExtension = array('pdf');
 
                             $NewFileName = $FileName;
-                            
-                            $FilePath = $PrelimFile->storeAs('OrderDocuments', $NewFileName);
 
-                            $PrelimFileInsertArray = new OrderEntryFile([
-                                'OrderUID' => $InsertData->OrderUID,
-                                'DocumentName' => $NewFileName,
-                                'DocumentTypeUID' => $PrelimDocumentType,
-                                'FilePath' => $FilePath,
-                                'CreatedByUserUID' => $UserDetails['UserUID'],
-                                'CreatedByDateTime' => date('Y-m-d H:m:s')
-                            ]);
+                            if (!in_array($Extension, $AllowedExtension)) {
+                                return response()->json([
+                                    'type' => 'Order Insert',
+                                    'status' => false,
+                                    'errors' => 'Should Allowed PDF Files Only',
+                                    'message' => 'Supporting Files are <b> '.$NewFileName.' </b> Should Allowed PDF Only'
+                                ]);
 
-                            if ($PrelimFileInsertArray->save()) {
-                                $PrelimFileInsertState = '200';
                             } else {
-                                $PrelimFileInsertState = '500';
+                                $FilePath = $PrelimFile->storeAs('OrderDocuments', $NewFileName);
+                                $PrelimFileInsertArray = new OrderEntryFile([
+                                    'OrderUID' => $InsertData->OrderUID,
+                                    'DocumentName' => $NewFileName,
+                                    'DocumentTypeUID' => $PrelimDocumentType,
+                                    'FilePath' => $FilePath,
+                                    'CreatedByUserUID' => $UserDetails['UserUID'],
+                                    'CreatedByDateTime' => date('Y-m-d H:m:s')
+                                ]);
+
+                                if ($PrelimFileInsertArray->save()) {
+                                    $PrelimFileInsertState = '200';
+                                } else {
+                                    $PrelimFileInsertState = '500';
+                                }
                             }
+
+                            
 
                         } else {
                             return response()->json([
@@ -145,20 +158,20 @@ class OrderEntryController extends Controller
                             {
                                 $DocumentType = $request->input('DocumentTypeUID');
                                 $FileName = $file->getClientOriginalName();
-                                $Extension = $file->getClientOriginalExtension();
-                                $AllowedExtension = array('pdf');
+                                // $Extension = $file->getClientOriginalExtension();
+                                // $AllowedExtension = array('pdf');
                                 $NewFileName = $FileName;
 
 
-                                if (!in_array($Extension, $AllowedExtension)) {
-                                    return response()->json([
-                                        'type' => 'Order Insert',
-                                        'status' => false,
-                                        'errors' => 'Should Allowed PDF Files Only',
-                                        'message' => 'Supporting Files are <b> '.$NewFileName.' </b> Should Allowed PDF Only'
-                                    ]);
+                                // if (!in_array($Extension, $AllowedExtension)) {
+                                //     return response()->json([
+                                //         'type' => 'Order Insert',
+                                //         'status' => false,
+                                //         'errors' => 'Should Allowed PDF Files Only',
+                                //         'message' => 'Supporting Files are <b> '.$NewFileName.' </b> Should Allowed PDF Only'
+                                //     ]);
 
-                                } else {
+                                // } else {
 
                                     $FilePath = $file->storeAs('OrderDocuments', $NewFileName);
 
@@ -177,7 +190,7 @@ class OrderEntryController extends Controller
                                         $SupportFileInsertState['State'] = '500';
                                     }
 
-                                }
+                                // }
                             }
                             /** end */
                         }
@@ -469,4 +482,5 @@ class OrderEntryController extends Controller
         ]);
     }
     /** end */
+   
 }
