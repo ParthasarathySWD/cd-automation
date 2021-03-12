@@ -3,12 +3,15 @@ import { BrowserRouter as Router, Switch, Route, Link, useHistory } from 'react-
 import OrderDocument from './OrderDocuments';
 import OrderNotes from './OrderNotes';
 import OrderCDPage from '../CD-Details/CDTabList';
+import OrderHeader from './OrderHeader';
 // import './style.css';
 function OrderSummary(props) {
     const OrderUID = props.match.params.id;
     return(
         <>
           <div className="grid grid-cols-12 gap-3">
+
+            <OrderHeader orderid={OrderUID}></OrderHeader>
 
             <div className="col-span-12 border-b border-gray-200">                         
               <div className="nav nav-tabs flex-col sm:flex-row justify-center lg:justify-start" role="tablist"> 

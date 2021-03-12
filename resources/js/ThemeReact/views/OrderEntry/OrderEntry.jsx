@@ -242,7 +242,7 @@ function OrderEntry() {
                     message: '',
                     buttons: [
                         {
-                          label: 'Goto The Orders',
+                          label: 'Goto the Order',
                           onClick: () => {                            
                             history.push('/summary/'+response.data.orderuid);
                           },
