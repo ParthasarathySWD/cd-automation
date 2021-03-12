@@ -1,5 +1,6 @@
 import React, {useState, useEffect } from 'react';
 import { BrowserRouter as Router, Switch, Route, Link, useHistory } from 'react-router-dom';
+import axios from '../../../ThemeLayouts/repository/api';
 
 import {useSelector} from 'react-redux';
 
@@ -123,31 +124,7 @@ function OrderNotes(props) {
     
     return (
         <>
-            <div className="row clearfix">
-                <div className="col-lg-12">
-                    <div className="card">      
-                    <div className="chatapp_body">
-                        <div className="chat-header">
-                        <a href="javascript:void(0);" className="open_detail">
-                            <div className="media mb-0">
-                            <img className="rounded-circle w35" src="../../../images/xs/avatar7.jpg" alt="" />
-                            <div className="media-body mr-3 ml-3 text-muted">
-                                <h6 className="m-0">{ProfileDetails.FirstName +' '+ ProfileDetails.LastName}</h6>
-                                <small>Notes Follow Up</small>
-                            </div>
-                            </div>
-                        </a>                        
-                        </div>
-                        <div className="chat-history">
-                        <ul className="message_data">
-                            {Items}
-                        </ul>
-                        </div>
-                        <NotesFile></NotesFile>                        
-                    </div>
-                    </div>
-                </div>
-            </div>
+            <h1>Notes</h1>
         </>
     );
 }

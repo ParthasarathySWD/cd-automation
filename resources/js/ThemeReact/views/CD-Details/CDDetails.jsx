@@ -11,14 +11,14 @@ return(
     <div className="intro-y col-span-12 lg:col-span-12">
         <div className="intro-y box p-5 pt-0">
             <div className="grid grid-cols-12 gap-3">
-                <div className="col-span-12 border-b border-gray-200">                         
+                {/* <div className="col-span-12 border-b border-gray-200">                         
                     <div class="nav nav-tabs flex-col sm:flex-row justify-center lg:justify-start" role="tablist"> 
                         <a data-toggle="tab" data-target="#cd_page_1" href="javascript:;" class="py-4 sm:mr-8 active" role="tab" aria-selected="true">Page 1</a> 
                         <a data-toggle="tab" data-target="#cd_page_2" href="javascript:;" class="py-4 sm:mr-8" role="tab" aria-selected="false">Page 2</a> 
                         <a data-toggle="tab" data-target="#cd_page_3" href="javascript:;" class="py-4 sm:mr-8" role="tab" aria-selected="false">Page 3</a> 
                         <a data-toggle="tab" data-target="#cd_page_4" href="javascript:;" class="py-4 sm:mr-8" role="tab" aria-selected="false">Page 4</a> 
                     </div>
-                </div>
+                </div> */}
                 <div className="col-span-12"> 
                     <div class="intro-y tab-content mt-2">
                         <div id="cd_page_1" class="tab-pane active" role="tabpanel">
@@ -157,12 +157,12 @@ return(
                             </div>
 
                         </div>   
-                        <div id="cd_page_2" class="tab-pane" role="tabpanel">Acc
+                        {/* <div id="cd_page_2" class="tab-pane" role="tabpanel">Acc
                         </div>   
                         <div id="cd_page_3" class="tab-pane" role="tabpanel">act
                         </div>   
                         <div id="cd_page_4" class="tab-pane" role="tabpanel">task
-                        </div>                        
+                        </div>                         */}
                     </div>                        
                 </div>
 

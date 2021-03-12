@@ -43,6 +43,8 @@ import MyOrder from '../ThemeReact/views/MyOrders/MyOrder';
 import CDDetails from '../ThemeReact/views/CD-Details/CDDetails';
 import Form from '../ThemeReact/views/Form/Form';
 
+import Summary from '../ThemeReact/views/OrderSummary/OrderSummary';
+
 class Routes extends React.Component
 {
     render()
@@ -57,9 +59,9 @@ class Routes extends React.Component
                 <Route exact path='/allusers' component={UsersList} /> 
                 <Route exact path='/adduser' component={AddUser} />
                 <Route exact path='/orderentry' component={OrderEntry} />
-                {/* <Route exact path='/myorders' component={MyOrders} /> */}
+                <Route exact path='/' component={OrderEntry} />
                 <Route exact path='/myorders' component={MyOrder} />
-                <Route exact path='/ordersummary' component={CDDetails} />
+                <Route exact path='/summary/:id' component={Summary} />
                 <Route exact path='/form' component={Form} />
 
 

@@ -1,5 +1,5 @@
 import React, { Component, useState, useEffect } from "react";
-import axios from 'axios';
+import axios from '../../../ThemeLayouts/repository/api';
 import { useToasts } from 'react-toast-notifications';
 import { confirmAlert } from 'react-confirm-alert'
 import { BrowserRouter as Router, Switch, Route, Link, useHistory } from 'react-router-dom';
@@ -74,9 +74,9 @@ function OrderDocuments(props) {
     const data = orderdocs;
 
     return (
-        <div className="div-order-docs">           
-            <Table setColumns={columns} setData={orderdocs}/>
-        </div>
+       <>
+        <h1>Documnet</h1>
+       </>
     );
 }
 

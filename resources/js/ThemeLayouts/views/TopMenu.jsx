@@ -1,5 +1,5 @@
 import React from 'react'
-import { BrowserRouter as Router, Switch, Route, Link, useHistory } from 'react-router-dom';
+import { BrowserRouter as Router, Switch, Route, Link, useHistory, NavLink } from 'react-router-dom';
 
 /**
  * TopMenu Component
@@ -12,32 +12,32 @@ function TopMenu(props) {
         <nav className="top-nav">
             <ul>
                 <li>
-                    <Link to={'/dashboard'} className="top-menu ">
+                    <NavLink to={'/dashboard'} className="top-menu " activeClassName="top-menu--active">
                         <div className="top-menu__title"> Dashboard <i data-feather="chevron-down" className="top-menu__sub-icon"></i> </div>
-                    </Link>
+                    </NavLink>
 
                 </li>
                 {/* <li>
-                    <Link to={'/login'} className="top-menu">
+                    <NavLink to={'/login'} className="top-menu">
                         <div className="top-menu__title"> Login <i data-feather="chevron-down" className="top-menu__sub-icon"></i> </div>
-                    </Link>
+                    </NavLink>
 
                 </li> */}
                 <li>
-                    <Link to={'/orderentry'} className="top-menu">
+                    <NavLink to={'/orderentry'} className="top-menu" activeClassName="top-menu--active">
                         <div className="top-menu__title"> Order Entry <i data-feather="chevron-down" className="top-menu__sub-icon"></i> </div>
-                    </Link>
+                    </NavLink>
 
                 </li>
                 <li>
-                    <Link to={'/myorders'} className="top-menu">
+                    <NavLink to={'/myorders'} className="top-menu" activeClassName="top-menu--active">
                         <div className="top-menu__title"> My Orders <i data-feather="chevron-down" className="top-menu__sub-icon"></i> </div>
-                    </Link>
+                    </NavLink>
                 </li>
                 {/* <li>
-                    <Link to={'/cddetails'} className="top-menu">
+                    <NavLink to={'/cddetails'} className="top-menu">
                         <div className="top-menu__title"> CD Details <i data-feather="chevron-down" className="top-menu__sub-icon"></i> </div>
-                    </Link>
+                    </NavLink>
                 </li> */}
                 {/* <li>
                     <Link to={'/form'} className="top-menu top-menu--active">
@@ -45,21 +45,21 @@ function TopMenu(props) {
                     </Link>
                 </li> */}
                 <li>
-                    <a href="javascript:;" className="top-menu">
+                    <a className="top-menu">
                         <div className="top-menu__title"> Setup <i data-feather="chevron-down" className="top-menu__sub-icon"></i> </div>
                     </a>
                     <ul className="">
                        
                         
                         <li>
-                            <Link to={'/allusers'} className="top-menu">
+                            <NavLink to={'/allusers'} className="top-menu">
                                 <div className="top-menu__title"> Users </div>
-                            </Link>
+                            </NavLink>
                         </li>
                         <li>
-                            <Link to={'/allclients'} className="top-menu">
+                            <NavLink to={'/allclients'} className="top-menu">
                                 <div className="top-menu__title"> Clients </div>
-                            </Link>
+                            </NavLink>
                         </li>
                        
                     </ul>
