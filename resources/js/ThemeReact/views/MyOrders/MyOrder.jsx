@@ -160,7 +160,7 @@ const DocTypeOption = [
         <div style={{marginTop:'10px'}}>
           <p key={row.OrderUID}>
             {/* <TableLink><span className="fa fa-eye p-1" style={{fontSize:'15px',color:'#464bac',fontWeight:'bold'}}></span></TableLink> */}
-            <TableLink to={'/summary/'+row.OrderUID}><Icon.Edit className="w-4 h-4 text-theme-24" color='blue' /></TableLink>
+            <TableLink to={'/summary/'+row.OrderUID}><Icon.Edit className="w-4 h-4 text-theme-24" color='green' /></TableLink>
           </p>
         </div>
       }
