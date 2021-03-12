@@ -13,10 +13,10 @@
     <link rel="stylesheet" href="css/app.css" />
 </head>
 <body class="main" id="ReactBody">
-
-<script src="js/app.js"></script>
 <script>
         window.baseurl = '{{ env("APIURL") }}';
     </script>
+<script src="js/app.js"></script>
+
 </body>
 </html>

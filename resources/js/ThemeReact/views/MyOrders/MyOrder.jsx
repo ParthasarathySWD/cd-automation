@@ -152,7 +152,7 @@ const DocTypeOption = [
       {
         
         name: <b>Status</b>,
-        cell: row => <span className="p-1 badge {} rounded-full">{row['StatusName']}</span>
+        cell: row => <span className="p-1 badge order-initiated rounded-full">{row['StatusName']}</span>
       },
       {
         name:<b>Action</b>,
@@ -179,18 +179,15 @@ const DocTypeOption = [
                         <label style={{fontSize:'22px'}}><b>Orders List</b></label>
                         <Link to={'/orderentry'}><button className="btn btn-primary btn-order">CREATE ORDER</button></Link>
                       </div> 
-                      {/* <div className="child-container status-container"> */}
-                        {/* Widgets component imported */}
-                          {/* <MyOrderWidgets />
-                      </div> */}
+                      
                       <div className="child-container first-child">
                           <div className="tabs" style={{marginTop:'50px',paddingTop:'5px',height:'70px',paddingLeft:'10px'}}> 
                           <div className="grid grid-cols-12 gap-3">
                              
                             {/* Filter dropdown */}
                                 
-                            {/* <div className="col-md-2 col-sm-12" style={{width:'150px'}}> */}
-                                  <div className="col-span-1 lg:col-span-1 sm:col-span-1 mt-3"> 
+                        
+                                  <div className="col-span-2 lg:col-span-2 sm:col-span-2 mt-3"> 
                                     <label className="form-label">Status</label> 
                                         <Select className="custom_select" options={DocTypeOption} />
                                         {/* <select className="border w-100 input-height border-secondary" name="status" value={filter.status} onChange={onClientChange} style={{height:'25px'}}>
@@ -202,10 +199,10 @@ const DocTypeOption = [
                                       }
                                       </select> */}
                                     </div>
-                                  {/* </div> */}
+                         
 
-                                  {/* <div className="col-md-2 col-sm-12" style={{marginLeft:'70px',width:'150px'}}> */}
-                                    <div className="col-span-1 lg:col-span-1 sm:col-span-1 mt-3"> 
+                                 
+                                    <div className="col-span-2 lg:col-span-2 sm:col-span-2 mt-3"> 
                                       <label className="form-label">Users </label>
                                         <Select className="custom_select" options={DocTypeOption} />
                                       {/* <select className="border w-100 input-height border-secondary" name="user" value={filter.user} onChange={onClientChange} style={{height:'25px',width:'150px'}}>
@@ -217,21 +214,33 @@ const DocTypeOption = [
                                       }
                                       </select> */}
                                     </div>
-                                  {/* </div> */}
+                               
 
-                                  {/* <div className="col-lg-4 col-lg-12" style={{marginLeft:'140px'}}> */}
-                                    {/* <div className="form-group"> */}
-                                    <div className="col-span-1 lg:col-span-1 sm:col-span-1 mt-3" >
+
+                                
+                                    <div className="col-span-2 lg:col-span-2 sm:col-span-2 mt-3 pt-0" >
                                     <label className="form-label">From Date</label> 
                                     <div className="input-group"><div className="input-group-text"><Icon.Calendar className="w-4 h-4" /></div>
-                                        <DatePicker name="fromdate" className="datepicker form-control w-56 block mx-auto" style={{height:'100px'}} customStyles={{dateInput:{borderBottomWidth: 0}}} placeholderText="mm/dd/yyyy" selected={startDate} onChange={date=>setStartDate(date)}/>
+                                        <DatePicker name="fromdate" className="datepicker form-control w-56 block mx-auto" popperPlacement="bottom" style={{height:'100px',borderLeft:'none'}} customStyles={{dateInput:{borderBottomWidth: 0}}} placeholderText="mm/dd/yyyy" selected={startDate} onChange={date=>setStartDate(date)}/>
                                        {/* <input data-daterange="true" className="datepicker form-control w-56 block mx-auto" />  */}
                                     </div>
                                     </div>
-                                  {/* </div>  */}
+                                 
 
-                                  {/* <div className="col-lg-4 col-lg-12" style={{marginLeft:'620px',paddingTop:'40px'}}> */}
-                                    <div className="flex flex-col sm:flex-row sm:items-end xl:items-start">
+                                
+                                    <div className="col-span-2 lg:col-span-2 sm:col-span-2 mt-3 pl-0" >
+                                    <label className="form-label">From Date</label> 
+                                    <div className="input-group"><div className="input-group-text"><Icon.Calendar className="w-4 h-4" /></div>
+                                        <DatePicker name="fromdate" className="datepicker form-control w-56 block mx-auto" popperPlacement="bottom"  style={{height:'100px'}} customStyles={{dateInput:{borderBottomWidth: 0}}} placeholderText="mm/dd/yyyy" selected={endDate} onChange={date=>setStartDate(date)}/>
+                                       {/* <input data-daterange="true" className="datepicker form-control w-56 block mx-auto" />  */}
+                                    </div>
+                                    </div>
+                                
+
+                                 
+
+                                
+                                  <div className="col-span-2 lg:col-span-2 sm:col-span-2 mt-3" style={{marginTop:'40px',marginLeft:'100px'}}>
                                         <form id="tabulator-html-filter-form" className="xl:flex sm:mr-auto" >
                                             <div className="sm:flex items-center sm:mr-4 mt-2 xl:mt-0">
                                                 <input id="tabulator-html-filter-value" type="text" className="pr-2 form-control form-control-sm sm:w-40 xxl:w-full mt-2 sm:mt-0" placeholder="Search..."/>
@@ -242,7 +251,7 @@ const DocTypeOption = [
                                             </div>
                                         </form>
                                     </div>
-                                {/* </div> */}
+                               
                           </div>  
                         </div>
                           {/* Datatable */}

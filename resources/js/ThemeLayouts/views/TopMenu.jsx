@@ -39,11 +39,11 @@ function TopMenu(props) {
                         <div className="top-menu__title"> CD Details <i data-feather="chevron-down" className="top-menu__sub-icon"></i> </div>
                     </Link>
                 </li> */}
-                <li>
+                {/* <li>
                     <Link to={'/form'} className="top-menu top-menu--active">
                         <div className="top-menu__title"> Form <i data-feather="chevron-down" className="top-menu__sub-icon"></i> </div>
                     </Link>
-                </li>
+                </li> */}
                 <li>
                     <a href="javascript:;" className="top-menu">
                         <div className="top-menu__title"> Setup <i data-feather="chevron-down" className="top-menu__sub-icon"></i> </div>

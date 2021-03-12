@@ -3,6 +3,7 @@
     border-color: #9293f7;
     color: #fff;
     background-color: #9293f7;
+    font-size: 12px;
 }
 
 .prelim-cd-ocr-inprogress {
@@ -10,6 +11,7 @@
     border-color: #bad811;
     color: #fff;
     background-color: #bad811;
+    font-size: 12px;
 }
 
 .prelim-cd-ocr-completed {
@@ -17,6 +19,7 @@
     border-color: #38c172;
     color: #fff;
     background-color: #38c172;
+    font-size: 12px;
 }
 
 .source-doc-ocr-inprogress {
@@ -24,6 +27,7 @@
     border-color: #d0a1e2;
     color: #fff;
     background-color: #d0a1e2;
+    font-size: 12px;
 }
 
 .source-doc-ocr-completed {
@@ -31,4 +35,5 @@
     border-color: #38c172;
     color: #fff;
     background-color: #38c172;
+    font-size: 12px;
 }

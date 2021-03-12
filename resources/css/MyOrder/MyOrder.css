@@ -133,8 +133,9 @@
 .react-datepicker__input-container,
 .react-datepicker__input-container input {
     display: block;
-    width: 120px;
-    height:35px;
+    width: 160px;
+    height:38px;
+    border-radius:none !important;
     border-color:#dee2e6 !important;
 }
 .form-label
