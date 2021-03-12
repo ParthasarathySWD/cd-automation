@@ -160,7 +160,7 @@ const DocTypeOption = [
         <div style={{marginTop:'10px'}}>
           <p key={row.OrderUID}>
             {/* <TableLink><span className="fa fa-eye p-1" style={{fontSize:'15px',color:'#464bac',fontWeight:'bold'}}></span></TableLink> */}
-            <TableLink to={'/ordersummary/'}><Icon.Edit className="w-4 h-4 text-theme-24" color='blue' /></TableLink>
+            <TableLink to={'/summary/'+row.OrderUID}><Icon.Edit className="w-4 h-4 text-theme-24" color='blue' /></TableLink>
           </p>
         </div>
       }
@@ -168,9 +168,9 @@ const DocTypeOption = [
 
     /* Should be passed from props Ends */
 
-    let clientOptions = clients.map((value, key)=>{
-                        return <option value={value.ClientUID}>{value.ClientName}</option>
-                      });
+    // let clientOptions = clients.map((value, key)=>{
+    //                     return <option value={value.ClientUID}>{value.ClientName}</option>
+    //                   });
 
         return(
             <div className="main-container clearfix">
@@ -189,8 +189,8 @@ const DocTypeOption = [
                              
                             {/* Filter dropdown */}
                                 
-                            <div className="col-md-2 col-sm-12" style={{width:'150px'}}>
-                                  <div className="col-span-3 lg:col-span-3 sm:col-span-3 mt-3"> 
+                            {/* <div className="col-md-2 col-sm-12" style={{width:'150px'}}> */}
+                                  <div className="col-span-1 lg:col-span-1 sm:col-span-1 mt-3"> 
                                     <label className="form-label">Status</label> 
                                         <Select className="custom_select" options={DocTypeOption} />
                                         {/* <select className="border w-100 input-height border-secondary" name="status" value={filter.status} onChange={onClientChange} style={{height:'25px'}}>
@@ -202,12 +202,12 @@ const DocTypeOption = [
                                       }
                                       </select> */}
                                     </div>
-                                  </div>
+                                  {/* </div> */}
 
-                                  <div className="col-md-2 col-sm-12" style={{marginLeft:'70px',width:'150px'}}>
-                                    <div className="col-span-3 lg:col-span-3 sm:col-span-3 mt-3"> 
+                                  {/* <div className="col-md-2 col-sm-12" style={{marginLeft:'70px',width:'150px'}}> */}
+                                    <div className="col-span-1 lg:col-span-1 sm:col-span-1 mt-3"> 
                                       <label className="form-label">Users </label>
-                                        <Select className="custom_select" options={DocTypeOption1} />
+                                        <Select className="custom_select" options={DocTypeOption} />
                                       {/* <select className="border w-100 input-height border-secondary" name="user" value={filter.user} onChange={onClientChange} style={{height:'25px',width:'150px'}}>
                                       <option value="" selected >Select...</option>
                                       {
@@ -217,22 +217,20 @@ const DocTypeOption = [
                                       }
                                       </select> */}
                                     </div>
-                                  </div>
+                                  {/* </div> */}
 
-                                  <div className="col-lg-4 col-lg-12" style={{marginLeft:'140px'}}>
+                                  {/* <div className="col-lg-4 col-lg-12" style={{marginLeft:'140px'}}> */}
                                     {/* <div className="form-group"> */}
-                                    <div className="col-span-3 lg:col-span-3 sm:col-span-3 mt-3" >
-                                    <label className="form-label">Date</label> 
-                                      <div className="input-group">
-                                            <div className="input-group-text"><Icon.Calendar className="w-4 h-4" /></div>
-                                            <input data-daterange="true" class="datepicker form-control w-56 block mx-auto"/> 
-                                                {/* <DatePicker name="fromdate" customStyles={{dateInput:{borderBottomWidth: 0}}} placeholderText="mm/dd/yyyy" selected={startDate} onChange={date=>setStartDate(date)}/> */}
-                                            {/* </div> */}
-                                      </div>
+                                    <div className="col-span-1 lg:col-span-1 sm:col-span-1 mt-3" >
+                                    <label className="form-label">From Date</label> 
+                                    <div className="input-group"><div className="input-group-text"><Icon.Calendar className="w-4 h-4" /></div>
+                                        <DatePicker name="fromdate" className="datepicker form-control w-56 block mx-auto" style={{height:'100px'}} customStyles={{dateInput:{borderBottomWidth: 0}}} placeholderText="mm/dd/yyyy" selected={startDate} onChange={date=>setStartDate(date)}/>
+                                       {/* <input data-daterange="true" className="datepicker form-control w-56 block mx-auto" />  */}
                                     </div>
-                                  </div> 
+                                    </div>
+                                  {/* </div>  */}
 
-                                  <div className="col-lg-4 col-lg-12" style={{marginLeft:'620px',paddingTop:'40px'}}>
+                                  {/* <div className="col-lg-4 col-lg-12" style={{marginLeft:'620px',paddingTop:'40px'}}> */}
                                     <div className="flex flex-col sm:flex-row sm:items-end xl:items-start">
                                         <form id="tabulator-html-filter-form" className="xl:flex sm:mr-auto" >
                                             <div className="sm:flex items-center sm:mr-4 mt-2 xl:mt-0">
@@ -244,7 +242,7 @@ const DocTypeOption = [
                                             </div>
                                         </form>
                                     </div>
-                                </div>
+                                {/* </div> */}
                           </div>  
                         </div>
                           {/* Datatable */}

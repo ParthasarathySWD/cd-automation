@@ -6,7 +6,9 @@ import { BrowserRouter as Router, Switch, Route, Link, useHistory } from 'react-
 function Dashboard(props){
     
     return(
-      <h1>Dashboard</h1>
+        <div>   <h1>Dashboard</h1></div>
+    
+
     )
     
 }
