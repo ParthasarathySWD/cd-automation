@@ -1,10 +1,9 @@
 import React, { useState, useEffect, useCallback, useMemo } from "react";
 import ReactDOM from "react-dom";
-import axios from '../../ThemeLayouts/repository/api';
+import axios from "axios";
 import DataTable from "react-data-table-component";
 import "react-data-table-component-extensions/dist/index.css";
 import { BrowserRouter as Router, Switch, Route, Link, useHistory } from 'react-router-dom';
-import { ReactTabulator } from "react-tabulator";
 // import Spinner from "../../CommonComponents/Spinner";
 // import "./styles.css";
 
@@ -17,7 +16,7 @@ const customStyles = {
     }
   }
 }
-const DataTableComponents = (props) => {
+const DataTab = (props) => {
   const [page, setPage] = useState(1);
   const [loading, setLoading] = useState(false);
   const [data, setData] = useState([]);
@@ -25,7 +24,7 @@ const DataTableComponents = (props) => {
   const [totalRows, setTotalRows] = useState(0);
   const [perPage, setPerPage] = useState(10);
   const [currentPage, setCurrentPage] = useState(1);
-  // const [Rows,SetRows]=useState();
+  
   useEffect(() => {
     async function fetchAPI () {
       let response = await props.fetchData(1);
@@ -34,13 +33,6 @@ const DataTableComponents = (props) => {
       setData(response.data.data);
       setTotalRows(response.data.total);
 
-      // if(totalRows<0.9)
-      // {
-      //   setRows("1");
-      // }
-      // else{
-      //   setRows(totalRows);
-      // }
 
       setLoading(false);
     }
@@ -95,16 +87,12 @@ const DataTableComponents = (props) => {
     <>
     {/* <input type="text" className="search-input-right" placeholder="&#61442; Search"></input> */}
 
-    <ReactTabulator
+    <DataTable
       title={title}
       columns={columns}
       data={data}
       search
       progressPending={loading}
-    //  
-    options={{ pagination: 'local',
-    paginationSize: 10}}
-
       pagination
       paginationServer
       paginationTotalRows={totalRows}
@@ -122,4 +110,4 @@ const DataTableComponents = (props) => {
   );
 };
 
-export default DataTableComponents;
+export default DataTab;

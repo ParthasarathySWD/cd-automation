@@ -12,7 +12,7 @@ function TopBar(props) {
                 
                 <a href="" className="-intro-x hidden md:flex">
                     <img alt="Rubick Tailwind HTML Admin Template" className="w-6" src="images/logo.svg" />
-                    <span className="text-white text-lg ml-3"> Ice<span className="font-medium">wall</span> </span>
+                    <span className="text-white text-lg ml-3"> Get<span className="font-medium">CDNow</span> </span>
                 </a>
                 
                 

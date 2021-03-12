@@ -1,0 +1,34 @@
+.order-initiated {
+    background: transparent;
+    border-color: #9293f7;
+    color: #fff;
+    background-color: #9293f7;
+}
+
+.prelim-cd-ocr-inprogress {
+    background: transparent;
+    border-color: #bad811;
+    color: #fff;
+    background-color: #bad811;
+}
+
+.prelim-cd-ocr-completed {
+    background: transparent;
+    border-color: #38c172;
+    color: #fff;
+    background-color: #38c172;
+}
+
+.source-doc-ocr-inprogress {
+    background: transparent;
+    border-color: #d0a1e2;
+    color: #fff;
+    background-color: #d0a1e2;
+}
+
+.source-doc-ocr-completed {
+    background: transparent;
+    border-color: #38c172;
+    color: #fff;
+    background-color: #38c172;
+}

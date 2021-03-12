@@ -30,6 +30,7 @@ class MyOrdersController extends Controller
     public function fetchMyOrders(Request $request)
     {
 
+        // print_r($request->all());exit;
 
         $rowCount   = $request->rowCount | 10;
         $page       = ($request->page - 1);

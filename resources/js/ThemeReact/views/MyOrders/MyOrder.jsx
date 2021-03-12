@@ -1,0 +1,271 @@
+
+import React, { useState, useEffect } from 'react';
+import '../../../../css/MyOrder/orderstatus.css';
+import '../../../../css/MyOrder/MyOrder.css';
+import "react-data-table-component-extensions/dist/index.css";
+import { BrowserRouter as Router, Switch, Route, Link, useHistory } from 'react-router-dom';
+import * as Icon from 'react-feather';
+import axios from '../../../ThemeLayouts/repository/api';
+import DataTab from '../../../components/DataTableComponents/DataTab';
+import DatePicker from "react-datepicker";
+import TableLink from  '../../../components/DataTableComponents/TableLink';
+import "react-datepicker/dist/react-datepicker.css";
+
+// import MyOrderWidgets from './MyOrderWidgets';
+// multi select
+import Select from 'react-select';
+
+/*Style to data table*/
+const customStyles = {
+  headCells:{
+    style:{
+      backgroundColor:'#a3bfd054'
+    }
+  }
+}
+
+function MyOrder(){
+
+  const [users, setUsers] = useState({});
+  const [page, setPage] = useState(1);
+  const [countPerPage, setCountPerPage] = useState(10);
+  const [status, setstatus]  = useState([]);
+  const [allusers, setallusers]  = useState([]);
+  const [clients, setclients]  = useState([]);
+
+  // To set Default Start date
+  const newdate = new Date();
+  newdate.setDate(newdate.getDate() - 32);
+  const [startDate, setStartDate] = useState(newdate);
+  const [endDate, setEndDate] = useState(new Date());
+  const [skey, setKey] = useState(Math.random());
+  const [filter, setFilter] = useState({ 'user': '', 'status': ''});
+  
+
+  function onClientChange(e)
+  {
+    let val = e.target.value;
+    let name = e.target.name;
+    setFilter((prevState)=>{
+      return {...prevState, [name]: val};
+    })
+
+  }
+ 
+  // Build filter data and make async req to api
+  useEffect(()=>
+  {
+
+    const data=
+    {
+      user:filter.user,
+      status:filter.status,
+      fromdate:startDate,
+      todate:endDate
+    }
+
+    setKey(Math.random());
+
+    fetchUsers(page, countPerPage, '', data);
+
+  }, [filter, startDate, endDate]);
+
+  useEffect(() => 
+  {
+    async function fetchOptions () 
+    {
+      let response = await fetchDetails();
+      setstatus(response.data.status);
+      setallusers(response.data.allusers);
+      setclients(response.data.clients);
+    }
+    fetchOptions();
+  }, [])
+  
+
+  // dropdown
+const DocTypeOption = [
+    { value: '1', label: 'Order Initiated' },
+    { value: '2', label: 'Source Doc OCR Completed' },
+    { value: '3', label: 'Source Doc OCR Inprogress' }
+    ]
+
+    const DocTypeOption1 = [
+        { value: '1', label: 'User1' },
+        { value: '2', label: 'User2' }
+        ]
+  /* Should be passed from props starts */
+
+  const fetchUsers = async (page, size = countPerPage, searchText = "", filterData={}) => {
+    
+    const response = await axios.get(
+      `myorders/fetchorders`, {
+        params: {
+          rowCount: size,
+          page: page,
+          searchText: searchText,
+          user:filter.user,
+          status:filter.status,
+          fromdate:startDate,
+          todate:endDate
+
+        }
+      }
+    );
+      console.log(response);
+      return response;
+    };
+
+    // Fetch filter values
+    const fetchDetails = async () => {
+            
+      const response = await axios.get(
+        `myorders/fetchOptions`,
+        {
+
+        }
+        );
+        return response;
+    }
+    
+    const handleDelete = async (row) => {
+        await axios.delete(`https://reqres.in/api/users/${row.id}`);
+    }
+   
+    //Datatable columns 
+    const columndata = [
+      {
+        name:<b>Order Number</b>,
+        selector: row => row["OrderNumber"],
+        sortable: true
+      },
+      {
+        name:<b>Loan Number</b>,
+        selector: row => row["LoanNumer"],
+        sortable: true
+      },
+      {
+        name: <b>Client</b>,
+        selector: row => row["ClientName"],
+        sortable: true
+      },
+      {
+        
+        name: <b>Status</b>,
+        cell: row => <span className="p-1 badge {} rounded-full">{row['StatusName']}</span>
+      },
+      {
+        name:<b>Action</b>,
+        cell: row => 
+        <div style={{marginTop:'10px'}}>
+          <p key={row.OrderUID}>
+            {/* <TableLink><span className="fa fa-eye p-1" style={{fontSize:'15px',color:'#464bac',fontWeight:'bold'}}></span></TableLink> */}
+            <TableLink to={'/ordersummary/'}><Icon.Edit className="w-4 h-4 text-theme-24" color='blue' /></TableLink>
+          </p>
+        </div>
+      }
+    ];
+
+    /* Should be passed from props Ends */
+
+    let clientOptions = clients.map((value, key)=>{
+                        return <option value={value.ClientUID}>{value.ClientName}</option>
+                      });
+
+        return(
+            <div className="main-container clearfix">
+                  
+                      <div className="myorder-header">
+                        <label style={{fontSize:'22px'}}><b>Orders List</b></label>
+                        <Link to={'/orderentry'}><button className="btn btn-primary btn-order">CREATE ORDER</button></Link>
+                      </div> 
+                      {/* <div className="child-container status-container"> */}
+                        {/* Widgets component imported */}
+                          {/* <MyOrderWidgets />
+                      </div> */}
+                      <div className="child-container first-child">
+                          <div className="tabs" style={{marginTop:'50px',paddingTop:'5px',height:'70px',paddingLeft:'10px'}}> 
+                          <div className="grid grid-cols-12 gap-3">
+                             
+                            {/* Filter dropdown */}
+                                
+                            <div className="col-md-2 col-sm-12" style={{width:'150px'}}>
+                                  <div className="col-span-3 lg:col-span-3 sm:col-span-3 mt-3"> 
+                                    <label className="form-label">Status</label> 
+                                        <Select className="custom_select" options={DocTypeOption} />
+                                        {/* <select className="border w-100 input-height border-secondary" name="status" value={filter.status} onChange={onClientChange} style={{height:'25px'}}>
+                                      <option value="" selected >Select...</option>
+                                      {
+                                        status.map((value, key)=>{
+                                          return <option key={key} value={value.StatusUID}>{value.StatusName}</option>
+                                        })
+                                      }
+                                      </select> */}
+                                    </div>
+                                  </div>
+
+                                  <div className="col-md-2 col-sm-12" style={{marginLeft:'70px',width:'150px'}}>
+                                    <div className="col-span-3 lg:col-span-3 sm:col-span-3 mt-3"> 
+                                      <label className="form-label">Users </label>
+                                        <Select className="custom_select" options={DocTypeOption1} />
+                                      {/* <select className="border w-100 input-height border-secondary" name="user" value={filter.user} onChange={onClientChange} style={{height:'25px',width:'150px'}}>
+                                      <option value="" selected >Select...</option>
+                                      {
+                                        allusers.map((value, key)=>{
+                                          return <option key={key} value={value.UserUID}>{value.UserName}</option>
+                                        })
+                                      }
+                                      </select> */}
+                                    </div>
+                                  </div>
+
+                                  <div className="col-lg-4 col-lg-12" style={{marginLeft:'140px'}}>
+                                    {/* <div className="form-group"> */}
+                                    <div className="col-span-3 lg:col-span-3 sm:col-span-3 mt-3" >
+                                    <label className="form-label">Date</label> 
+                                      <div className="input-group">
+                                            <div className="input-group-text"><Icon.Calendar className="w-4 h-4" /></div>
+                                            <input data-daterange="true" class="datepicker form-control w-56 block mx-auto"/> 
+                                                {/* <DatePicker name="fromdate" customStyles={{dateInput:{borderBottomWidth: 0}}} placeholderText="mm/dd/yyyy" selected={startDate} onChange={date=>setStartDate(date)}/> */}
+                                            {/* </div> */}
+                                      </div>
+                                    </div>
+                                  </div> 
+
+                                  <div className="col-lg-4 col-lg-12" style={{marginLeft:'620px',paddingTop:'40px'}}>
+                                    <div className="flex flex-col sm:flex-row sm:items-end xl:items-start">
+                                        <form id="tabulator-html-filter-form" className="xl:flex sm:mr-auto" >
+                                            <div className="sm:flex items-center sm:mr-4 mt-2 xl:mt-0">
+                                                <input id="tabulator-html-filter-value" type="text" className="pr-2 form-control form-control-sm sm:w-40 xxl:w-full mt-2 sm:mt-0" placeholder="Search..."/>
+                                            {/* </div>
+                                            <div className="mt-2 xl:mt-0"> */}
+                                                <button id="tabulator-html-filter-go" type="button" className="btn btn-primary btn-sm w-10 mr-1 p-2" style={{height:'30px',marginLeft:'5px'}}>Go</button>
+                                                <button id="tabulator-html-filter-reset" type="button" className="btn btn-secondary btn-sm w-full sm:w-16 mt-2 sm:mt-0 sm:ml-1" >Reset</button>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+                          </div>  
+                        </div>
+                          {/* Datatable */}
+                          <div className="tab-values">
+                              <div className="tab-content">
+                                  <div id="all" className="order-table tab-pane in active">
+                                      <DataTab            
+                                        key={skey}                                                      
+                                        title = ""
+                                        columndata = {columndata}
+                                        fetchData = {fetchUsers}
+                                        setPerPage = {setCountPerPage}
+                                        setCurrentPage = {setPage}
+                                        />
+                                  </div>
+                              </div>
+                          </div>
+                      </div>
+            </div>
+            
+        )
+}
+
+export default MyOrder;

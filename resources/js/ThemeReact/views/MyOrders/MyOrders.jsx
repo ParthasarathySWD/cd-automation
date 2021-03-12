@@ -76,7 +76,7 @@ function onClientChange(e)
   
   /* Should be passed from props starts */
 
-  const fetchUsers = async (page, size = countPerPage, searchText = "amy", filterData={}) => {
+  const fetchUsers = async (page, size = countPerPage, searchText = "", filterData={}) => {
     
     const response = await axios.get(
       `myorders/fetchorders`, {
@@ -124,6 +124,10 @@ function onClientChange(e)
   });
 };
     
+    const handleDelete = async (row) => {
+        await axios.delete(`https://reqres.in/api/users/${row.id}`);
+    }
+    
     const Tabulator_Column = [
         {title:"Order Number", minWidth: "200", field:"OrderNumber"},
         {title:"Loan Number", minWidth: "200", field:"LoanNumer"},
@@ -138,13 +142,15 @@ function onClientChange(e)
                         </div>`
                     }
                 }
-    ]
+    ];
 
 //     const DocTypeOption = [
-//         status.map((val, label)=>{
-//             // return <option key={key} value={value.StatusUID}>{value.StatusName}</option>
+//         status.map((val, labe)=>{
+//           const vals=val.StatusUID;
+//           const labs=val.StatusName;
+// //             // return <option key={key} value={value.StatusUID}>{value.StatusName}</option>
           
-//        return { value: {val.StatusUID}, label: {val.StatusName}}
+//        return { value: vals, label: labs}
 //     })
 // ];
 
@@ -180,7 +186,7 @@ function onClientChange(e)
                             
                         </div>
                         
-                        {/* <div className="flex flex-col sm:flex-row sm:items-end xl:items-end pt-2">
+                        <div className="flex flex-col sm:flex-row sm:items-end xl:items-end pt-2">
                             <form id="tabulator-html-filter-form" className="xl:flex sm:mr-auto" >
                                     <div className="sm:flex items-center sm:mr-4 mt-2 xl:mt-0">
                                     <div className="col-span-3 lg:col-span-3 sm:col-span-3 mt-3"> 
@@ -189,7 +195,7 @@ function onClientChange(e)
                                     </div>
                                 </div>
                             </form>
-                        </div> */}
+                        </div>
                         <div className="overflow-x-auto scrollbar-hidden mt-3">
                                           <DataTableComponents
                                             

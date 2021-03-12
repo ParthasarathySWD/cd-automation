@@ -17,12 +17,12 @@ function TopMenu(props) {
                     </Link>
 
                 </li>
-                <li>
+                {/* <li>
                     <Link to={'/login'} className="top-menu">
                         <div className="top-menu__title"> Login <i data-feather="chevron-down" className="top-menu__sub-icon"></i> </div>
                     </Link>
 
-                </li>
+                </li> */}
                 <li>
                     <Link to={'/orderentry'} className="top-menu">
                         <div className="top-menu__title"> Order Entry <i data-feather="chevron-down" className="top-menu__sub-icon"></i> </div>
@@ -34,11 +34,11 @@ function TopMenu(props) {
                         <div className="top-menu__title"> My Orders <i data-feather="chevron-down" className="top-menu__sub-icon"></i> </div>
                     </Link>
                 </li>
-                <li>
+                {/* <li>
                     <Link to={'/cddetails'} className="top-menu">
                         <div className="top-menu__title"> CD Details <i data-feather="chevron-down" className="top-menu__sub-icon"></i> </div>
                     </Link>
-                </li>
+                </li> */}
                 <li>
                     <Link to={'/form'} className="top-menu top-menu--active">
                         <div className="top-menu__title"> Form <i data-feather="chevron-down" className="top-menu__sub-icon"></i> </div>

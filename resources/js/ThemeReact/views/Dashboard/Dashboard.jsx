@@ -1,13 +1,13 @@
-import React from 'react';
+import react from 'react';
+import axios from 'axios';
+import {useState, useEffect } from 'react';
+import { BrowserRouter as Router, Switch, Route, Link, useHistory } from 'react-router-dom';
 
-
-function Dashboard()
-{
+function Dashboard(props){
+    
     return(
-        <div>
-            <center><h1>Dashboard</h1></center>
-        </div>
+      <h1>Dashboard</h1>
     )
+    
 }
-
 export default Dashboard;

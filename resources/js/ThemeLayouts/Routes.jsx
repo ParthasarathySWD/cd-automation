@@ -38,7 +38,8 @@ import AddClient from '../ThemeReact/views/Clients/AddClient';
 import UsersList from '../ThemeReact/views/User/UsersList';
 import AddUser from '../ThemeReact/views/User/AddUser';
 import OrderEntry from '../ThemeReact/views/OrderEntry/OrderEntry';
-import MyOrders from '../ThemeReact/views/MyOrders/MyOrders';
+// import MyOrders from '../ThemeReact/views/MyOrders/MyOrders';
+import MyOrder from '../ThemeReact/views/MyOrders/MyOrder';
 import CDDetails from '../ThemeReact/views/CD-Details/CDDetails';
 import Form from '../ThemeReact/views/Form/Form';
 
@@ -56,8 +57,9 @@ class Routes extends React.Component
                 <Route exact path='/allusers' component={UsersList} /> 
                 <Route exact path='/adduser' component={AddUser} />
                 <Route exact path='/orderentry' component={OrderEntry} />
-                <Route exact path='/myorders' component={MyOrders} />
-                <Route exact path='/cddetails' component={CDDetails} />
+                {/* <Route exact path='/myorders' component={MyOrders} /> */}
+                <Route exact path='/myorders' component={MyOrder} />
+                <Route exact path='/ordersummary' component={CDDetails} />
                 <Route exact path='/form' component={Form} />
 
 
