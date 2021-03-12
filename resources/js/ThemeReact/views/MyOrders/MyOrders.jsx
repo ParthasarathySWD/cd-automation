@@ -1,11 +1,16 @@
 import React,{ useState, useEffect } from 'react';
+import ReactDOM from 'react-dom';
+import { NavLink, Link } from 'react-router-dom';
+
 import 'react-tabulator/lib/styles.css';
 import { ReactTabulator } from 'react-tabulator'
 import * as Icon from 'react-feather';
 import axios from '../../../ThemeLayouts/repository/api';
 import DataTableComponents from '../../../components/DataTableComponents/DataTableComponents';
-
-function MyOrders()
+import {reactFormatter} from 'react-tabulator';
+// import reactFormatter from './Formatter';
+import ColumnFormattar from "./ColumnFormattar";
+function MyOrders(props)
 {
 
 //     const Tabulator_Data = [
@@ -102,6 +107,22 @@ function onClientChange(e)
         );
         return response;
     }
+
+    const journalLinkFormatter = (cell, formatterParams, onRendered) => {
+  onRendered(() => {
+    let key = cell.getValue();
+    let link = `/journals/${key}`;
+    ReactDOM.render(
+      <Link
+        style={{ color: "blue", fontWeight: "bold", background: "red" }}
+        to={link}
+      >
+        {key}
+      </Link>,
+      cell.getElement()
+    );
+  });
+};
     
     const Tabulator_Column = [
         {title:"Order Number", minWidth: "200", field:"OrderNumber"},
