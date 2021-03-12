@@ -8,6 +8,8 @@ import "react-data-table-component-extensions/dist/index.css";
 
 // import Table from '../../CommonComponents/DataTable/DataTable';
 import { ReactTabulator, reactFormatter } from "react-tabulator"; 
+import DataTable, { createTheme } from 'react-data-table-component';
+
 
 
 function OrderDocuments(props) {
@@ -24,32 +26,33 @@ function OrderDocuments(props) {
     /** Table Columns */
     const columns = [        
         {
-            title: 'Documnet',
-            field: 'document',
+            name: 'Documnet',
+            selector: 'document',
+            sortable: true,
         },
         {
-            title: 'Type',
-            field: 'type',
+            name: 'Type',
+            selector: 'type',
+            sortable: true,            
         },
         {
-            title: 'OCR Status',
-            field: 'id',
+            name: 'OCR Status',
+            selector: 'id',
+            sortable: true,
         },
         {
-            title: 'Uploaded On',
-            field: 'uploadedon',
+            name: 'Uploaded On',
+            selector: 'uploadedon',
+            sortable: true,
         },
         {
-            title: 'Uploaded By',
-            field: 'uploadedby',
+            name: 'Uploaded By',
+            selector: 'uploadedby',
+            sortable: true,
         },        
         {
-            title: 'Action',
-            align: "center",
-            formatter: ViewIcon,
-            cellClick:function(e, cell){               
-                console.log('Cell Data : ', cell.getData().documentid);
-            }
+            name: 'Action',
+            selector: 'action',
         }
     ];
     /** end */
@@ -75,7 +78,11 @@ function OrderDocuments(props) {
 
     return (
        <>
-        <h1>Documnet</h1>
+        <DataTable
+            title="Order Documents"
+            columns={columns}
+            data={data}
+        />
        </>
     );
 }
