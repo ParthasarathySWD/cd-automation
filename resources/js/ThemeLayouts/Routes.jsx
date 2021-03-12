@@ -42,6 +42,8 @@ import OrderEntry from '../ThemeReact/views/OrderEntry/OrderEntry';
 import MyOrder from '../ThemeReact/views/MyOrders/MyOrder';
 import CDDetails from '../ThemeReact/views/CD-Details/CDDetails';
 import Form from '../ThemeReact/views/Form/Form';
+import EditUser from '../ThemeReact/views/User/EditUsers';
+import UserView from '../ThemeReact/views/User/UserView';
 
 import Summary from '../ThemeReact/views/OrderSummary/OrderSummary';
 
@@ -63,6 +65,8 @@ class Routes extends React.Component
                 <Route exact path='/myorders' component={MyOrder} />
                 <Route exact path='/summary/:id' component={Summary} />
                 <Route exact path='/form' component={Form} />
+                <Route exact path='/edituser/:id' component={EditUser} />
+                <Route exact path='/userview/:id' component={UserView} />
 
 
                 {/*<Route exact path='/' component={Dashboard} />
