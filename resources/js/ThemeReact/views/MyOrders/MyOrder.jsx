@@ -177,9 +177,17 @@ const DocTypeOption = [
                   
                       <div className="myorder-header">
                         <label style={{fontSize:'22px'}}><b>Orders List</b></label>
-                        <Link to={'/orderentry'}><button className="btn btn-primary btn-order">CREATE ORDER</button></Link>
+                        
                       </div> 
-                      
+                      {/* <div className="grid grid-cols-12 gap-3" style={{marginTop:'10px'}}>
+                      <div className="box p-5 col-span-3 lg:col-span-3 sm:col-span-3" style={{backgroundColor:'white',boxShadow:'2px 2px 5px 2px blue'}}><label style={{fontSize:'18px'}}>All orders</label></div>
+                      <div className="box p-5 col-span-3 lg:col-span-3 sm:col-span-3" style={{backgroundColor:'white'}}>
+                        </div>  
+                        <div className="box p-5 col-span-2 lg:col-span-2 sm:col-span-2" style={{backgroundColor:'white'}}>
+                        </div>  
+                       
+                      </div> */}
+                      <Link to={'/orderentry'}><button className="btn btn-primary btn-order">CREATE ORDER</button></Link>
                       <div className="child-container first-child">
                           <div className="tabs" style={{marginTop:'50px',paddingTop:'5px',height:'70px',paddingLeft:'10px'}}> 
                           <div className="grid grid-cols-12 gap-3">
@@ -240,14 +248,14 @@ const DocTypeOption = [
                                  
 
                                 
-                                  <div className="col-span-2 lg:col-span-2 sm:col-span-2 mt-3" style={{marginTop:'40px',marginLeft:'100px'}}>
+                                  <div className="col-span-3 lg:col-span-3 sm:col-span-3 mt-3" style={{marginTop:'40px',marginLeft:'90px'}}>
                                         <form id="tabulator-html-filter-form" className="xl:flex sm:mr-auto" >
                                             <div className="sm:flex items-center sm:mr-4 mt-2 xl:mt-0">
                                                 <input id="tabulator-html-filter-value" type="text" className="pr-2 form-control form-control-sm sm:w-40 xxl:w-full mt-2 sm:mt-0" placeholder="Search..."/>
                                             {/* </div>
                                             <div className="mt-2 xl:mt-0"> */}
                                                 <button id="tabulator-html-filter-go" type="button" className="btn btn-primary btn-sm w-10 mr-1 p-2" style={{height:'30px',marginLeft:'5px'}}>Go</button>
-                                                <button id="tabulator-html-filter-reset" type="button" className="btn btn-secondary btn-sm w-full sm:w-16 mt-2 sm:mt-0 sm:ml-1" >Reset</button>
+                                                <button id="tabulator-html-filter-reset" type="button" className="btn btn-secondary btn-sm w-full sm:w-16 mt-2 sm:mt-0 sm:ml-1" style={{marginLeft:'15px'}}>Reset</button>
                                             </div>
                                         </form>
                                     </div>

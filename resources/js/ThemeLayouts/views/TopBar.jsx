@@ -16,7 +16,7 @@ function TopBar(props) {
                 </a>
                 
                 
-                <div className="-intro-x breadcrumb mr-auto"> <a href="">Application</a> <i data-feather="chevron-right" className="breadcrumb__icon"></i> <a href="" className="breadcrumb--active">Dashboard</a> </div>
+                <div className="-intro-x breadcrumb mr-auto">  <i data-feather="chevron-right" className="breadcrumb__icon"></i>  </div>
                 
                 
                 <div className="intro-x relative mr-3 sm:mr-6">

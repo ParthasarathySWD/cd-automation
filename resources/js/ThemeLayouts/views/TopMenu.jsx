@@ -46,7 +46,7 @@ function TopMenu(props) {
                 </li> */}
                 <li>
                     <a className="top-menu">
-                        <div className="top-menu__title"> Setup <i data-feather="chevron-down" className="top-menu__sub-icon"></i> </div>
+                        <div className="top-menu__title"> Admin <i data-feather="chevron-down" className="top-menu__sub-icon"></i> </div>
                     </a>
                     <ul className="">
                        
