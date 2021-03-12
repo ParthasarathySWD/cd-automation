@@ -63,3 +63,73 @@
     background: #dee2e68a !important;
     color: #212121 !important;
 }
+.track .step.Ready:before {
+    background: #1266F1
+}
+
+
+
+.track .step.Ready .icon {
+    background: #1266F1;
+    color: #fff
+}
+
+
+
+/*inprogress*/
+.track .step.inprogress:before {
+    background: #FFA900
+}
+
+
+
+.track .step.inprogress .icon {
+    background: #FFA900;
+    color: #fff
+}
+
+
+
+/*completed*/
+.track .step.Completed:before {
+    background: #00B74A
+}
+
+
+
+.track .step.Completed .icon {
+    background: #00B74A;
+    color: #fff
+}
+
+
+
+.track .icon {
+    display: inline-block;
+    width: 40px;
+    height: 40px;
+    line-height: 40px;
+    position: relative;
+    border-radius: 100%;
+    background: #ddd
+}
+
+
+
+.track .step.active .text {
+    font-weight: 400;
+    color: #000
+}
+
+
+
+.track .text {
+    display: block;
+
+}
+
+.bg-yellow-500
+{
+    --tw-bg-opacity: 1 !important;
+    background-color: rgba(251, 181, 36, var(--tw-bg-opacity)) !important;
+}

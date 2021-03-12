@@ -42,16 +42,26 @@ function MyOrder(){
   const [filter, setFilter] = useState({ 'user': '', 'status': ''});
   
 
-  function onClientChange(e)
+  function onStatusChange(e)
   {
-    let val = e.target.value;
-    let name = e.target.name;
+    console.log(e);
+    let val = e.value;
     setFilter((prevState)=>{
-      return {...prevState, [name]: val};
+      return {...prevState, status: val};
     })
 
   }
- 
+   
+
+  function onUserChange(e)
+  {
+    console.log(e);
+    let val = e.value;
+    setFilter((prevState)=>{
+      return {...prevState, user: val};
+    })
+
+  }
   // Build filter data and make async req to api
   useEffect(()=>
   {
@@ -84,16 +94,14 @@ function MyOrder(){
   
 
   // dropdown
-const DocTypeOption = [
-    { value: '1', label: 'Order Initiated' },
-    { value: '2', label: 'Source Doc OCR Completed' },
-    { value: '3', label: 'Source Doc OCR Inprogress' }
-    ]
 
-    const DocTypeOption1 = [
-        { value: '1', label: 'User1' },
-        { value: '2', label: 'User2' }
-        ]
+  const StatusOption = status.map(function (val) {
+    return { value: val.StatusUID, label: val.StatusName };
+  })
+
+    const DocTypeOption1 = allusers.map((val)=>{
+      return {value:val.UserUID, label:val.UserName}
+    })
   /* Should be passed from props starts */
 
   const fetchUsers = async (page, size = countPerPage, searchText = "", filterData={}) => {
@@ -177,7 +185,6 @@ const DocTypeOption = [
                   
                       <div className="myorder-header">
                         <label style={{fontSize:'22px'}}><b>Orders List</b></label>
-                        
                       </div> 
                       {/* <div className="grid grid-cols-12 gap-3" style={{marginTop:'10px'}}>
                       <div className="box p-5 col-span-3 lg:col-span-3 sm:col-span-3" style={{backgroundColor:'white',boxShadow:'2px 2px 5px 2px blue'}}><label style={{fontSize:'18px'}}>All orders</label></div>
@@ -190,29 +197,21 @@ const DocTypeOption = [
                       <Link to={'/orderentry'}><button className="btn btn-primary btn-order">CREATE ORDER</button></Link>
                       <div className="child-container first-child">
                           <div className="tabs" style={{marginTop:'50px',paddingTop:'5px',height:'70px',paddingLeft:'10px'}}> 
-                          <div className="grid grid-cols-12 gap-3">
+                            <div className="grid grid-cols-12 gap-3">
                              
-                            {/* Filter dropdown */}
+                              {/* Filter dropdown */}
                                 
                         
                                   <div className="col-span-2 lg:col-span-2 sm:col-span-2 mt-3"> 
                                     <label className="form-label">Status</label> 
-                                        <Select className="custom_select" options={DocTypeOption} />
-                                        {/* <select className="border w-100 input-height border-secondary" name="status" value={filter.status} onChange={onClientChange} style={{height:'25px'}}>
-                                      <option value="" selected >Select...</option>
-                                      {
-                                        status.map((value, key)=>{
-                                          return <option key={key} value={value.StatusUID}>{value.StatusName}</option>
-                                        })
-                                      }
-                                      </select> */}
+                                        <Select className="custom_select" options={StatusOption} name="status"  onChange={onStatusChange}/>
                                     </div>
                          
 
                                  
                                     <div className="col-span-2 lg:col-span-2 sm:col-span-2 mt-3"> 
                                       <label className="form-label">Users </label>
-                                        <Select className="custom_select" options={DocTypeOption} />
+                                        <Select className="custom_select" options={DocTypeOption1} onChange={onUserChange} />
                                       {/* <select className="border w-100 input-height border-secondary" name="user" value={filter.user} onChange={onClientChange} style={{height:'25px',width:'150px'}}>
                                       <option value="" selected >Select...</option>
                                       {
@@ -227,24 +226,22 @@ const DocTypeOption = [
 
                                 
                                     <div className="col-span-2 lg:col-span-2 sm:col-span-2 mt-3 pt-0" >
-                                    <label className="form-label">From Date</label> 
-                                    <div className="input-group"><div className="input-group-text"><Icon.Calendar className="w-4 h-4" /></div>
+                                      <label className="form-label">From Date</label> 
+                                      <div className="input-group"><div className="input-group-text"><Icon.Calendar className="w-4 h-4" /></div>
                                         <DatePicker name="fromdate" className="datepicker form-control w-56 block mx-auto" popperPlacement="bottom" style={{height:'100px',borderLeft:'none'}} customStyles={{dateInput:{borderBottomWidth: 0}}} placeholderText="mm/dd/yyyy" selected={startDate} onChange={date=>setStartDate(date)}/>
                                        {/* <input data-daterange="true" className="datepicker form-control w-56 block mx-auto" />  */}
-                                    </div>
+                                      </div>
                                     </div>
                                  
 
                                 
                                     <div className="col-span-2 lg:col-span-2 sm:col-span-2 mt-3 pl-0" >
-                                    <label className="form-label">From Date</label> 
-                                    <div className="input-group"><div className="input-group-text"><Icon.Calendar className="w-4 h-4" /></div>
-                                        <DatePicker name="fromdate" className="datepicker form-control w-56 block mx-auto" popperPlacement="bottom"  style={{height:'100px'}} customStyles={{dateInput:{borderBottomWidth: 0}}} placeholderText="mm/dd/yyyy" selected={endDate} onChange={date=>setStartDate(date)}/>
+                                      <label className="form-label">To Date</label> 
+                                        <div className="input-group"><div className="input-group-text"><Icon.Calendar className="w-4 h-4" /></div>
+                                          <DatePicker className="datepicker form-control w-56 block mx-auto" popperPlacement="bottom" style={{height:'100px',borderLeft:'none'}} customStyles={{dateInput:{borderBottomWidth: 0}}} placeholderText="mm/dd/yyyy" name="todate" selected={endDate} onChange={date => setEndDate(date)}/>
                                        {/* <input data-daterange="true" className="datepicker form-control w-56 block mx-auto" />  */}
+                                        </div>
                                     </div>
-                                    </div>
-                                
-
                                  
 
                                 
