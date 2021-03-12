@@ -57,7 +57,7 @@ function TopMenu(props) {
                             </NavLink>
                         </li>
                         <li>
-                            <NavLink to={'/allclients'} className="top-menu">
+                            <NavLink to={'/addclient'} className="top-menu">
                                 <div className="top-menu__title"> Clients </div>
                             </NavLink>
                         </li>

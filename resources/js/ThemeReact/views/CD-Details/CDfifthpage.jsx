@@ -1,7 +1,8 @@
 import React from 'react';
 import Table from 'react-bootstrap/Table';
 import './CDDetails.css';
-import CDTab from './CDTab.jsx';
+import CDTab from './CDTab.jsx';   
+
 function CDfifthpage(props) {
     
 
@@ -205,6 +206,11 @@ Conform Receipt
 <p className="align">By signing, you are onlyconfirming that you have received this form, You do not have to accept this loan because you have signed or received
 this form.</p>
 </div>
+<div className="col-span-12 lg:col-span-12 sm:col-span-3 mt-3">
+        
+                    <button type="submit" className="btn btn-xs btn-primary mr-2 ml-2 float-right">Submit</button>
+                    <button type="submit" className="btn  btn-xs btn-danger float-left"><a data-toggle="tab" data-target="#PageFour">Previous</a></button>                                
+                            </div>
 
                           </div>
                        </div>

@@ -222,6 +222,11 @@ function CDfourthpage(props) {
                 </div>
             </div>
         </div>
+        <div className="col-span-12 lg:col-span-12 sm:col-span-3 mt-3">
+        <button type="submit" className="btn btn-xs btn-primary mr-2 ml-2 float-right" ><a data-toggle="tab" data-target="#PageFive">Next</a></button>
+        <button type="submit" className="btn btn-xs btn-primary mr-2 ml-2 float-right">Submit</button>
+             <button type="submit" className="btn  btn-xs btn-danger float-left"><a data-toggle="tab" data-target="#PageThree">Previous</a></button>                                
+         </div>
         </>
         
        )

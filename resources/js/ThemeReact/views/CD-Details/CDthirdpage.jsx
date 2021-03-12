@@ -371,13 +371,18 @@ function CDthirdpage(props) {
                                                 </tr>
                                             </tbody>
                                         </Table>
+                                        
                                     </div>
                                 </div>
                             </div>
                             
                         </div>
                     </div>
-                    
+                    <div className="col-span-12 lg:col-span-12 sm:col-span-3 mt-3">
+                    <button type="submit" className="btn btn-xs btn-primary mr-2 ml-2 float-right" ><a data-toggle="tab" data-target="#PageFour">Next</a></button>
+                                <button type="submit" className="btn btn-xs btn-primary mr-2 ml-2 float-right">Submit</button>
+                                <button type="submit" className="btn  btn-xs btn-danger float-left"><a data-toggle="tab" data-target="#PageTow">Previous</a></button>                                
+                            </div>
         
         </>
         
