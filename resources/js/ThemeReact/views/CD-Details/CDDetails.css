@@ -1,0 +1,83 @@
+.size
+{
+    padding-left: 15px;
+}
+.table tr td, .table tr th 
+{
+    font-size: 12px;
+}
+.data-heading
+{
+    color: black;
+}
+.title
+{
+    font-weight: 500;
+    color:black;
+    padding-left: 13px;
+}
+.align
+{
+    padding-left: 20px;
+}
+.align-sell
+{
+    padding-left: 33px;
+}
+.paidby
+{
+    padding-bottom: 48px;
+}
+th
+{
+    font-weight: 500;
+    color:black
+    max-width 169px;
+}
+b
+{
+    color: black;
+}
+.borrower
+{
+    position: absolute;
+    right: -141px;  
+}
+.seller
+{
+    position: absolute;
+    right: -311px;  
+}
+.paid
+{
+    position: absolute;
+    right: -466px;
+
+}
+.align-title
+{
+    position: absolute;
+    right: -129px;
+}
+.selected-badge-values
+{
+    margin-top:20px;
+    border-radius:10px;
+    height:24px;
+}
+.btn-secondary
+{
+    background: none !important;
+    border:none !important;
+    padding:0px !important;
+    max-height:0px !important;
+    max-width:0px !important;
+}
+.btn-secondary:active{
+    background:none !important;
+    color:none !important;
+}
+.btn-secondary:focus{
+    background:none !important;
+    color:none !important;
+}
