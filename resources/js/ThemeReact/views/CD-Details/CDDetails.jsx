@@ -1,6 +1,7 @@
 import { Button } from 'bootstrap';
 import React from 'react';
 import PageTwo from './CDsecondpage';
+import CDE from "../../../components/ContentEditable";
 function CDDetails(){
 return(
 <div>                    
@@ -47,15 +48,15 @@ return(
                                             </tr>
                                             <tr>
                                                 <td><label>Settlement Agent  </label></td>
-                                                <td contentEditable><span className="change_input_field">Sourcepoint Fulfillment <br/>Services, Inc. </span> </td>
+                                                <td><CDE className="change_input_field" value="" />Sourcepoint Fulfillment <br/>Services, Inc.</td>
                                             </tr>
                                             <tr>
                                                 <td><label>File#  </label></td>
-                                                <td contentEditable><span className="change_input_field">T206369 </span></td>
+                                                <td><CDE className="change_input_field" value="" />T206369</td>
                                             </tr>
                                             <tr>
                                                 <td><label>Property  </label></td>
-                                                <td contentEditable><span className="change_input_field">6823 Rene St <br/>Shawnee, KS 66216 </span></td>
+                                                <td><CDE className="change_input_field" value="" />6823 Rene St <br/>Shawnee, KS 66216</td>
                                             </tr>
                                             <tr>
                                                 <td><label>Estimated Prop. Value </label> </td>
@@ -74,11 +75,11 @@ return(
                                         <tbody>
                                             <tr>
                                                 <td><label>Borrower </label></td>
-                                                <td contentEditable><span className="change_input_field">Kevin Kahlfeldt <br/>6823 Rene St <br/>Shawnee, KS 66216  </span></td>
+                                                <td><CDE className="change_input_field" value="" />Kevin Kahlfeldt <br/>6823 Rene St <br/>Shawnee, KS 66216 </td>
                                             </tr>
                                             <tr>
                                                 <td><label>Lender </label></td>
-                                                <td contentEditable><span className="change_input_field">Freedom Mortgage Corporation  </span></td>
+                                                <td><CDE className="change_input_field" value="" />Freedom Mortgage Corporation </td>
                                             </tr>
                                         </tbody>
                                     </table>
@@ -93,15 +94,15 @@ return(
                                         <tbody>
                                             <tr>
                                                 <td><label>Loan Term </label> </td>
-                                                <td contentEditable><span className="change_input_field">27 yr. 4 mo.  </span></td>
+                                                <td><CDE className="change_input_field" value="" />27 yr. 4 mo. </td>
                                             </tr>
                                             <tr>
                                                 <td><label>Purpose  </label></td>
-                                                <td contentEditable><span className="change_input_field">Refinance  </span></td>
+                                                <td><CDE className="change_input_field" value="" />Refinance </td>
                                             </tr>
                                             <tr>
                                                 <td><label>Product </label></td>
-                                                <td contentEditable><span className="change_input_field">Fixed Rate  </span></td>
+                                                <td><CDE className="change_input_field" value="" />Fixed Rate </td>
                                             </tr>
                                             <tr>
                                                 <td><label>Loan Type </label> </td>
@@ -109,11 +110,11 @@ return(
                                             </tr>
                                             <tr>
                                                 <td><label>Loan ID# </label> </td>
-                                                <td contentEditable><span className="change_input_field">0116000464  </span></td>
+                                                <td><CDE className="change_input_field" value="" />0116000464 </td>
                                             </tr>
                                             <tr>
                                                 <td><label>MIC# </label></td>
-                                                <td contentEditable><span className="change_input_field">182-1492448-703</span></td>
+                                                <td><CDE className="change_input_field" value="" />182-1492448-70</td>
                                             </tr>
                                         </tbody>
                                     </table>
