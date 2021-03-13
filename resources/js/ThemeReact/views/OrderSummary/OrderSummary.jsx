@@ -5,11 +5,18 @@ import OrderNotes from './OrderNotes';
 import OrderCDPage from '../CD-Details/CDTabList';
 import * as Icon from 'react-feather';
 import './style.css';
-
+// progress bar 
+import { CircularProgressbar } from 'react-circular-progressbar';
+import 'react-circular-progressbar/dist/styles.css';
 
 
 
 function OrderSummary(props) {
+  {/* progress bar*/}
+  const percentage = 100;
+  const percentage1 = 100;
+  const percentage2 = 100;
+
     const OrderUID = props.match.params.id;
     return(
         <>
@@ -26,13 +33,50 @@ function OrderSummary(props) {
               </div>
             </div>
             
-            <div className="grid grid-cols-12 gap-3 mt-5">
+              {/* <div className="grid grid-cols-12 gap-3 mt-5">*/}
+            <div className="grid grid-cols-12 gap-3 pt-1 pb-2 mt-3" style={{backgroundColor:"#444444"}}>
               <div className="col-span-2">
-              <div class="ml-4 mr-auto mt-3" style={{marginTop:'35px'}}>
-                  <div class="font-medium">ATZ221086</div>
-                      <div class="text-gray-600 text-xs mt-0.5">4 November 2020</div>
+              <div class="ml-4 mr-auto mt-3" style={{marginTop:'20px'}}>
+                  <span class="font-medium bg-black p-1 px-3 text-white rounded-full">ATZ221086</span>
+                      <div class="text-gray-400 pl-3 text-xs pt-1">4 November 2020</div>
                   </div>
               </div>
+              <div className="col-span-10 flex items-center float-right order-stats ml-auto">
+
+              <div className="mx-3 text-center w-28 relative class_1">
+                <span class="w-12 block mx-auto mb-1"> 
+                  <CircularProgressbar value={percentage} text="100%" />
+                </span>
+                <span class="text-white absolute right-0" style={{zIndex:"10",right:"-20%",top:"26%"}}>
+                 <svg style={{fill:"#fac403"}} xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M14 2h-7.229l7.014 7h-13.785v6h13.785l-7.014 7h7.229l10-10z"/></svg>
+                </span>
+                <span>
+                  <p class="text-color">Order Initiated</p>
+                </span>
+              </div>
+              
+              <div className="mx-3 text-center w-28 relative class_2">
+                <span class="w-12 block mx-auto mb-1"> 
+                  <CircularProgressbar value={percentage1} text="100%" />
+                </span>
+                <span class="text-white absolute right-0" style={{zIndex:"10",right:"-20%",top:"26%"}}>
+                 <svg style={{fill:"#eff3f6"}} xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M14 2h-7.229l7.014 7h-13.785v6h13.785l-7.014 7h7.229l10-10z"/></svg>
+                </span>
+                <span>
+                  <p class="text-color">OCR In Progress</p>
+                </span>
+              </div>
+              <div className="mx-3 text-center w-28 relative class_3">
+                <span class="w-12 block mx-auto mb-1"> 
+                  <CircularProgressbar value={percentage2} text="100%" />
+                </span>
+                <span>
+                  <p class="text-color">Order Completed</p>
+                </span>
+              </div>
+
+              </div>
+              {/* 
               <div className="col-span-10">
               <div class="w-full py-6">
               <div class="flex">
@@ -83,7 +127,7 @@ function OrderSummary(props) {
                       <svg class="w-full fill-current" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24" stroke="currentColor">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 17v-2m3 2v-4m3 4v-6m2 10H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
             </svg>
-                        {/* </svg> */}
+                        
                       </span>
                     </div>
                   </div>
@@ -113,6 +157,7 @@ function OrderSummary(props) {
               </div>
             </div>
                           </div>
+                          */}
                           
                         </div>
 

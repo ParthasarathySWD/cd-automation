@@ -31,7 +31,7 @@ class OrderEntryFactory extends Factory
         'CompletedDate'=>$this->faker->dateTime(),
         'CompletedByUserUID'=>1,
         'StatusUID'=>1,
-        'OrderEntryDate'=>$this->faker->dateTime(),
+        'OrderEntryDate'=>"2021-03-12 12:00:00",
         'ClosingDate'=>$this->faker->dateTime(),
         'LoanTypeUID'=>1,
         'LenderUID'=>1,
