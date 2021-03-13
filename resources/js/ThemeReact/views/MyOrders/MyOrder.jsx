@@ -10,7 +10,7 @@ import DataTab from '../../../components/DataTableComponents/DataTab';
 import DatePicker from "react-datepicker";
 import TableLink from  '../../../components/DataTableComponents/TableLink';
 import "react-datepicker/dist/react-datepicker.css";
-
+// import ReactTooltip from 'react-tooltip';
 // import MyOrderWidgets from './MyOrderWidgets';
 // multi select
 import Select from 'react-select';
@@ -98,10 +98,13 @@ function MyOrder(){
   const StatusOption = status.map(function (val) {
     return { value: val.StatusUID, label: val.StatusName };
   })
+  let UserOptions={value:'',label:'Select'};
 
-    const DocTypeOption1 = allusers.map((val)=>{
+  const UserOption = allusers.map((val)=>{
       return {value:val.UserUID, label:val.UserName}
     })
+
+   
   /* Should be passed from props starts */
 
   const fetchUsers = async (page, size = countPerPage, searchText = "", filterData={}) => {
@@ -160,7 +163,7 @@ function MyOrder(){
       {
         
         name: <b>Status</b>,
-        cell: row => <span className="p-1 badge order-initiated rounded-full">{row['StatusName']}</span>
+        cell: row => <span className="p-1 text-theme-23" >{row['StatusName']}</span>
       },
       {
         name:<b>Action</b>,
@@ -168,11 +171,14 @@ function MyOrder(){
         <div style={{marginTop:'10px'}}>
           <p key={row.OrderUID}>
             {/* <TableLink><span className="fa fa-eye p-1" style={{fontSize:'15px',color:'#464bac',fontWeight:'bold'}}></span></TableLink> */}
-            <TableLink to={'/summary/'+row.OrderUID}><Icon.Edit className="w-4 h-4 text-theme-24" color='green' /></TableLink>
+            <TableLink to={'/summary/'+row.OrderUID}><Icon.Edit className="w-4 h-4 text-theme-24" color='green'/></TableLink>
           </p>
         </div>
       }
     ];
+
+   
+
 
     /* Should be passed from props Ends */
 
@@ -182,9 +188,9 @@ function MyOrder(){
 
         return(
             <div className="main-container clearfix">
-                  
+               
                       <div className="myorder-header">
-                        <label style={{fontSize:'22px'}}><b>Orders List</b></label>
+                        <label style={{fontSize:'22px'}} ><b>Orders List</b></label>
                       </div> 
                       {/* <div className="grid grid-cols-12 gap-3" style={{marginTop:'10px'}}>
                       <div className="box p-5 col-span-3 lg:col-span-3 sm:col-span-3" style={{backgroundColor:'white',boxShadow:'2px 2px 5px 2px blue'}}><label style={{fontSize:'18px'}}>All orders</label></div>
@@ -204,22 +210,27 @@ function MyOrder(){
                         
                                   <div className="col-span-2 lg:col-span-2 sm:col-span-2 mt-3"> 
                                     <label className="form-label">Status</label> 
-                                        <Select className="custom_select" options={StatusOption} name="status"  onChange={onStatusChange}/>
+                                        <Select className="custom_select" 
+                                          options={StatusOption} 
+                                          name="status" 
+                                          onChange={onStatusChange}
+                                          menuPortalTarget={document.body}  
+                                          styles={{ menuPortal: base => ({ ...base, zIndex: 9999})}}
+                                        />
                                     </div>
                          
 
                                  
                                     <div className="col-span-2 lg:col-span-2 sm:col-span-2 mt-3"> 
                                       <label className="form-label">Users </label>
-                                        <Select className="custom_select" options={DocTypeOption1} onChange={onUserChange} />
-                                      {/* <select className="border w-100 input-height border-secondary" name="user" value={filter.user} onChange={onClientChange} style={{height:'25px',width:'150px'}}>
-                                      <option value="" selected >Select...</option>
-                                      {
-                                        allusers.map((value, key)=>{
-                                          return <option key={key} value={value.UserUID}>{value.UserName}</option>
-                                        })
-                                      }
-                                      </select> */}
+                                        <Select className="custom_select" 
+                                        options={UserOption} 
+                                        onChange={onUserChange}
+                                        menuPortalTarget={document.body}  
+                                        styles={{ menuPortal: base => ({ ...base, zIndex: 9999})}}
+                                        
+                                        />
+                                    
                                     </div>
                                
 
@@ -251,7 +262,7 @@ function MyOrder(){
                                                 <input id="tabulator-html-filter-value" type="text" className="pr-2 form-control form-control-sm sm:w-40 xxl:w-full mt-2 sm:mt-0" placeholder="Search..."/>
                                             {/* </div>
                                             <div className="mt-2 xl:mt-0"> */}
-                                                <button id="tabulator-html-filter-go" type="button" className="btn btn-primary btn-sm w-10 mr-1 p-2" style={{height:'30px',marginLeft:'5px'}}>Go</button>
+                                                <button id="tabulator-html-filter-go" type="button"  className="btn btn-primary btn-sm w-10 mr-1 p-2" style={{height:'30px',marginLeft:'5px'}}>Go</button>
                                                 <button id="tabulator-html-filter-reset" type="button" className="btn btn-secondary btn-sm w-full sm:w-16 mt-2 sm:mt-0 sm:ml-1" style={{marginLeft:'15px'}}>Reset</button>
                                             </div>
                                         </form>

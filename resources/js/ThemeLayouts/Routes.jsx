@@ -34,7 +34,7 @@ import {
 import Login from '../ThemeReact/views/Login/Login';
 import Dashboard from '../ThemeReact/views/Dashboard/Dashboard';
 // import ClientList from '../ThemeReact/ClientComponents/ClientList';
-import AddClient from '../ThemeReact/ClientComponents/AddClient';
+// import AddClient from '../ThemeReact/ClientComponents/AddClient';
 import UsersList from '../ThemeReact/views/User/UsersList';
 import AddUser from '../ThemeReact/views/User/AddUser';
 import OrderEntry from '../ThemeReact/views/OrderEntry/OrderEntry';
@@ -44,7 +44,10 @@ import CDDetails from '../ThemeReact/views/CD-Details/CDDetails';
 import Form from '../ThemeReact/views/Form/Form';
 import EditUser from '../ThemeReact/views/User/EditUsers';
 import UserView from '../ThemeReact/views/User/UserView';
-
+import ClientList from '../ThemeReact/views/Clients/ClientsList';
+import AddClient from '../ThemeReact/views/Clients/AddClient';
+import EditClient from '../ThemeReact/views/Clients/EditClient';
+import Profile from '../ThemeReact/views/Profile/Profile';
 import Summary from '../ThemeReact/views/OrderSummary/OrderSummary';
 
 class Routes extends React.Component
@@ -56,8 +59,9 @@ class Routes extends React.Component
 
                 <Route exact path='/login' component={Login} />
                 <Route exact path='/dashboard' component={Dashboard} />
-                {/* <Route exact path='/allclients' component={ClientList} /> */}
+                <Route exact path='/allclients' component={ClientList} />
                 <Route exact path='/addclient' component={AddClient} />
+                <Route exact path='/editclient/:id' component={EditClient} />
                 <Route exact path='/allusers' component={UsersList} /> 
                 <Route exact path='/adduser' component={AddUser} />
                 <Route exact path='/orderentry' component={OrderEntry} />
@@ -67,7 +71,7 @@ class Routes extends React.Component
                 <Route exact path='/form' component={Form} />
                 <Route exact path='/edituser/:id' component={EditUser} />
                 <Route exact path='/userview/:id' component={UserView} />
-
+                <Route exact path='/profile' component={Profile} />
 
                 {/*<Route exact path='/' component={Dashboard} />
                  <Route exact path='/alluser' component={AllUsers} /> 

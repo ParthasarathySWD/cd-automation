@@ -3,15 +3,19 @@ import ReactDOM from 'react-dom';
 import { useToasts } from 'react-toast-notifications'
 import {useState, useEffect } from 'react'
 import * as Icon from 'react-feather';
-import { Router, Route, Link, browserHistory, IndexRoute } from 'react-router'
-// import {Form,FormLabel, FormGroup, FormControl, ControlLabel, Col, Button,Card} from 'react-bootstrap';
+import { Router, Route, Link, browserHistory, IndexRoute, useHistory  } from 'react-router'
 import axios from '../../../ThemeLayouts/repository/api';
-// import Select from '../../CommonComponents/ReactSelect/SelectBox';
 import { template } from 'lodash';
-import Select from 'react-select';
 import './clientStyle.css';
-function AddClient(){
+import Select from 'react-select';
 
+function EditClient(props){
+
+   
+    const id = props.match.params.id;
+    const history = useHistory();
+    // history.push('/clientslist');
+    
     const spanStyle = {
         color: 'red',
         fontSize: 12,
@@ -28,173 +32,227 @@ function AddClient(){
             CountyName: '',
             StateName: '',
             Notes:'',
+            Active:'',
             errors: {}
 
         });
 
-        function handleValidation(){
-            let errors = {};
-            let formIsValid = true;
-    
-            // ClientNumber
-            if(!state.ClientNumber){
-                formIsValid = false;
-                errors["ClientNumber"] = "Client Number is Required";
-             }
-             
-    
-            //  ClientName
-             if(!state.ClientName){
-                formIsValid = false;
-                errors["ClientName"] = "Client Name is Required";
-             }
-            
-    
-    
-            //  PhoneNumber
-             if(!state.Phone){
-                formIsValid = false;
-                errors["Phone"] = "Phone Number is Required";
-             }
-             else{
-                if(typeof state.Phone !== "undefined"){
-                    if(!state.Phone.match(/^[0-9]{1,10}$/)){
-                       formIsValid = false;
-                       errors["Phone"] = "Invalid PhoneNumber";
-                    }        
-                 }
-             }
-    
-             //Email
-             if(!state.Email){
-                formIsValid = false;
-                errors["Email"] = "Email is Required";
-             }
-             else{
-                if(typeof state.Email !== "undefined"){
-                    let lastAtPos = state.Email.lastIndexOf('@');
-                    let lastDotPos = state.Email.lastIndexOf('.');
-        
-                    if (!(lastAtPos < lastDotPos && lastAtPos > 0 && state.Email.indexOf('@@') == -1 && lastDotPos > 2 && (state.Email.length - lastDotPos) > 2)) {
-                       formIsValid = false;
-                       errors["Email"] = "Email is not valid";
-                     }
-                }
-             }
-    
-            //  Address
-            if(!state.AddressLine1){
-                formIsValid = false;
-                errors["AddressLine1"] = "Address is Required";
-             }
-          
-    
-             //  City
-            if(!state.CityName){
-                formIsValid = false;
-                errors["CityName"] = "City is Required";
-             }
-            
-    
-            //  County
-            if(!state.CountyName){
-                formIsValid = false;
-                errors["CountyName"] = "County is Required";
-             }
-            
-             
-            //  State
-             if(!state.StateName){
-                formIsValid = false;
-                errors["StateName"] = "State is Required";
-             }
+        const [isFetched, setIsFetched] = useState(false);
 
-             //  Notes
-             if(!state.Notes){
-                formIsValid = false;
-                errors["Notes"] = "Notes Required";
-             }
-    
-             setState(prevState => ({ ...prevState, errors: errors }));
-            return formIsValid;
-    
+    useEffect(()=>{
+        if (!isFetched) {
+            
+            fetchClient();
+            setIsFetched(true);
+            // isFetched = true;
+
         }
+    })
 
-        function onChangeHandler(e){
-            console.log(e);
-            const { name, value } = e.target;
-            setState(prevState => ({ ...prevState, [name]: value }));
-
-        };
-
-        function onClickHandler(){
-            // addToast("Hi", { appearance: 'success' });
-
-            if(handleValidation()){
+    function fetchClient(){
+            
+        axios.get("/clients/"+id)
+            .then(res => {
                 
-                const data = new FormData();
-
-                data.append('ClientNumber', state.ClientNumber);
-                data.append('ClientName', state.ClientName);
-                data.append('Phone', state.Phone);
-                data.append('Email', state.Email);
-                data.append('AddressLine1',state.AddressLine1);
-                data.append('CityName',state.CityName);
-                data.append('CountyName',state.CountyName);
-                data.append('StateName',state.StateName);
-                data.append('Notes',state.Notes);
-
-                axios.post("clients", data, {
-                })
-                    .then(res => {
-                        addToast(res.data.message, { appearance: 'success' });
-                        setState({ 
-
-                            ClientNumber: '',
-                            ClientName: '',
-                            Phone: '',
-                            Email: '',
-                            AddressLine1: '',
-                            CityName: '',
-                            CountyName: '',
-                            StateName: '',
-                            Notes:'',
-                            errors: {}
+                 setState({ 
+                    
+                    ClientNumber: res.data.ClientNumber,
+                    ClientName: res.data.ClientName,
+                    Phone: res.data.Phone,
+                    Email: res.data.Email,
+                    AddressLine1: res.data.AddressLine1,
+                    CityName: res.data.CityName,
+                    CountyName: res.data.CountyName,
+                    StateName: res.data.StateName,
+                    Notes:res.data.Notes,
+                    Active:res.data.Active,
+                    errors: {}
 
                         });
 
-                    })
+            })
+    }
+    
+    function handleValidation(){
+        let errors = {};
+        let formIsValid = true;
 
-            }else{
-                const data = new FormData();
+        // ClientNumber
+        if(!state.ClientNumber){
+            formIsValid = false;
+            errors["ClientNumber"] = "Client Number is Required";
+         }
+         
 
-                axios.post("client", data, {
-                })
-                    .then(res => {
-                        addToast("Invalid Input", { appearance: 'error' });
-                    })
+        //  ClientName
+         if(!state.ClientName){
+            formIsValid = false;
+            errors["ClientName"] = "Client Name is Required";
+         }
+        
+
+
+        //  PhoneNumber
+         if(!state.Phone){
+            formIsValid = false;
+            errors["Phone"] = "Phone Number is Required";
+         }
+         else{
+            if(typeof state.Phone !== "undefined"){
+                if(!state.Phone.match(/^[0-9]{1,10}$/)){
+                   formIsValid = false;
+                   errors["Phone"] = "Invalid PhoneNumber";
+                }        
+             }
+         }
+
+         //Email
+         if(!state.Email){
+            formIsValid = false;
+            errors["Email"] = "Email is Required";
+         }
+         else{
+            if(typeof state.Email !== "undefined"){
+                let lastAtPos = state.Email.lastIndexOf('@');
+                let lastDotPos = state.Email.lastIndexOf('.');
+    
+                if (!(lastAtPos < lastDotPos && lastAtPos > 0 && state.Email.indexOf('@@') == -1 && lastDotPos > 2 && (state.Email.length - lastDotPos) > 2)) {
+                   formIsValid = false;
+                   errors["Email"] = "Email is not valid";
+                 }
             }
+         }
 
-            
-        };
-   
-        function reset(){
-            setState({ 
+        //  Address
+        if(!state.AddressLine1){
+            formIsValid = false;
+            errors["AddressLine1"] = "Address is Required";
+         }
+      
 
-                ClientNumber: '',
-                ClientName: '',
-                Phone: '',
-                Email: '',
-                AddressLine1: '',
-                CityName: '',
-                CountyName: '',
-                StateName: '',
-                Notes:'',
-                errors: {}
+         //  City
+        if(!state.CityName){
+            formIsValid = false;
+            errors["CityName"] = "City is Required";
+         }
+        
 
-            });
+        //  County
+        if(!state.CountyName){
+            formIsValid = false;
+            errors["CountyName"] = "County is Required";
+         }
+        
+         
+        //  State
+         if(!state.StateName){
+            formIsValid = false;
+            errors["StateName"] = "State is Required";
+         }
+
+         //  Notes
+         if(!state.Notes){
+            formIsValid = false;
+            errors["Notes"] = "Notes Required";
+         }
+
+         setState(prevState => ({ ...prevState, errors: errors }));
+        return formIsValid;
+
+    }
+
+    function onChangeHandler(e)
+    {
+      
+        // const activeStatus = e.target.value;
+        const { name, value } = e.target;
+        setState(prevState => ({ ...prevState, [name]: value }));
     };
 
+    function onClickHandler(){
+        // addToast("Hi", { appearance: 'success' });
+    
+        if(handleValidation()){
+            
+            // const data = new FormData();
+
+            const data={
+                
+                ClientNumber: state.ClientNumber,
+                ClientName: state.ClientName,
+                Phone: state.Phone,
+                Email: state.Email,
+                AddressLine1: state.AddressLine1,
+                CityName: state.CityName,
+                CountyName: state.CountyName,
+                StateName: state.StateName,
+                Notes:state.Notes,
+                Active:state.Active
+            };
+
+            // data.append('ClientNumber', state.ClientNumber);
+            // data.append('ClientName', state.ClientName);
+            // data.append('Phone', state.Phone);
+            // data.append('Email', state.Email);
+            // data.append('AddressLine1',state.AddressLine1);
+            // data.append('CityName',state.CityName);
+            // data.append('CountyName',state.CountyName);
+            // data.append('StateName',state.StateName);
+            // data.append('Notes',state.Notes);
+            
+            axios.put("clients/"+id, data)
+                .then(res => {
+                    addToast(res.data.message, { appearance: 'success' });
+                setState({  
+
+                        ClientNumber: '',
+                        ClientName: '',
+                        Phone: '',
+                        Email: '',
+                        AddressLine1: '',
+                        CityName: '',
+                        CountyName: '',
+                        StateName: '',
+                        Notes:'',
+                        errors: {}
+
+                    });
+                    history.push("/allclients");
+
+                })
+
+        }else{
+            const data = new FormData();
+
+            axios.post("client", data, {
+            })
+                .then(res => {
+                    addToast("Invalid Input", { appearance: 'error' });
+                })
+        }
+
+        
+    };
+
+    function reset(){
+        setState({ 
+
+            ClientNumber: '',
+            ClientName: '',
+            Phone: '',
+            Email: '',
+            AddressLine1: '',
+            CityName: '',
+            CountyName: '',
+            StateName: '',
+            Notes:'',
+            errors: {}
+
+        });
+    };
+
+
+  
    const templateOptions = [
         { value: '1', label: 'Closing Template'},
         { value: '2', label: 'Mortage Template' },
@@ -301,7 +359,7 @@ function AddClient(){
                                         selected={selected} 
                                         menuPortalTarget={document.body}  
                                         styles={{ menuPortal: base => ({ ...base, zIndex: 9999})}}
-                                    />    
+                                    /> 
                                 </div>
                             </div>
                         </div>
@@ -337,6 +395,11 @@ function AddClient(){
                         <div className="grid grid-cols-12 gap-3">
                             <div className="col-span-12 lg:col-span-12 sm:col-span-12 mt-6"> 
                                 <div className="col-span-12 lg:col-span-12 sm:col-span-3 mt-3">
+                                    <div class="form-check">
+                                        <label className="form-label mr-4">Active</label> 
+                                        <input type="checkbox" name="Active" class="form-check-switch" id={state.ClientUID} data-uid={state.ClientUID} onChange={onChangeHandler} value={(state.Active == 1) ? 0 : 1} checked={(state.Active == 1) ? true : false}/>
+                                        <label class="form-check-label" htmlFor={state.ClientUID}></label>
+                                    </div>
                                     <button type="submit" className="btn btn-xs btn-primary mr-2 ml-2 float-right"  onClick={onClickHandler} >Submit</button>
                                     <button type="submit" className="btn btn-xs btn-primary mr-2 ml-2 float-right" onClick={reset} >Cancel</button>
                                 </div>
@@ -350,4 +413,4 @@ function AddClient(){
       );
    }
 
-export default AddClient;
+export default EditClient;

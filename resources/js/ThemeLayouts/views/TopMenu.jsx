@@ -45,8 +45,10 @@ function TopMenu(props) {
                     </Link>
                 </li> */}
                 <li>
+                    
                     <a className="top-menu">
-                        <div className="top-menu__title"> Admin <i data-feather="chevron-down" className="top-menu__sub-icon"></i> </div>
+                        <div className="top-menu__title"> Admin <i data-feather="chevron-down" className="top-menu__sub-icon"></i> 
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-down top-menu__sub-icon"><polyline points="6 9 12 15 18 9"></polyline></svg></div>
                     </a>
                     <ul className="">
                        
@@ -57,13 +59,14 @@ function TopMenu(props) {
                             </NavLink>
                         </li>
                         <li>
-                            <NavLink to={'/addclient'} className="top-menu">
+                            <NavLink to={'/allclients'} className="top-menu">
                                 <div className="top-menu__title"> Clients </div>
                             </NavLink>
                         </li>
                        
                     </ul>
                 </li>
+            
             </ul>
         </nav>
 

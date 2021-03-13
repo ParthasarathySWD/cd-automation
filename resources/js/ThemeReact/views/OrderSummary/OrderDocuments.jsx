@@ -4,12 +4,12 @@ import { useToasts } from 'react-toast-notifications';
 import { confirmAlert } from 'react-confirm-alert'
 import { BrowserRouter as Router, Switch, Route, Link, useHistory } from 'react-router-dom';
 import "react-data-table-component-extensions/dist/index.css";
-// import './style.css';
-
+import './style.css';
+import * as Icon from 'react-feather';
 // import Table from '../../CommonComponents/DataTable/DataTable';
 import { ReactTabulator, reactFormatter } from "react-tabulator"; 
 import DataTable, { createTheme } from 'react-data-table-component';
-
+import TableLink from  '../../../components/DataTableComponents/TableLink';
 
 
 function OrderDocuments(props) {
@@ -22,11 +22,17 @@ function OrderDocuments(props) {
     var ViewIcon = function(cell, formatterParams, onRendered){ 
         return "<i class='fa fa-eye text-primary'></i>";
     };
-
+    const customStyles = {
+        headCells:{
+          style:{
+            backgroundColor:'#a3bfd054'
+          }
+        }
+      }
     /** Table Columns */
     const columns = [        
         {
-            name: 'Documnet',
+            name: 'Document',
             selector: 'document',
             sortable: true,
         },
@@ -51,8 +57,15 @@ function OrderDocuments(props) {
             sortable: true,
         },        
         {
-            name: 'Action',
-            selector: 'action',
+            // name: 'Action',
+            // selector: 'action',
+            name:'Action',
+            cell: row => 
+            <div style={{marginTop:'10px'}}>
+                <p key={row.documentid}>
+                  <TableLink to={'//'+row.documentid}><Icon.Eye className=" mr-2" size="20" color="purple"/></TableLink>
+                </p>
+            </div>
         }
     ];
     /** end */
@@ -78,11 +91,17 @@ function OrderDocuments(props) {
 
     return (
        <>
-        <DataTable
-            title="Order Documents"
-            columns={columns}
-            data={data}
-        />
+       <div>
+            <label style={{fontSize:'22px'}}><b>Orders List</b></label>
+            <Link to={'/'} className="btn btn-primary float-right mb-2"><Icon.Plus/>Add Document</Link>
+                <DataTable
+                    // title="Order Documents"
+                    columns={columns}
+                    data={data}
+                    customStyles={customStyles}
+                    selectableRows
+                />
+        </div>
        </>
     );
 }

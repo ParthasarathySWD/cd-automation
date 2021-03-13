@@ -1,7 +1,8 @@
 import React from 'react';
 import auth from '../repository/auth';
-
-
+import * as Icon from 'react-feather';
+import { Router, Route, Link, browserHistory, IndexRoute, useHistory  } from 'react-router-dom';
+import { icons } from 'feather-icons';
 
 function TopBar(props) {
 
@@ -193,7 +194,7 @@ function TopBar(props) {
                                 <div className="text-xs text-theme-13 mt-0.5 dark:text-gray-600">Frontend Engineer</div>
                             </div>
                             <div className="p-2">
-                                <a href="" className="flex items-center block p-2 transition duration-300 ease-in-out hover:bg-theme-1 dark:hover:bg-dark-3 rounded-md"> <i data-feather="user" className="w-4 h-4 mr-2"></i> Profile </a>
+                                <Link to={'/profile'} className="flex items-center block p-2 transition duration-300 ease-in-out hover:bg-theme-1 dark:hover:bg-dark-3 rounded-md"> <Icon.User className="w-4 h-4 mr-2"/> Profile </Link>
                                 <a href="" className="flex items-center block p-2 transition duration-300 ease-in-out hover:bg-theme-1 dark:hover:bg-dark-3 rounded-md"> <i data-feather="edit" className="w-4 h-4 mr-2"></i> Add Account </a>
                                 <a href="" className="flex items-center block p-2 transition duration-300 ease-in-out hover:bg-theme-1 dark:hover:bg-dark-3 rounded-md"> <i data-feather="lock" className="w-4 h-4 mr-2"></i> Reset Password </a>
                                 <a href="" className="flex items-center block p-2 transition duration-300 ease-in-out hover:bg-theme-1 dark:hover:bg-dark-3 rounded-md"> <i data-feather="help-circle" className="w-4 h-4 mr-2"></i> Help </a>

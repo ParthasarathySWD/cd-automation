@@ -1,12 +1,11 @@
 import React, { useState, useEffect, useCallback, useMemo } from "react";
-// import axios from "axios";
+import axios from "axios";
 import "react-data-table-component-extensions/dist/index.css";
 import { BrowserRouter as Router, Switch, Route, Link, useHistory } from 'react-router-dom';
-import axios from '../../../ThemeLayouts/repository/api';
-import DataTab from '../../../components/DataTableComponents/DataTab';
-import TableLink from  '../../../components/DataTableComponents/TableLink';
+import MyOrders from '../Datatablecomponents/MyOrders';
+import TableLink from  '../../CommonComponents/TableLink';
 import { useToasts } from 'react-toast-notifications';
-import * as Icon from 'react-feather';
+
 function ClientList()
 {
   const { addToast } = useToasts();
@@ -43,9 +42,9 @@ function ClientList()
     {
       name: <b>Status</b>,
       cell: row => <div key={row.ClientUID}>
-                      <div class="form-check">
-                        <input type="checkbox" class="form-check-switch" id={row.ClientUID} data-uid={row.ClientUID} onChange={statusChange} value={(row.Active == 1) ? 0 : 1} checked={(row.Active == 1) ? true : false}/>
-                        <label class="form-check-label" htmlFor={row.ClientUID}></label>
+                      <div class="custom-control custom-switch">
+                        <input type="checkbox" class="custom-control-input" id={row.ClientUID} data-uid={row.ClientUID} onChange={statusChange} value={(row.Active == 1) ? 0 : 1} checked={(row.Active == 1) ? true : false}/>
+                        <label class="custom-control-label mt-0" htmlFor={row.ClientUID}></label>
                       </div>
                    </div> 
     },
@@ -54,8 +53,8 @@ function ClientList()
         cell: row => 
         <div style={{marginTop:'10px'}}>
             <p key={row.ClientUID}>
-              <TableLink to={'/viewclient/'+row.ClientUID}><Icon.Eye className=" mr-2" size="20" color="purple"/></TableLink>
-              <TableLink to={'/editclient/'+row.ClientUID}><Icon.Edit size="20"  color="green"/></TableLink>
+              <TableLink to={'/viewclient/'+row.ClientUID}><span className="fa fa-eye p-1" style={{fontSize:'15px',color:'#464bac',fontWeight:'bold'}}></span></TableLink>
+              <TableLink to={'/editclient/'+row.ClientUID}><span className="fa fa-edit p-1" style={{fontSize:'15px',color:'#801f74'}}></span></TableLink>
               {/* <TableLink ><span className="fa fa-trash text-danger p-1"></span></TableLink>  */}
             </p>
         </div>
@@ -101,14 +100,14 @@ function ClientList()
 
         <div className="main-container clearfix" >
 
-              {/* <div className="myorder-header">
+              <div className="myorder-header">
                 <h4>Clients List</h4>
-              </div>  */}
+              </div> 
 
               <div className="child-container status-container" >
-                    
+
                   {/* client page widget cards */}
-                  {/* <div className="row mb-2 c-status-row">
+                  <div className="row mb-2 c-status-row">
                       <div className="col-lg-4 col-md-4 col-sm-6 col-12 mb-2 mt-4 w-25">
                           <div className="client-info">
                               <div className="row">
@@ -150,11 +149,10 @@ function ClientList()
                               </div>
                           </div>
                       </div>
-                  </div> */}
+                  </div>
               </div>
 
               <div className="child-container first-child" style={{marginTop:'20px'}}>
-                  
                   {/* <div className="tabs" style={{height:'25px'}}>
                       <div className="tab-menus">
                           
@@ -162,16 +160,12 @@ function ClientList()
                   </div> */}
                   <div className="tab-values p-10">
                       <div className="tab-content">
-                      <div className="myorder-header">
-                        <label style={{fontSize:'22px'}}><b>Clients List</b></label>
-                        <Link to={'/addclient'} className="btn btn-primary float-right mb-2"><Icon.Plus/>Add Client</Link>
-                    </div> 
                           <div id="all" className="order-table tab-pane in active">
-                           
+                            <Link to={'/addclient'} className="btn btn-primary">Add Client</Link>
                             {/* <input type="text" className="c-search-input" placeholder="&#61442; search"></input> */}
                                   
                                   {/* Datatable-Client List */}
-                                  <DataTab                                                                   
+                                  <MyOrders                                                                  
                                     title = ""
                                     columndata = {columndata}
                                     fetchData = {fetchUsers}

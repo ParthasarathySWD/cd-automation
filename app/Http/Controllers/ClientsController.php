@@ -112,7 +112,7 @@ class ClientsController extends Controller
         $GetClient=DB::table('mclients')
                     ->select('mclients.*','musers.UserName')
                     ->join('musers','mclients.CreatedByUserUID','=','musers.UserUID')
-                    ->where('ClientUID',$id)
+                    ->where('mClients.ClientUID',$id)
                     ->get();
         // return response()->json($GetClient);
     // $Client=array();

@@ -56,7 +56,13 @@ function UsersList(){
         }
       })
   }
-
+  const customStyles = {
+    headCells:{
+      style:{
+        backgroundColor:'#a3bfd054'
+      }
+    }
+  }
   const columns = [
     {
       name: <b>User Name</b>,
@@ -95,8 +101,8 @@ function UsersList(){
       name:<b>Action</b>,
       cell: row => <div key={row.UserUID}>
                        
-                        <Td to={'/userview/'+row.UserUID}><span ><Icon.Eye className=" mr-2" size="20" stroke="#071a50" /></span></Td>
-                        <Td to={'/edituser/'+row.UserUID}><span ><Icon.Edit size="20" stroke="#071a50" /></span></Td>
+                        <Td to={'/userview/'+row.UserUID}><span ><Icon.Eye className=" mr-2" size="20" color="purple" /></span></Td>
+                        <Td to={'/edituser/'+row.UserUID}><span ><Icon.Edit size="20" color="green" /></span></Td>
                         {/* <Td ><span className="fa fa-trash text-danger p-1"></span></Td>  */}
                         
                   </div>
@@ -157,6 +163,7 @@ function UsersList(){
                                 data={data}
                                 defaultSortField="title"
                                 pagination
+                                customStyles={customStyles}
                               //   selectableRows
                               //   selectableRowsComponent={Checkbox}
                   
