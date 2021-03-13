@@ -49,11 +49,12 @@ class OrderEntryController extends Controller
         // echo '<pre> Prelim';print_r($request->input());
         // echo '<pre> Support';print_r($request->file('PrelimFile'));
         // echo '<pre> Support';print_r($request->file('SupportingFile'));
+        // echo '<pre> Support';print_r($request->input('ClientUID'));
         // exit;
 
         $validation = Validator::make($request->all(), [
             'LoanNumber' => 'required',
-            'PrelimFile' => 'required|max:20000|mimes:pdf',
+            'OrderFiles' => 'required|max:20000|mimes:pdf',
             // 'File.*' => 'mimes:pdf,xlsx,docx,txt,zip'
         ]);
 
@@ -69,10 +70,6 @@ class OrderEntryController extends Controller
             $UserDetails = $request->user()->toArray();
             $DocumentType = $request->input('DocumentTypeUID');
 
-            if (!empty($DocumentType)) {
-                $PrelimDocumentType = array_shift($DocumentType);
-                $SupportDocumentType = $DocumentType;
-            }
             $OrderNumber = $this->GenerateOrderNumber();
 
             /** check order number is empty or not empty */
@@ -82,7 +79,7 @@ class OrderEntryController extends Controller
                     'OrderNumber' => $OrderNumber['OrderNumber'],
                     'OrderEntryDate' => Carbon::now(),
                     'LoanNumer' => $request->input('LoanNumber'),
-                    'ClientUID' => $UserDetails['ClientUID'],
+                    'ClientUID' => $request->input('ClientUID'),
                     'StatusUID' => 1,
                     'CreatedByUserUID' => $UserDetails['UserUID'],
                     'CreatedByDateTime' =>Carbon::now()
@@ -94,103 +91,53 @@ class OrderEntryController extends Controller
                     if (!empty($InsertData->OrderUID)) {
 
                         $data = [];
-                        $SupportFileInsertState = [];
-                        $PrelimFileInsertState = "";
+                        $OrderFileInsertState = [];                        
 
-                        /** check prelim file is empty or not empty */
-                        if ($request->hasFile('PrelimFile')) {
-                            $PrelimFile = $request->file('PrelimFile');
-
-                            $FileName=$PrelimFile->getClientOriginalName();
-                            $Extension = $PrelimFile->getClientOriginalExtension();
-                            $AllowedExtension = array('pdf');
-
-                            $NewFileName = $FileName;
-
-                            if (!in_array($Extension, $AllowedExtension)) {
-                                return response()->json([
-                                    'type' => 'Order Insert',
-                                    'status' => false,
-                                    'errors' => 'Should Allowed PDF Files Only',
-                                    'message' => 'Supporting Files are <b> '.$NewFileName.' </b> Should Allowed PDF Only'
-                                ]);
-
-                            } else {
-                                $FilePath = $PrelimFile->storeAs('OrderDocuments', $NewFileName);
-                                $PrelimFileInsertArray = new OrderEntryFile([
-                                    'OrderUID' => $InsertData->OrderUID,
-                                    'DocumentName' => $NewFileName,
-                                    'DocumentTypeUID' => $PrelimDocumentType,
-                                    'FilePath' => $FilePath,
-                                    'CreatedByUserUID' => $UserDetails['UserUID'],
-                                    'CreatedByDateTime' => date('Y-m-d H:m:s')
-                                ]);
-
-                                if ($PrelimFileInsertArray->save()) {
-                                    $PrelimFileInsertState = '200';
-                                } else {
-                                    $PrelimFileInsertState = '500';
-                                }
-                            }
-
-                            
-
-                        } else {
-                            return response()->json([
-                                'type' => 'Order Insert',
-                                'status' => false,
-                                'errors' => 'Prelim File Not Found',
-                                'message' => 'File Is Not Available'
-                            ]);
-                        }
-                        /** end */
-
-                        /** check supporting file is exits or not empty */
-                        if($request->hasFile('SupportingFile'))
+                        /** check order file is exits or not empty */
+                        if($request->hasFile('OrderFiles'))
                         {
                             /**
-                             * Order Document Supporting File Processing
+                             * Order Document Order File Processing
                              * @var $request->file('File')
                              */
-                            // echo '<pre>';print_r($request->file('SupportingFile'));
+                            // echo '<pre>';print_r($request->file('OrderFiles'));
 
-                            foreach($request->file('SupportingFile') as $key => $file)
+                            foreach($request->file('OrderFiles') as $key => $file)
                             {
-                                $DocumentType = $request->input('DocumentTypeUID');
+                                $DocumentType = $request->input('DocumentTypeUID');                                
                                 $FileName = $file->getClientOriginalName();
-                                // $Extension = $file->getClientOriginalExtension();
-                                // $AllowedExtension = array('pdf');
+                                $Extension = $file->getClientOriginalExtension();
+                                $AllowedExtension = array('pdf');
                                 $NewFileName = $FileName;
 
 
-                                // if (!in_array($Extension, $AllowedExtension)) {
-                                //     return response()->json([
-                                //         'type' => 'Order Insert',
-                                //         'status' => false,
-                                //         'errors' => 'Should Allowed PDF Files Only',
-                                //         'message' => 'Supporting Files are <b> '.$NewFileName.' </b> Should Allowed PDF Only'
-                                //     ]);
+                                if (!in_array($Extension, $AllowedExtension)) {
+                                    return response()->json([
+                                        'type' => 'Order Insert',
+                                        'status' => false,
+                                        'errors' => 'Should Allowed PDF Files Only',
+                                        'message' => 'Order Files are <b> '.$NewFileName.' </b> Should Allowed PDF Only'
+                                    ]);
 
-                                // } else {
+                                } else {
 
                                     $FilePath = $file->storeAs('OrderDocuments', $NewFileName);
 
                                     $FileInsertArray = new OrderEntryFile([
                                         'OrderUID' => $InsertData->OrderUID,
                                         'DocumentName' => $NewFileName,
-                                        'DocumentTypeUID' => $SupportDocumentType[$key],
+                                        'DocumentTypeUID' => $DocumentType[$key],
                                         'FilePath' => $FilePath,
                                         'CreatedByUserUID' => $UserDetails['UserUID'],
                                         'CreatedByDateTime' => date('Y-m-d H:m:s')
                                     ]);
 
                                     if ($FileInsertArray->save()) {
-                                        $SupportFileInsertState['State'] = '200';
+                                        $OrderFileInsertState['State'] = '200';
                                     } else {
-                                        $SupportFileInsertState['State'] = '500';
+                                        $OrderFileInsertState['State'] = '500';
                                     }
-
-                                // }
+                                }
                             }
                             /** end */
                         }
@@ -199,7 +146,7 @@ class OrderEntryController extends Controller
                         /**
                          * check insert state
                          */
-                        if ($PrelimFileInsertState == '200') {
+                        if ($OrderFileInsertState == '200') {
                             return response()->json([
                                 'type' => 'Order Insert',
                                 'status' => true,

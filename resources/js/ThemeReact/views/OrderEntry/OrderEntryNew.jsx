@@ -26,6 +26,15 @@ function OrderEntry() {
     const [OrderFile, setOrderFile] = useState([]);
     const [DocumentTypes, setDocumnetTypes] = useState('');
     const [loannumber, setLoanNumber] = useState("");
+    /** END */
+
+    /** Radio Button Base Section Show Hide */
+    const [Display, setDisplay] = useState({
+        mock_docs: '',
+        source_docs: '',
+        mannual_edit: ''
+    });
+    console.log(Display.mock_docs);
 
     /** Drag and Drop Order File Store */
     function onUpload (files) {
@@ -36,16 +45,25 @@ function OrderEntry() {
     }
     /** end */
     
+    +
     /** inti Component Did Mount */
     React.useEffect(() => {
-        drop.current.addEventListener('dragover', handleDragOver);
-        drop.current.addEventListener('drop', handleDrop);
-        
-        return () => {
-            drop.current.removeEventListener('dragover', handleDragOver);
-            drop.current.removeEventListener('drop', handleDrop);
-        };
-    }, []);
+
+        if (Display.source_docs == 'Yes' || Display.mock_docs == 'Yes' || Display.mannual_edit == 'Yes') {
+
+            console.log("Effect Rendered");
+            drop.current.addEventListener('dragover', handleDragOver);
+            drop.current.addEventListener('drop', handleDrop);
+            
+            return () => {
+                if(drop.current){
+                    drop.current.removeEventListener('dragover', handleDragOver);
+                    drop.current.removeEventListener('drop', handleDrop);
+
+                }
+            };
+        }
+    }, [Display.source_docs, Display.mock_docs, Display.mannual_edit]);
     /** end */
     
     /** File Drage Over Function */
@@ -123,15 +141,15 @@ function OrderEntry() {
         event.preventDefault();
         let index = event.target.id;
         console.log('index', index)
-        onUpload((preveState)=>{            
+        setOrderFile((preveState)=>{            
             return preveState.filter((v, i) => {
-                 return i != index;
+                return i != index;
             })
         });
     }
     /** end */
 
-    /** File Input Dispaly None Style */
+    /** File Input Display None Style */
     const DisplayNone = {
       display: 'none',
     };
@@ -139,10 +157,17 @@ function OrderEntry() {
 
    
     const DocTypeOption = [
-        { value: '1', label: 'Prelim' }
+        { value: '1', label: 'Prelim' },
         { value: '2', label: 'Title Commitment' },
         { value: '3', label: 'Closing' },
         { value: '4', label: 'Mortgage' }
+    ]
+
+    const ClientOption = [
+        { value: '1', label: 'Test' },
+        { value: '2', label: 'Zion Bank' },
+        { value: '3', label: 'Demo' },
+        { value: '4', label: 'Admin' }
     ]
 
     /** Supporting file Documnet Type onchange event */
@@ -157,23 +182,61 @@ function OrderEntry() {
     }
     /** end */
 
+    /** Radio Button Change Event */
+    const radioButtonChange = (event) =>{
+        let RadioName = event.target.name;
+        let RadioValue = event.target.value;
+
+        let setObj = {};
+        if(RadioName == "mock_docs"){
+            
+            setObj = {
+                source_docs: "",
+                mannual_edit: ""
+            };
+        }
+
+        if(RadioName == "source_docs"){
+
+            setObj = {
+                mannual_edit: ""
+            };
+        }
+        setDisplay((prevState) => {
+            return {
+                ...prevState,
+                ...setObj,
+                [RadioName]:RadioValue
+            }
+        });        
+    }
+    /** end */
+
     /** Order entry Submit */
 
     function handleSubmit(event){
         event.preventDefault();
+
+        let FormValidate = true;
+        if (loannumber == '') {
+            FormValidate = false;
+        } else {
+            FormValidate = true;
+        }
+
+        if (OrderFile.length) {
+            
+        }
+
+        
         var formData = new FormData(event.target);
         console.log(formData);
 
-        Object.keys(PrelimFile).map((fileName, index) => {
-            let file = PrelimFile[fileName];
-            formData.append('PrelimFile', file);
-            // formData.append('DocumentTypeUID', prelimDocType);
+        Object.keys(OrderFile).map((fileName, index) => {
+            let file = OrderFile[fileName];
+            formData.append('OrderFiles', file);
         });
 
-        Object.keys(SupportFile).map((fileName, index) => {
-            let file = SupportFile[fileName];
-            formData.append('SupportingFile[]', file);
-        });
 
         axios.post('orderentry', formData).then(response =>{
             console.log(response);
@@ -254,7 +317,7 @@ function OrderEntry() {
 
     }
 
-    /** end */
+    /** end */    
 
     return (
         <>
@@ -264,13 +327,7 @@ function OrderEntry() {
                 <div className="grid grid-cols-12 gap-3 mt-5">
                     <div className="intro-y col-span-12 lg:col-span-12">
                         <div className="intro-y box  p-5">
-                            <div className="grid grid-cols-12 gap-3">
-                                <div className="intro-y col-span-12 lg:col-span-12">
-                                    <h2 className="font-medium text-base mr-auto">
-                                        Step 1
-                                    </h2>
-                                </div>
-                            </div>
+                            
                             <div className="grid grid-cols-12 gap-3">
                                 <div className="mt-3 col-span-3"> 
                                     <label htmlFor="regular-form-2" className="form-label">Loan Number</label>
@@ -278,8 +335,19 @@ function OrderEntry() {
                                         <div id="input-group-email" className="input-group-text">
                                             <Icon.Hash className="w-4 h-4" />
                                         </div> 
-                                        <input type="text" className="form-control form-control-sm" placeholder="Ex. 9876543224" value={loannumber} name="LoanNumber" onChange={loanChange}/> 
+                                        <input type="text" className="form-control form-control-md" placeholder="Ex. 9876543224" value={loannumber} name="LoanNumber" onChange={loanChange}/> 
                                     </div>
+                                </div>
+                                <div className="mt-3 col-span-3"> 
+                                    <label htmlFor="regular-form-2" className="form-label">Client</label>
+                                    <Select 
+                                        className="" 
+                                        options={ClientOption} 
+                                        name="ClientUID[]" 
+                                        onChange={DocumentTypeChange}
+                                        menuPortalTarget={document.body}
+                                        styles={{ menuPortal: base => ({ ...base, zIndex: 9999 }) }}
+                                    />
                                 </div>
                             </div>
                         </div>
@@ -294,54 +362,139 @@ function OrderEntry() {
                     <div className="intro-y col-span-12 lg:col-span-12">
                         <div className="intro-y box p-5">
                             <div className="grid grid-cols-12 gap-3">
-                                <div className="intro-y col-span-12 lg:col-span-12 pb-0">
-                                    <h2 className="font-medium text-base mr-auto">
-                                        Step 2 : <span className="font-normal">Upload your documents</span>
-                                    </h2>
-                                </div>
-                                <div className="intro-y col-span-12 lg:col-span-6">
-                                    <div className="preview text-center">
-                                        <div className="dropzone" id="SupportDocumentSection" ref={drop}>
-                                            <button type="button" className="btn btn-dark w-32 mr-2 mb-2" id="SupportDocumentButton" onClick={handleUploadBtnClick}> 
-                                                <input multiple type="file" style={DisplayNone} id="SupportDocument" className="form-control" ref={FileInput} onChange={handelFileInputChange}/>
-                                                <Icon.File className="w-4 h-4 mr-2" /> Upload 
-                                            </button>
-                                            <div className="text-lg font-medium">Drop files here or click to upload.</div>
-                                            <div className="text-gray-600"> Upload any Mortgage Documents </div>
+                                <div className="col-span-6">
+
+                                    <div className="col-span-12" >
+                                        <div class="text-gray-800 text-lg whitespace-nowrap mt-0.5">
+                                            How would you like to get started?
+                                        </div>
+                                        <div class="text-gray-800 text-md whitespace-nowrap mt-1">
+                                            Do you want to compare Mock CD with the releavant source documents?
+                                        </div>
+                                        
+                                        <div className="col-span-12 lg:col-span-12 sm:col-span-12 mt-1 flex" onChange={radioButtonChange} > 
+                                            <div className="form-check mt-2 mr-6">
+                                                <input 
+                                                    id="mock_docs1" 
+                                                    className="form-check-input" 
+                                                    type="radio" 
+                                                    name="mock_docs" 
+                                                    value="Yes" 
+                                                                                                      
+                                                />
+                                                <label className="form-check-label" htmlFor="mock_docs1">Yes</label>
+                                            </div>
+                                            <div className="form-check mt-2 mr-6">
+                                                <input 
+                                                    id="mock_docs2" 
+                                                    className="form-check-input" 
+                                                    type="radio" 
+                                                    name="mock_docs" 
+                                                    value="No"
+                                                />
+                                                <label className="form-check-label" htmlFor="mock_docs2">No</label>
+                                            </div>
                                         </div>
                                     </div>
+
+                                    {
+                                        (Display.mock_docs == 'No') &&
+
+                                        <div className="col-span-12">
+                                            <div class="text-gray-800 text-md whitespace-nowrap mt-0.5">
+                                                Do you want to create CD with the source document?
+                                            </div>                                    
+                                            <div className="col-span-12 lg:col-span-12 sm:col-span-12 mt-1 flex" onChange={radioButtonChange}> 
+                                                <div className="form-check mt-2 mr-6">
+                                                    <input id="source_docs1" className="form-check-input" type="radio" name="source_docs" value="Yes"/>
+                                                    <label className="form-check-label" htmlFor="source_docs1">Yes</label>
+                                                </div>
+                                                <div className="form-check mt-2 mr-6">
+                                                    <input id="source_docs2" className="form-check-input" type="radio" name="source_docs" value="No"/>
+                                                    <label className="form-check-label" htmlFor="source_docs2">No</label>
+                                                </div>
+                                            </div>
+                                        </div> 
+                                    }
+                                    {
+                                        (Display.source_docs == 'No' && Display.mock_docs == 'No') &&
+                                        <div className="col-span-12">
+                                            <div class="text-gray-800 text-md whitespace-nowrap mt-0.5">
+                                                Do you want to upload Mock CD and use manual edit option?
+                                            </div>                                    
+                                            <div className="col-span-12 lg:col-span-12 sm:col-span-12 mt-1 flex" onChange={radioButtonChange}> 
+                                                <div className="form-check mt-2 mr-6">
+                                                    <input id="mannual_edit1" className="form-check-input" type="radio" name="mannual_edit" value="Yes"/>
+                                                    <label className="form-check-label" htmlFor="mannual_edit1">Yes</label>
+                                                </div>
+                                                <div className="form-check mt-2 mr-6">
+                                                    <input id="mannual_edit2" className="form-check-input" type="radio" name="mannual_edit" value="No"/>
+                                                    <label className="form-check-label" htmlFor="mannual_edit2">No</label>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    }    
+                                    
+                                    {
+                                        (Display.source_docs == 'Yes' || Display.mock_docs == 'Yes' || Display.mannual_edit == 'Yes') &&
+                                        <div className="intro-y col-span-12 lg:col-span-6 mt-5">
+                                            <div className="preview text-center">
+                                                <div className="dropzone" id="SupportDocumentSection" ref={drop}>
+                                                    <button type="button" className="btn btn-dark w-32 mr-2 mb-2" id="SupportDocumentButton" onClick={handleUploadBtnClick}> 
+                                                        <input multiple accept="application/pdf" type="file" style={DisplayNone} id="SupportDocument" className="form-control" ref={FileInput} onChange={handelFileInputChange}/>
+                                                        <Icon.File className="w-4 h-4 mr-2" /> Upload 
+                                                    </button>
+                                                    <div className="text-lg font-medium">Drop files here or click to upload.</div>
+                                                    <div className="text-gray-600"> Upload any Mortgage Documents </div>
+                                                </div>
+                                            </div>
+                                        </div> 
+                                    }
+                                    {
+                                        (Display.source_docs == 'No' && Display.mock_docs == 'No' && Display.mannual_edit == 'No') &&
+                                        <div className="intro-y col-span-12 lg:col-span-6 mt-5">
+                                            <div className="preview text-center">
+                                                <div className="alert alert-warning-soft show flex items-center mb-2" role="alert"> 
+                                                    <Icon.AlertCircle className="w-6 h-6 mr-2" />
+                                                    Sorry, you need to select any of the above option to generate CD.
+                                                </div>
+                                            </div>
+                                        </div> 
+                                    }
                                 </div>
-                                <div className="intro-y col-span-12 lg:col-span-6">
-                                    <table className="table table--sm">
-                                        <tbody>
-                                            {
-                                                OrderFile.map((file, index) => {
-                                                    let extension = file.name.split('.').pop();
-                                                    console.log(extension);
-                                                    let iconClass = FileExtension(extension);
-                                                    console.log(iconClass);
-                                                    return (
-                                                        <tr>
-                                                            <td className="border-b dark:border-dark-5">
-                                                                <Select 
-                                                                    className="custom_select" 
-                                                                    options={DocTypeOption} 
-                                                                    name="DocumentTypeUID[]" 
-                                                                    onChange={DocumentTypeChange}
-                                                                />
-                                                            </td>
-                                                            <td className="border-b dark:border-dark-5">{file.name}</td>
-                                                            <td className="border-b dark:border-dark-5">
-                                                                <Icon.Trash className="w-4 h-4 text-theme-24" data-section="SupportRemove" id={index} onClick={handelRemoveFile} />
-                                                            </td>
-                                                        </tr>
-                                                    )                                        
-                                                })
-                                            }
-                                            
-                                        </tbody>
-                                    </table>
-                                </div>
+                                <div className="col-span-6">
+                                    <div className="intro-y col-span-12 lg:col-span-6">
+                                        <table className="table table--sm">
+                                            <tbody>
+                                                {
+                                                    OrderFile.map((file, index) => {
+                                                        let extension = file.name.split('.').pop();
+                                                        console.log(extension);
+                                                        let iconClass = FileExtension(extension);
+                                                        console.log(iconClass);
+                                                        return (
+                                                            <tr key={index}>
+                                                                <td className="border-b dark:border-dark-5">
+                                                                    <Select 
+                                                                        className="custom_select" 
+                                                                        options={DocTypeOption} 
+                                                                        name="DocumentTypeUID[]" 
+                                                                        onChange={DocumentTypeChange}
+                                                                    />
+                                                                </td>
+                                                                <td className="border-b dark:border-dark-5">{file.name}</td>
+                                                                <td className="border-b dark:border-dark-5">
+                                                                    <Icon.Trash className="w-4 h-4 text-theme-24" data-section="SupportRemove" id={index} onClick={handelRemoveFile} />
+                                                                </td>
+                                                            </tr>
+                                                        )                                        
+                                                    })
+                                                }
+                                                
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>                                                               
                             </div>
                         </div>
                     </div>

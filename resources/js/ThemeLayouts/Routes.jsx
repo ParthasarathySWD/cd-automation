@@ -37,7 +37,7 @@ import Dashboard from '../ThemeReact/views/Dashboard/Dashboard';
 // import AddClient from '../ThemeReact/ClientComponents/AddClient';
 import UsersList from '../ThemeReact/views/User/UsersList';
 import AddUser from '../ThemeReact/views/User/AddUser';
-import OrderEntry from '../ThemeReact/views/OrderEntry/OrderEntry';
+import OrderEntry from '../ThemeReact/views/OrderEntry/OrderEntryNew';
 // import MyOrders from '../ThemeReact/views/MyOrders/MyOrders';
 import MyOrder from '../ThemeReact/views/MyOrders/MyOrder';
 import CDDetails from '../ThemeReact/views/CD-Details/CDDetails';
