@@ -24,6 +24,7 @@ function AddUser()
                 Password: '',
                 ConfirmPassword: '',
                 RoleUID: '',
+                ClientUID: '',
                 errors: {}
     
             });
@@ -141,13 +142,41 @@ function AddUser()
                 errors["RoleUID"] = "Field is Required";
              }
     
+             
+
+             //  ClientUID
+             if(!state.ClientUID){
+                formIsValid = false;
+                errors["ClientUID"] = "Field is Required";
+             }
+    
              setState(prevState => ({ ...prevState, errors: errors }));
             return formIsValid;
     
         }
-    
+        function onRoleChange(e)
+                {
+                    console.log(e);
+                    let val = e.value;
+                    setState((prevState)=>{
+                    return {...prevState, RoleUID: val};
+                    })
+
+                }
+        function onClientChange(e)
+        {
+            console.log(e);
+            let val = e.value;
+            setState((prevState)=>{
+            return {...prevState, ClientUID: val};
+            })
+
+        }
+        
         function onChangeHandler(e){
+            
             const { name, value } = e.target;
+            
             setState(prevState => ({ ...prevState, [name]: value }));
     
         };
@@ -167,7 +196,7 @@ function AddUser()
                 data.append('Password',state.Password);
                 data.append('ConfirmPassword',state.ConfirmPassword);
                 data.append('RoleUID',state.RoleUID);
-    
+                data.append('ClientUID',state.ClientUID);
                 
     
                 axios.post("users", data, {
@@ -184,6 +213,7 @@ function AddUser()
                             Password: '',
                             ConfirmPassword: '',
                             RoleUID: '',
+                            ClientUID: '',
                             errors: {}
     
                          });history.push("/allusers");
@@ -214,16 +244,23 @@ function AddUser()
                 Password: '',
                 ConfirmPassword: '',
                 RoleUID: '',
+                ClientUID: '',
                 errors: {}
     
              });history.push('/allusers');
         };
-        const Role = [
+        const RoleOptions = [
             { value: '1', label: 'Admin' },
             { value: '2', label: 'Customer' },
             { value: '3', label: 'Lender' }
             ]
-
+        const ClientOptions = [
+        { value: '1', label: 'Test' },
+        { value: '2', label: 'Demo' },
+        { value: '3', label: 'Example' }
+        ] 
+              
+              
     return(
 
         // <div>
@@ -264,74 +301,78 @@ function AddUser()
                         <div className="grid grid-cols-12 gap-3">
                             
                             <div className="col-span-3 lg:col-span-3 sm:col-span-3 mt-3"> 
-                                <label className="form-label">First Name <span className="text-danger">*</span></label> 
+                                <label className="form-label">First Name <span className="text-danger">*</span> {state.errors["FirstName"] ? <span style={spanStyle}>{state.errors["FirstName"]}</span> : ""}</label> 
                                 <div className="input-group"> 
                                     <div className="input-group-text">
                                         <Icon.User className="w-4 h-4" />
                                     </div> 
                                     <input type="text" className="form-control form-control-sm" name="FirstName"  onChange={onChangeHandler} value={state.FirstName} placeholder="Ex. Name" />
-                                    {state.errors["FirstName"] ? <span style={spanStyle}>{state.errors["FirstName"]}</span> : ""} 
+                                     
                                 </div>
                             </div>
 
                             <div className="col-span-3 lg:col-span-3 sm:col-span-3 mt-3"> 
-                                <label className="form-label">Last Name <span className="text-danger">*</span></label> 
+                                <label className="form-label">Last Name <span className="text-danger">*</span> {state.errors["LastName"] ? <span style={spanStyle}>{state.errors["LastName"]}</span> : ""}</label> 
                                 <div className="input-group"> 
                                     <div className="input-group-text">
                                         <Icon.User className="w-4 h-4" />
                                     </div> 
                                     <input type="text" className="form-control form-control-sm" name="LastName"  onChange={onChangeHandler} value={state.LastName} placeholder="Ex. Name" />
-                                    {state.errors["LastName"] ? <span style={spanStyle}>{state.errors["LastName"]}</span> : ""} 
+                                     
                                 </div>
                             </div>
 
                             <div className="col-span-3 lg:col-span-3 sm:col-span-3 mt-3"> 
-                                <label className="form-label">Phone</label> 
+                                <label className="form-label">Phone <span style={spanStyle}>{state.errors["PhoneNumber"]}</span></label> 
                                 <div className="input-group">
                                      <div className="input-group-text">
                                          <Icon.Phone className="w-4 h-4" />
                                     </div>
                                      <input type="number" className="form-control form-control-sm" name="PhoneNumber" onChange={onChangeHandler} value={state.PhoneNumber} placeholder="Ex. (541) 754-3010" />
-                                     <span style={spanStyle}>{state.errors["PhoneNumber"]}</span> 
+                                      
                                 </div>
                             </div>
 
                             <div className="col-span-3 lg:col-span-3 sm:col-span-3 mt-3"> 
-                                <label className="form-label">Email <span className="text-danger">*</span></label> 
+                                <label className="form-label">Email <span className="text-danger">*</span> <span style={spanStyle}>{state.errors["Email"]}</span> </label> 
                                 <div className="input-group">
                                      <div className="input-group-text">
                                          <Icon.Mail className="w-4 h-4" />
                                     </div> 
                                     <input type="email" className="form-control form-control-sm" name="Email" onChange={onChangeHandler} value={state.Email} placeholder="Ex. demo@mail.com" />
-                                    <span style={spanStyle}>{state.errors["Email"]}</span> 
+                                    
                                 </div>
                             </div>
 
                             <div className="col-span-3 lg:col-span-3 sm:col-span-3 mt-3"> 
-                                <label className="form-label">User Name <span className="text-danger">*</span></label> 
+                                <label className="form-label">User Name <span className="text-danger">*</span> {state.errors["UserName"] ? <span style={spanStyle}>{state.errors["UserName"]}</span> : ""}</label> 
                                 <div className="input-group"> 
                                     <div className="input-group-text">
                                         <Icon.User className="w-4 h-4" />
                                     </div> 
                                     <input type="text" className="form-control form-control-sm" name="UserName"  onChange={onChangeHandler} value={state.UserName} placeholder="Ex. Name" />
-                                    {state.errors["UserName"] ? <span style={spanStyle}>{state.errors["UserName"]}</span> : ""} 
+                                     
                                 </div>
                             </div>
 
                             <div className="col-span-3 lg:col-span-3 sm:col-span-3 mt-3"> 
-                                <label className="form-label">RoleUID <span className="text-danger">*</span></label> 
-                                <Select className="custom_select" name="RoleUID" onChange={onChangeHandler} options={Role} />
-                                <span style={spanStyle}>{state.errors["RoleUID"]}</span>
+                                <label className="form-label">RoleUID <span className="text-danger">*</span> <span style={spanStyle}>{state.errors["RoleUID"]}</span></label> 
+                                <Select className="custom_select" name="RoleUID" onChange={onRoleChange} options={RoleOptions} />
                             </div>
 
                             <div className="col-span-3 lg:col-span-3 sm:col-span-3 mt-3"> 
-                                <label className="form-label">Password <span className="text-danger">*</span></label> 
+                                <label className="form-label">ClientUID <span className="text-danger">*</span> <span style={spanStyle}>{state.errors["ClientUID"]}</span></label> 
+                                <Select className="custom_select" name="ClientUID" onChange={onClientChange} options={ClientOptions} />
+                            </div>
+
+                            <div className="col-span-3 lg:col-span-3 sm:col-span-3 mt-3"> 
+                                <label className="form-label">Password <span className="text-danger">*</span> <span style={spanStyle}>{state.errors["Password"]}</span></label> 
                                 <div className="input-group">
                                      <div className="input-group-text">
                                          <Icon.Lock className="w-4 h-4" />
                                     </div>
                                      <input type="password" className="form-control form-control-sm" name="Password" onChange={onChangeHandler} value={state.Password} placeholder="Ex. Abcd@1234" />
-                                     <span style={spanStyle}>{state.errors["Password"]}</span> 
+                                      
                                 </div>
                             </div>
 
@@ -342,7 +383,7 @@ function AddUser()
                                          <Icon.Lock className="w-4 h-4" />
                                     </div>
                                      <input type="password" className="form-control form-control-sm" name="ConfirmPassword" onChange={onChangeHandler} value={state.ConfirmPassword}  placeholder="Ex. Abcd@1234" />
-                                     <span style={spanStyle}>{state.errors["ConfirmPassword"]}</span> 
+                                     
                                 </div>
                             </div>                          
                             

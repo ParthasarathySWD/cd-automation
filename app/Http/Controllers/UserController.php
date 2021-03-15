@@ -47,10 +47,11 @@ class UserController extends Controller
             'FirstName' => 'required',
             'LastName' => 'required',
             'Email' => 'required|Email|unique:mUsers',
-            'PhoneNumber' => 'required|unique:mUsers',
+            'PhoneNumber' => 'required',
             'UserName' => 'required|unique:mUsers',
             'Password' => 'required',
             'RoleUID' => 'required',
+            'ClientUID' => 'required',
         ], [], $attributes);
 
         if ($validation->fails()) {
@@ -70,6 +71,7 @@ class UserController extends Controller
                 'UserName' => $request->input('UserName'),
                 'Password' => md5($request->input('Password')),
                 'RoleUID' => $request->input('RoleUID'),
+                'ClientUID' => $request->input('ClientUID'),
                 'CreatedByUserUID' => '1',
                 'CreatedByDateTime' => Carbon::now(),
             ]);

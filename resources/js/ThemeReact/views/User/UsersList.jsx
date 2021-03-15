@@ -49,7 +49,7 @@ function UsersList(){
         {
           addToast('Status Updated Successfully', { appearance: 'success', autoDismiss: 'true' });
           history.push("/dashboard");
-          history.push("/alluser");
+          history.push("/allusers");
         }
         else{
           addToast('Status Updation Failed', { appearance: 'error', autoDismiss: 'true' });

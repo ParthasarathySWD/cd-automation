@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useCallback, useMemo } from "react";
 import ReactDOM from "react-dom";
-import axios from '../../ThemeLayouts/repository/api';
+import axios from '../ThemeLayouts/repository/api';
 import DataTable from "react-data-table-component";
 import "react-data-table-component-extensions/dist/index.css";
 import { BrowserRouter as Router, Switch, Route, Link, useHistory } from 'react-router-dom';
