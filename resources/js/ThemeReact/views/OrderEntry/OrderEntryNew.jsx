@@ -27,8 +27,6 @@ function OrderEntry() {
     const [OrderFile, setOrderFile] = useState([]);
     const [DocumentTypes, setDocumnetTypes] = useState('');
     const [loannumber, setLoanNumber] = useState("");
-    const [formError, setFormErrors] = useState([]);
-    const [isLoading, setIsLoading] = useState(false);
     /** END */
 
     /** Radio Button Base Section Show Hide */
@@ -38,7 +36,6 @@ function OrderEntry() {
         mannual_edit: ''
     });
     console.log(Display.mock_docs);
-    /** end */
 
     /** Drag and Drop Order File Store */
     function onUpload (files) {
@@ -49,6 +46,7 @@ function OrderEntry() {
     }
     /** end */
     
+    +
     /** inti Component Did Mount */
     React.useEffect(() => {
 
@@ -217,25 +215,11 @@ function OrderEntry() {
     }
     /** end */
 
-    /** clear button function */
-    const ClearNow = (event) => {
-        event.preventDefault();
-        setOrderFile([]);
-        setLoanNumber('');
-        setDisplay({
-            mock_docs: '',
-            source_docs: '',
-            mannual_edit: ''
-        });
-        selectInputRef.current.select.clearValue();
-        document.getElementById("frm-order-entry").reset();
-        setIsLoading(false);
-    }
-    /** end */
-
-    /** Order entry Submit */    
+    /** Order entry Submit */
+    const [formError, setFormErrors] = useState([]);
 
     function OrderEntryValidation() {
+
         var IsFormValidate = true;
         let setErrorObj = [];
 
@@ -252,16 +236,14 @@ function OrderEntry() {
             setErrorObj['LoanNumber'] = "Loan Number is Required";
         }
 
-        setFormErrors({...setErrorObj});
+        setFormErrors({...setErrorObj})
         console.log('Validate is : ', IsFormValidate);
         console.log('Errors : ', setErrorObj);
         return IsFormValidate;
     }
 
     function handleSubmit(event){
-        event.preventDefault(); 
-        setIsLoading(true);
-
+        event.preventDefault();
         let IsValidate = OrderEntryValidation();
 
         if (IsValidate) {        
@@ -281,22 +263,20 @@ function OrderEntry() {
                 if (response.data.status != true) {
                     if (response.data.type == 'Form Validation') {
                         let form_errors = response.data.errors;
-                        console.log('Form Errors: ', form_errors.OrderFiles);
+                        console.log(form_errors.LoanNumber);
                         if (form_errors.LoanNumber) {
                             addToast(form_errors.LoanNumber, { appearance: 'error', autoDismiss: true, });
                         }
-                        if (form_errors.OrderFiles) {
+                        if (form_errors.PrelimFile) {
                             addToast(form_errors.OrderFiles, { appearance: 'error', autoDismiss: true, });
                         }
                     } else {
                         let CustomeContent = response.data.errors+' : '+response.data.message;
                         addToast(CustomeContent, { appearance: 'error', autoDismiss: true, });
                     }
-                    setIsLoading(false);
                 } else {
                     // addToast(response.data.message, { appearance: 'success', autoDismiss: true, });
                     //Modal Customization
-                    setIsLoading(false);
                     const options = {
                         title: response.data.message,
                         message: '',
@@ -343,7 +323,6 @@ function OrderEntry() {
                                                         });
                                                         selectInputRef.current.select.clearValue();
                                                         document.getElementById("frm-order-entry").reset();
-                                                         setIsLoading(false);
                                                         history.push('/orderentry');
                                                     }}>
                                                     Stay Back
@@ -374,7 +353,6 @@ function OrderEntry() {
             })
         } else {
             addToast('Please Fill the Required Fields', { appearance: 'error', autoDismiss: true, });
-            setIsLoading(false);
             return false;
         }
 
@@ -383,50 +361,132 @@ function OrderEntry() {
 
     return (
         <>
+            <span class="cell_click_loader">
+                <svg
+                    width="25"
+                    viewBox="0 0 44 44"
+                    xmlns="http://www.w3.org/2000/svg"
+                    stroke="rgb(45, 55, 72)"
+                    class="w-8 h-8"
+                >
+                    <g fill="none" fill-rule="evenodd" stroke-width="4">
+                        <circle cx="22" cy="22" r="1">
+                            <animate
+                                attributeName="r"
+                                begin="0s"
+                                dur="1.8s"
+                                values="1; 20"
+                                calcMode="spline"
+                                keyTimes="0; 1"
+                                keySplines="0.165, 0.84, 0.44, 1"
+                                repeatCount="indefinite"
+                            ></animate>
+                            <animate
+                                attributeName="stroke-opacity"
+                                begin="0s"
+                                dur="1.8s"
+                                values="1; 0"
+                                calcMode="spline"
+                                keyTimes="0; 1"
+                                keySplines="0.3, 0.61, 0.355, 1"
+                                repeatCount="indefinite"
+                            ></animate>
+                        </circle>
+                        <circle cx="22" cy="22" r="1">
+                            <animate
+                                attributeName="r"
+                                begin="-0.9s"
+                                dur="1.8s"
+                                values="1; 20"
+                                calcMode="spline"
+                                keyTimes="0; 1"
+                                keySplines="0.165, 0.84, 0.44, 1"
+                                repeatCount="indefinite"
+                            ></animate>
+                            <animate
+                                attributeName="stroke-opacity"
+                                begin="-0.9s"
+                                dur="1.8s"
+                                values="1; 0"
+                                calcMode="spline"
+                                keyTimes="0; 1"
+                                keySplines="0.3, 0.61, 0.355, 1"
+                                repeatCount="indefinite"
+                            ></animate>
+                        </circle>
+                    </g>
+                </svg>
+            </span>
             {/* Order Entry Form Begin */}
-            <form id="frm-order-entry" encType="multipart/form-data" onSubmit={handleSubmit}>
+            <form
+                id="frm-order-entry"
+                encType="multipart/form-data"
+                onSubmit={handleSubmit}
+            >
                 {/* Loan Number */}
                 <div className="grid grid-cols-12 gap-3 mt-5">
                     <div className="intro-y col-span-12 lg:col-span-12">
                         <div className="intro-y box  p-5">
-                            
                             <div className="grid grid-cols-12 gap-3">
-                            <div className="col-span-3"> 
-                                    <label htmlFor="regular-form-2" className="form-label">
+                                <div className="col-span-3">
+                                    <label
+                                        htmlFor="regular-form-2"
+                                        className="form-label"
+                                    >
                                         Loan Number
-                                        <span className="text-theme-24 ml-1">*</span>
-                                        {
-                                            (formError.LoanNumber != '') &&
+                                        <span className="text-theme-24 ml-1">
+                                            *
+                                        </span>
+                                        {formError.LoanNumber != "" && (
                                             <span className="text-theme-24 text-xs mt-0.5 ml-2">
                                                 {formError.LoanNumber}
                                             </span>
-                                        }
+                                        )}
                                     </label>
-                                    <div className="input-group"> 
-                                        <div id="input-group-email" className="input-group-text">
+                                    <div className="input-group">
+                                        <div
+                                            id="input-group-email"
+                                            className="input-group-text"
+                                        >
                                             <Icon.Hash className="w-4 h-4" />
-                                        </div> 
-                                        <input type="text" className="form-control form-control-md" placeholder="Ex. 9876543224" value={loannumber} name="LoanNumber" onChange={loanChange}/> 
+                                        </div>
+                                        <input
+                                            type="text"
+                                            className="form-control form-control-md"
+                                            placeholder="Ex. 9876543224"
+                                            value={loannumber}
+                                            name="LoanNumber"
+                                            onChange={loanChange}
+                                        />
                                     </div>
                                 </div>
-                                <div className="col-span-3"> 
-                                    <label htmlFor="regular-form-2" className="form-label">
+                                <div className="col-span-3">
+                                    <label
+                                        htmlFor="regular-form-2"
+                                        className="form-label"
+                                    >
                                         Client
-                                        <span className="text-theme-24 ml-1">*</span>
-                                        {
-                                            (formError.Client != '') &&
+                                        <span className="text-theme-24 ml-1">
+                                            *
+                                        </span>
+                                        {formError.Client != "" && (
                                             <span className="text-theme-24 text-xs mt-0.5 ml-2">
                                                 {formError.Client}
                                             </span>
-                                        }
+                                        )}
                                     </label>
-                                    <Select 
-                                        className="" 
+                                    <Select
+                                        className=""
                                         ref={selectInputRef}
-                                        options={ClientOption} 
-                                        name="ClientUID" 
+                                        options={ClientOption}
+                                        name="ClientUID"
                                         menuPortalTarget={document.body}
-                                        styles={{ menuPortal: base => ({ ...base, zIndex: 9999 }) }}
+                                        styles={{
+                                            menuPortal: (base) => ({
+                                                ...base,
+                                                zIndex: 9999,
+                                            }),
+                                        }}
                                     />
                                 </div>
                             </div>
@@ -435,146 +495,262 @@ function OrderEntry() {
                 </div>
                 {/* end */}
 
-
-
                 {/* File Upload */}
                 <div className="grid grid-cols-12 gap-3 mt-5">
                     <div className="intro-y col-span-12 lg:col-span-12">
                         <div className="intro-y box p-5">
                             <div className="grid grid-cols-12 gap-3">
                                 <div className="col-span-6">
-
-                                    <div className="col-span-12" >
+                                    <div className="col-span-12">
                                         <div className="text-gray-900 text-lg whitespace-nowrap mb-2">
                                             How would you like to get started?
                                         </div>
                                         <div className="text-gray-800 text-md whitespace-nowrap mt-2">
-                                            Do you want to compare Mock CD with the releavant source documents?
+                                            Do you want to compare Mock CD with
+                                            the releavant source documents?
                                         </div>
-                                        
-                                        <div className="col-span-12 lg:col-span-12 sm:col-span-12 mt-1 flex" onChange={radioButtonChange} > 
+
+                                        <div
+                                            className="col-span-12 lg:col-span-12 sm:col-span-12 mt-1 flex"
+                                            onChange={radioButtonChange}
+                                        >
                                             <div className="form-check mb-2 mr-6">
-                                                <input 
-                                                    id="mock_docs1" 
-                                                    className="form-check-input" 
-                                                    type="radio" 
-                                                    name="mock_docs" 
-                                                    value="Yes" 
-                                                                                                      
+                                                <input
+                                                    id="mock_docs1"
+                                                    className="form-check-input"
+                                                    type="radio"
+                                                    name="mock_docs"
+                                                    value="Yes"
                                                 />
-                                                <label className="form-check-label" htmlFor="mock_docs1">Yes</label>
+                                                <label
+                                                    className="form-check-label"
+                                                    htmlFor="mock_docs1"
+                                                >
+                                                    Yes
+                                                </label>
                                             </div>
                                             <div className="form-check mb-2 mr-6">
-                                                <input 
-                                                    id="mock_docs2" 
-                                                    className="form-check-input" 
-                                                    type="radio" 
-                                                    name="mock_docs" 
+                                                <input
+                                                    id="mock_docs2"
+                                                    className="form-check-input"
+                                                    type="radio"
+                                                    name="mock_docs"
                                                     value="No"
                                                 />
-                                                <label className="form-check-label" htmlFor="mock_docs2">No</label>
+                                                <label
+                                                    className="form-check-label"
+                                                    htmlFor="mock_docs2"
+                                                >
+                                                    No
+                                                </label>
                                             </div>
                                         </div>
                                     </div>
 
-                                    {
-                                        (Display.mock_docs == 'No') &&
-
+                                    {Display.mock_docs == "No" && (
                                         <div className="col-span-12">
                                             <div className="text-gray-800 text-md whitespace-nowrap mt-2">
-                                                Do you want to create CD with the source document?
-                                            </div>                                    
-                                            <div className="col-span-12 lg:col-span-12 sm:col-span-12 mt-1 flex" onChange={radioButtonChange}> 
-                                                <div className="form-check mb-2 mr-6">
-                                                    <input id="source_docs1" className="form-check-input" type="radio" name="source_docs" value="Yes"/>
-                                                    <label className="form-check-label" htmlFor="source_docs1">Yes</label>
-                                                </div>
-                                                <div className="form-check mb-2 mr-6">
-                                                    <input id="source_docs2" className="form-check-input" type="radio" name="source_docs" value="No"/>
-                                                    <label className="form-check-label" htmlFor="source_docs2">No</label>
-                                                </div>
+                                                Do you want to create CD with
+                                                the source document?
                                             </div>
-                                        </div> 
-                                    }
-                                    {
-                                        (Display.source_docs == 'No' && Display.mock_docs == 'No') &&
-                                        <div className="col-span-12">
-                                            <div className="text-gray-800 text-md whitespace-nowrap mt-2">
-                                                Do you want to upload Mock CD and use manual edit option?
-                                            </div>                                    
-                                            <div className="col-span-12 lg:col-span-12 sm:col-span-12 mt-1 flex" onChange={radioButtonChange}> 
+                                            <div
+                                                className="col-span-12 lg:col-span-12 sm:col-span-12 mt-1 flex"
+                                                onChange={radioButtonChange}
+                                            >
                                                 <div className="form-check mb-2 mr-6">
-                                                    <input id="mannual_edit1" className="form-check-input" type="radio" name="mannual_edit" value="Yes"/>
-                                                    <label className="form-check-label" htmlFor="mannual_edit1">Yes</label>
+                                                    <input
+                                                        id="source_docs1"
+                                                        className="form-check-input"
+                                                        type="radio"
+                                                        name="source_docs"
+                                                        value="Yes"
+                                                    />
+                                                    <label
+                                                        className="form-check-label"
+                                                        htmlFor="source_docs1"
+                                                    >
+                                                        Yes
+                                                    </label>
                                                 </div>
                                                 <div className="form-check mb-2 mr-6">
-                                                    <input id="mannual_edit2" className="form-check-input" type="radio" name="mannual_edit" value="No"/>
-                                                    <label className="form-check-label" htmlFor="mannual_edit2">No</label>
+                                                    <input
+                                                        id="source_docs2"
+                                                        className="form-check-input"
+                                                        type="radio"
+                                                        name="source_docs"
+                                                        value="No"
+                                                    />
+                                                    <label
+                                                        className="form-check-label"
+                                                        htmlFor="source_docs2"
+                                                    >
+                                                        No
+                                                    </label>
                                                 </div>
                                             </div>
                                         </div>
-                                    }    
-                                    
-                                    {
-                                        (Display.source_docs == 'Yes' || Display.mock_docs == 'Yes' || Display.mannual_edit == 'Yes') &&
+                                    )}
+                                    {Display.source_docs == "No" &&
+                                        Display.mock_docs == "No" && (
+                                            <div className="col-span-12">
+                                                <div className="text-gray-800 text-md whitespace-nowrap mt-2">
+                                                    Do you want to upload Mock
+                                                    CD and use manual edit
+                                                    option?
+                                                </div>
+                                                <div
+                                                    className="col-span-12 lg:col-span-12 sm:col-span-12 mt-1 flex"
+                                                    onChange={radioButtonChange}
+                                                >
+                                                    <div className="form-check mb-2 mr-6">
+                                                        <input
+                                                            id="mannual_edit1"
+                                                            className="form-check-input"
+                                                            type="radio"
+                                                            name="mannual_edit"
+                                                            value="Yes"
+                                                        />
+                                                        <label
+                                                            className="form-check-label"
+                                                            htmlFor="mannual_edit1"
+                                                        >
+                                                            Yes
+                                                        </label>
+                                                    </div>
+                                                    <div className="form-check mb-2 mr-6">
+                                                        <input
+                                                            id="mannual_edit2"
+                                                            className="form-check-input"
+                                                            type="radio"
+                                                            name="mannual_edit"
+                                                            value="No"
+                                                        />
+                                                        <label
+                                                            className="form-check-label"
+                                                            htmlFor="mannual_edit2"
+                                                        >
+                                                            No
+                                                        </label>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        )}
+
+                                    {(Display.source_docs == "Yes" ||
+                                        Display.mock_docs == "Yes" ||
+                                        Display.mannual_edit == "Yes") && (
                                         <div className="intro-y col-span-12 lg:col-span-6 mt-5">
                                             <div className="preview text-center">
-                                                <div className="dropzone" id="SupportDocumentSection" ref={drop}>
-                                                    <button type="button" className="btn btn-sm btn-dark-soft w-24 mr-1 ml-auto mb-2" id="SupportDocumentButton" onClick={handleUploadBtnClick}> 
-                                                        <input multiple accept="application/pdf" type="file" style={DisplayNone} id="SupportDocument" className="form-control" ref={FileInput} onChange={handelFileInputChange}/>
-                                                        <Icon.File className="w-4 h-4 mr-2" /> Upload 
+                                                <div
+                                                    className="dropzone"
+                                                    id="SupportDocumentSection"
+                                                    ref={drop}
+                                                >
+                                                    <button
+                                                        type="button"
+                                                        className="btn btn-sm btn-dark-soft w-24 mr-1 ml-auto mb-2"
+                                                        id="SupportDocumentButton"
+                                                        onClick={
+                                                            handleUploadBtnClick
+                                                        }
+                                                    >
+                                                        <input
+                                                            multiple
+                                                            accept="application/pdf"
+                                                            type="file"
+                                                            style={DisplayNone}
+                                                            id="SupportDocument"
+                                                            className="form-control"
+                                                            ref={FileInput}
+                                                            onChange={
+                                                                handelFileInputChange
+                                                            }
+                                                        />
+                                                        <Icon.File className="w-4 h-4 mr-2" />{" "}
+                                                        Upload
                                                     </button>
-                                                    <div className="text-lg font-medium">Drop files here or click to upload.</div>
-                                                    <div className="text-gray-600"> Upload any Mortgage Documents </div>
+                                                    <div className="text-lg font-medium">
+                                                        Drop files here or click
+                                                        to upload.
+                                                    </div>
+                                                    <div className="text-gray-600">
+                                                        {" "}
+                                                        Upload any Mortgage
+                                                        Documents{" "}
+                                                    </div>
                                                 </div>
                                             </div>
-                                        </div> 
-                                    }
-                                    {
-                                        (Display.source_docs == 'No' && Display.mock_docs == 'No' && Display.mannual_edit == 'No') &&
-                                        <div className="intro-y col-span-12 lg:col-span-6 mt-5">
-                                            <div className="preview text-center">
-                                                <div className="alert alert-warning-soft show flex items-center mb-2" role="alert"> 
-                                                    <Icon.AlertCircle className="w-6 h-6 mr-2" />
-                                                    Sorry, you need to select any of the above option to generate CD.
+                                        </div>
+                                    )}
+                                    {Display.source_docs == "No" &&
+                                        Display.mock_docs == "No" &&
+                                        Display.mannual_edit == "No" && (
+                                            <div className="intro-y col-span-12 lg:col-span-6 mt-5">
+                                                <div className="preview text-center">
+                                                    <div
+                                                        className="alert alert-warning-soft show flex items-center mb-2"
+                                                        role="alert"
+                                                    >
+                                                        <Icon.AlertCircle className="w-6 h-6 mr-2" />
+                                                        Sorry, you need to
+                                                        select any of the above
+                                                        option to generate CD.
+                                                    </div>
                                                 </div>
                                             </div>
-                                        </div> 
-                                    }
+                                        )}
                                 </div>
                                 <div className="col-span-6">
                                     <div className="intro-y col-span-12 lg:col-span-6">
                                         <table className="table table--sm">
                                             <tbody>
-                                                {
-                                                    OrderFile.map((file, index) => {
-                                                        let extension = file.name.split('.').pop();
+                                                {OrderFile.map(
+                                                    (file, index) => {
+                                                        let extension = file.name
+                                                            .split(".")
+                                                            .pop();
                                                         console.log(extension);
-                                                        let iconClass = FileExtension(extension);
+                                                        let iconClass = FileExtension(
+                                                            extension
+                                                        );
                                                         console.log(iconClass);
                                                         return (
                                                             <tr key={index}>
                                                                 <td className="border-b dark:border-dark-5">
-                                                                    <Select 
-                                                                        className="custom_select" 
-                                                                        options={DocTypeOption} 
-                                                                        name="DocumentTypeUID[]" 
-                                                                        onChange={DocumentTypeChange}
+                                                                    <Select
+                                                                        className="custom_select"
+                                                                        options={
+                                                                            DocTypeOption
+                                                                        }
+                                                                        name="DocumentTypeUID[]"
+                                                                        onChange={
+                                                                            DocumentTypeChange
+                                                                        }
                                                                     />
                                                                 </td>
-                                                                <td className="border-b dark:border-dark-5">{file.name}</td>
                                                                 <td className="border-b dark:border-dark-5">
-                                                                    <Icon.Trash className="w-4 h-4 text-theme-24" data-section="SupportRemove" id={index} onClick={handelRemoveFile} />
+                                                                    {file.name}
+                                                                </td>
+                                                                <td className="border-b dark:border-dark-5">
+                                                                    <Icon.Trash
+                                                                        className="w-4 h-4 text-theme-24"
+                                                                        data-section="SupportRemove"
+                                                                        id={
+                                                                            index
+                                                                        }
+                                                                        onClick={
+                                                                            handelRemoveFile
+                                                                        }
+                                                                    />
                                                                 </td>
                                                             </tr>
-                                                        )                                        
-                                                    })
-                                                }
-                                                
+                                                        );
+                                                    }
+                                                )}
                                             </tbody>
                                         </table>
                                     </div>
-                                </div>                                                               
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -585,11 +761,16 @@ function OrderEntry() {
                 <div className="intro-y text-right mt-3">
                     <div className="grid grid-cols-12 gap-3">
                         <div className="intro-y col-span-12 lg:col-span-12 flex">
-                            <button className="btn btn-sm btn-dark-soft w-24 mr-1 ml-auto mb-2" onClick={ClearNow}> 
-                                <Icon.X className="w-4 h-4 mr-2" /> Clear 
+                            <button className="btn btn-sm btn-dark-soft w-24 mr-1 ml-auto mb-2">
+                                {" "}
+                                <Icon.X className="w-4 h-4 mr-2" /> Cancel{" "}
                             </button>
-                            <button type="submit" className="btn btn-sm btn-primary w-30 mr-1 mb-2"> 
-                                <Icon.Save className="w-4 h-4 mr-2" /> {(isLoading)? 'Loading...' : 'Place Order'} 
+                            <button
+                                type="submit"
+                                className="btn btn-sm btn-primary w-24 mr-1 mb-2"
+                            >
+                                {" "}
+                                <Icon.Save className="w-4 h-4 mr-2" /> Save{" "}
                             </button>
                         </div>
                     </div>
@@ -597,9 +778,8 @@ function OrderEntry() {
                 {/* end */}
             </form>
             {/* end */}
-
         </>
-    )
+    );
 }
 
 export default OrderEntry;

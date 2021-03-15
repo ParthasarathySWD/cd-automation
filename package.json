@@ -76,7 +76,7 @@
         "jquery": "^3.6.0",
         "js-beautify": "^1.11.0",
         "litepicker": "^1.5.7",
-        "mdbreact": "^4.6.1",
+        "mdbreact": "^5.0.1",
         "pristinejs": "^0.1.9",
         "react-bootstrap": "^1.5.1",
         "react-chartjs-2": "^2.11.1",
