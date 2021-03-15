@@ -47,14 +47,13 @@ class OrderEntryController extends Controller
     public function store(Request $request)
     {
         // echo '<pre> Prelim';print_r($request->input());
-        // echo '<pre> Support';print_r($request->file('PrelimFile'));
-        // echo '<pre> Support';print_r($request->file('SupportingFile'));
+        // echo '<pre> Support';print_r($request->file('OrderFiles'));
         // echo '<pre> Support';print_r($request->input('ClientUID'));
         // exit;
 
         $validation = Validator::make($request->all(), [
             'LoanNumber' => 'required',
-            'OrderFiles' => 'required|max:20000|mimes:pdf',
+            'OrderFiles' => 'required',
             // 'File.*' => 'mimes:pdf,xlsx,docx,txt,zip'
         ]);
 
@@ -75,16 +74,24 @@ class OrderEntryController extends Controller
             /** check order number is empty or not empty */
             if ($OrderNumber['Response State'] == '200') {
 
+                $MockDocument = ($request->input('mock_docs') == 'Yes') ? 1:0;
+                $SourceDocumnet = ($request->input('source_docs')== 'Yes') ? 1:0;
+                $ManualEdit = ($request->input('mannual_edit')== 'Yes') ? 1:0;
+
                 $InsertData = new OrderEntry([
                     'OrderNumber' => $OrderNumber['OrderNumber'],
                     'OrderEntryDate' => Carbon::now(),
                     'LoanNumer' => $request->input('LoanNumber'),
                     'ClientUID' => $request->input('ClientUID'),
+                    'MockDocument' => $MockDocument,
+                    'SourceDocument' => $SourceDocumnet,
+                    'ManualEdit' => $ManualEdit,
                     'StatusUID' => 1,
                     'CreatedByUserUID' => $UserDetails['UserUID'],
                     'CreatedByDateTime' =>Carbon::now()
                 ]);
 
+                // dd($InsertData);
                 /** check insert or not insert */
                 if ($InsertData->save()) {
                     /** check last insert id */
@@ -100,10 +107,10 @@ class OrderEntryController extends Controller
                              * Order Document Order File Processing
                              * @var $request->file('File')
                              */
-                            // echo '<pre>';print_r($request->file('OrderFiles'));
-
+                            
                             foreach($request->file('OrderFiles') as $key => $file)
                             {
+                                // echo '<pre>';print_r($file);
                                 $DocumentType = $request->input('DocumentTypeUID');                                
                                 $FileName = $file->getClientOriginalName();
                                 $Extension = $file->getClientOriginalExtension();
@@ -128,6 +135,7 @@ class OrderEntryController extends Controller
                                         'DocumentName' => $NewFileName,
                                         'DocumentTypeUID' => $DocumentType[$key],
                                         'FilePath' => $FilePath,
+                                        'OcrStatus' => 1,
                                         'CreatedByUserUID' => $UserDetails['UserUID'],
                                         'CreatedByDateTime' => date('Y-m-d H:m:s')
                                     ]);
@@ -146,7 +154,8 @@ class OrderEntryController extends Controller
                         /**
                          * check insert state
                          */
-                        if ($OrderFileInsertState == '200') {
+                        // echo '<pre>';print_r($OrderFileInsertState['State']);
+                        if ($OrderFileInsertState['State'] == '200') {
                             return response()->json([
                                 'type' => 'Order Insert',
                                 'status' => true,

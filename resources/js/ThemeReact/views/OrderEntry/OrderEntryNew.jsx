@@ -218,25 +218,14 @@ function OrderEntry() {
 
     function handleSubmit(event){
         event.preventDefault();
-
-        let FormValidate = true;
-        if (loannumber == '') {
-            FormValidate = false;
-        } else {
-            FormValidate = true;
-        }
-
-        if (OrderFile.length) {
-            
-        }
-
         
         var formData = new FormData(event.target);
         console.log(formData);
 
+        console.log(OrderFile);
         Object.keys(OrderFile).map((fileName, index) => {
             let file = OrderFile[fileName];
-            formData.append('OrderFiles', file);
+            formData.append('OrderFiles[]', file);
         });
 
 
@@ -284,26 +273,41 @@ function OrderEntry() {
                         }
                     ],
                     childrenElement: () => <div />,
-                    // customUI: ({ onClose }) => {
-                    //     return (
-                    //         <div className="card">
-                    //             <div className="card-body">
-                    //                 <h5 className="card-title">{response.data.message}</h5>
-                    //                 <button onClick={onClose} className="btn btn-md btn-outline-info">
-                    //                     Go To My Orders
-                    //                 </button>
-                    //                 <button
-                    //                     onClick={() => {
-                    //                         alert('Stay Back')
-                    //                     }}
-                    //                     className="btn btn-md btn-outline-success"
-                    //                     >
-                    //                         Stay Back
-                    //                 </button>
-                    //             </div>
-                    //         </div>
-                    //     );
-                    // },
+                    customUI: ({ onClose }) => {
+                        return (
+                            <div className='custom-ui'>
+                                <div class="box px-5 py-3 mb-3 flex items-center zoom-in">
+                                    <div class="w-10 h-10 flex-none image-fit rounded-full overflow-hidden">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="35" height="35" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="feather feather-smile block mx-auto text-theme-10">
+                                            <circle cx="12" cy="12" r="10"></circle>
+                                            <path d="M8 14s1.5 2 4 2 4-2 4-2"></path>
+                                            <line x1="9" y1="9" x2="9.01" y2="9"></line>
+                                            <line x1="15" y1="9" x2="15.01" y2="9"></line>
+                                        </svg>
+                                    </div>
+                                    <div class="ml-4 mr-auto">
+                                        <div class="font-medium">
+                                            Your Order Created Successfully
+                                        </div>
+                                        <div class="text-gray-600 text-xs mt-0.5">
+                                            Your Order Number <b>CD1001</b>
+                                        </div>
+                                        <div class="text-gray-600 text-xs mt-5 text-center"> 
+                                            <button class="btn btn-sm btn-outline-dark w-24 inline-block mr-2 mb-2">My Orders</button>
+                                            <button class="btn btn-sm btn-outline-primary w-24 inline-block mr-1 mb-2">Stay Back</button>
+                                        </div>
+                                    </div>
+                                    <div class="text-theme-24 order-edit-icon">
+
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="feather feather-edit-2 block mx-auto">
+                                            <path d="M17 3a2.828 2.828 0 1 1 4 4L7.5 20.5 2 22l1.5-5.5L17 3z"></path>
+                                        </svg>
+
+                                    </div>
+                                </div>
+                            </div>
+                        )
+                    },
                     closeOnEscape: false,
                     closeOnClickOutside: false,
                     willUnmount: () => {},
@@ -345,7 +349,7 @@ function OrderEntry() {
                                     <Select 
                                         className="" 
                                         options={ClientOption} 
-                                        name="ClientUID[]" 
+                                        name="ClientUID" 
                                         onChange={DocumentTypeChange}
                                         menuPortalTarget={document.body}
                                         styles={{ menuPortal: base => ({ ...base, zIndex: 9999 }) }}
