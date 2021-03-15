@@ -9,6 +9,8 @@ import axios from '../../../ThemeLayouts/repository/api';
 import DataTab from '../../../components/DataTableComponents/DataTab';
 import DatePicker from "react-datepicker";
 import TableLink from  '../../../components/DataTableComponents/TableLink';
+import Tippy from '@tippyjs/react';
+import 'tippy.js/dist/tippy.css'; // optional
 import "react-datepicker/dist/react-datepicker.css";
 // import ReactTooltip from 'react-tooltip';
 // import MyOrderWidgets from './MyOrderWidgets';
@@ -193,7 +195,7 @@ function MyOrder(){
             <div className="main-container clearfix">
                
                       <div className="myorder-header">
-                        <label style={{fontSize:'22px'}} ><b>Orders List</b></label>
+                        <label for="input-state-2" className="form-label flex"><b style={{fontSize:'22px'}}>Orders List</b><Tippy content="Test Tooltip Content"><Icon.AlertCircle className="w-4 h-4 ml-2 text-theme-17" /></Tippy></label>
                       </div> 
                       <div className="grid grid-cols-12 gap-3" style={{marginTop:'10px'}}>
                         <div className="p-5 col-span-2 lg:col-span-2 sm:col-span-2">

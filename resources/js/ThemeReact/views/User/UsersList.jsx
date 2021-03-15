@@ -6,7 +6,8 @@ import * as Icon from 'react-feather';
 import { ReactTabulator } from 'react-tabulator';
 import DataTableExtensions from "react-data-table-component-extensions";
 import DataTable from 'react-data-table-component';
-
+import Tippy from '@tippyjs/react';
+import 'tippy.js/dist/tippy.css'; // optional
 function UsersList(){
   const history = useHistory();
   const [users, setUsers] = useState();
@@ -144,9 +145,7 @@ function UsersList(){
                         
                         <div className="grid grid-cols-12 gap-3">
                             <div className="intro-y col-span-12 lg:col-span-12">
-                                <span className="text-lg font-medium  text-base mr-auto">
-                                    User List
-                                </span>
+                            <label for="input-state-2" className="form-label flex"><b style={{fontSize:'22px'}}>User List</b><Tippy content="Test Tooltip Content"><Icon.AlertCircle className="w-4 h-4 ml-2 text-theme-17" /></Tippy></label>
                                 <Link to={'/adduser'} className="btn btn-primary float-right"><Icon.Plus/> Add User</Link>
 
                             </div>
