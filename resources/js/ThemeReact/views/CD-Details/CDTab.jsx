@@ -1,7 +1,7 @@
-import React from 'react'
+import React from 'react';
 import { NavLink } from 'react-router-dom';
 import './CDDetails.css';
-function CDTab() {
+function CDTab(props) {
     return (
         <>
            <div className="col-lg-12 col-md-12 col-sm-12">

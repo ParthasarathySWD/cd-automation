@@ -1,14 +1,18 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import Table from 'react-bootstrap/Table';
 import './CDDetails.css';
 import CDTab from './CDTab.jsx';   
 import CDE from "../../../components/ContentEditable";
+import * as Icon from 'react-feather';
 
 const handleChange = (e) => {
     console.log(e);
 };
 function CDfifthpage(props) {
-    
+    function clickPrevious(e){
+        props.changeTab(4);
+    }
+
 
         return(
          <>
@@ -211,15 +215,14 @@ Conform Receipt
 this form.</p>
 </div>
 <div className="col-span-12 lg:col-span-12 sm:col-span-3 mt-3">
-        
-                    <button type="submit" className="btn btn-xs btn-primary mr-2 ml-2 float-right">Submit</button>
-                    <button type="submit" className="btn  btn-xs btn-danger float-left"><a data-toggle="tab" data-target="#PageFour">Previous</a></button>                                
-                            </div>
-
-                          </div>
-                       </div>
-                    </div>
-                   </div>     
+{/* <button type="button" className="btn btn-xs btn-primary mr-2 ml-2 float-right btnNext active" onClick={clickNext}>Next<Icon.ArrowRight className="w-4 h-4"/></button> */}
+ <button type="submit" className="btn btn-xs btn-primary mr-2 ml-2 float-right">Submit<Icon.Navigation className="w-4 h-4"/></button>
+  <button type="submit" className="btn  btn-xs btn-danger float-left" onClick={clickPrevious}><Icon.ArrowLeft className="w-4 h-4"/>Previous</button>    
+                                                </div>
+            </div>
+           </div>
+        </div>
+       </div>     
                     
                 
 

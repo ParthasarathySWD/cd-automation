@@ -1,14 +1,19 @@
 import { Button } from 'bootstrap';
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import PageTwo from './CDsecondpage';
 import CDE from "../../../components/ContentEditable";
 import Table from "react-bootstrap/Table";
+import * as Icon from 'react-feather';
 
 
-function CDDetails(){
+function CDDetails(props){
     const handleChange = (e) => {
         console.log(e);
     };
+
+    function clickNext(e){
+        props.changeTab(2);
+   }
 
     const [state, setstate] = useState({
         DateIssued: '',
@@ -201,10 +206,10 @@ return(
                                         </tbody>
                                     </table>
                                     
-                                 <div className="col-span-12 lg:col-span-12 sm:col-span-3 mt-3">
-                                 <button type="submit" className="btn btn-xs btn-primary mr-2 ml-2 float-right" ><a data-toggle="tab" data-target="#PageTow">Next</a></button>
-                               
-                            </div>
+                                                                                     <button type="button" className="btn btn-xs btn-primary mr-2 ml-2 float-right btnNext active" onClick={clickNext}>Next<Icon.ArrowRight className="w-4 h-4"/></button>
+                                                    <button type="submit" className="btn btn-xs btn-primary mr-2 ml-2 float-right">Submit<Icon.Navigation className="w-4 h-4"/></button>
+                                                    {/* <button type="submit" className="btn  btn-xs btn-danger float-left">Previous<Icon.ArrowLeft className="w-4 h-4"/></button>     */}
+                                                </div>
                                 </div>
                             </div>
 
@@ -223,9 +228,8 @@ return(
                 </div>
             </div>
         </div>
-    </div>
 
 
-)
+    )
 }
 export default CDDetails;
