@@ -194,6 +194,7 @@ function OrderEntry() {
                 source_docs: "",
                 mannual_edit: ""
             };
+            setOrderFile([])
         }
 
         if(RadioName == "source_docs"){
@@ -201,6 +202,7 @@ function OrderEntry() {
             setObj = {
                 mannual_edit: ""
             };
+            setOrderFile([])
         }
         setDisplay((prevState) => {
             return {
@@ -440,7 +442,7 @@ function OrderEntry() {
                                         <div className="intro-y col-span-12 lg:col-span-6 mt-5">
                                             <div className="preview text-center">
                                                 <div className="dropzone" id="SupportDocumentSection" ref={drop}>
-                                                    <button type="button" className="btn btn-dark w-32 mr-2 mb-2" id="SupportDocumentButton" onClick={handleUploadBtnClick}> 
+                                                    <button type="button" class="btn btn-sm btn-dark-soft w-24 mr-1 ml-auto mb-2" id="SupportDocumentButton" onClick={handleUploadBtnClick}> 
                                                         <input multiple accept="application/pdf" type="file" style={DisplayNone} id="SupportDocument" className="form-control" ref={FileInput} onChange={handelFileInputChange}/>
                                                         <Icon.File className="w-4 h-4 mr-2" /> Upload 
                                                     </button>
