@@ -27,6 +27,8 @@ function OrderEntry() {
     const [OrderFile, setOrderFile] = useState([]);
     const [DocumentTypes, setDocumnetTypes] = useState('');
     const [loannumber, setLoanNumber] = useState("");
+    const [formError, setFormErrors] = useState([]);
+    const [isLoading, setIsLoading] = useState(false);
     /** END */
 
     /** Radio Button Base Section Show Hide */
@@ -36,6 +38,7 @@ function OrderEntry() {
         mannual_edit: ''
     });
     console.log(Display.mock_docs);
+    /** end */
 
     /** Drag and Drop Order File Store */
     function onUpload (files) {
@@ -46,7 +49,6 @@ function OrderEntry() {
     }
     /** end */
     
-    +
     /** inti Component Did Mount */
     React.useEffect(() => {
 
@@ -215,11 +217,25 @@ function OrderEntry() {
     }
     /** end */
 
-    /** Order entry Submit */
-    const [formError, setFormErrors] = useState([]);
+    /** clear button function */
+    const ClearNow = (event) => {
+        event.preventDefault();
+        setOrderFile([]);
+        setLoanNumber('');
+        setDisplay({
+            mock_docs: '',
+            source_docs: '',
+            mannual_edit: ''
+        });
+        selectInputRef.current.select.clearValue();
+        document.getElementById("frm-order-entry").reset();
+        setIsLoading(false);
+    }
+    /** end */
+
+    /** Order entry Submit */    
 
     function OrderEntryValidation() {
-
         var IsFormValidate = true;
         let setErrorObj = [];
 
@@ -236,14 +252,16 @@ function OrderEntry() {
             setErrorObj['LoanNumber'] = "Loan Number is Required";
         }
 
-        setFormErrors({...setErrorObj})
+        setFormErrors({...setErrorObj});
         console.log('Validate is : ', IsFormValidate);
         console.log('Errors : ', setErrorObj);
         return IsFormValidate;
     }
 
     function handleSubmit(event){
-        event.preventDefault();
+        event.preventDefault(); 
+        setIsLoading(true);
+
         let IsValidate = OrderEntryValidation();
 
         if (IsValidate) {        
@@ -263,20 +281,22 @@ function OrderEntry() {
                 if (response.data.status != true) {
                     if (response.data.type == 'Form Validation') {
                         let form_errors = response.data.errors;
-                        console.log(form_errors.LoanNumber);
+                        console.log('Form Errors: ', form_errors.OrderFiles);
                         if (form_errors.LoanNumber) {
                             addToast(form_errors.LoanNumber, { appearance: 'error', autoDismiss: true, });
                         }
-                        if (form_errors.PrelimFile) {
+                        if (form_errors.OrderFiles) {
                             addToast(form_errors.OrderFiles, { appearance: 'error', autoDismiss: true, });
                         }
                     } else {
                         let CustomeContent = response.data.errors+' : '+response.data.message;
                         addToast(CustomeContent, { appearance: 'error', autoDismiss: true, });
                     }
+                    setIsLoading(false);
                 } else {
                     // addToast(response.data.message, { appearance: 'success', autoDismiss: true, });
                     //Modal Customization
+                    setIsLoading(false);
                     const options = {
                         title: response.data.message,
                         message: '',
@@ -323,6 +343,7 @@ function OrderEntry() {
                                                         });
                                                         selectInputRef.current.select.clearValue();
                                                         document.getElementById("frm-order-entry").reset();
+                                                         setIsLoading(false);
                                                         history.push('/orderentry');
                                                     }}>
                                                     Stay Back
@@ -353,6 +374,7 @@ function OrderEntry() {
             })
         } else {
             addToast('Please Fill the Required Fields', { appearance: 'error', autoDismiss: true, });
+            setIsLoading(false);
             return false;
         }
 
@@ -563,8 +585,12 @@ function OrderEntry() {
                 <div className="intro-y text-right mt-3">
                     <div className="grid grid-cols-12 gap-3">
                         <div className="intro-y col-span-12 lg:col-span-12 flex">
-                            <button className="btn btn-sm btn-dark-soft w-24 mr-1 ml-auto mb-2"> <Icon.X className="w-4 h-4 mr-2" /> Cancel </button>
-                            <button type="submit" className="btn btn-sm btn-primary w-24 mr-1 mb-2"> <Icon.Save className="w-4 h-4 mr-2" /> Save </button>
+                            <button className="btn btn-sm btn-dark-soft w-24 mr-1 ml-auto mb-2" onClick={ClearNow}> 
+                                <Icon.X className="w-4 h-4 mr-2" /> Clear 
+                            </button>
+                            <button type="submit" className="btn btn-sm btn-primary w-30 mr-1 mb-2"> 
+                                <Icon.Save className="w-4 h-4 mr-2" /> {(isLoading)? 'Loading...' : 'Place Order'} 
+                            </button>
                         </div>
                     </div>
                 </div>
