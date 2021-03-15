@@ -1,9 +1,12 @@
 import React from 'react';
 import auth from '../repository/auth';
 import * as Icon from 'react-feather';
+import { useSelector } from "react-redux";
+
 import { Router, Route, Link, browserHistory, IndexRoute, useHistory ,NavLink  } from 'react-router-dom';
 
 function TopBar(props) {
+      const ProfileDetails = useSelector((state) => state.Profile);
 
    return (  
         <>
@@ -275,8 +278,8 @@ function TopBar(props) {
                     <div className="dropdown-menu w-56">
                         <div className="dropdown-menu__content box bg-theme-11 dark:bg-dark-6 text-white">
                             <div className="p-4 border-b border-theme-12 dark:border-dark-3">
-                                <div className="font-medium">Tom Cruise</div>
-                                <div className="text-xs text-theme-13 mt-0.5 dark:text-gray-600">Frontend Engineer</div>
+                                <div className="font-medium">{ProfileDetails.UserName}</div>
+                                <div className="text-xs text-theme-13 mt-0.5 dark:text-gray-600">{ProfileDetails.RoleName}</div>
                             </div>
                             <div className="p-2">
                                 <Link to={'/profile'} className="flex items-center block p-2 transition duration-300 ease-in-out hover:bg-theme-1 dark:hover:bg-dark-3 rounded-md"> <Icon.User className="w-4 h-4 mr-2"/> Profile </Link>
