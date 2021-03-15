@@ -56,7 +56,7 @@ return(
                                             </tr>
                                             <tr>
                                                 <td><label>Property  </label></td>
-                                                <td><CDE className="change_input_field" value="" />6823 Rene St <br/>Shawnee, KS 66216</td>
+                                                <td><CDE className="change_input_field" html="6823 Rene St <br/>Shawnee, KS 66216"   onChange={handleChange}/></td>
                                             </tr>
                                             <tr>
                                                 <td><label>Estimated Prop. Value </label> </td>
