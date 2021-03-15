@@ -161,7 +161,8 @@ class OrderEntryController extends Controller
                                 'status' => true,
                                 'errors' => '',
                                 'message' => 'Order '. $OrderNumber['OrderNumber'].' Created Successfully',
-                                'orderuid' => $InsertData->OrderUID
+                                'orderuid' => $InsertData->OrderUID,
+                                'orderno' => $InsertData->OrderNumber
                             ]);
                         } else {
                             return response()->json([

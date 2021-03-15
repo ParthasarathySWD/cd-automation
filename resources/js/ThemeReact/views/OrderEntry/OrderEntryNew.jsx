@@ -17,6 +17,7 @@ function OrderEntry() {
     /** Create Reference for File Drag and Drop */
     const drop = React.useRef(null);
     const FileInput = React.useRef(null);
+    const selectInputRef = React.useRef();
 
     /** add Toast */
     const { addToast } = useToasts();
@@ -215,114 +216,147 @@ function OrderEntry() {
     /** end */
 
     /** Order entry Submit */
+    const [formError, setFormErrors] = useState([]);
+
+    function OrderEntryValidation() {
+
+        var IsFormValidate = true;
+        let setErrorObj = [];
+
+        if (selectInputRef.current.select.props.value != null) {
+            IsFormValidate = true;
+            console.log('Client Selected Value: ', selectInputRef.current.select.props.value.value);
+        } else {
+            IsFormValidate = false;
+            setErrorObj['Client'] = "Client is Required";          
+        }
+        
+        if (loannumber == '') {
+            IsFormValidate = false;
+            setErrorObj['LoanNumber'] = "Loan Number is Required";
+        }
+
+        setFormErrors({...setErrorObj})
+        console.log('Validate is : ', IsFormValidate);
+        console.log('Errors : ', setErrorObj);
+        return IsFormValidate;
+    }
 
     function handleSubmit(event){
         event.preventDefault();
+        let IsValidate = OrderEntryValidation();
+
+        if (IsValidate) {        
         
-        var formData = new FormData(event.target);
-        console.log(formData);
+            var formData = new FormData(event.target);
+            console.log(formData);
 
-        console.log(OrderFile);
-        Object.keys(OrderFile).map((fileName, index) => {
-            let file = OrderFile[fileName];
-            formData.append('OrderFiles[]', file);
-        });
+            console.log(OrderFile);
+            Object.keys(OrderFile).map((fileName, index) => {
+                let file = OrderFile[fileName];
+                formData.append('OrderFiles[]', file);
+            });
 
 
-        axios.post('orderentry', formData).then(response =>{
-            console.log(response);
-            if (response.data.status != true) {
-                if (response.data.type == 'Form Validation') {
-                    let form_errors = response.data.errors;
-                    console.log(form_errors.LoanNumber);
-                    if (form_errors.LoanNumber) {
-                        addToast(form_errors.LoanNumber, { appearance: 'error', autoDismiss: true, });
-                    }
-                    if (form_errors.PrelimFile) {
-                        addToast(form_errors.PrelimFile, { appearance: 'error', autoDismiss: true, });
+            axios.post('orderentry', formData).then(response =>{
+                console.log(response);
+                if (response.data.status != true) {
+                    if (response.data.type == 'Form Validation') {
+                        let form_errors = response.data.errors;
+                        console.log(form_errors.LoanNumber);
+                        if (form_errors.LoanNumber) {
+                            addToast(form_errors.LoanNumber, { appearance: 'error', autoDismiss: true, });
+                        }
+                        if (form_errors.PrelimFile) {
+                            addToast(form_errors.OrderFiles, { appearance: 'error', autoDismiss: true, });
+                        }
+                    } else {
+                        let CustomeContent = response.data.errors+' : '+response.data.message;
+                        addToast(CustomeContent, { appearance: 'error', autoDismiss: true, });
                     }
                 } else {
-                    let CustomeContent = response.data.errors+' : '+response.data.message;
-                    addToast(CustomeContent, { appearance: 'error', autoDismiss: true, });
-                }
-            } else {
-                // addToast(response.data.message, { appearance: 'success', autoDismiss: true, });
-                //Modal Customization
-                const options = {
-                    title: response.data.message,
-                    message: '',
-                    buttons: [
-                        {
-                          label: 'Goto the Order',
-                          onClick: () => {                            
-                            history.push('/summary/'+response.data.orderuid);
-                          },
-                          className: 'btn btn-xs btn-outline-primary'
-                        },
-                        {
-                          label: 'Stay Back',
-                          onClick: () => {                     
-                                history.push('/orderentry');
-                                setPrelimFile([]);
-                                setprelimDocType(1);
-                                setSupportFile([]);
-                                setsupportDocType([]);
-                                setLoanNumber('');
-                          },
-                          className: 'btn btn-xs btn-outline-success'
-                        }
-                    ],
-                    childrenElement: () => <div />,
-                    customUI: ({ onClose }) => {
-                        return (
-                            <div className='custom-ui'>
-                                <div class="box px-5 py-3 mb-3 flex items-center zoom-in">
-                                    <div class="w-10 h-10 flex-none image-fit rounded-full overflow-hidden">
-                                        <svg xmlns="http://www.w3.org/2000/svg" width="35" height="35" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="feather feather-smile block mx-auto text-theme-10">
-                                            <circle cx="12" cy="12" r="10"></circle>
-                                            <path d="M8 14s1.5 2 4 2 4-2 4-2"></path>
-                                            <line x1="9" y1="9" x2="9.01" y2="9"></line>
-                                            <line x1="15" y1="9" x2="15.01" y2="9"></line>
-                                        </svg>
-                                    </div>
-                                    <div class="ml-4 mr-auto">
-                                        <div class="font-medium">
-                                            Your Order Created Successfully
+                    // addToast(response.data.message, { appearance: 'success', autoDismiss: true, });
+                    //Modal Customization
+                    const options = {
+                        title: response.data.message,
+                        message: '',
+                        
+                        childrenElement: () => <div />,
+                        customUI: ({ onClose }) => {
+                            return (
+                                <div className='custom-ui'>
+                                    <div className="box px-5 py-3 mb-3 flex items-center zoom-in">
+                                        <div className="w-10 h-10 flex-none image-fit rounded-full overflow-hidden">
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="35" height="35" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" className="feather feather-smile block mx-auto text-theme-10">
+                                                <circle cx="12" cy="12" r="10"></circle>
+                                                <path d="M8 14s1.5 2 4 2 4-2 4-2"></path>
+                                                <line x1="9" y1="9" x2="9.01" y2="9"></line>
+                                                <line x1="15" y1="9" x2="15.01" y2="9"></line>
+                                            </svg>
                                         </div>
-                                        <div class="text-gray-600 text-xs mt-0.5">
-                                            Your Order Number <b>CD1001</b>
+                                        <div className="ml-4 mr-auto">
+                                            <div className="font-medium">
+                                                Your Order Created Successfully
+                                            </div>
+                                            <div className="text-gray-600 text-xs mt-0.5">
+                                                Your Order Number <b>{response.data.orderno}</b>
+                                            </div>
+                                            <div className="text-gray-600 text-xs mt-5 text-center"> 
+                                                <button 
+                                                    className="btn btn-sm btn-outline-dark w-24 inline-block mr-2 mb-2" 
+                                                    onClick={(event) => {
+                                                        history.push('/myorders');
+                                                        onClose();
+                                                    }}>
+                                                        My Orders
+                                                </button>
+                                                <button 
+                                                    className="btn btn-sm btn-outline-primary w-24 inline-block mr-1 mb-2" 
+                                                    onClick={(event) => {
+                                                        onClose();
+                                                        setOrderFile([]);
+                                                        setLoanNumber('');
+                                                        setDisplay({
+                                                            mock_docs: '',
+                                                            source_docs: '',
+                                                            mannual_edit: ''
+                                                        });
+                                                        selectInputRef.current.select.clearValue();
+                                                        document.getElementById("frm-order-entry").reset();
+                                                        history.push('/orderentry');
+                                                    }}>
+                                                    Stay Back
+                                                </button>
+                                            </div>
                                         </div>
-                                        <div class="text-gray-600 text-xs mt-5 text-center"> 
-                                            <button class="btn btn-sm btn-outline-dark w-24 inline-block mr-2 mb-2">My Orders</button>
-                                            <button class="btn btn-sm btn-outline-primary w-24 inline-block mr-1 mb-2">Stay Back</button>
+                                        <div className="text-theme-24 order-edit-icon">
+                                            <Icon.Edit3 id={response.data.orderuid} className="w-5 h-5" onClick={(event) => {
+                                                history.push('/summary/'+response.data.orderuid);
+                                                onClose();
+                                            }}/>
                                         </div>
-                                    </div>
-                                    <div class="text-theme-24 order-edit-icon">
-
-                                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="feather feather-edit-2 block mx-auto">
-                                            <path d="M17 3a2.828 2.828 0 1 1 4 4L7.5 20.5 2 22l1.5-5.5L17 3z"></path>
-                                        </svg>
-
                                     </div>
                                 </div>
-                            </div>
-                        )
-                    },
-                    closeOnEscape: false,
-                    closeOnClickOutside: false,
-                    willUnmount: () => {},
-                    afterClose: () => {},
-                    onClickOutside: () => {},
-                    onKeypressEscape: () => {},
-                    overlayClassName: "overlay-custom-class-name"
-                };
-                confirmAlert(options);
-            }
+                            )
+                        },
+                        closeOnEscape: false,
+                        closeOnClickOutside: false,
+                        willUnmount: () => {},
+                        afterClose: () => {},
+                        onClickOutside: () => {},
+                        onKeypressEscape: () => {},
+                        overlayClassName: "overlay-custom-class-name"
+                    };
+                    confirmAlert(options);
+                }
 
-        })
+            })
+        } else {
+            addToast('Please Fill the Required Fields', { appearance: 'error', autoDismiss: true, });
+            return false;
+        }
 
     }
-
     /** end */    
 
     return (
@@ -336,7 +370,16 @@ function OrderEntry() {
                             
                             <div className="grid grid-cols-12 gap-3">
                             <div className="col-span-3"> 
-                                    <label htmlFor="regular-form-2" className="form-label">Loan Number</label>
+                                    <label htmlFor="regular-form-2" className="form-label">
+                                        Loan Number
+                                        <span className="text-theme-24 ml-1">*</span>
+                                        {
+                                            (formError.LoanNumber != '') &&
+                                            <span className="text-theme-24 text-xs mt-0.5 ml-2">
+                                                {formError.LoanNumber}
+                                            </span>
+                                        }
+                                    </label>
                                     <div className="input-group"> 
                                         <div id="input-group-email" className="input-group-text">
                                             <Icon.Hash className="w-4 h-4" />
@@ -345,12 +388,21 @@ function OrderEntry() {
                                     </div>
                                 </div>
                                 <div className="col-span-3"> 
-                                    <label htmlFor="regular-form-2" className="form-label">Client</label>
+                                    <label htmlFor="regular-form-2" className="form-label">
+                                        Client
+                                        <span className="text-theme-24 ml-1">*</span>
+                                        {
+                                            (formError.Client != '') &&
+                                            <span className="text-theme-24 text-xs mt-0.5 ml-2">
+                                                {formError.Client}
+                                            </span>
+                                        }
+                                    </label>
                                     <Select 
                                         className="" 
+                                        ref={selectInputRef}
                                         options={ClientOption} 
                                         name="ClientUID" 
-                                        onChange={DocumentTypeChange}
                                         menuPortalTarget={document.body}
                                         styles={{ menuPortal: base => ({ ...base, zIndex: 9999 }) }}
                                     />
@@ -371,10 +423,10 @@ function OrderEntry() {
                                 <div className="col-span-6">
 
                                     <div className="col-span-12" >
-                                        <div class="text-gray-900 text-lg whitespace-nowrap mb-2">
+                                        <div className="text-gray-900 text-lg whitespace-nowrap mb-2">
                                             How would you like to get started?
                                         </div>
-                                        <div class="text-gray-800 text-md whitespace-nowrap mt-2">
+                                        <div className="text-gray-800 text-md whitespace-nowrap mt-2">
                                             Do you want to compare Mock CD with the releavant source documents?
                                         </div>
                                         
@@ -407,7 +459,7 @@ function OrderEntry() {
                                         (Display.mock_docs == 'No') &&
 
                                         <div className="col-span-12">
-                                            <div class="text-gray-800 text-md whitespace-nowrap mt-2">
+                                            <div className="text-gray-800 text-md whitespace-nowrap mt-2">
                                                 Do you want to create CD with the source document?
                                             </div>                                    
                                             <div className="col-span-12 lg:col-span-12 sm:col-span-12 mt-1 flex" onChange={radioButtonChange}> 
@@ -425,7 +477,7 @@ function OrderEntry() {
                                     {
                                         (Display.source_docs == 'No' && Display.mock_docs == 'No') &&
                                         <div className="col-span-12">
-                                            <div class="text-gray-800 text-md whitespace-nowrap mt-2">
+                                            <div className="text-gray-800 text-md whitespace-nowrap mt-2">
                                                 Do you want to upload Mock CD and use manual edit option?
                                             </div>                                    
                                             <div className="col-span-12 lg:col-span-12 sm:col-span-12 mt-1 flex" onChange={radioButtonChange}> 
@@ -446,7 +498,7 @@ function OrderEntry() {
                                         <div className="intro-y col-span-12 lg:col-span-6 mt-5">
                                             <div className="preview text-center">
                                                 <div className="dropzone" id="SupportDocumentSection" ref={drop}>
-                                                    <button type="button" class="btn btn-sm btn-dark-soft w-24 mr-1 ml-auto mb-2" id="SupportDocumentButton" onClick={handleUploadBtnClick}> 
+                                                    <button type="button" className="btn btn-sm btn-dark-soft w-24 mr-1 ml-auto mb-2" id="SupportDocumentButton" onClick={handleUploadBtnClick}> 
                                                         <input multiple accept="application/pdf" type="file" style={DisplayNone} id="SupportDocument" className="form-control" ref={FileInput} onChange={handelFileInputChange}/>
                                                         <Icon.File className="w-4 h-4 mr-2" /> Upload 
                                                     </button>
