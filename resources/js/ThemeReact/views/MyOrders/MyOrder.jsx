@@ -197,20 +197,20 @@ function MyOrder(){
                       </div> 
                       <div className="grid grid-cols-12 gap-3" style={{marginTop:'10px'}}>
                         <div className="p-5 col-span-2 lg:col-span-2 sm:col-span-2">
-                          <label className="ml-10" style={{fontSize:'22px'}}>123</label><br/>
-                          <label className="ml-6 mt-2" style={{fontSize:'14px'}}>Today Orders</label>
+                          <label className="ml-10 progress-count font-semibold">123</label><br/>
+                          <label className="ml-6 mt-2 progress-label">Today Orders</label>
                         </div>
                         <div className="p-5 col-span-2 lg:col-span-2 sm:col-span-2">
-                          <label className="ml-9" style={{fontSize:'22px'}}>137</label><br/>
-                          <label className="ml-6 mt-2" style={{fontSize:'14px'}}>All Orders</label>
+                          <label className="ml-9 progress-count font-semibold">137</label><br/>
+                          <label className="ml-6 mt-2 progress-label">All Orders</label>
                         </div>
                         <div className="p-5 col-span-2 lg:col-span-2 sm:col-span-2">
-                          <label className="ml-9" style={{fontSize:'22px'}}>110</label><br/>
-                          <label className="mt-2" style={{fontSize:'14px'}}>Inprogress Orders</label>
+                          <label className="ml-9 progress-count font-semibold">110</label><br/>
+                          <label className="mt-2 progress-label">Inprogress Orders</label>
                         </div>
                         <div className="p-5 col-span-2 lg:col-span-2 sm:col-span-2">
-                          <label className="ml-10" style={{fontSize:'22px'}}>27</label><br/>
-                          <label className="mt-2" style={{fontSize:'14px'}}>Completed Orders</label>
+                          <label className="ml-10 progress-count font-semibold">27</label><br/>
+                          <label className="mt-2 progress-label">Completed Orders</label>
                         </div>
                         <div className="float-right"> 
                         <Link to={'/orderentry'}><button className="btn btn-primary btn-order">Create Order</button></Link>
@@ -218,7 +218,7 @@ function MyOrder(){
                       </div>
                      
                       <div className="child-container first-child">
-                          <div className="tabs" style={{marginTop:'50px',paddingTop:'5px',height:'70px',paddingLeft:'10px'}}> 
+                          <div className="tabs" style={{marginTop:'20px',paddingTop:'5px',height:'70px',paddingLeft:'10px'}}> 
                             <div className="grid grid-cols-12 gap-3">
                              
                               {/* Filter dropdown */}
@@ -272,7 +272,7 @@ function MyOrder(){
                                  
 
                                 
-                                  <div className="col-span-3 lg:col-span-3 sm:col-span-3 mt-3" style={{marginTop:'40px',marginLeft:'90px'}}>
+                                  <div className="col-span-3 lg:col-span-3 sm:col-span-3 mt-3" style={{marginTop:'40px',marginLeft:'140px'}}>
                                         <form id="tabulator-html-filter-form" className="xl:flex sm:mr-auto" >
                                             <div className="sm:flex items-center sm:mr-4 mt-2 xl:mt-0">
                                                 <input id="tabulator-html-filter-value" type="text" className="pr-2 form-control form-control-sm sm:w-40 xxl:w-full mt-2 sm:mt-0" placeholder="Search..."/>

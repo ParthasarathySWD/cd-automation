@@ -145,3 +145,11 @@
 .border-secondary {
     border-color: #dee2e6 !important;
 }
+
+.progress-label{
+    font-size:14px;
+}
+.progress-count
+{
+    font-size:22px;
+}
