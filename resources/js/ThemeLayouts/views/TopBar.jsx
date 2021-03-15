@@ -1,8 +1,7 @@
 import React from 'react';
 import auth from '../repository/auth';
 import * as Icon from 'react-feather';
-import { Router, Route, Link, browserHistory, IndexRoute, useHistory  } from 'react-router-dom';
-import { icons } from 'feather-icons';
+import { Router, Route, Link, browserHistory, IndexRoute, useHistory ,NavLink  } from 'react-router-dom';
 
 function TopBar(props) {
 
@@ -17,12 +16,98 @@ function TopBar(props) {
                 </a>
                 
                 
-                <div className="-intro-x breadcrumb mr-auto">  <i data-feather="chevron-right" className="breadcrumb__icon"></i>  </div>
+                <div className="-intro-x breadcrumb mr-auto"> 
+        <nav className="top-nav">
+            <ul>
+                <li>
+                    <NavLink to={'/dashboard'} className="top-menu " activeClassName="top-menu--active">
+                        <div class="top-menu__icon"> <Icon.Home className="w-4 h-4" /></div>
+                        <div className="top-menu__title"> Dashboard <i data-feather="chevron-down" className="top-menu__sub-icon"></i> </div>
+                    </NavLink>
+
+                </li>
+                {/* <li>
+                    <NavLink to={'/login'} className="top-menu">
+                        <div className="top-menu__title"> Login <i data-feather="chevron-down" className="top-menu__sub-icon"></i> </div>
+                    </NavLink>
+
+                </li> */}
+                <li>
+                    <NavLink to={'/orderentry'} className="top-menu" activeClassName="top-menu--active">
+                        <div class="top-menu__icon"> <Icon.Edit3 className="w-4 h-4" /></div>
+                        <div className="top-menu__title"> Order Entry </div>
+                    </NavLink>
+
+                </li>
+                <li>
+                    <NavLink to={'/myorders'} className="top-menu" activeClassName="top-menu--active">
+                        <div class="top-menu__icon"> <Icon.Layers className="w-4 h-4" /></div>
+                        <div className="top-menu__title"> My Orders </div>
+                    </NavLink>
+                </li>
+                {/* <li>
+                    <NavLink to={'/cddetails'} className="top-menu">
+                        <div className="top-menu__title"> CD Details <i data-feather="chevron-down" className="top-menu__sub-icon"></i> </div>
+                    </NavLink>
+                </li> */}
+                {/* <li>
+                    <Link to={'/form'} className="top-menu top-menu--active">
+                        <div className="top-menu__title"> Form <i data-feather="chevron-down" className="top-menu__sub-icon"></i> </div>
+                    </Link>
+                </li> */}
+                {/*
+                <li>
+                    
+                    <a className="top-menu">
+                        <div class="top-menu__icon"> <Icon.Layers className="w-4 h-4" /></div>
+                        <div className="top-menu__title"> Admin <i data-feather="chevron-down" className="top-menu__sub-icon"></i> 
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-down top-menu__sub-icon"><polyline points="6 9 12 15 18 9"></polyline></svg></div>
+                    </a>
+                    <ul className="">
+                       
+                        
+                        <li>
+                            <NavLink to={'/allusers'} className="top-menu">
+                                <div className="top-menu__title"> Users </div>
+                            </NavLink>
+                        </li>
+                        <li>
+                            <NavLink to={'/allclients'} className="top-menu">
+                                <div className="top-menu__title"> Clients </div>
+                            </NavLink>
+                        </li>
+                       
+                    </ul>
+                </li>*/}
+                <li>
+                    <a class="top-menu">
+                        <div class="top-menu__icon"> <Icon.Grid className="w-4 h-4" /> </div>
+                        <div class="top-menu__title"> Admin <Icon.ChevronDown className="w-4 h-4 top-menu__sub-icon" /> </div>
+                    </a>
+                    <ul class="">
+                        <li>
+                            <NavLink to={'/allusers'} class="top-menu">
+                                <div class="top-menu__icon"> <Icon.Users className="w-4 h-4" /> </div>
+                                <div class="top-menu__title"> Users </div>
+                            </NavLink>
+                        </li>
+                        <li>
+                            <NavLink to={'/allclients'} class="top-menu">
+                                <div class="top-menu__icon"> <Icon.Users className="w-4 h-4" /> </div>
+                                <div class="top-menu__title"> Clients </div>
+                            </NavLink>
+                        </li>
+                    </ul>
+                </li>
+            
+            </ul>
+        </nav>
+                 </div>
                 
                 
                 <div className="intro-x relative mr-3 sm:mr-6">
                     <div className="search hidden sm:block">
-                        <input type="text" className="search__input form-control dark:bg-dark-1 border-transparent placeholder-theme-8" placeholder="Search..." />
+                        <input type="text" className="search__input form-control form-control-sm dark:bg-dark-1 border-transparent placeholder-theme-8" placeholder="Search..." />
                         <i data-feather="search" className="search__icon dark:text-gray-300"></i> 
                     </div>
                     <a className="notification sm:hidden" href=""> <i data-feather="search" className="notification__icon dark:text-gray-300"></i> </a>

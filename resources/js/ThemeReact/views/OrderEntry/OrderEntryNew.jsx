@@ -329,7 +329,7 @@ function OrderEntry() {
                         <div className="intro-y box  p-5">
                             
                             <div className="grid grid-cols-12 gap-3">
-                                <div className="mt-3 col-span-3"> 
+                            <div className="col-span-3"> 
                                     <label htmlFor="regular-form-2" className="form-label">Loan Number</label>
                                     <div className="input-group"> 
                                         <div id="input-group-email" className="input-group-text">
@@ -338,7 +338,7 @@ function OrderEntry() {
                                         <input type="text" className="form-control form-control-md" placeholder="Ex. 9876543224" value={loannumber} name="LoanNumber" onChange={loanChange}/> 
                                     </div>
                                 </div>
-                                <div className="mt-3 col-span-3"> 
+                                <div className="col-span-3"> 
                                     <label htmlFor="regular-form-2" className="form-label">Client</label>
                                     <Select 
                                         className="" 
@@ -365,15 +365,15 @@ function OrderEntry() {
                                 <div className="col-span-6">
 
                                     <div className="col-span-12" >
-                                        <div class="text-gray-800 text-lg whitespace-nowrap mt-0.5">
+                                        <div class="text-gray-900 text-lg whitespace-nowrap mb-2">
                                             How would you like to get started?
                                         </div>
-                                        <div class="text-gray-800 text-md whitespace-nowrap mt-1">
+                                        <div class="text-gray-800 text-md whitespace-nowrap mt-2">
                                             Do you want to compare Mock CD with the releavant source documents?
                                         </div>
                                         
                                         <div className="col-span-12 lg:col-span-12 sm:col-span-12 mt-1 flex" onChange={radioButtonChange} > 
-                                            <div className="form-check mt-2 mr-6">
+                                            <div className="form-check mb-2 mr-6">
                                                 <input 
                                                     id="mock_docs1" 
                                                     className="form-check-input" 
@@ -384,7 +384,7 @@ function OrderEntry() {
                                                 />
                                                 <label className="form-check-label" htmlFor="mock_docs1">Yes</label>
                                             </div>
-                                            <div className="form-check mt-2 mr-6">
+                                            <div className="form-check mb-2 mr-6">
                                                 <input 
                                                     id="mock_docs2" 
                                                     className="form-check-input" 
@@ -401,15 +401,15 @@ function OrderEntry() {
                                         (Display.mock_docs == 'No') &&
 
                                         <div className="col-span-12">
-                                            <div class="text-gray-800 text-md whitespace-nowrap mt-0.5">
+                                            <div class="text-gray-800 text-md whitespace-nowrap mt-2">
                                                 Do you want to create CD with the source document?
                                             </div>                                    
                                             <div className="col-span-12 lg:col-span-12 sm:col-span-12 mt-1 flex" onChange={radioButtonChange}> 
-                                                <div className="form-check mt-2 mr-6">
+                                                <div className="form-check mb-2 mr-6">
                                                     <input id="source_docs1" className="form-check-input" type="radio" name="source_docs" value="Yes"/>
                                                     <label className="form-check-label" htmlFor="source_docs1">Yes</label>
                                                 </div>
-                                                <div className="form-check mt-2 mr-6">
+                                                <div className="form-check mb-2 mr-6">
                                                     <input id="source_docs2" className="form-check-input" type="radio" name="source_docs" value="No"/>
                                                     <label className="form-check-label" htmlFor="source_docs2">No</label>
                                                 </div>
@@ -419,15 +419,15 @@ function OrderEntry() {
                                     {
                                         (Display.source_docs == 'No' && Display.mock_docs == 'No') &&
                                         <div className="col-span-12">
-                                            <div class="text-gray-800 text-md whitespace-nowrap mt-0.5">
+                                            <div class="text-gray-800 text-md whitespace-nowrap mt-2">
                                                 Do you want to upload Mock CD and use manual edit option?
                                             </div>                                    
                                             <div className="col-span-12 lg:col-span-12 sm:col-span-12 mt-1 flex" onChange={radioButtonChange}> 
-                                                <div className="form-check mt-2 mr-6">
+                                                <div className="form-check mb-2 mr-6">
                                                     <input id="mannual_edit1" className="form-check-input" type="radio" name="mannual_edit" value="Yes"/>
                                                     <label className="form-check-label" htmlFor="mannual_edit1">Yes</label>
                                                 </div>
-                                                <div className="form-check mt-2 mr-6">
+                                                <div className="form-check mb-2 mr-6">
                                                     <input id="mannual_edit2" className="form-check-input" type="radio" name="mannual_edit" value="No"/>
                                                     <label className="form-check-label" htmlFor="mannual_edit2">No</label>
                                                 </div>
