@@ -194,7 +194,7 @@ function TopBar(props) {
                 
                 
                 <div className="intro-x dropdown mr-4 sm:mr-6">
-                    <div className="dropdown-toggle notification notification--bullet cursor-pointer" role="button" aria-expanded="false"> <i data-feather="bell" className="notification__icon dark:text-gray-300"></i> </div>
+                    <div className="dropdown-toggle notification notification--bullet cursor-pointer" role="button" aria-expanded="false"> <Icon.Bell className="notification__icon dark:text-gray-300"/> </div>
                     <div className="notification-content pt-2 dropdown-menu">
                         <div className="notification-content__box dropdown-menu__content box dark:bg-dark-6">
                             <div className="notification-content__title">Notifications</div>

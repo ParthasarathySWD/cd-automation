@@ -95,14 +95,17 @@ function MyOrder(){
 
   // dropdown
 
-  const StatusOption = status.map(function (val) {
+  var StatusOption = status.map(function (val) {
     return { value: val.StatusUID, label: val.StatusName };
   })
-  let UserOptions={value:'',label:'Select'};
+  
+  StatusOption=[{value:'', label:'All'},...StatusOption];
 
-  const UserOption = allusers.map((val)=>{
+  var UserOption = allusers.map((val)=>{
       return {value:val.UserUID, label:val.UserName}
     })
+
+  UserOption=[{value:'', label:'All'}, ...UserOption];
 
    
   /* Should be passed from props starts */
@@ -163,7 +166,7 @@ function MyOrder(){
       {
         
         name: <b>Status</b>,
-        cell: row => <span className="p-1 text-theme-23" >{row['StatusName']}</span>
+        cell: row => <span className="p-1 text-theme-23" style={{color:'#e89223'}}>{row['StatusName']}</span>
       },
       {
         name:<b>Action</b>,
@@ -192,15 +195,28 @@ function MyOrder(){
                       <div className="myorder-header">
                         <label style={{fontSize:'22px'}} ><b>Orders List</b></label>
                       </div> 
-                      {/* <div className="grid grid-cols-12 gap-3" style={{marginTop:'10px'}}>
-                      <div className="box p-5 col-span-3 lg:col-span-3 sm:col-span-3" style={{backgroundColor:'white',boxShadow:'2px 2px 5px 2px blue'}}><label style={{fontSize:'18px'}}>All orders</label></div>
-                      <div className="box p-5 col-span-3 lg:col-span-3 sm:col-span-3" style={{backgroundColor:'white'}}>
-                        </div>  
-                        <div className="box p-5 col-span-2 lg:col-span-2 sm:col-span-2" style={{backgroundColor:'white'}}>
-                        </div>  
-                       
-                      </div> */}
-                      <Link to={'/orderentry'}><button className="btn btn-primary btn-order">CREATE ORDER</button></Link>
+                      <div className="grid grid-cols-12 gap-3" style={{marginTop:'10px'}}>
+                        <div className="p-5 col-span-2 lg:col-span-2 sm:col-span-2">
+                          <label className="ml-10" style={{fontSize:'22px'}}>123</label><br/>
+                          <label className="ml-6 mt-2" style={{fontSize:'14px'}}>Today Orders</label>
+                        </div>
+                        <div className="p-5 col-span-2 lg:col-span-2 sm:col-span-2">
+                          <label className="ml-9" style={{fontSize:'22px'}}>137</label><br/>
+                          <label className="ml-6 mt-2" style={{fontSize:'14px'}}>All Orders</label>
+                        </div>
+                        <div className="p-5 col-span-2 lg:col-span-2 sm:col-span-2">
+                          <label className="ml-9" style={{fontSize:'22px'}}>110</label><br/>
+                          <label className="mt-2" style={{fontSize:'14px'}}>Inprogress Orders</label>
+                        </div>
+                        <div className="p-5 col-span-2 lg:col-span-2 sm:col-span-2">
+                          <label className="ml-10" style={{fontSize:'22px'}}>27</label><br/>
+                          <label className="mt-2" style={{fontSize:'14px'}}>Completed Orders</label>
+                        </div>
+                        <div className="float-right"> 
+                        <Link to={'/orderentry'}><button className="btn btn-primary btn-order">Create Order</button></Link>
+                        </div>
+                      </div>
+                     
                       <div className="child-container first-child">
                           <div className="tabs" style={{marginTop:'50px',paddingTop:'5px',height:'70px',paddingLeft:'10px'}}> 
                             <div className="grid grid-cols-12 gap-3">

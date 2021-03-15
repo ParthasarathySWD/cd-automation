@@ -17,10 +17,10 @@
 }
 .btn-order
 {
-    /* position:absolute; */
+    position:absolute;
     float:right;
-    margin-right: 0.5em;
-    margin-top:-1em;
+    margin-left: 21em;
+    margin-top:1em;
     text-transform: none;
 }
 .status-row
