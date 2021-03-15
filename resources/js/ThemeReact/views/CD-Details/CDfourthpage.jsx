@@ -2,6 +2,11 @@ import React from 'react';
 import Table from 'react-bootstrap/Table';
 import './CDDetails.css';
 import CDTab from './CDTab.jsx';
+import CDE from "../../../components/ContentEditable";
+
+const handleChange = (e) => {
+    console.log(e);
+};
 function CDfourthpage(props) {
     
 
@@ -103,14 +108,14 @@ function CDfourthpage(props) {
                                                 over Year 1 
                                                 </p>
                                             </td>
-                                            <td>$<span contentEditable> 8,054.00</span></td>  
-                                            <td contentEditable >
-                                                <p>
+                                            <td><CDE className="change_input_field" html="$ 8,054.00" onChange={handleChange}/></td>  
+                                            <td  ><CDE className="change_input_field" html="<p>
                                                 Estimated total amount over year 1 for <br/>
                                                 your escrowed property cons: <br/>
                                                 Homeowner Insurance <br/>
                                                 Property taxes <br/>
-                                                </p>
+                                                </p>" onChange={handleChange}/>
+                                                
                                             </td>
                                         </tr>
                                         <tr>
@@ -121,14 +126,14 @@ function CDfourthpage(props) {
                                                 over Year 1
                                                 </p>
                                             </td>
-                                            <td>$<span contentEditable> 1,900.00</span></td>  
-                                            <td contentEditable>
-                                                <p>
+                                            <td><CDE className="change_input_field" html="$ 1,900.00" onChange={handleChange}/></td>  
+                                            <td ><CDE className="change_input_field" html="<p>
                                                 Estimated total amount over year 1 for <br/> 
                                                 your non-escrowed property costs: <br/>
                                                 Homeowner's  Association Dues: <br/> <br/>
                                                 You may have other property costs.
-                                                </p>
+                                                </p>" onChange={handleChange}/>
+                                                
                                             </td>
                                         </tr>
                                         <tr>
@@ -138,12 +143,12 @@ function CDfourthpage(props) {
                                                 Payment 
                                                 </p>
                                             </td>
-                                            <td>$<span contentEditable> 412.25</span></td>  
-                                            <td contentEditable>
-                                                <p>
+                                            <td><CDE className="change_input_field" html="$ 412.25" onChange={handleChange}/></td>  
+                                            <td ><CDE className="change_input_field" html="<p>
                                                 A cushion for the escrow account you <br/>
                                                 pay at closing. See Section G on page 2.
-                                                </p>
+                                                </p>" onChange={handleChange}/>
+                                                
                                             </td>
                                         </tr>
                                         <tr>
@@ -153,8 +158,11 @@ function CDfourthpage(props) {
                                                 Payment 
                                                 </p>
                                             </td>
-                                            <td>$<span contentEditable> 206.13</span></td>     
-                                            <td contentEditable>
+                                            <td><CDE className="change_input_field" html="$ 206.13" onChange={handleChange}/></td>     
+                                            <td ><CDE className="change_input_field" html="<p>
+                                                The amount included in your total <br/>
+                                                monthly payment
+                                                </p>" onChange={handleChange}/>
                                                 <p>
                                                 The amount included in your total <br/>
                                                 monthly payment
@@ -186,13 +194,13 @@ function CDfourthpage(props) {
                                                 over Year 1 
                                                 </p>
                                             </td>
-                                            <td contentEditable></td>
-                                            <td contentEditable>
-                                                <p>
+                                            <td ><CDE className="change_input_field" html="" onChange={handleChange}/></td>
+                                            <td ><CDE className="change_input_field" html="<p>
                                                 Estimated total amount over year 1. You <br/>
                                                 must pay these costs directly, possibly <br/>
                                                 in one or two large payments a year, 
-                                                </p>
+                                                </p>" onChange={handleChange}/>
+                                                
                                             </td>
                                         </tr>
                                         <tr>
@@ -201,8 +209,8 @@ function CDfourthpage(props) {
                                                 Escrow Waiver Fee 
                                                 </p>
                                             </td>
-                                            <td contentEditable></td>
-                                            <td contentEditable></td>
+                                            <td ><CDE className="change_input_field" html="" onChange={handleChange}/></td>
+                                            <td ><CDE className="change_input_field" html="" onChange={handleChange}/></td>
                                         </tr>
                                     </tbody>
                                 </Table>  
@@ -224,7 +232,7 @@ function CDfourthpage(props) {
         </div>
         <div className="col-span-12 lg:col-span-12 sm:col-span-3 mt-3">
         <button type="submit" className="btn btn-xs btn-primary mr-2 ml-2 float-right" ><a data-toggle="tab" data-target="#PageFive">Next</a></button>
-        <button type="submit" className="btn btn-xs btn-primary mr-2 ml-2 float-right">Submit</button>
+        {/* <button type="submit" className="btn btn-xs btn-primary mr-2 ml-2 float-right">Submit</button> */}
              <button type="submit" className="btn  btn-xs btn-danger float-left"><a data-toggle="tab" data-target="#PageThree">Previous</a></button>                                
          </div>
         </>

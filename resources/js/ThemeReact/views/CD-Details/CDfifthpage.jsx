@@ -2,7 +2,11 @@ import React from 'react';
 import Table from 'react-bootstrap/Table';
 import './CDDetails.css';
 import CDTab from './CDTab.jsx';   
+import CDE from "../../../components/ContentEditable";
 
+const handleChange = (e) => {
+    console.log(e);
+};
 function CDfifthpage(props) {
     
 
@@ -29,30 +33,30 @@ function CDfifthpage(props) {
                                     <td><b>Total of Payments.</b><p>Total you will have paid after <br/>
                                         you make all payments of principal interest,<br/>
                                     mortgage insurance, and loan costs, as scheduled  </p></td>
-                                    <td>$<span contentEditable> 285,803.36</span></td>   
+                                    <td><CDE className="change_input_field" html="$ 285,803.36" onChange={handleChange}/></td>   
                                 </tr>
                                 <tr>
                                     <td><b>Finance Charge.</b><p> The dollar amount the loan will<br/>
                                         cost you. </p> </td>
-                                        <td>$<span contentEditable> 118,830.27</span></td>    
+                                        <td><CDE className="change_input_field" html="$ 118,830.27" onChange={handleChange}/></td>    
                                 </tr>
                                 <tr>
                                     <td><b>Amount Financed.</b><p> The loan amount available after<br/>
                                     paying your upfront finance charge. </p> </td>
-                                    <td>$<span contentEditable> 162,000.00</span></td>   
+                                    <td><CDE className="change_input_field" html="$ 162,000.00" onChange={handleChange}/></td>   
                                 </tr>
                                 <tr>
                                     <td><b>Annual Percent.age Rate (APR).</b><p> Your costs over<br/>
                                     the loan term expressed as a rate. This is not your<br/>
                                     interest rate,</p></td>
                                     
-                                        <td contentEditable>4.174%</td>
+                                        <td ><CDE className="change_input_field" html="4.174%" onChange={handleChange}/></td>
                                 </tr>
                                 <tr>
                                     <td><b>Total lnterest Percent.age (TIP).The total amount</b><p><br/>
                                 of interest that you will pay aver the loan term as a<br/>
                                 percentage of your loan amount.</p> </td>
-                                        <td contentEditable>69.46%</td>
+                                        <td ><CDE className="change_input_field" html="69.46%" onChange={handleChange}/></td>
                                 </tr>
                                 <tr>
                                     <td><b>Questions? </b>If you have questions about the<br/>
@@ -129,20 +133,20 @@ function CDfifthpage(props) {
              <tbody>
           <tr>
                <td>Name </td>
-              <td contentEditable>Ficus Bank </td>
+              <td ><CDE className="change_input_field" html="Ficus Bank " onChange={handleChange}/></td>
                <td></td>
-              <td contentEditable>Omega Real Estate <br/>Broker Inc</td>
-              <td contentEditable>Alpha Real Estate <br/>Broker Inc</td>
-              <td contentEditable>Epsilon Title Co.</td>
+              <td ><CDE className="change_input_field" html="Omega Real Estate <br/>Broker Inc" onChange={handleChange}/></td>
+              <td ><CDE className="change_input_field" html="Alpha Real Estate <br/>Broker Inc" onChange={handleChange}/></td>
+              <td ><CDE className="change_input_field" html="Epsilon Title Co." onChange={handleChange}/></td>
           </tr>
           <tr>
                <td>Address</td>
-                <td contentEditable>4321 Random Blvd,
-                Somecity, ST 12340</td>
+                <td ><CDE className="change_input_field" html="4321 Random Blvd,
+                Somecity, ST 12340" onChange={handleChange}/></td>
                <td></td>
-               <td contentEditable>789 LocalLane <br/>Sometow, ST 12345</td>
-               <td contentEditable>98 7 Suburb Ct. <br/>Someplace, ST 12340 </td>
-               <td contentEditable>123 Commerce Pl. <br/>  Somecity,ST 12344</td>
+               <td ><CDE className="change_input_field" html="789 LocalLane <br/>Sometow, ST 12345" onChange={handleChange}/></td>
+               <td ><CDE className="change_input_field" html="98 7 Suburb Ct. <br/>Someplace, ST 12340 " onChange={handleChange}/></td>
+               <td ><CDE className="change_input_field" html="123 Commerce Pl. <br/>  Somecity,ST 12344" onChange={handleChange}/></td>
          </tr>
         <tr>
                  <td>NMLSID </td>
@@ -154,21 +158,21 @@ function CDfifthpage(props) {
                  <td>ST LicenseID </td>
                 <td></td>
                 <td></td>
-                <td contentEditable>Z765416 </td>
-                <td contentEditable>Z61456</td>
-                <td contentEditable>Z61616 </td>
+                <td ><CDE className="change_input_field" html="Z765416" onChange={handleChange}/> </td>
+                <td ><CDE className="change_input_field" html="Z61456" onChange={handleChange}/></td>
+                <td ><CDE className="change_input_field" html="Z61616" onChange={handleChange}/> </td>
           </tr>
           <tr>
                  <td>Contact</td>
-                <td contentEditable>Joe Smith</td>
+                <td ><CDE className="change_input_field" html="Joe Smith" onChange={handleChange}/></td>
                 <td></td>
-                <td contentEditable>Samuel Green </td>
-                <td contentEditable>Joseph Cain</td>
-                <td contentEditable>Sarah Arnold  </td>
+                <td ><CDE className="change_input_field" html="Samuel Green " onChange={handleChange}/></td>
+                <td ><CDE className="change_input_field" html="Joseph Cain" onChange={handleChange}/></td>
+                <td ><CDE className="change_input_field" html="Sarah Arnold  " onChange={handleChange}/></td>
           </tr>
           <tr>
                  <td>Contact NMLS 10</td>
-                <td contentEditable>12345 </td>
+                <td ><CDE className="change_input_field" html="12345 " onChange={handleChange}/></td>
                 <td></td>
                 <td></td>
                 <td></td>
@@ -178,25 +182,25 @@ function CDfifthpage(props) {
                  <td>Contact ST Lecense ID</td>
                 <td> </td>
                 <td></td>
-                <td contentEditable>P16415 </td>
-                <td contentEditable>P51461 </td>
-                <td contentEditable>PT1234</td>
+                <td ><CDE className="change_input_field" html="P16415 " onChange={handleChange}/></td>
+                <td ><CDE className="change_input_field" html="P51461 " onChange={handleChange}/> </td>
+                <td ><CDE className="change_input_field" html="PT1234 " onChange={handleChange}/></td>
           </tr>
           <tr>
                  <td>Email</td>
-                <td contentEditable> joesmith@ficusbank.com </td>
+                <td ><CDE className="change_input_field" html=" joesmith@ficusbank.com " onChange={handleChange}/></td>
                 <td></td>
-                <td contentEditable>sam@omegare.biz </td>
-                <td contentEditable>joe@alphare.biz</td>
-                <td contentEditable>sarah@epsilontitle.com</td>
+                <td ><CDE className="change_input_field" html="sam@omegare.biz " onChange={handleChange}/></td>
+                <td ><CDE className="change_input_field" html="joe@alphare.biz" onChange={handleChange}/></td>
+                <td ><CDE className="change_input_field" html="sarah@epsilontitle.com" onChange={handleChange}/></td>
           </tr>
           <tr>
                  <td>Phone</td>
-                <td contentEditable> 123456-7890 </td>
+                <td ><CDE className="change_input_field" html=" 123456-7890 " onChange={handleChange}/></td>
                 <td></td>
-                <td contentEditable> 123-555-1717  </td>
-                <td contentEditable>321-555-7171 </td>
-                <td contentEditable>1987-555-4321 </td>
+                <td ><CDE className="change_input_field" html=" 123-555-1717  " onChange={handleChange}/></td>
+                <td ><CDE className="change_input_field" html="321-555-7171 " onChange={handleChange}/></td>
+                <td ><CDE className="change_input_field" html="1987-555-4321 " onChange={handleChange}/></td>
           </tr>
   </tbody>
 </Table>

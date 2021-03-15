@@ -2,7 +2,228 @@ import React from "react";
 import Table from "react-bootstrap/Table";
 import "./CDDetails.css";
 import CDTab from "./CDTab.jsx";
+import CDE from "../../../components/ContentEditable";
+
+
 function CDsecondpage(props) {
+    const handleChange = (e) => {
+        console.log(e);
+    };
+    const [state, setstate] = useState({
+
+        OriginationChargesBorrowerPaid: '',
+        OriginationChargesSellerPaid: '',
+        OriginationChargesPaidByOthers: '',
+        BorrowerLoanAmountPointsAtClosing: '',
+        BorrowerLoanAmountPointsBeforeClosing: '',
+        SellerLoanAmountPointsAtClosing: '',
+        SellerLoanAmountPointsBeforeClosing: '',
+        LoanAmountPointsPaidByOthers: '',
+        ApplicationFeeBorrowerAtClosing: '',
+        ApplicationFeeBorrowerBeforeClosing: '',
+        ApplicationFeeSellerAtClosing: '',
+        ApplicationFeeSellerBeforeClosing: '',
+        ApplicationFeePaidByOthers: '',
+        UnderwritingFeeBorrowerAtClosing: '',
+        UnderwritingFeeBorrowerBeforeClosing: '',
+        UnderwritingFeeSellerAtClosing: '',
+        UnderwritingFeeSellerBeforeClosing: '',
+        UnderwritingFeePaidByOthers: '',
+        ServiceBorrowerDidNotShopBorrowerPaid: '',
+        ServiceBorrowerDidNotShopSellerrPaid: '',
+        ServiceBorrowerDidNotShopPaidByOthers: '',
+        AppraisalFeeBorrowerAtClosing: '',
+        AppraisalFeeBorrowerBeforeClosing: '',
+        AppraisalFeeSellerAtClosing: '',
+        AppraisalFeeSellerBeforeClosing: '',
+        AppraisalFeePaidByOthers: '',
+        CreditReportFeeBorrowerAtClosing: '',
+        CreditReportFeeBorrowerBeforeClosing: '',
+        CreditReportFeeSellerAtClosing: '',
+        CreditReportFeeSellerBeforeClosing: '',
+        CreditReportFeePaidByOthers: '',
+        FloodDeterminationFeeBorrowerAtClosing: '',
+        FloodDeterminationFeeBorrowerBeforeClosing: '',
+        FloodDeterminationFeeSellerAtClosing: '',
+        FloodDeterminationFeeSellerBeforeClosing: '',
+        FloodDeterminationFeePaidByOthers: '',
+        FloodMonitoringFeeBorrowerAtClosing: '',
+        FloodMonitoringFeeBorrowerBeforeClosing: '',
+        FloodMonitoringFeeSellerAtClosing: '',
+        FloodMonitoringFeeSellerBeforeClosing: '',
+        FloodMonitoringFeePaidByOthers: '',
+        TaxMonitoringFeeBorrowerAtClosing: '',
+        TaxMonitoringFeeBorrowerBeforeClosing: '',
+        TaxMonitoringFeeSellerAtClosing: '',
+        TaxMonitoringFeeSellerBeforeClosing: '',
+        TaxMonitoringFeePaidByOthers: '',
+        TaxStatusReseachBorrowerAtClosing: '',
+        TaxStatusReseachBorrowerBeforeClosing: '',
+        TaxStatusReseachSellerAtClosing: '',
+        TaxStatusReseachSellerBeforeClosing: '',
+        TaxStatusReseachPaidByOthers: '',
+        ServiceBorrowerDidNotShopBorrowerPaid: '',
+        ServiceBorrowerDidNotShopSellerPaid: '',
+        ServiceBorrowerDidNotShopPaidByOthers: '',
+        PestInspectionFeeBorrowerAtClosing: '',
+        PestInspectionFeeBorrowerBeforeClosing: '',
+        PestInspectionFeeSellerAtClosing: '',
+        PestInspectionFeeSellerBeforeClosing: '',
+        PestInspectionFeePaidByOthers: '',
+        SurveyFeeBorrowerAtClosing: '',
+        SurveyFeeBorrowerBeforeClosing: '',
+        SurveyFeeSellerAtClosing: '',
+        SurveyFeeSellerBeforeClosing: '',
+        SurveyFeePaidByOthers: '',
+        TitlelnsuranceBinderBorrowerAtClosing: '',
+        TitlelnsuranceBinderBorrowerBeforeClosing: '',
+        TitlelnsuranceBinderSellerAtClosing: '',
+        TitlelnsuranceBinderSellerBeforeClosing: '',
+        TitlelnsuranceBinderPaidByOthers: '',
+        LendersTitleInsuranceBorrowerAtClosing: '',
+        LendersTitleInsuranceBorrowerBeforeClosing: '',
+        LendersTitleInsuranceSellerAtClosing: '',
+        LendersTitleInsuranceSellerBeforeClosing: '',
+        LendersTitleInsurancePaidByOthers: '',
+        SettlementAgentFeeBorrowerAtClosing: '',
+        SettlementAgentFeeBorrowerBeforeClosing: '',
+        SettlementAgentFeeSellerAtClosing: '',
+        SettlementAgentFeeSellerBeforeClosing: '',
+        SettlementAgentFeePaidByOthers: '',
+        TitleSearchBorrowerAtClosing: '',
+        TitleSearchBorrowerBeforeClosing: '',
+        TitleSearchSellerAtClosing: '',
+        TitleSearchSellerBeforeClosing: '',
+        TitleSearchPaidByOthers: '',
+        TotalLoanCostsBorrowerPaid: '',
+        TotalLoanCostsSellerPaid: '',
+        TotalLoanCostsPaidByOthers: '',
+        LoanCostsSubtotalsBorrowerAtClosing: '',
+        LoanCostsSubtotalsBorrowerBeforeClosing: '',
+        LoanCostsSubtotalsSellerAtClosing: '',
+        LoanCostsSubtotalsSellerBeforeClosing: '',
+        LoanCostsSubtotalsPaidByOthers: '',
+        TaxesandOtherGovernmentFeesBorrowerPaid: '',
+        TaxesandOtherGovernmentFeesSellerPaid: '',
+        TaxesandOtherGovernmentFeesPaidByOthers: '',
+        RecordingFeesBorrowerAtClosing: '',
+        RecordingFeesBorrowerBeforeClosing: '',
+        RecordingFeesSellerAtClosing: '',
+        RecordingFeesSellerBeforeClosing: '',
+        RecordingFeesPaidByOthers: '',
+        TransferTaxBorrowerAtClosing: '',
+        TransferTaxBorrowerBeforeClosing: '',
+        TransferTaxSellerAtClosing: '',
+        TransferTaxSellerBeforeClosing: '',
+        TransferTaxPaidByOthers: '',
+        PrepaidsBorrowerPaid: '',
+        PrepaidsSellerPaid: '',
+        PrepaidsPaidByOthers: '',
+        InsurancePremiumBorrowerAtClosing: '',
+        InsurancePremiumBorrowerBeforeClosing: '',
+        InsurancePremiumSellerAtClosing: '',
+        InsurancePremiumSellerBeforeClosing: '',
+        InsurancePremiumPaidByOthers: '',
+        MortgageInsurancePremiumBorrowerAtClosing: '',
+        MortgageInsurancePremiumBorrowerBeforeClosing: '',
+        MortgageInsurancePremiumSellerAtClosing: '',
+        MortgageInsurancePremiumSellerBeforeClosing: '',
+        MortgageInsurancePremiumPaidByOthers: '',
+        PrepaidInterestBorrowerAtClosing: '',
+        PrepaidInterestBorrowerBeforeClosing: '',
+        PrepaidInterestSellerAtClosing: '',
+        PrepaidInterestSellerBeforeClosing: '',
+        PrepaidInterestPaidByOthers: '',
+        PrepaidPropertyTaxesBorrowerAtClosing: '',
+        PrepaidPropertyTaxesBorrowerBeforeClosing: '',
+        PrepaidPropertyTaxesSellerAtClosing: '',
+        PrepaidPropertyTaxesSellerBeforeClosing: '',
+        PrepaidPropertyTaxesPaidByOthers: '',
+        InitialEscrowPaymentBorrowerPaid: '',
+        InitialEscrowPaymentSellerPaid: '',
+        InitialEscrowPaymentPaidByOthers: '',
+        HomeownersInsuranceBorrowerAtClosing: '',
+        HomeownersInsuranceBorrowerBeforeClosing: '',
+        HomeownersInsuranceSellerAtClosing: '',
+        HomeownersInsuranceBeforeClosing: '',
+        HomeownersInsurancePaidByOthers: '',
+        MortgagelnsuranceBorrowerAtClosing: '',
+        MortgagelnsuranceBorrowerBeforeClosing: '',
+        MortgagelnsuranceSellerAtClosing: '',
+        MortgagelnsuranceSellerBeforeClosing: '',
+        MortgagelnsurancePaidByOthers: '',
+        EscrowPropertyTaxesBorrowerAtClosing: '',
+        EscrowPropertyTaxesBeforeClosing: '',
+        EscrowPropertyTaxesSellerAtClosing: '',
+        EscrowPropertyTaxesBeforeClosing: '',
+        EscrowPropertyTaxesPaidByOthers: '',
+        AggregateAdjustmentBorrowerAtClosing: '',
+        AggregateAdjustmentBorrowerBeforeClosing: '',
+        AggregateAdjustmentSellerAtClosing: '',
+        AggregateAdjustmentBeforeClosing: '',
+        AggregateAdjustmentPaidByOthers: '',
+        OtherBorrowerPaid: '',
+        OtherSellerPaid: '',
+        OtherPaidByOthers: '',
+        HOACapitalContributionBorrowerAtClosing: '',
+        HOACapitalContributionBorrowerBeforeClosing: '',
+        HOACapitalContributionSellerAtClosing: '',
+        HOACapitalContributionSellerBeforeClosing: '',
+        HOACapitalContributionPaidByOthers: '',
+        HOAProcessingFeeBorrowerAtClosing: '',
+        HOAProcessingFeeBorrowerBeforeClosing: '',
+        HOAProcessingFeeSellerAtClosing: '',
+        HOAProcessingFeeSellerBeforeClosing: '',
+        HOAProcessingFeePaidByOthers: '',
+        HomelnspectionFeeBorrowerAtClosing: '',
+        HomelnspectionFeeBorrowerBeforeClosing: '',
+        HomelnspectionFeeSellerAtClosing: '',
+        HomelnspectionFeeSellerBeforeClosing: '',
+        HomelnspectionFeePaidByOthers: '',
+        HomeWarrantyFeeBorrowerAtClosing: '',
+        HomeWarrantyFeeBorrowerBeforeClosing: '',
+        HomeWarrantyFeeSellerAtClosing: '',
+        HomeWarrantyFeeSellerBeforeClosing: '',
+        HomeWarrantyFeePaidByOthers: '',
+        RealEstateCommisionToAlphaBorrowerAtClosing: '',
+        RealEstateCommisionToAlphaBorrowerBeforeClosing: '',
+        RealEstateCommisionToAlphaSellerAtClosing: '',
+        RealEstateCommisionToAlphaSellerBeforeClosing: '',
+        RealEstateCommisionToAlphaPaidByOthers: '',
+        RealEstateCommisionToOmegaBorrowerAtClosing: '',
+        RealEstateCommisionToOmegaBorrowerBeforeClosing: '',
+        RealEstateCommisionToOmegaSellerAtClosing: '',
+        RealEstateCommisionToOmegaSellerBeforeClosing: '',
+        RealEstateCommisionToOmegaPaidByOthers: '',
+        OwnersTitleInsuranceBorrowerAtClosing: '',
+        OwnersTitleInsuranceBorrowerBeforeClosing: '',
+        OwnersTitleInsuranceSellerAtClosing: '',
+        OwnersTitleInsuranceSellerBeforeClosing: '',
+        OwnersTitleInsurancePaidByOthers: '',
+        TotalOtherCostsBorrowerPaid: '',
+        TotalOtherCostsSellerPaid: '',
+        TotalOtherCostsPaidByOthers: '',
+        OtherCostSubtotalsBorrowerAtClosing: '',
+        OtherCostSubtotalsBorrowerBeforeClosing: '',
+        OtherCostSubtotalsSellerAtClosing: '',
+        OtherCostSubtotalsSellerBeforeClosing: '',
+        OtherCostSubtotalsPaidByOthers: '',
+        TotalClosingCostsBorrowerPaid: '',
+        TotalClosingCostsSellerPaid: '',
+        TotalClosingCostsPaidByOthers: '',
+        ClosingCostsSubtotalsBorrowerAtClosing: '',
+        ClosingCostsSubtotalsBorrowerBeforeClosing: '',
+        ClosingCostsSubtotalsSellerAtClosing: '',
+        ClosingCostsSubtotalsSellerBeforeClosing: '',
+        ClosingCostsSubtotalsPaidByOthers: '',
+        LenderCreditsBorrowerAtClosing: '',
+        LenderCreditsBorrowerBeforeClosing: '',
+        LenderCreditsSellerAtClosing: '',
+        LenderCreditsSellerBeforeClosing: '',
+        LenderCreditsPaidByOthers: ''
+
+
+    });
     return (
         <>
             <div className="row clearfix">
@@ -54,16 +275,12 @@ function CDsecondpage(props) {
                                                 A.Orgination Charge
                                             </th>
                                             <th className="title align-title">
-                                                $
-                                                <span contentEditable>
-                                                    {" "}
-                                                    1,802.00
-                                                </span>
+                                                <CDE className="change_input_field" html="$ 1,802.00" onChange={handleChange}/> 
                                             </th>
-                                            <td contentEditable></td>
-                                            <td contentEditable></td>
-                                            <td contentEditable></td>
-                                            <td contentEditable></td>
+                                            <td ><CDE className="change_input_field" html="" onChange={handleChange}/></td>
+                                            <td ><CDE className="change_input_field" html="" onChange={handleChange}/></td>
+                                            <td ><CDE className="change_input_field" html="" onChange={handleChange}/></td>
+                                            <td ><CDE className="change_input_field" html="" onChange={handleChange}/></td>
                                         </tr>
                                         <tr>
                                             <td>
@@ -71,44 +288,33 @@ function CDsecondpage(props) {
                                                 0.25 % of loanAmount(Points.)
                                             </td>
                                             <td>
-                                                $
-                                                <span contentEditable>
-                                                    {" "}
-                                                    405.00
-                                                </span>
+                                                <CDE className="change_input_field" html="$ 405.00" onChange={handleChange}/>
                                             </td>
-                                            <td contentEditable></td>
-                                            <td contentEditable></td>
-                                            <td contentEditable></td>
-                                            <td contentEditable></td>
+                                            <td ><CDE className="change_input_field" html="" onChange={handleChange}/></td>
+                                            <td ><CDE className="change_input_field" html="" onChange={handleChange}/></td>
+                                            <td ><CDE className="change_input_field" html="" onChange={handleChange}/></td>
+                                            <td ><CDE className="change_input_field" html="" onChange={handleChange}/></td>
                                         </tr>
                                         <tr>
                                             <td> Application Fee </td>
                                             <td>
-                                                $
-                                                <span contentEditable>
-                                                    {" "}
-                                                    300.00
-                                                </span>
+                                                <CDE className="change_input_field" html="$ 300.00" onChange={handleChange}/>
                                             </td>
-                                            <td contentEditable></td>
-                                            <td contentEditable></td>
-                                            <td contentEditable></td>
-                                            <td contentEditable></td>
+                                            <td ><CDE className="change_input_field" html="" onChange={handleChange}/></td>
+                                            <td ><CDE className="change_input_field" html="" onChange={handleChange}/></td>
+                                            <td ><CDE className="change_input_field" html="" onChange={handleChange}/></td>
+                                            <td ><CDE className="change_input_field" html="" onChange={handleChange}/></td>
                                         </tr>
                                         <tr>
                                             <td> Underwriting Fee</td>
                                             <td>
-                                                $
-                                                <span contentEditable>
-                                                    {" "}
-                                                    1,097.00
-                                                </span>
+                                                <CDE className="change_input_field" html="$ 1,097.00" onChange={handleChange}/>
+                                                
                                             </td>
-                                            <td contentEditable></td>
-                                            <td contentEditable></td>
-                                            <td contentEditable></td>
-                                            <td contentEditable></td>
+                                            <td ><CDE className="change_input_field" html="" onChange={handleChange}/></td>
+                                            <td ><CDE className="change_input_field" html="" onChange={handleChange}/></td>
+                                            <td ><CDE className="change_input_field" html="" onChange={handleChange}/></td>
+                                            <td ><CDE className="change_input_field" html="" onChange={handleChange}/></td>
                                         </tr>
                                         <tr>
                                             <th className="title">
@@ -116,11 +322,7 @@ function CDsecondpage(props) {
                                                 For
                                             </th>
                                             <th className="title align-title">
-                                                $
-                                                <span contentEditable>
-                                                    {" "}
-                                                    236.55
-                                                </span>
+                                                <CDE className="change_input_field" html="$ 236.55" onChange={handleChange}/>
                                             </th>
                                         </tr>
                                         <tr>
@@ -129,107 +331,84 @@ function CDsecondpage(props) {
                                                 Appraisal Fee to John Smith
                                                 Appraisers Inc.{" "}
                                             </td>
-                                            <td contentEditable></td>
-                                            <td contentEditable></td>
-                                            <td contentEditable></td>
+                                            <td ><CDE className="change_input_field" html="" onChange={handleChange}/></td>
+                                            <td ><CDE className="change_input_field" html="" onChange={handleChange}/></td>
+                                            <td ><CDE className="change_input_field" html="" onChange={handleChange}/></td>
                                             <td>
-                                                $
-                                                <span contentEditable>
-                                                    {" "}
-                                                    405,00
-                                                </span>
+                                                <CDE className="change_input_field" html="$ 405.00" onChange={handleChange}/>
                                             </td>
-                                            <td contentEditable></td>
+                                            <td ><CDE className="change_input_field" html="" onChange={handleChange}/></td>
                                         </tr>
                                         <tr>
                                             <td>
                                                 Credit Aepon Fee to Information
                                                 Inc.
                                             </td>
-                                            <td contentEditable></td>
+                                            <td ><CDE className="change_input_field" html="" onChange={handleChange}/></td>
                                             <td>
-                                                $
-                                                <span contentEditable>
-                                                    {" "}
-                                                    29,80
-                                                </span>
+                                                <CDE className="change_input_field" html="$ 29.80" onChange={handleChange}/>
                                             </td>
-                                            <td contentEditable></td>
-                                            <td contentEditable></td>
-                                            <td contentEditable></td>
+                                            <td ><CDE className="change_input_field" html="" onChange={handleChange}/></td>
+                                            <td ><CDE className="change_input_field" html="" onChange={handleChange}/></td>
+                                            <td ><CDE className="change_input_field" html="" onChange={handleChange}/></td>
                                         </tr>
                                         <tr>
                                             <td>
                                                 {" "}
                                                 Flood Determination Fee to Info
-                                                Co,
+                                                Co.
                                             </td>
                                             <td>
-                                                $
-                                                <span contentEditable>
-                                                    {" "}
-                                                    20,00
-                                                </span>
+                                                <CDE className="change_input_field" html="$ 20.00" onChange={handleChange}/>
+                                                
                                             </td>
-                                            <td contentEditable></td>
-                                            <td contentEditable></td>
-                                            <td contentEditable></td>
-                                            <td contentEditable></td>
+                                            <td ><CDE className="change_input_field" html="" onChange={handleChange}/></td>
+                                            <td ><CDE className="change_input_field" html="" onChange={handleChange}/></td>
+                                            <td ><CDE className="change_input_field" html="" onChange={handleChange}/></td>
+                                            <td ><CDE className="change_input_field" html="" onChange={handleChange}/></td>
                                         </tr>
                                         <tr>
                                             <td>
                                                 Flood Monitoring Fee to Info Co.{" "}
                                             </td>
                                             <td>
-                                                $
-                                                <span contentEditable>
-                                                    {" "}
-                                                    31,75
-                                                </span>
+                                                <CDE className="change_input_field" html="$ 31.75" onChange={handleChange}/>
+                                                
                                             </td>
-                                            <td contentEditable></td>
-                                            <td contentEditable></td>
-                                            <td contentEditable></td>
-                                            <td contentEditable></td>
+                                            <td ><CDE className="change_input_field" html="" onChange={handleChange}/></td>
+                                            <td ><CDE className="change_input_field" html="" onChange={handleChange}/></td>
+                                            <td ><CDE className="change_input_field" html="" onChange={handleChange}/></td>
+                                            <td ><CDE className="change_input_field" html="" onChange={handleChange}/></td>
                                         </tr>
                                         <tr>
                                             <td>TaxMonitoring Fee</td>
                                             <td>
-                                                $
-                                                <span contentEditable>
-                                                    {" "}
-                                                    75,00
-                                                </span>
+                                                <CDE className="change_input_field" html="$ 75.00" onChange={handleChange}/>
+                                                
                                             </td>
-                                            <td contentEditable></td>
-                                            <td contentEditable></td>
-                                            <td contentEditable></td>
-                                            <td contentEditable></td>
+                                            <td ><CDE className="change_input_field" html="" onChange={handleChange}/></td>
+                                            <td ><CDE className="change_input_field" html="" onChange={handleChange}/></td>
+                                            <td ><CDE className="change_input_field" html="" onChange={handleChange}/></td>
+                                            <td ><CDE className="change_input_field" html="" onChange={handleChange}/></td>
                                         </tr>
                                         <tr>
                                             <td>Tax Status Agent Fee</td>
                                             <td>
-                                                $
-                                                <span contentEditable>
-                                                    {" "}
-                                                    80.00
-                                                </span>
+                                                <CDE className="change_input_field" html="$ 80.00" onChange={handleChange}/>
+                                                
                                             </td>
-                                            <td contentEditable></td>
-                                            <td contentEditable></td>
-                                            <td contentEditable></td>
-                                            <td contentEditable></td>
+                                            <td ><CDE className="change_input_field" html="" onChange={handleChange}/></td>
+                                            <td ><CDE className="change_input_field" html="" onChange={handleChange}/></td>
+                                            <td ><CDE className="change_input_field" html="" onChange={handleChange}/></td>
+                                            <td ><CDE className="change_input_field" html="" onChange={handleChange}/></td>
                                         </tr>
                                         <tr>
                                             <th className="title">
                                                 C.Service Borrower Did Shop For
                                             </th>
                                             <th className="title align-title">
-                                                $
-                                                <span contentEditable>
-                                                    {" "}
-                                                    236.55
-                                                </span>
+                                                <CDE className="change_input_field" html="$ 236.55" onChange={handleChange}/>
+                                                
                                             </th>
                                         </tr>
                                         <tr>
@@ -237,31 +416,25 @@ function CDsecondpage(props) {
                                                 {" "}
                                                 Pest lnspection fee to Pests Co.{" "}
                                             </td>
-                                            <td contentEditable></td>
-                                            <td contentEditable></td>
-                                            <td contentEditable></td>
+                                            <td ><CDE className="change_input_field" html="" onChange={handleChange}/></td>
+                                            <td ><CDE className="change_input_field" html="" onChange={handleChange}/></td>
+                                            <td ><CDE className="change_input_field" html="" onChange={handleChange}/></td>
                                             <td>
-                                                $
-                                                <span contentEditable>
-                                                    {" "}
-                                                    405,00
-                                                </span>
+                                                <CDE className="change_input_field" html="$ 405.00" onChange={handleChange}/>
+                                                
                                             </td>
-                                            <td contentEditable></td>
+                                            <td ><CDE className="change_input_field" html="" onChange={handleChange}/></td>
                                         </tr>
                                         <tr>
                                             <td> Survey Fee to Surveys Co. </td>
-                                            <td contentEditable></td>
+                                            <td ><CDE className="change_input_field" html="" onChange={handleChange}/></td>
                                             <td>
-                                                $
-                                                <span contentEditable>
-                                                    {" "}
-                                                    29,80
-                                                </span>
+                                                <CDE className="change_input_field" html="$ 29.80" onChange={handleChange}/>
+                                                
                                             </td>
-                                            <td contentEditable></td>
-                                            <td contentEditable></td>
-                                            <td contentEditable></td>
+                                            <td ><CDE className="change_input_field" html="" onChange={handleChange}/></td>
+                                            <td ><CDE className="change_input_field" html="" onChange={handleChange}/></td>
+                                            <td ><CDE className="change_input_field" html="" onChange={handleChange}/></td>
                                         </tr>
                                         <tr>
                                             <td>
@@ -270,16 +443,13 @@ function CDsecondpage(props) {
                                                 Title Co.{" "}
                                             </td>
                                             <td>
-                                                $
-                                                <span contentEditable>
-                                                    {" "}
-                                                    20,00
-                                                </span>
+                                                <CDE className="change_input_field" html="$ 20.00" onChange={handleChange}/>
+                                                
                                             </td>
-                                            <td contentEditable></td>
-                                            <td contentEditable></td>
-                                            <td contentEditable></td>
-                                            <td contentEditable></td>
+                                            <td ><CDE className="change_input_field" html="" onChange={handleChange}/></td>
+                                            <td ><CDE className="change_input_field" html="" onChange={handleChange}/></td>
+                                            <td ><CDE className="change_input_field" html="" onChange={handleChange}/></td>
+                                            <td ><CDE className="change_input_field" html="" onChange={handleChange}/></td>
                                         </tr>
                                         <tr>
                                             <td>
@@ -288,16 +458,13 @@ function CDsecondpage(props) {
                                                 to Epsilon title Co.{" "}
                                             </td>
                                             <td>
-                                                $
-                                                <span contentEditable>
-                                                    {" "}
-                                                    31,75
-                                                </span>
+                                                <CDE className="change_input_field" html="$ 31.75" onChange={handleChange}/>
+                                                
                                             </td>
-                                            <td contentEditable></td>
-                                            <td contentEditable></td>
-                                            <td contentEditable></td>
-                                            <td contentEditable></td>
+                                            <td ><CDE className="change_input_field" html="" onChange={handleChange}/></td>
+                                            <td ><CDE className="change_input_field" html="" onChange={handleChange}/></td>
+                                            <td ><CDE className="change_input_field" html="" onChange={handleChange}/></td>
+                                            <td ><CDE className="change_input_field" html="" onChange={handleChange}/></td>
                                         </tr>
                                         <tr>
                                             <td>
@@ -306,16 +473,13 @@ function CDsecondpage(props) {
                                                 Epsilon Title Co.{" "}
                                             </td>
                                             <td>
-                                                $
-                                                <span contentEditable>
-                                                    {" "}
-                                                    75,00
-                                                </span>
+                                                <CDE className="change_input_field" html="$ 75.00" onChange={handleChange}/>
+                                                
                                             </td>
-                                            <td contentEditable></td>
-                                            <td contentEditable></td>
-                                            <td contentEditable></td>
-                                            <td contentEditable></td>
+                                            <td ><CDE className="change_input_field" html="" onChange={handleChange}/></td>
+                                            <td ><CDE className="change_input_field" html="" onChange={handleChange}/></td>
+                                            <td ><CDE className="change_input_field" html="" onChange={handleChange}/></td>
+                                            <td ><CDE className="change_input_field" html="" onChange={handleChange}/></td>
                                         </tr>
                                         <tr>
                                             <td>
@@ -324,16 +488,13 @@ function CDsecondpage(props) {
                                                 Title Co.{" "}
                                             </td>
                                             <td>
-                                                $
-                                                <span contentEditable>
-                                                    {" "}
-                                                    80.00
-                                                </span>
+                                                <CDE className="change_input_field" html="$ 80.00" onChange={handleChange}/>
+                                                
                                             </td>
-                                            <td contentEditable></td>
-                                            <td contentEditable></td>
-                                            <td contentEditable></td>
-                                            <td contentEditable></td>
+                                            <td ><CDE className="change_input_field" html="" onChange={handleChange}/></td>
+                                            <td ><CDE className="change_input_field" html="" onChange={handleChange}/></td>
+                                            <td ><CDE className="change_input_field" html="" onChange={handleChange}/></td>
+                                            <td ><CDE className="change_input_field" html="" onChange={handleChange}/></td>
                                         </tr>
                                         <tr>
                                             <th className="title">
@@ -341,11 +502,8 @@ function CDsecondpage(props) {
                                                 (Borrower.Paid){" "}
                                             </th>
                                             <th className="title align-title">
-                                                $
-                                                <span contentEditable>
-                                                    {" "}
-                                                    4,694.05
-                                                </span>
+                                                <CDE className="change_input_field" html="$ 4,694.05" onChange={handleChange}/>
+                                                
                                             </th>
                                         </tr>
                                         <tr>
@@ -353,22 +511,16 @@ function CDsecondpage(props) {
                                                 Loan Costs Subtotals (A + B + C)
                                             </td>
                                             <td>
-                                                $
-                                                <span contentEditable>
-                                                    {" "}
-                                                    4,664,25
-                                                </span>
+                                                <CDE className="change_input_field" html="$ 4,664.25" onChange={handleChange}/>
+                                                
                                             </td>
                                             <td>
-                                                $
-                                                <span contentEditable>
-                                                    {" "}
-                                                    29,80
-                                                </span>
+                                                <CDE className="change_input_field" html="$ 29.80" onChange={handleChange}/>
+                                                
                                             </td>
-                                            <td contentEditable></td>
-                                            <td contentEditable></td>
-                                            <td contentEditable></td>
+                                            <td ><CDE className="change_input_field" html="" onChange={handleChange}/></td>
+                                            <td ><CDE className="change_input_field" html="" onChange={handleChange}/></td>
+                                            <td ><CDE className="change_input_field" html="" onChange={handleChange}/></td>
                                         </tr>
                                         <div className="title">
                                             Other Costs{" "}
@@ -379,74 +531,59 @@ function CDsecondpage(props) {
                                                 fees
                                             </th>
                                             <th className="title align-title">
-                                                $
-                                                <span contentEditable>
-                                                    {" "}
-                                                    85.00
-                                                </span>
+                                                <CDE className="change_input_field" html="$ 85.00" onChange={handleChange}/>
+                                                
                                             </th>
                                         </tr>
                                         <tr>
                                             <td>
                                                 {" "}
-                                                Recording Fees Deed: $40,00
-                                                Morgage: $45,00{" "}
+                                                Recording Fees Deed: $40.00
+                                                Morgage: $45.00{" "}
                                             </td>
                                             <td>
-                                                $
-                                                <span contentEditable>
-                                                    {" "}
-                                                    85.00
-                                                </span>
+                                                <CDE className="change_input_field" html="$ 85.00" onChange={handleChange}/>
+                                                
                                             </td>
-                                            <td contentEditable></td>
-                                            <td contentEditable></td>
-                                            <td contentEditable></td>
-                                            <td contentEditable></td>
+                                            <td ><CDE className="change_input_field" html="" onChange={handleChange}/></td>
+                                            <td ><CDE className="change_input_field" html="" onChange={handleChange}/></td>
+                                            <td ><CDE className="change_input_field" html="" onChange={handleChange}/></td>
+                                            <td ><CDE className="change_input_field" html="" onChange={handleChange}/></td>
                                         </tr>
                                         <tr>
                                             <td> TransferTax to state </td>
-                                            <td contentEditable></td>
-                                            <td contentEditable></td>
+                                            <td ><CDE className="change_input_field" html="" onChange={handleChange}/></td>
+                                            <td ><CDE className="change_input_field" html="" onChange={handleChange}/></td>
                                             <td>
-                                                $
-                                                <span contentEditable>
-                                                    {" "}
-                                                    950.00
-                                                </span>
+                                                <CDE className="change_input_field" html="$ 950.00" onChange={handleChange}/>
+                                                
                                             </td>
-                                            <td contentEditable></td>
-                                            <td contentEditable></td>
+                                            <td ><CDE className="change_input_field" html="" onChange={handleChange}/></td>
+                                            <td ><CDE className="change_input_field" html="" onChange={handleChange}/></td>
                                         </tr>
                                         <tr>
                                             <th className="title">
                                                 F. Prepaids{" "}
                                             </th>
                                             <th className="title align-title">
-                                                $
-                                                <span contentEditable>
-                                                    {" "}
-                                                    2,120.80
-                                                </span>
+                                                <CDE className="change_input_field" html="$ 2,120.80" onChange={handleChange}/>
+                                                
                                             </th>
                                         </tr>
                                         <tr>
                                             <td>
                                                 {" "}
                                                 Homeowner's Insurance Premium (
-                                                12 mo) to Insurance Co,{" "}
+                                                12 mo) to Insurance Co.{" "}
                                             </td>
                                             <td>
-                                                $
-                                                <span contentEditable>
-                                                    {" "}
-                                                    1,209.96
-                                                </span>
+                                                <CDE className="change_input_field" html="$ 1,209.96" onChange={handleChange}/>
+                                                
                                             </td>
-                                            <td contentEditable></td>
-                                            <td contentEditable></td>
-                                            <td contentEditable></td>
-                                            <td contentEditable></td>
+                                            <td ><CDE className="change_input_field" html="" onChange={handleChange}/></td>
+                                            <td ><CDE className="change_input_field" html="" onChange={handleChange}/></td>
+                                            <td ><CDE className="change_input_field" html="" onChange={handleChange}/></td>
+                                            <td ><CDE className="change_input_field" html="" onChange={handleChange}/></td>
                                         </tr>
                                         <tr>
                                             <td>
@@ -454,11 +591,11 @@ function CDsecondpage(props) {
                                                 Mortgage Insurance Premium (
                                                 mo.)
                                             </td>
-                                            <td contentEditable> </td>
-                                            <td contentEditable></td>
-                                            <td contentEditable></td>
-                                            <td contentEditable></td>
-                                            <td contentEditable></td>
+                                            <td ><CDE className="change_input_field" html="" onChange={handleChange}/></td>
+                                            <td ><CDE className="change_input_field" html="" onChange={handleChange}/></td>
+                                            <td ><CDE className="change_input_field" html="" onChange={handleChange}/></td>
+                                            <td ><CDE className="change_input_field" html="" onChange={handleChange}/></td>
+                                            <td ><CDE className="change_input_field" html="" onChange={handleChange}/></td>
                                         </tr>
                                         <tr>
                                             <td>
@@ -466,16 +603,13 @@ function CDsecondpage(props) {
                                                 form 4/15/13 to 5/1/13)
                                             </td>
                                             <td>
-                                                $
-                                                <span contentEditable>
-                                                    {" "}
-                                                    279,04
-                                                </span>
+                                                <CDE className="change_input_field" html="$ 279.04" onChange={handleChange}/>
+                                                
                                             </td>
-                                            <td contentEditable></td>
-                                            <td contentEditable></td>
-                                            <td contentEditable></td>
-                                            <td contentEditable></td>
+                                            <td ><CDE className="change_input_field" html="" onChange={handleChange}/></td>
+                                            <td ><CDE className="change_input_field" html="" onChange={handleChange}/></td>
+                                            <td ><CDE className="change_input_field" html="" onChange={handleChange}/></td>
+                                            <td ><CDE className="change_input_field" html="" onChange={handleChange}/></td>
                                         </tr>
                                         <tr>
                                             <td>
@@ -483,16 +617,13 @@ function CDsecondpage(props) {
                                                 toAnyCounty USA{" "}
                                             </td>
                                             <td>
-                                                $
-                                                <span contentEditable>
-                                                    {" "}
-                                                    631.90
-                                                </span>
+                                                <CDE className="change_input_field" html="$ 631.90" onChange={handleChange}/>
+                                                
                                             </td>
-                                            <td contentEditable></td>
-                                            <td contentEditable></td>
-                                            <td contentEditable></td>
-                                            <td contentEditable></td>
+                                            <td ><CDE className="change_input_field" html="" onChange={handleChange}/></td>
+                                            <td ><CDE className="change_input_field" html="" onChange={handleChange}/></td>
+                                            <td ><CDE className="change_input_field" html="" onChange={handleChange}/></td>
+                                            <td ><CDE className="change_input_field" html="" onChange={handleChange}/></td>
                                         </tr>
                                         <tr>
                                             <th className="title">
@@ -500,30 +631,24 @@ function CDsecondpage(props) {
                                                 Closing{" "}
                                             </th>
                                             <th className="title align-title">
-                                                $
-                                                <span contentEditable>
-                                                    {" "}
-                                                    412.25
-                                                </span>
+                                                <CDE className="change_input_field" html="$ 412.25" onChange={handleChange}/>
+                                                
                                             </th>
                                         </tr>
                                         <tr>
                                             <td>
                                                 {" "}
-                                                Homeowner's Insurance $ 100,83
-                                                per month for 2 mo,{" "}
+                                                Homeowner's Insurance $ 100.83
+                                                per month for 2 mo.{" "}
                                             </td>
                                             <td>
-                                                $
-                                                <span contentEditable>
-                                                    {" "}
-                                                    201,66
-                                                </span>
+                                                <CDE className="change_input_field" html="$ 201.66" onChange={handleChange}/>
+                                                
                                             </td>
-                                            <td contentEditable></td>
-                                            <td contentEditable></td>
-                                            <td contentEditable></td>
-                                            <td contentEditable></td>
+                                            <td ><CDE className="change_input_field" html="" onChange={handleChange}/></td>
+                                            <td ><CDE className="change_input_field" html="" onChange={handleChange}/></td>
+                                            <td ><CDE className="change_input_field" html="" onChange={handleChange}/></td>
+                                            <td ><CDE className="change_input_field" html="" onChange={handleChange}/></td>
                                         </tr>
                                         <tr>
                                             <td>
@@ -535,36 +660,31 @@ function CDsecondpage(props) {
                                         <tr>
                                             <td>
                                                 {" "}
-                                                Property Taxes $105,30 per month
-                                                for 2 mo,{" "}
+                                                Property Taxes $105.30 per month
+                                                for 2 mo.{" "}
                                             </td>
                                             <td>
-                                                $
-                                                <span contentEditable>
-                                                    {" "}
-                                                    210,60
-                                                </span>
+                                                <CDE className="change_input_field" html="$ 210.60" onChange={handleChange}/>
+                                                
                                             </td>
-                                            <td contentEditable></td>
-                                            <td contentEditable></td>
-                                            <td contentEditable></td>
-                                            <td contentEditable></td>
+                                            <td ><CDE className="change_input_field" html="" onChange={handleChange}/></td>
+                                            <td ><CDE className="change_input_field" html="" onChange={handleChange}/></td>
+                                            <td ><CDE className="change_input_field" html="" onChange={handleChange}/></td>
+                                            <td ><CDE className="change_input_field" html="" onChange={handleChange}/></td>
                                         </tr>
                                         <tr>
                                             <td> Aggregate Adjustment </td>
-                                            <td contentEditable>-0.01</td>
-                                            <td contentEditable></td>
-                                            <td contentEditable></td>
-                                            <td contentEditable></td>
-                                            <td contentEditable></td>
+                                            <td ><CDE className="change_input_field" html="-0.01" onChange={handleChange}/></td>
+                                            <td ><CDE className="change_input_field" html="" onChange={handleChange}/></td>
+                                            <td ><CDE className="change_input_field" html="" onChange={handleChange}/></td>
+                                            <td ><CDE className="change_input_field" html="" onChange={handleChange}/></td>
+                                            <td ><CDE className="change_input_field" html="" onChange={handleChange}/></td>
                                         </tr>
                                         <tr>
                                             <th className="title">H. Other</th>
                                             <th className="title align-title">
-                                                $
-                                                <span contentEditable>
-                                                    2,400.00
-                                                </span>
+                                                <CDE className="change_input_field" html="$ 2,400.00" onChange={handleChange}/>
+                                                
                                             </th>
                                         </tr>
                                         <tr>
@@ -574,16 +694,13 @@ function CDsecondpage(props) {
                                                 Acre Inc{" "}
                                             </td>
                                             <td>
-                                                $
-                                                <span contentEditable>
-                                                    {" "}
-                                                    500,00
-                                                </span>
+                                                <CDE className="change_input_field" html="$ 500.00" onChange={handleChange}/>
+                                                
                                             </td>
-                                            <td contentEditable></td>
-                                            <td contentEditable></td>
-                                            <td contentEditable></td>
-                                            <td contentEditable></td>
+                                            <td ><CDE className="change_input_field" html="" onChange={handleChange}/></td>
+                                            <td ><CDE className="change_input_field" html="" onChange={handleChange}/></td>
+                                            <td ><CDE className="change_input_field" html="" onChange={handleChange}/></td>
+                                            <td ><CDE className="change_input_field" html="" onChange={handleChange}/></td>
                                         </tr>
                                         <tr>
                                             <td>
@@ -591,16 +708,13 @@ function CDsecondpage(props) {
                                                 Inc.
                                             </td>
                                             <td>
-                                                $
-                                                <span contentEditable>
-                                                    {" "}
-                                                    150,00
-                                                </span>
+                                                <CDE className="change_input_field" html="$ 150.00" onChange={handleChange}/>
+                                                
                                             </td>
-                                            <td contentEditable></td>
-                                            <td contentEditable></td>
-                                            <td contentEditable></td>
-                                            <td contentEditable></td>
+                                            <td ><CDE className="change_input_field" html="" onChange={handleChange}/></td>
+                                            <td ><CDE className="change_input_field" html="" onChange={handleChange}/></td>
+                                            <td ><CDE className="change_input_field" html="" onChange={handleChange}/></td>
+                                            <td ><CDE className="change_input_field" html="" onChange={handleChange}/></td>
                                         </tr>
                                         <tr>
                                             <td>
@@ -609,74 +723,59 @@ function CDsecondpage(props) {
                                                 Inc.{" "}
                                             </td>
                                             <td>
-                                                $
-                                                <span contentEditable>
-                                                    {" "}
-                                                    750,00
-                                                </span>
+                                                <CDE className="change_input_field" html="$ 750.00" onChange={handleChange}/>
+                                                
                                             </td>
-                                            <td contentEditable></td>
-                                            <td contentEditable></td>
+                                            <td ><CDE className="change_input_field" html="" onChange={handleChange}/></td>
+                                            <td ><CDE className="change_input_field" html="" onChange={handleChange}/></td>
                                             <td>
-                                                $
-                                                <span contentEditable>
-                                                    {" "}
-                                                    750,00
-                                                </span>
+                                                <CDE className="change_input_field" html="$ 750.00" onChange={handleChange}/>
+                                                
                                             </td>
-                                            <td contentEditable></td>
+                                            <td ><CDE className="change_input_field" html="" onChange={handleChange}/></td>
                                         </tr>
                                         <tr>
                                             <td>
                                                 {" "}
                                                 Home Warranty Fee to XVZ
-                                                Warranty Inc,{" "}
+                                                Warranty Inc.{" "}
                                             </td>
-                                            <td contentEditable></td>
-                                            <td contentEditable></td>
+                                            <td ><CDE className="change_input_field" html="" onChange={handleChange}/></td>
+                                            <td ><CDE className="change_input_field" html="" onChange={handleChange}/></td>
                                             <td>
-                                                $
-                                                <span contentEditable>
-                                                    {" "}
-                                                    450.00
-                                                </span>
+                                                <CDE className="change_input_field" html="$ 450.00" onChange={handleChange}/>
+                                                
                                             </td>
-                                            <td contentEditable></td>
-                                            <td contentEditable></td>
+                                            <td ><CDE className="change_input_field" html="" onChange={handleChange}/></td>
+                                            <td ><CDE className="change_input_field" html="" onChange={handleChange}/></td>
                                         </tr>
                                         <tr>
                                             <td>
                                                 Real Estate Commision to Alpha
                                                 Real Estate Broker
                                             </td>
-                                            <td contentEditable></td>
-                                            <td contentEditable></td>
+                                            <td ><CDE className="change_input_field" html="" onChange={handleChange}/></td>
+                                            <td ><CDE className="change_input_field" html="" onChange={handleChange}/></td>
                                             <td>
-                                                $
-                                                <span contentEditable>
-                                                    {" "}
-                                                    5,700.00
-                                                </span>
+                                                <CDE className="change_input_field" html="$ 5,700.00" onChange={handleChange}/>
+                                                
                                             </td>
-                                            <td contentEditable></td>
-                                            <td contentEditable></td>
+                                            <td ><CDE className="change_input_field" html="" onChange={handleChange}/></td>
+                                            <td ><CDE className="change_input_field" html="" onChange={handleChange}/></td>
                                         </tr>
                                         <tr>
                                             <td>
                                                 Real Estate Commisiion to Omega
                                                 Real Estate Broker{" "}
                                             </td>
-                                            <td contentEditable></td>
-                                            <td contentEditable></td>
+                                            <td ><CDE className="change_input_field" html="" onChange={handleChange}/></td>
+                                            <td ><CDE className="change_input_field" html="" onChange={handleChange}/></td>
                                             <td>
-                                                $
-                                                <span contentEditable>
-                                                    {" "}
-                                                    5,700.00
-                                                </span>
+                                                <CDE className="change_input_field" html="$ 5,700.00" onChange={handleChange}/>
+                                                
                                             </td>
-                                            <td contentEditable></td>
-                                            <td contentEditable></td>
+                                            <td ><CDE className="change_input_field" html="" onChange={handleChange}/></td>
+                                            <td ><CDE className="change_input_field" html="" onChange={handleChange}/></td>
                                         </tr>
                                         <tr>
                                             <td>
@@ -685,16 +784,13 @@ function CDsecondpage(props) {
                                                 (optional) to Epiilon Title Co.
                                             </td>
                                             <td>
-                                                $
-                                                <span contentEditable>
-                                                    {" "}
-                                                    1,000,00
-                                                </span>
+                                                <CDE className="change_input_field" html="$ 1,000.00" onChange={handleChange}/>
+                                                
                                             </td>
-                                            <td contentEditable></td>
-                                            <td contentEditable></td>
-                                            <td contentEditable></td>
-                                            <td contentEditable></td>
+                                            <td ><CDE className="change_input_field" html="" onChange={handleChange}/></td>
+                                            <td ><CDE className="change_input_field" html="" onChange={handleChange}/></td>
+                                            <td ><CDE className="change_input_field" html="" onChange={handleChange}/></td>
+                                            <td ><CDE className="change_input_field" html="" onChange={handleChange}/></td>
                                         </tr>
                                         <tr>
                                             <th className="title">
@@ -702,10 +798,8 @@ function CDsecondpage(props) {
                                                 (Borrower-Paid){" "}
                                             </th>
                                             <th className="title align-title">
-                                                $
-                                                <span contentEditable>
-                                                    5,018.05
-                                                </span>
+                                                <CDE className="change_input_field" html="$ 5,018.05" onChange={handleChange}/>
+                                                
                                             </th>
                                         </tr>
                                         <tr>
@@ -714,16 +808,13 @@ function CDsecondpage(props) {
                                                 H){" "}
                                             </td>
                                             <td>
-                                                $
-                                                <span contentEditable>
-                                                    {" "}
-                                                    5,018.05
-                                                </span>
+                                                <CDE className="change_input_field" html="$ 5,018.05" onChange={handleChange}/>
+                                                
                                             </td>
-                                            <td contentEditable></td>
-                                            <td contentEditable></td>
-                                            <td contentEditable></td>
-                                            <td contentEditable></td>
+                                            <td ><CDE className="change_input_field" html="" onChange={handleChange}/></td>
+                                            <td ><CDE className="change_input_field" html="" onChange={handleChange}/></td>
+                                            <td ><CDE className="change_input_field" html="" onChange={handleChange}/></td>
+                                            <td ><CDE className="change_input_field" html="" onChange={handleChange}/></td>
                                         </tr>
                                         <tr>
                                             <th className="title">
@@ -731,11 +822,8 @@ function CDsecondpage(props) {
                                                 (Borrower-Paid)
                                             </th>
                                             <th className="title align-title">
-                                                $
-                                                <span contentEditable>
-                                                    {" "}
-                                                    9,712,10
-                                                </span>
+                                                <CDE className="change_input_field" html="$ 9,712.00" onChange={handleChange}/>
+                                                
                                             </th>
                                         </tr>
                                         <tr>
@@ -743,48 +831,33 @@ function CDsecondpage(props) {
                                                 Closing Costs Subtotals (D + I)
                                             </td>
                                             <td>
-                                                $
-                                                <span contentEditable>
-                                                    {" "}
-                                                    9,682,30
-                                                </span>
+                                                <CDE className="change_input_field" html="$ 9,682.00" onChange={handleChange}/>
+                                                
                                             </td>
                                             <td>
-                                                $
-                                                <span contentEditable>
-                                                    {" "}
-                                                    29,80
-                                                </span>
+                                                <CDE className="change_input_field" html="$ 29.00" onChange={handleChange}/>
+                                                
                                             </td>
                                             <td>
-                                                $
-                                                <span contentEditable>
-                                                    {" "}
-                                                    12900.00
-                                                </span>
+                                                <CDE className="change_input_field" html="$ 12,900.00" onChange={handleChange}/>
+                                                
                                             </td>
                                             <td>
-                                                $
-                                                <span contentEditable>
-                                                    {" "}
-                                                    750.00
-                                                </span>
+                                                <CDE className="change_input_field" html="$ 750.00" onChange={handleChange}/>
+                                                
                                             </td>
                                             <td>
-                                                $
-                                                <span contentEditable>
-                                                    {" "}
-                                                    405.00
-                                                </span>
+                                                <CDE className="change_input_field" html="$ 405.00" onChange={handleChange}/>
+                                                
                                             </td>
                                         </tr>
                                         <tr>
                                             <td>lender Credits</td>
-                                            <td contentEditable></td>
-                                            <td contentEditable></td>
-                                            <td contentEditable></td>
-                                            <td contentEditable></td>
-                                            <td contentEditable></td>
+                                            <td ><CDE className="change_input_field" html="" onChange={handleChange}/></td>
+                                            <td ><CDE className="change_input_field" html="" onChange={handleChange}/></td>
+                                            <td ><CDE className="change_input_field" html="" onChange={handleChange}/></td>
+                                            <td ><CDE className="change_input_field" html="" onChange={handleChange}/></td>
+                                            <td ><CDE className="change_input_field" html="" onChange={handleChange}/></td>
                                         </tr>
                                     </tbody>
                                 </Table>
@@ -801,12 +874,12 @@ function CDsecondpage(props) {
                                             Next
                                         </a>
                                     </button>
-                                    <button
+                                    {/* <button
                                         type="submit"
                                         className="btn btn-xs btn-primary mr-2 ml-2 float-right"
                                     >
                                         Submit
-                                    </button>
+                                    </button> */}
                                     <button
                                         type="submit"
                                         className="btn  btn-xs btn-danger float-left"
