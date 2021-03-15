@@ -7,6 +7,8 @@ import DataTab from '../../../components/DataTableComponents/DataTab';
 import TableLink from  '../../../components/DataTableComponents/TableLink';
 import { useToasts } from 'react-toast-notifications';
 import * as Icon from 'react-feather';
+import Tippy from '@tippyjs/react';
+import 'tippy.js/dist/tippy.css'; // optional
 function ClientList()
 {
   const { addToast } = useToasts();
@@ -160,12 +162,15 @@ function ClientList()
                           
                       </div>          
                   </div> */}
-                  <div className="tab-values p-10">
-                      <div className="tab-content">
-                      <div className="myorder-header">
-                        <label style={{fontSize:'22px'}}><b>Clients List</b></label>
+                  
+<div className="grid grid-cols-12 gap-3">
+
+<div className="col-span-12 lg:col-span-12 sm:col-span-12 mt-3"> 
+                      {/* <div className="myorder-header"> */}
+                        {/* <label><b style={{fontSize:'22px'}}> <Tippy content="Test Tooltip Content"><Icon.AlertCircle className="w-4 h-4 ml-2 text-theme-17" /></Tippy></b></label> */}
+                        <label for="input-state-2" className="form-label flex"><b style={{fontSize:'22px'}}>Clients List </b><Tippy content="Test Tooltip Content"><Icon.AlertCircle className="w-4 h-4 ml-2 text-theme-17" /></Tippy></label>
                         <Link to={'/addclient'} className="btn btn-primary float-right mb-2"><Icon.Plus/>Add Client</Link>
-                    </div> 
+                    {/* </div>  */}
                           <div id="all" className="order-table tab-pane in active">
                            
                             {/* <input type="text" className="c-search-input" placeholder="&#61442; search"></input> */}

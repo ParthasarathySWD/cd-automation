@@ -47,7 +47,8 @@ import UserView from '../ThemeReact/views/User/UserView';
 import ClientList from '../ThemeReact/views/Clients/ClientsList';
 import AddClient from '../ThemeReact/views/Clients/AddClient';
 import EditClient from '../ThemeReact/views/Clients/EditClient';
-import Profile from '../ThemeReact/views/Profile/Profile';
+import ViewClient from '../ThemeReact/views/Clients/ViewClient';
+import Profile from '../ThemeReact/views/Profile/Profile';  
 import Summary from '../ThemeReact/views/OrderSummary/OrderSummary';
 
 class Routes extends React.Component
@@ -61,6 +62,7 @@ class Routes extends React.Component
                 <Route exact path='/dashboard' component={Dashboard} />
                 <Route exact path='/allclients' component={ClientList} />
                 <Route exact path='/addclient' component={AddClient} />
+                <Route exact path='/ViewClient/:id' component={ViewClient} />
                 <Route exact path='/editclient/:id' component={EditClient} />
                 <Route exact path='/allusers' component={UsersList} /> 
                 <Route exact path='/adduser' component={AddUser} />
