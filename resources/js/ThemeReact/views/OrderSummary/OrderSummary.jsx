@@ -2,6 +2,7 @@ import React from 'react';
 import { BrowserRouter as Router, Switch, Route, Link, useHistory } from 'react-router-dom';
 import OrderDocument from './OrderDocuments';
 import OrderNotes from './OrderNotes';
+import OrderHistory from './OrderHistory';
 import OrderCDPage from '../CD-Details/CDTabList';
 import * as Icon from 'react-feather';
 import './style.css';
@@ -197,6 +198,7 @@ function OrderSummary(props) {
                 <div id="History" className="tab-pane" role="tabpanel">
                   <div className="grid grid-cols-12 gap-3">
                     <div className="col-span-12 lg:col-span-12">
+                      <OrderHistory orderid={OrderUID}></OrderHistory>
                     </div>
                   </div>
                 </div>                        
