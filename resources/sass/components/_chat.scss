@@ -10,7 +10,7 @@
             height: 525px;
         }
         .chat__box {
-            height: 782px;
+            height: calc(100vh - 90px);
             .chat__box__text-box {
                 max-width: 49%;
                 @include media-breakpoint-down(sm) {
