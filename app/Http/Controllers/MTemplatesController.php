@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Models\mTemplates;
+use App\Models\mFormFields;
 use Illuminate\Http\Request;
+
 
 class MTemplatesController extends Controller
 {
@@ -15,6 +17,12 @@ class MTemplatesController extends Controller
     public function index()
     {
         //
+        $FieldLists = mFormFields::all()->toArray();
+       
+        return response()->json([
+            'status'=>'success',
+            'data'=>$FieldLists
+        ]);
     }
 
     /**
@@ -25,6 +33,7 @@ class MTemplatesController extends Controller
     public function create()
     {
         //
+      
     }
 
     /**

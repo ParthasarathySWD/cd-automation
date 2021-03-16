@@ -50,7 +50,7 @@ import EditClient from '../ThemeReact/views/Clients/EditClient';
 import ViewClient from '../ThemeReact/views/Clients/ViewClient';
 import Profile from '../ThemeReact/views/Profile/Profile';  
 import Summary from '../ThemeReact/views/OrderSummary/OrderSummary';
-
+import Templates from '../ThemeReact/views/Templates/Templates';
 class Routes extends React.Component
 {
     render()
@@ -74,6 +74,7 @@ class Routes extends React.Component
                 <Route exact path='/edituser/:id' component={EditUser} />
                 <Route exact path='/userview/:id' component={UserView} />
                 <Route exact path='/profile' component={Profile} />
+                <Route exact path='/template' component={Templates} />
 
                 {/*<Route exact path='/' component={Dashboard} />
                  <Route exact path='/alluser' component={AllUsers} /> 

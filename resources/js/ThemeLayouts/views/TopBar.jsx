@@ -100,6 +100,12 @@ function TopBar(props) {
                                 <div class="top-menu__title"> Clients </div>
                             </NavLink>
                         </li>
+                        <li>
+                            <NavLink to={'/template'} class="top-menu">
+                                <div class="top-menu__icon"> <Icon.Clipboard className="w-4 h-4" /> </div>
+                                <div class="top-menu__title"> Template </div>
+                            </NavLink>
+                        </li>
                     </ul>
                 </li>
             
