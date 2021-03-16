@@ -11,6 +11,7 @@ import 'react-confirm-alert/src/react-confirm-alert.css';
 import { useToasts } from 'react-toast-notifications';
 
 import { BrowserRouter as Router, Switch, Route, Link, useHistory } from 'react-router-dom';
+
 // tooltip
 import Tippy from '@tippyjs/react';
 
@@ -318,13 +319,14 @@ function OrderEntry() {
                                                             });
                                                             selectInputRef.current.select.clearValue();
                                                             document.getElementById("frm-order-entry").reset();
+                                                            setIsLoading(false);
                                                             history.push('/orderentry');
                                                         }}>
                                                         Stay Back
                                                     </button>
                                                 </Tippy>
-                                                
-                                                <Tippy content="My Orders">
+
+                                                <Tippy content="My Orders">   
                                                     <button 
                                                         className="btn btn-sm btn-dark w-24 inline-block mr-2 mb-2" 
                                                         onClick={(event) => {
@@ -362,6 +364,7 @@ function OrderEntry() {
             })
         } else {
             addToast('Please Fill the Required Fields', { appearance: 'error', autoDismiss: true, });
+            setIsLoading(false);
             return false;
         }
 

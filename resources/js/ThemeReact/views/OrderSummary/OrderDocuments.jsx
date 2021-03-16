@@ -11,6 +11,9 @@ import { ReactTabulator, reactFormatter } from "react-tabulator";
 import DataTable, { createTheme } from 'react-data-table-component';
 import TableLink from  '../../../components/DataTableComponents/TableLink';
 
+// tooltip
+import Tippy from '@tippyjs/react';
+
 
 function OrderDocuments(props) {
     const { addToast } = useToasts();
@@ -28,7 +31,7 @@ function OrderDocuments(props) {
             backgroundColor:'#a3bfd054'
           }
         }
-      }
+    }
     /** Table Columns */
     const columns = [        
         {
@@ -43,8 +46,9 @@ function OrderDocuments(props) {
         },
         {
             name: 'OCR Status',
-            selector: 'id',
-            sortable: true,
+            selector: 'ocrstatus',
+            cell: row =>             
+            <span key={row.documentid} className={row.ocrstatuscolor}>{row.ocrstatus}</span> 
         },
         {
             name: 'Uploaded On',
@@ -70,6 +74,7 @@ function OrderDocuments(props) {
     ];
     /** end */
 
+
     /** Get Order Documents */
     const fetchOrderDocs = () => {
         axios.get('orderdocs/fetchOrderDocs', {
@@ -92,8 +97,12 @@ function OrderDocuments(props) {
     return (
        <>
        <div>
-            <label style={{fontSize:'22px'}}><b>Orders List</b></label>
-            <Link to={'/'} className="btn btn-primary float-right mb-2"><Icon.Plus/>Add Document</Link>
+            <div class="intro-y col-span-12 lg:col-span-12">
+                <h2 class="font-medium text-base mr-auto">Order Documents</h2>
+                <button type="button" className="btn btn-sm btn-dark-soft w-24 mr-1 ml-auto mb-2 float-right">
+                    <Icon.PlusCircle/> Add New Document
+                </button>
+            </div>
                 <DataTable
                     // title="Order Documents"
                     columns={columns}

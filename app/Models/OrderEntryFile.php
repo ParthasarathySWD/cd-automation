@@ -21,6 +21,8 @@ class OrderEntryFile extends Model
     	'DocumentTypeUID',
     	'FilePath',
     	'OcrStatus',
+    	'CreatedByUserUID',
+    	'ModifiedByUserUID',
     	'CreatedByDateTime',
     	'ModifiedByDateTime'
     ];

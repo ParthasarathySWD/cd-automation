@@ -46,10 +46,14 @@ class OrderEntryController extends Controller
      */
     public function store(Request $request)
     {
-        // echo '<pre> Prelim';print_r($request->input());
-        // echo '<pre> Support';print_r($request->file('OrderFiles'));
-        // echo '<pre> Support';print_r($request->input('ClientUID'));
+        // echo '<pre> Input';print_r($request->input());
+        // echo '<pre> Order FIle';print_r($request->file('OrderFiles'));
+        // echo '<pre> Client';print_r($request->input('ClientUID'));
+        // echo '<pre> User';print_r($UserUID);
         // exit;
+        
+        $UserDetails = $request->user()->toArray();
+        $UserUID = $UserDetails['UserUID'];
 
         $validation = Validator::make($request->all(), [
             'LoanNumber' => 'required',
@@ -66,7 +70,6 @@ class OrderEntryController extends Controller
             ]);
         } else {
 
-            $UserDetails = $request->user()->toArray();
             $DocumentType = $request->input('DocumentTypeUID');
 
             $OrderNumber = $this->GenerateOrderNumber();
@@ -87,7 +90,7 @@ class OrderEntryController extends Controller
                     'SourceDocument' => $SourceDocumnet,
                     'ManualEdit' => $ManualEdit,
                     'StatusUID' => 1,
-                    'CreatedByUserUID' => $UserDetails['UserUID'],
+                    'CreatedByUserUID' => $UserUID,
                     'CreatedByDateTime' =>Carbon::now()
                 ]);
 
@@ -111,6 +114,7 @@ class OrderEntryController extends Controller
                             foreach($request->file('OrderFiles') as $key => $file)
                             {
                                 // echo '<pre>';print_r($file);
+
                                 $DocumentType = $request->input('DocumentTypeUID');                                
                                 $FileName = $file->getClientOriginalName();
                                 $Extension = $file->getClientOriginalExtension();
@@ -136,10 +140,10 @@ class OrderEntryController extends Controller
                                         'DocumentTypeUID' => $DocumentType[$key],
                                         'FilePath' => $FilePath,
                                         'OcrStatus' => 1,
-                                        'CreatedByUserUID' => $UserDetails['UserUID'],
+                                        'CreatedByUserUID' => $UserUID,
                                         'CreatedByDateTime' => date('Y-m-d H:m:s')
                                     ]);
-
+                                    // dd($FileInsertArray);
                                     if ($FileInsertArray->save()) {
                                         $OrderFileInsertState['State'] = '200';
                                     } else {
@@ -291,14 +295,18 @@ class OrderEntryController extends Controller
                     break;
 
                     default:
-                    $Prefix = "";
-                    $StartNumber = "1";
+                    $Prefix = "CD";
+                    $StartNumber = "10001";
                     break;
                 }
                 /** end */
 
             }
             /** end */
+        } else {
+            $Prefix = "CD";
+            $StartNumber = "10001";
+        }
 
             $checktOrders = OrderEntry::latest('OrderNumber')->first();
             // dd($checktOrders);
@@ -331,12 +339,12 @@ class OrderEntryController extends Controller
 
             }
             /** end */
-        } else {
-            $ResponseData = array(
-                'Response State' => '500',
-                'message' => 'Configure in your Order Settings'
-            );
-        }
+        // } else {
+        //     $ResponseData = array(
+        //         'Response State' => '500',
+        //         'message' => 'Configure in your Order Settings'
+        //     );
+        // }
         /** end */
         return $ResponseData;
     }
@@ -356,14 +364,14 @@ class OrderEntryController extends Controller
         $OrderUID = $request->input('OrderUID');
         // echo '<pre>';print_r($OrderUID);exit;
         $OrderDocs = DB::table('tOrdersDocuments')    
-            ->select('tOrdersDocuments.*', 'mDocumentTypes.DocumentTypeName', 'mUsers.UserName')        
+            ->select('tOrdersDocuments.*', 'mDocumentTypes.DocumentTypeName', 'mUsers.UserName', 'mDocumentStatus.StatusName', 'mDocumentStatus.StatusColor')        
             ->leftJoin('mDocumentTypes', 'mDocumentTypes.DocumentTypeUID', '=', 'tOrdersDocuments.DocumentTypeUID')
             ->leftJoin('mUsers', 'mUsers.UserUID', '=', 'tOrdersDocuments.CreatedByUserUID')            
+            ->leftJoin('mDocumentStatus', 'mDocumentStatus.StatusUID', '=', 'tOrdersDocuments.OcrStatus')            
             ->where('tOrdersDocuments.OrderUID', '=', $OrderUID)
             ->get();
-        // echo '<pre>';print_r($OrderDocs);exit;
-        $RowArray = array();
-        $count = 0;
+            $RowArray = array();
+            $count = 0;
         foreach ($OrderDocs as $resKey => $resValue) {
             $count++;
             $ColumnArray = array(
@@ -371,6 +379,8 @@ class OrderEntryController extends Controller
                 'documentid' => $resValue->DocumentUID,
                 'document' => $resValue->DocumentName,
                 'type' => $resValue->DocumentTypeName,
+                'ocrstatus' => $resValue->StatusName,
+                'ocrstatuscolor' => $ClassName['StatusClass'],
                 'uploadedon' => $resValue->CreatedByDateTime,
                 'uploadedby' => $resValue->UserName,
                 'filepath' => Storage::path('OrderDocuments'.$resValue->DocumentName) 
@@ -383,6 +393,51 @@ class OrderEntryController extends Controller
             'TableData' => $RowArray
         ]);
 
+    }
+    /** end */
+
+    /**
+     * Get Order Documnet Status Color Class
+     * @author mohindarkumar-v <mohindar.kumar@avanzegroup.com>
+     * @param StatusName
+     * @throws exceptions
+     * @version CD Automation []
+     * @since 16-MAR-2021
+     * @return Status Color
+     */
+    public function DocumentStatusColor($StatusName)
+    {
+        switch ($StatusName) {
+            case 'OCR Not Started':
+                return(
+                    array(
+                        'StatusClass' => 'text-xs px-1 bg-theme-17 text-white rounded-md mr-1'
+                    )
+                );
+                break;
+            case 'OCR Inprogress':
+                return(
+                    array(
+                        'StatusClass' => 'text-xs px-1 bg-theme-23 text-black rounded-md mr-1'
+                    )
+                );
+                break;
+            case 'OCR Completed':
+                return(
+                    array(
+                        'StatusClass' => 'text-xs px-1 bg-theme-10 text-white rounded-md mr-1'
+                    )
+                );
+                break;
+        
+            default:
+                return(
+                    array(
+                        'StatusClass' => 'text-xs px-1 bg-theme-17 text-white rounded-md mr-1'
+                    )                    
+                );
+                break;
+        }
     }
     /** end */
 
