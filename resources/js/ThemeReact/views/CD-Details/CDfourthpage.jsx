@@ -11,6 +11,32 @@ function CDfourthpage(props) {
         console.log(e);
     };
 
+    const [state, setstate] = useState({
+        
+        Assumption: '',
+        AssumptionAvaliable: '',
+        DemandFeature: '',
+        DemandFeatureAvaliable: '',
+        NegativeAmortization: '',
+        NegativeAmortizationSecond: '',
+        NegativeAmortizationThird: '',
+        PartialPayments: '',
+        PartialPaymentsSecond: '',
+        PartialPaymentsThird: '',
+        EscrowAccount: '',
+        EscrowedPropertyCostsoverYear1: '',
+        NonEscrowedPropertyCostsoverYear1: '',
+        InitialEscrowPayment: '',
+        MonthlyEscrowPayment: '',
+        EscrowActive: '',
+        EscrowActiveTwo: '',
+        EscrowActiveThree: '',
+        NoEscrowOne: '',
+        EscrowWaiverFee: '',
+        
+
+    });
+
     function clickPrevious(e){
         props.changeTab(3);
     }

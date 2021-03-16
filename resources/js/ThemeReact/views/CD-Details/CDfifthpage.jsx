@@ -5,14 +5,69 @@ import CDTab from './CDTab.jsx';
 import CDE from "../../../components/ContentEditable";
 import * as Icon from 'react-feather';
 
-const handleChange = (e) => {
-    console.log(e);
-};
+
 function CDfifthpage(props) {
     function clickPrevious(e){
         props.changeTab(4);
     }
+    const handleChange = (e) => {
+        console.log(e);
+    };
+    const [state, setstate] = useState({
+        
+        TotalofPayments: '',
+        FinanceCharge: '',
+        AmountFinanced: '',
+        AnnualPercentageRate: '',
+        TotalInterestPercentage: '',
+        LiabilityafterForeclosure: '',
+        LiabilityafterForeclosureSecond: '',
+        LenderName: '',
+        MortgageBrokerName: '',
+        RealEstateBrokerName: '',
+        RealEstateBrokerNameTwo: '',
+        SettlementAgentName: '',
+        LenderAddress: '',
+        MortgageBrokerAddress: '',
+        RealEstateBrokerAddress: '',
+        SettlementBrokerAddress: '',
+        LenderNMLSID: '',
+        MortgageBrokerNMLSID: '',
+        RealEstateBrokerNMLSID: '',
+        RealEstateBrokerSecondNMLSID: '',
+        SettlementAgentNMLSID: '',
+        LenderSTLicenseID: '',
+        MortgageBrokerSTLicenseID: '',
+        RealEstateBrokerSTLicenseID: '',
+        RealEstateBrokerSecondSTLicenseID: '',
+        SettlementAgentSTLicenseID: '',
+        LenderContact: '',
+        MortgageBrokerContact: '',
+        RealEstateBrokerContact: '',
+        RealEstateBrokerSecondContact: '',
+        SettlementAgentContact: '',
+        LenderContactNMLSID: '',
+        MortgageBrokerContactNMLSID: '',
+        RealEstateBrokerContactNMLSID: '',
+        RealEstateBrokerSecondContactNMLSID: '',
+        SettlementAgentContactNMLSID: '',
+        LenderContactSTLicenseID: '',
+        MortgageBrokerContactSTLicenseID: '',
+        RealEstateBrokerContactSTLicenseID: '',
+        RealEstateBrokerSecondContactSTLicenseID: '',
+        SettlementAgentContactSTLicenseID: '',
+        LenderEmail: '',
+        MortgageBrokerEmail: '',
+        RealEstateBrokerEmail: '',
+        RealEstateBrokerSecondEmail: '',
+        SettlementAgentEmail: '',
+        LenderPhone: '',
+        MortgageBrokerPhone: '',
+        RealEstateBrokerPhone: '',
+        RealEstateBrokerSecondPhone: '',
+        SettlementAgentPhone: '',
 
+    });
 
         return(
          <>

@@ -13,6 +13,21 @@ class mTemplateFields extends Model
     protected $table = 'mTemplateFields';
     protected $fillable = [
         'TemplateUID',
-        'FormFieldUID'
+        'TempFieldUID',
+        'TempFieldName',
+        'TempFieldHash',
+        'InputTypeUID',
+        'TempFieldLabel',
+        'TempFieldLength',
+        'TempFieldRequire',
+        'TempFieldInstruction',
+        'TempFieldPlaceholder',
+        'TempGrouping',
+        'TempFieldPosition',
+        'Active',
+        'CreatedByUserUID',
+        'CreatedDateTime',
+        'ModifiedByUserUID',
+        'ModifiedDateTime',
     ];
 }

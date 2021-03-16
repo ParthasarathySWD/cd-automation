@@ -11,7 +11,42 @@ function CDthirdpage(props) {
     const handleChange = (e) => {
         console.log(e);
     };
+    const [state, setstate] = useState({
+        
+        TotalClosingCostsLoanEstimate: '',
+        TotalClosingCostsFinal: '',
+        TotalClosingCostsDidChange: '',
+        ClosingCostsPaidLoanEstimate: '',
+        ClosingCostsPaidFinal: '',
+        ClosingCostsPaidDidChange: '',
+        ClosingCostsFinancedLoanEstimate: '',
+        ClosingCostsFinancedFinal: '',
+        ClosingCostsFinancedDidChange: '',
+        DownPaymentLoanEstimate: '',
+        DownPaymentFinal: '',
+        DownPaymentDidChange: '',
+        DepositLoanEstimate: '',
+        DepositFinal: '',
+        DepositDidChange: '',
+        FundsLoanEstimate: '',
+        FundsFinal: '',
+        FundsDidChange: '',
+        SellerCreditsLoanEstimate: '',
+        SellerCreditsFinal: '',
+        SellerCreditsDidChange: '',
+        SellerCreditsLoanEstimate: '',
+        SellerCreditsFinal: '',
+        SellerCreditsDidChange: '',
+        AdjustmentAndOtherCreditsLoanEstimate: '',
+        AdjustmentAndOtherCreditsFinal: '',
+        AdjustmentAndOtherCreditsDidChange: '',
+        BorrowerClosingDue: '',
+        SellerClosingDue: '',
+        BorrowerSalePrice: '',
+        SellerSalePrice: '',
+        PersonalPropertySale: '',
 
+    });
     function clickPrevious(e){
         props.changeTab(2);
     }
@@ -20,9 +55,7 @@ function CDthirdpage(props) {
     function clickNext(e){
         props.changeTab(4);
    }
-    const [state, setstate] = useState({
-        
-    });
+    
 
         return(
          <>
