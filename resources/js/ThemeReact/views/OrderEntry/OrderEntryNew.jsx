@@ -11,6 +11,8 @@ import 'react-confirm-alert/src/react-confirm-alert.css';
 import { useToasts } from 'react-toast-notifications';
 
 import { BrowserRouter as Router, Switch, Route, Link, useHistory } from 'react-router-dom';
+// tooltip
+import Tippy from '@tippyjs/react';
 
 function OrderEntry() {
 
@@ -285,7 +287,7 @@ function OrderEntry() {
                         customUI: ({ onClose }) => {
                             return (
                                 <div className='custom-ui'>
-                                    <div className="box px-5 py-3 mb-3 flex items-center zoom-in">
+                                    <div className="box px-5 py-3 mb-3 flex items-center zoom-in border border-gray-300">
                                         <div className="w-10 h-10 flex-none image-fit rounded-full overflow-hidden">
                                             <svg xmlns="http://www.w3.org/2000/svg" width="35" height="35" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" className="feather feather-smile block mx-auto text-theme-10">
                                                 <circle cx="12" cy="12" r="10"></circle>
@@ -302,38 +304,45 @@ function OrderEntry() {
                                                 Your Order Number <b>{response.data.orderno}</b>
                                             </div>
                                             <div className="text-gray-600 text-xs mt-5 text-center"> 
-                                                <button 
-                                                    className="btn btn-sm btn-outline-dark w-24 inline-block mr-2 mb-2" 
-                                                    onClick={(event) => {
-                                                        history.push('/myorders');
-                                                        onClose();
-                                                    }}>
-                                                        My Orders
-                                                </button>
-                                                <button 
-                                                    className="btn btn-sm btn-outline-primary w-24 inline-block mr-1 mb-2" 
-                                                    onClick={(event) => {
-                                                        onClose();
-                                                        setOrderFile([]);
-                                                        setLoanNumber('');
-                                                        setDisplay({
-                                                            mock_docs: '',
-                                                            source_docs: '',
-                                                            mannual_edit: ''
-                                                        });
-                                                        selectInputRef.current.select.clearValue();
-                                                        document.getElementById("frm-order-entry").reset();
-                                                        history.push('/orderentry');
-                                                    }}>
-                                                    Stay Back
-                                                </button>
+                                                <Tippy content="Stay Back">
+                                                    <button 
+                                                        className="btn btn-sm btn-outline-primary w-24 inline-block mr-1 mb-2" 
+                                                        onClick={(event) => {
+                                                            onClose();
+                                                            setOrderFile([]);
+                                                            setLoanNumber('');
+                                                            setDisplay({
+                                                                mock_docs: '',
+                                                                source_docs: '',
+                                                                mannual_edit: ''
+                                                            });
+                                                            selectInputRef.current.select.clearValue();
+                                                            document.getElementById("frm-order-entry").reset();
+                                                            history.push('/orderentry');
+                                                        }}>
+                                                        Stay Back
+                                                    </button>
+                                                </Tippy>
+                                                
+                                                <Tippy content="My Orders">
+                                                    <button 
+                                                        className="btn btn-sm btn-dark w-24 inline-block mr-2 mb-2" 
+                                                        onClick={(event) => {
+                                                            history.push('/myorders');
+                                                            onClose();
+                                                        }}>
+                                                            My Orders
+                                                    </button>
+                                                </Tippy>
                                             </div>
                                         </div>
                                         <div className="text-theme-24 order-edit-icon">
-                                            <Icon.Edit3 id={response.data.orderuid} className="w-5 h-5" onClick={(event) => {
-                                                history.push('/summary/'+response.data.orderuid);
-                                                onClose();
-                                            }}/>
+                                            <Tippy content="Edit Order">
+                                                <Icon.Edit3 id={response.data.orderuid} className="w-5 h-5" onClick={(event) => {
+                                                    history.push('/summary/'+response.data.orderuid);
+                                                    onClose();
+                                                }}/>
+                                            </Tippy>
                                         </div>
                                     </div>
                                 </div>
