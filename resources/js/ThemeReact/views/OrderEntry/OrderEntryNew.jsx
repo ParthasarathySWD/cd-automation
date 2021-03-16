@@ -30,6 +30,8 @@ function OrderEntry() {
     const [OrderFile, setOrderFile] = useState([]);
     const [DocumentTypes, setDocumnetTypes] = useState('');
     const [loannumber, setLoanNumber] = useState("");
+    const [formError, setFormErrors] = useState([]);
+    const [isLoading, setIsLoading] = useState(false);
     /** END */
 
     /** Radio Button Base Section Show Hide */
@@ -49,7 +51,6 @@ function OrderEntry() {
     }
     /** end */
     
-    +
     /** inti Component Did Mount */
     React.useEffect(() => {
 
@@ -218,8 +219,23 @@ function OrderEntry() {
     }
     /** end */
 
+    /** clear button function */
+    const ClearNow = (event) => {
+        event.preventDefault();
+        setOrderFile([]);
+        setLoanNumber('');
+        setDisplay({
+            mock_docs: '',
+            source_docs: '',
+            mannual_edit: ''
+        });
+        selectInputRef.current.select.clearValue();
+        document.getElementById("frm-order-entry").reset();
+        setIsLoading(false);
+    }
+    /** end */
+
     /** Order entry Submit */
-    const [formError, setFormErrors] = useState([]);
 
     function OrderEntryValidation() {
 
@@ -248,6 +264,7 @@ function OrderEntry() {
     function handleSubmit(event){
         event.preventDefault();
         let IsValidate = OrderEntryValidation();
+        setIsLoading(true);
 
         if (IsValidate) {        
         
@@ -277,7 +294,9 @@ function OrderEntry() {
                         let CustomeContent = response.data.errors+' : '+response.data.message;
                         addToast(CustomeContent, { appearance: 'error', autoDismiss: true, });
                     }
+                    setIsLoading(false);
                 } else {
+                    setIsLoading(false);
                     // addToast(response.data.message, { appearance: 'success', autoDismiss: true, });
                     //Modal Customization
                     const options = {
@@ -773,16 +792,11 @@ function OrderEntry() {
                 <div className="intro-y text-right mt-3">
                     <div className="grid grid-cols-12 gap-3">
                         <div className="intro-y col-span-12 lg:col-span-12 flex">
-                            <button className="btn btn-sm btn-dark-soft w-24 mr-1 ml-auto mb-2">
-                                {" "}
-                                <Icon.X className="w-4 h-4 mr-2" /> Cancel{" "}
+                            <button className="btn btn-sm btn-dark-soft w-24 mr-1 ml-auto mb-2" onClick={ClearNow}> 
+                                <Icon.X className="w-4 h-4 mr-2" /> Clear 
                             </button>
-                            <button
-                                type="submit"
-                                className="btn btn-sm btn-primary w-24 mr-1 mb-2"
-                            >
-                                {" "}
-                                <Icon.Save className="w-4 h-4 mr-2" /> Save{" "}
+                            <button type="submit" className="btn btn-sm btn-primary w-30 mr-1 mb-2"> 
+                                <Icon.Save className="w-4 h-4 mr-2" /> {(isLoading)? 'Loading...' : 'Place Order'} 
                             </button>
                         </div>
                     </div>

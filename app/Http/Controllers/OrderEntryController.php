@@ -142,8 +142,7 @@ class OrderEntryController extends Controller
                                         'OcrStatus' => 1,
                                         'CreatedByUserUID' => $UserUID,
                                         'CreatedByDateTime' => date('Y-m-d H:m:s')
-                                    ]);
-                                    // dd($FileInsertArray);
+                                    ]);                                        
                                     if ($FileInsertArray->save()) {
                                         $OrderFileInsertState['State'] = '200';
                                     } else {
@@ -374,6 +373,8 @@ class OrderEntryController extends Controller
             $count = 0;
         foreach ($OrderDocs as $resKey => $resValue) {
             $count++;
+            $ClassName = $this->DocumentStatusColor($resValue->StatusName);
+            // echo '<pre>';print_r($ClassName['StatusClass']);exit;
             $ColumnArray = array(
                 'id' => $count,
                 'documentid' => $resValue->DocumentUID,
