@@ -51,7 +51,7 @@ class OrderEntryController extends Controller
         // echo '<pre> Client';print_r($request->input('ClientUID'));
         // echo '<pre> User';print_r($UserUID);
         // exit;
-        
+
         $UserDetails = $request->user()->toArray();
         $UserUID = $UserDetails['UserUID'];
 
@@ -102,7 +102,7 @@ class OrderEntryController extends Controller
                     if (!empty($InsertData->OrderUID)) {
 
                         $data = [];
-                        $OrderFileInsertState = [];                        
+                        $OrderFileInsertState = [];
 
                         /** check order file is exits or not empty */
                         if($request->hasFile('OrderFiles'))
@@ -111,12 +111,12 @@ class OrderEntryController extends Controller
                              * Order Document Order File Processing
                              * @var $request->file('File')
                              */
-                            
+
                             foreach($request->file('OrderFiles') as $key => $file)
                             {
                                 // echo '<pre>';print_r($file);
 
-                                $DocumentType = $request->input('DocumentTypeUID');                                
+                                $DocumentType = $request->input('DocumentTypeUID');
                                 $FileName = $file->getClientOriginalName();
                                 $Extension = $file->getClientOriginalExtension();
                                 $AllowedExtension = array('pdf');
@@ -143,7 +143,7 @@ class OrderEntryController extends Controller
                                         'OcrStatus' => 1,
                                         'CreatedByUserUID' => $UserUID,
                                         'CreatedByDateTime' => date('Y-m-d H:m:s')
-                                    ]);                                        
+                                    ]);
                                     if ($FileInsertArray->save()) {
                                         $OrderFileInsertState['State'] = '200';
                                     } else {
@@ -363,11 +363,11 @@ class OrderEntryController extends Controller
     {
         $OrderUID = $request->input('OrderUID');
         // echo '<pre>';print_r($OrderUID);exit;
-        $OrderDocs = DB::table('tOrdersDocuments')    
-            ->select('tOrdersDocuments.*', 'mDocumentTypes.DocumentTypeName', 'mUsers.UserName', 'mDocumentStatus.StatusName', 'mDocumentStatus.StatusColor')        
+        $OrderDocs = DB::table('tOrdersDocuments')
+            ->select('tOrdersDocuments.*', 'mDocumentTypes.DocumentTypeName', 'mUsers.UserName', 'mDocumentStatus.StatusName', 'mDocumentStatus.StatusColor')
             ->leftJoin('mDocumentTypes', 'mDocumentTypes.DocumentTypeUID', '=', 'tOrdersDocuments.DocumentTypeUID')
-            ->leftJoin('mUsers', 'mUsers.UserUID', '=', 'tOrdersDocuments.CreatedByUserUID')            
-            ->leftJoin('mDocumentStatus', 'mDocumentStatus.StatusUID', '=', 'tOrdersDocuments.OcrStatus')            
+            ->leftJoin('mUsers', 'mUsers.UserUID', '=', 'tOrdersDocuments.CreatedByUserUID')
+            ->leftJoin('mDocumentStatus', 'mDocumentStatus.StatusUID', '=', 'tOrdersDocuments.OcrStatus')
             ->where('tOrdersDocuments.OrderUID', '=', $OrderUID)
             ->get();
             $RowArray = array();
@@ -385,9 +385,9 @@ class OrderEntryController extends Controller
                 'ocrstatuscolor' => $ClassName['StatusClass'],
                 'uploadedon' => $resValue->CreatedByDateTime,
                 'uploadedby' => $resValue->UserName,
-                'filepath' => Storage::path('OrderDocuments'.$resValue->DocumentName) 
+                'filepath' => Storage::path('OrderDocuments'.$resValue->DocumentName)
             );
-            array_push($RowArray, $ColumnArray);            
+            array_push($RowArray, $ColumnArray);
         }
 
         return response()->json([
@@ -431,12 +431,12 @@ class OrderEntryController extends Controller
                     )
                 );
                 break;
-        
+
             default:
                 return(
                     array(
                         'StatusClass' => 'text-xs px-1 bg-theme-17 text-white rounded-md mr-1'
-                    )                    
+                    )
                 );
                 break;
         }
@@ -457,13 +457,13 @@ class OrderEntryController extends Controller
         $OrderUID = $request->input('OrderUID');
         $UserDetails = $request->user();
         // echo '<pre>';print_r($request->user());exit;
-        $OrderNotes = DB::table('tOrderNotes')    
-            ->select('tOrderNotes.*', 'mUsers.UserName')     
-            ->leftJoin('mUsers', 'mUsers.UserUID', '=', 'tOrderNotes.CreatedByUserUID')            
+        $OrderNotes = DB::table('tOrderNotes')
+            ->select('tOrderNotes.*', 'mUsers.UserName')
+            ->leftJoin('mUsers', 'mUsers.UserUID', '=', 'tOrderNotes.CreatedByUserUID')
             ->where('tOrderNotes.OrderUID', '=', $OrderUID)
             ->orderBy('CreatedByDateTime', 'asc')
             ->get();
-        // echo '<pre>';print_r($OrderNotes);exit;   
+        // echo '<pre>';print_r($OrderNotes);exit;
         $RowArray = array();
         $count = 0;
         foreach ($OrderNotes as $resKey => $resValue) {
@@ -487,14 +487,116 @@ class OrderEntryController extends Controller
                 'Date' => $NotesDate,
                 'Time' => $NotesTime,
             );
-            array_push($RowArray, $ColumnArray);            
-        }         
-        // echo '<pre>';print_r($RowArray);exit; 
+            array_push($RowArray, $ColumnArray);
+        }
+        // echo '<pre>';print_r($RowArray);exit;
          return response()->json([
             'OrginalData' => $OrderNotes->toArray(),
             'NotesData' => $RowArray
         ]);
     }
     /** end */
-   
+
+    /**
+     * AddNewDocument
+     *
+     * @param Request $request
+     * @throws exceptions
+     * @version CD Automation []
+     * @since 17-MAR-2021
+     * @return response
+     */
+    public function AddNewDocument(Request $request)
+    {
+        echo '<pre>';print_r($request>all());exit;
+        $validation = Validator::make($request->all(), [
+            'DocumentTypeUID' => 'required',
+            'OrderDocuments' => 'required',
+            // 'File.*' => 'mimes:pdf,xlsx,docx,txt,zip'
+        ]);
+
+        /** form validation */
+        if ($validation->fails()) {
+            return response()->json([
+                'type' => 'Form Validation',
+                'errors'=> $validation->messages(),
+                'status' => false
+            ]);
+        } else {
+            $OrderUID = $request->input('OrderUID');
+
+            /** check order file is exits or not empty */
+            if($request->hasFile('OrderDocuments'))
+            {
+                /**
+                 * Order Document Order File Processing
+                 * @var $request->file('OrderDocuments')
+                 */
+
+                foreach($request->file('OrderDocuments') as $key => $file)
+                {
+                    // echo '<pre>';print_r($file);
+
+                    $DocumentType = $request->input('DocumentTypeUID');
+                    $FileName = $file->getClientOriginalName();
+                    $Extension = $file->getClientOriginalExtension();
+                    $AllowedExtension = array('pdf');
+                    $NewFileName = $FileName;
+
+
+                    if (!in_array($Extension, $AllowedExtension)) {
+                        return response()->json([
+                            'type' => 'Order Insert',
+                            'status' => false,
+                            'errors' => 'Should Allowed PDF Files Only',
+                            'message' => 'Order Files are <b> '.$NewFileName.' </b> Should Allowed PDF Only'
+                        ]);
+
+                    } else {
+
+                        $FilePath = $file->storeAs('OrderDocuments', $NewFileName);
+
+                        $FileInsertArray = new OrderEntryFile([
+                            'OrderUID' => $OrderUID,
+                            'DocumentName' => $NewFileName,
+                            'DocumentTypeUID' => $DocumentType[$key],
+                            'FilePath' => $FilePath,
+                            'OcrStatus' => 1,
+                            'CreatedByUserUID' => $UserUID,
+                            'CreatedByDateTime' => date('Y-m-d H:m:s')
+                        ]);
+                        if ($FileInsertArray->save()) {
+                            $OrderFileInsertState['State'] = '200';
+                        } else {
+                            $OrderFileInsertState['State'] = '500';
+                        }
+                    }
+                }
+                /** end */
+            }
+            /** end */
+
+            /**
+             * check insert state
+             */
+            if ($OrderFileInsertState['State'] == '200') {
+                return response()->json([
+                    'type' => 'Order Document Insert',
+                    'status' => true,
+                    'errors' => '',
+                    'message' => 'Order Documents Added Successfully'
+                ]);
+            } else {
+                return response()->json([
+                    'type' => 'Order Document Insert',
+                    'status' => false,
+                    'errors' => '',
+                    'message' => 'Order Document Insert Faild'
+                ]);
+            }
+            /** end */
+        }
+
+    }
+
 }

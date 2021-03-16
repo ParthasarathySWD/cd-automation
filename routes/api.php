@@ -7,7 +7,6 @@ use App\Http\Controllers\NoteController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\ClientsController;
 use App\Http\Controllers\OrderEntryController;
-use App\Http\Controllers\MTemplatesController;
 
 /*
 |--------------------------------------------------------------------------
@@ -23,7 +22,7 @@ use App\Http\Controllers\MTemplatesController;
 Route::post('login', 'App\Http\Controllers\Api\AuthController@login');
 
 Route::middleware(['auth:sanctum'])->group(function () {
-    
+
     Route::get('user', function (Request $request) {
         return $request->user();
     });
@@ -37,21 +36,21 @@ Route::middleware(['auth:sanctum'])->group(function () {
             return new stdClass();
         }
     });
-    
+
     Route::get('logout', 'App\Http\Controllers\Api\AuthController@logout');
     Route::get('myorders/fetchorders', 'App\Http\Controllers\Api\MyOrdersController@fetchMyOrders');
     Route::get('myorders/fetchOptions', 'App\Http\Controllers\Api\MyOrdersController@fetchOptions');
     Route::get('myorders/fetchCount', 'App\Http\Controllers\Api\MyOrdersController@fetchMyOrdersCount');
     // Route::get('showclient','App\Http\Controllers\ClientsController@show');
-    
+
     Route::post('client','App\Http\Controllers\ClientsController@index');
-    
+
     Route::resource('/notes', NoteController::class);
     Route::resource('/users', UserController::class);
-    Route::resource('/formfields', MTemplatesController::class);
     Route::resource('/clients', ClientsController::class);
     Route::resource('orderentry', OrderEntryController::class);
     Route::get('orderdocs/fetchOrderDocs', 'App\Http\Controllers\OrderEntryController@GetOrderDocumentsByOrderUID');
-    Route::get('ordernots/fetchOrderNotes', 'App\Http\Controllers\OrderEntryController@GetOrderNotesByOrderUID');
+    Route::get('orderdocs/fetchOrderNotes', 'App\Http\Controllers\OrderEntryController@GetOrderNotesByOrderUID');
+    Route::get('orderdocs/addNewDocs', 'App\Http\Controllers\OrderEntryController@AddNewDocument');
 
 });
