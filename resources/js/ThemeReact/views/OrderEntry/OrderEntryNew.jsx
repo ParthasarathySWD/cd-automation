@@ -191,9 +191,10 @@ function OrderEntry() {
     const radioButtonChange = (event) =>{
         let RadioName = event.target.name;
         let RadioValue = event.target.value;
+        let RadioID = event.target.id;
 
         let setObj = {};
-        if(RadioName == "mock_docs"){
+        if(RadioID == "mock_docs"){
             
             setObj = {
                 source_docs: "",
@@ -202,10 +203,19 @@ function OrderEntry() {
             setOrderFile([])
         }
 
-        if(RadioName == "source_docs"){
+        if(RadioID == "source_docs"){
 
             setObj = {
-                mannual_edit: ""
+                mannual_edit: "",
+                mock_docs: "",
+            };
+            setOrderFile([])
+        }
+        if(RadioID == "mannual_edit"){
+
+            setObj = {
+                mock_docs: "",
+                source_docs: "",
             };
             setOrderFile([])
         }
@@ -213,7 +223,7 @@ function OrderEntry() {
             return {
                 ...prevState,
                 ...setObj,
-                [RadioName]:RadioValue
+                [RadioID]:RadioValue
             }
         });        
     }
@@ -459,66 +469,68 @@ function OrderEntry() {
                     <div className="intro-y col-span-12 lg:col-span-12">
                         <div className="intro-y box  p-5">
                             <div className="grid grid-cols-12 gap-3">
-                                <div className="col-span-3">
-                                    <label
-                                        htmlFor="regular-form-2"
-                                        className="form-label"
-                                    >
-                                        Loan Number
-                                        <span className="text-theme-24 ml-1">
-                                            *
-                                        </span>
-                                        {formError.LoanNumber != "" && (
-                                            <span className="text-theme-24 text-xs mt-0.5 ml-2">
-                                                {formError.LoanNumber}
-                                            </span>
-                                        )}
-                                    </label>
-                                    <div className="input-group">
-                                        <div
-                                            id="input-group-email"
-                                            className="input-group-text"
+                                <div className="col-span-4">
+                                    <div className="form-inline">
+                                        <label
+                                            htmlFor="regular-form-2"
+                                            className="form-label"
                                         >
-                                            <Icon.Hash className="w-4 h-4" />
+                                            Loan Number
+                                            <span className="text-theme-24 ml-1">
+                                                *
+                                            </span>                                        
+                                        </label>
+                                        <div className="input-group">
+                                            <div
+                                                id="input-group-email"
+                                                className="input-group-text"
+                                            >
+                                                <Icon.Hash className="w-4 h-4" />
+                                            </div>
+                                            <input
+                                                type="text"
+                                                className="form-control form-control-md"
+                                                placeholder="Ex. 9876543224"
+                                                value={loannumber}
+                                                name="LoanNumber"
+                                                onChange={loanChange}
+                                            />
                                         </div>
-                                        <input
-                                            type="text"
-                                            className="form-control form-control-md"
-                                            placeholder="Ex. 9876543224"
-                                            value={loannumber}
-                                            name="LoanNumber"
-                                            onChange={loanChange}
-                                        />
-                                    </div>
+                                    </div>                                    
+                                    {formError.LoanNumber != "" && (
+                                        <div class="text-theme-24 mt-2 text-center">{formError.LoanNumber}</div>
+                                    )}
+                                   
                                 </div>
-                                <div className="col-span-3">
-                                    <label
-                                        htmlFor="regular-form-2"
-                                        className="form-label"
-                                    >
-                                        Client
-                                        <span className="text-theme-24 ml-1">
-                                            *
-                                        </span>
-                                        {formError.Client != "" && (
-                                            <span className="text-theme-24 text-xs mt-0.5 ml-2">
-                                                {formError.Client}
-                                            </span>
-                                        )}
-                                    </label>
-                                    <Select
-                                        className=""
-                                        ref={selectInputRef}
-                                        options={ClientOption}
-                                        name="ClientUID"
-                                        menuPortalTarget={document.body}
-                                        styles={{
-                                            menuPortal: (base) => ({
-                                                ...base,
-                                                zIndex: 9999,
-                                            }),
-                                        }}
-                                    />
+                                {/* <div className="col-span-2"></div> */}
+                                <div className="col-span-4">
+                                    <div className="form-inline">
+                                        <label
+                                            htmlFor="regular-form-2"
+                                            className="form-label"
+                                        >
+                                            Client
+                                            <span className="text-theme-24 ml-1">
+                                                *
+                                            </span>                                        
+                                        </label>
+                                        <Select
+                                            className=""
+                                            ref={selectInputRef}
+                                            options={ClientOption}
+                                            name="ClientUID"
+                                            menuPortalTarget={document.body}
+                                            styles={{
+                                                menuPortal: (base) => ({
+                                                    ...base,
+                                                    zIndex: 9999,
+                                                }),
+                                            }}
+                                        />
+                                    </div>                                    
+                                    {formError.Client != "" && (
+                                        <div class="text-theme-24 mt-2 text-center">{formError.Client}</div>
+                                    )}
                                 </div>
                             </div>
                         </div>
@@ -530,146 +542,60 @@ function OrderEntry() {
                 <div className="grid grid-cols-12 gap-3 mt-5">
                     <div className="intro-y col-span-12 lg:col-span-12">
                         <div className="intro-y box p-5">
+                            {/* Order Question Section Begin */}
                             <div className="grid grid-cols-12 gap-3">
-                                <div className="col-span-6">
-                                    <div className="col-span-12">
-                                        <div className="text-gray-900 text-lg whitespace-nowrap mb-2">
-                                            How would you like to get started?
-                                        </div>
-                                        <div className="text-gray-800 text-md whitespace-nowrap mt-2">
-                                            Do you want to compare Mock CD with
-                                            the releavant source documents?
-                                        </div>
-
-                                        <div
-                                            className="col-span-12 lg:col-span-12 sm:col-span-12 mt-1 flex"
-                                            onChange={radioButtonChange}
-                                        >
-                                            <div className="form-check mb-2 mr-6">
-                                                <input
-                                                    id="mock_docs1"
-                                                    className="form-check-input"
-                                                    type="radio"
-                                                    name="mock_docs"
-                                                    value="Yes"
-                                                />
-                                                <label
-                                                    className="form-check-label"
-                                                    htmlFor="mock_docs1"
-                                                >
-                                                    Yes
-                                                </label>
-                                            </div>
-                                            <div className="form-check mb-2 mr-6">
-                                                <input
-                                                    id="mock_docs2"
-                                                    className="form-check-input"
-                                                    type="radio"
-                                                    name="mock_docs"
-                                                    value="No"
-                                                />
-                                                <label
-                                                    className="form-check-label"
-                                                    htmlFor="mock_docs2"
-                                                >
-                                                    No
-                                                </label>
-                                            </div>
-                                        </div>
+                                <div className="col-span-12">
+                                    <div className="text-gray-900 text-lg whitespace-nowrap mb-2">
+                                        How would you like to get started?
                                     </div>
+                                </div>
 
-                                    {Display.mock_docs == "No" && (
-                                        <div className="col-span-12">
-                                            <div className="text-gray-800 text-md whitespace-nowrap mt-2">
-                                                Do you want to create CD with
-                                                the source document?
-                                            </div>
-                                            <div
-                                                className="col-span-12 lg:col-span-12 sm:col-span-12 mt-1 flex"
-                                                onChange={radioButtonChange}
-                                            >
-                                                <div className="form-check mb-2 mr-6">
-                                                    <input
-                                                        id="source_docs1"
-                                                        className="form-check-input"
-                                                        type="radio"
-                                                        name="source_docs"
-                                                        value="Yes"
-                                                    />
-                                                    <label
-                                                        className="form-check-label"
-                                                        htmlFor="source_docs1"
-                                                    >
-                                                        Yes
-                                                    </label>
-                                                </div>
-                                                <div className="form-check mb-2 mr-6">
-                                                    <input
-                                                        id="source_docs2"
-                                                        className="form-check-input"
-                                                        type="radio"
-                                                        name="source_docs"
-                                                        value="No"
-                                                    />
-                                                    <label
-                                                        className="form-check-label"
-                                                        htmlFor="source_docs2"
-                                                    >
-                                                        No
-                                                    </label>
+                                <div 
+                                    className="col-span-12 lg:col-span-12 sm:col-span-12 mt-3 flex" 
+                                    onChange={radioButtonChange}
+                                > 
+                                    <div className="form-check mt-2 mr-6">
+                                        <input id="mock_docs" className="form-check-input" type="radio" name="order_question" value="Mock CD"/>
+                                        <label className="form-check-label" htmlFor="mock_docs">To compare Mock CD and Closing Instruction</label>
+                                    </div>
+                                    <div className="form-check mt-2 mr-6">
+                                        <input id="source_docs" className="form-check-input" type="radio" name="order_question" value="Source Doc"/>
+                                        <label className="form-check-label" htmlFor="source_docs">To get CD data from Closing documents</label>
+                                    </div>
+                                    <div className="form-check mt-2">
+                                        <input id="mannual_edit" className="form-check-input" type="radio" name="order_question" value="Mannual Edit"/>
+                                        <label className="form-check-label" htmlFor="mannual_edit">To upload Mock CD for mannual verification</label>
+                                    </div>
+                                </div>
+                                {Display.source_docs == "" &&
+                                    Display.mock_docs == "" &&
+                                    Display.mannual_edit == "" && (
+                                        <div className="intro-y col-span-12 lg:col-span-6 mt-5 mx-auto ml-auto mr-auto">
+                                            <div className="preview text-center">
+                                                <div
+                                                    className="alert alert-warning-soft show flex items-center mb-2"
+                                                    role="alert"
+                                                >
+                                                    <Icon.AlertCircle className="w-6 h-6 mr-2" />
+                                                    Sorry, you need to
+                                                    select any of the above
+                                                    option to generate CD.
                                                 </div>
                                             </div>
                                         </div>
-                                    )}
-                                    {Display.source_docs == "No" &&
-                                        Display.mock_docs == "No" && (
-                                            <div className="col-span-12">
-                                                <div className="text-gray-800 text-md whitespace-nowrap mt-2">
-                                                    Do you want to upload Mock
-                                                    CD and use manual edit
-                                                    option?
-                                                </div>
-                                                <div
-                                                    className="col-span-12 lg:col-span-12 sm:col-span-12 mt-1 flex"
-                                                    onChange={radioButtonChange}
-                                                >
-                                                    <div className="form-check mb-2 mr-6">
-                                                        <input
-                                                            id="mannual_edit1"
-                                                            className="form-check-input"
-                                                            type="radio"
-                                                            name="mannual_edit"
-                                                            value="Yes"
-                                                        />
-                                                        <label
-                                                            className="form-check-label"
-                                                            htmlFor="mannual_edit1"
-                                                        >
-                                                            Yes
-                                                        </label>
-                                                    </div>
-                                                    <div className="form-check mb-2 mr-6">
-                                                        <input
-                                                            id="mannual_edit2"
-                                                            className="form-check-input"
-                                                            type="radio"
-                                                            name="mannual_edit"
-                                                            value="No"
-                                                        />
-                                                        <label
-                                                            className="form-check-label"
-                                                            htmlFor="mannual_edit2"
-                                                        >
-                                                            No
-                                                        </label>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        )}
+                                    )
+                                }                                
+                            </div>
+                            {/* end */}
+                            
+                            {/* Order File Upload */}
+                            <div className="grid grid-cols-12 gap-3 mt-5">
+                                {/* File Upload Section Begin */}
+                                <div className="col-span-6">
 
-                                    {(Display.source_docs == "Yes" ||
-                                        Display.mock_docs == "Yes" ||
-                                        Display.mannual_edit == "Yes") && (
+                                    {(Display.source_docs != "" ||
+                                        Display.mock_docs != "" ||
+                                        Display.mannual_edit != "") && (
                                         <div className="intro-y col-span-12 lg:col-span-6 mt-5">
                                             <div className="preview text-center">
                                                 <div
@@ -713,24 +639,9 @@ function OrderEntry() {
                                             </div>
                                         </div>
                                     )}
-                                    {Display.source_docs == "No" &&
-                                        Display.mock_docs == "No" &&
-                                        Display.mannual_edit == "No" && (
-                                            <div className="intro-y col-span-12 lg:col-span-6 mt-5">
-                                                <div className="preview text-center">
-                                                    <div
-                                                        className="alert alert-warning-soft show flex items-center mb-2"
-                                                        role="alert"
-                                                    >
-                                                        <Icon.AlertCircle className="w-6 h-6 mr-2" />
-                                                        Sorry, you need to
-                                                        select any of the above
-                                                        option to generate CD.
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        )}
                                 </div>
+                                {/* end */}
+                                {/* File Preview Section Begin */}
                                 <div className="col-span-6">
                                     <div className="intro-y col-span-12 lg:col-span-6">
                                         <table className="table table--sm">
@@ -782,7 +693,9 @@ function OrderEntry() {
                                         </table>
                                     </div>
                                 </div>
+                                {/* end */}
                             </div>
+                            {/* end */}
                         </div>
                     </div>
                 </div>

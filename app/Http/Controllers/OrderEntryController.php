@@ -57,6 +57,7 @@ class OrderEntryController extends Controller
 
         $validation = Validator::make($request->all(), [
             'LoanNumber' => 'required',
+            'ClientUID' => 'required',
             'OrderFiles' => 'required',
             // 'File.*' => 'mimes:pdf,xlsx,docx,txt,zip'
         ]);
@@ -77,9 +78,9 @@ class OrderEntryController extends Controller
             /** check order number is empty or not empty */
             if ($OrderNumber['Response State'] == '200') {
 
-                $MockDocument = ($request->input('mock_docs') == 'Yes') ? 1:0;
-                $SourceDocumnet = ($request->input('source_docs')== 'Yes') ? 1:0;
-                $ManualEdit = ($request->input('mannual_edit')== 'Yes') ? 1:0;
+                $MockDocument = ($request->input('order_question') == 'Mock CD') ? 1:0;
+                $SourceDocumnet = ($request->input('order_question')== 'Source Doc') ? 1:0;
+                $ManualEdit = ($request->input('order_question')== 'Mannual Edit') ? 1:0;
 
                 $InsertData = new OrderEntry([
                     'OrderNumber' => $OrderNumber['OrderNumber'],
