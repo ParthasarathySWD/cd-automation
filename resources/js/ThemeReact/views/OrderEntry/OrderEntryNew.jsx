@@ -556,35 +556,17 @@ function OrderEntry() {
                                 > 
                                     <div className="form-check mt-2 mr-6">
                                         <input id="mock_docs" className="form-check-input" type="radio" name="order_question" value="Mock CD"/>
-                                        <label className="form-check-label" htmlFor="mock_docs">To compare Mock CD and Closing Instruction</label>
+                                        <label className="form-check-label" htmlFor="mock_docs">Compare Mock CD and Closing Instruction</label>
                                     </div>
                                     <div className="form-check mt-2 mr-6">
                                         <input id="source_docs" className="form-check-input" type="radio" name="order_question" value="Source Doc"/>
-                                        <label className="form-check-label" htmlFor="source_docs">To get CD data from Closing documents</label>
+                                        <label className="form-check-label" htmlFor="source_docs">Get CD data from Closing documents</label>
                                     </div>
                                     <div className="form-check mt-2">
                                         <input id="mannual_edit" className="form-check-input" type="radio" name="order_question" value="Mannual Edit"/>
-                                        <label className="form-check-label" htmlFor="mannual_edit">To upload Mock CD for mannual verification</label>
+                                        <label className="form-check-label" htmlFor="mannual_edit">Upload Mock CD for mannual verification</label>
                                     </div>
-                                </div>
-                                {Display.source_docs == "" &&
-                                    Display.mock_docs == "" &&
-                                    Display.mannual_edit == "" && (
-                                        <div className="intro-y col-span-12 lg:col-span-6 mt-5 mx-auto ml-auto mr-auto">
-                                            <div className="preview text-center">
-                                                <div
-                                                    className="alert alert-warning-soft show flex items-center mb-2"
-                                                    role="alert"
-                                                >
-                                                    <Icon.AlertCircle className="w-6 h-6 mr-2" />
-                                                    Sorry, you need to
-                                                    select any of the above
-                                                    option to generate CD.
-                                                </div>
-                                            </div>
-                                        </div>
-                                    )
-                                }                                
+                                </div>                               
                             </div>
                             {/* end */}
                             
@@ -709,7 +691,7 @@ function OrderEntry() {
                                 <Icon.X className="w-4 h-4 mr-2" /> Clear 
                             </button>
                             <button type="submit" className="btn btn-sm btn-primary w-30 mr-1 mb-2"> 
-                                <Icon.Save className="w-4 h-4 mr-2" /> {(isLoading)? 'Loading...' : 'Place Order'} 
+                                <Icon.Save className="w-4 h-4 mr-2" /> {(isLoading)? 'Processing...' : 'Place Order'} 
                             </button>
                         </div>
                     </div>
