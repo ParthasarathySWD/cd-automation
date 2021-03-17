@@ -12,10 +12,13 @@ import TableLink from  '../../../components/DataTableComponents/TableLink';
 import Tippy from '@tippyjs/react';
 import 'tippy.js/dist/tippy.css'; // optional
 import "react-datepicker/dist/react-datepicker.css";
+import image from '../../../../images/thinking.gif';
 // import ReactTooltip from 'react-tooltip';
 // import MyOrderWidgets from './MyOrderWidgets';
 // multi select
 import Select from 'react-select';
+import { MDBBadge, MDBContainer } from "mdbreact";
+import { right } from '@popperjs/core';
 
 /*Style to data table*/
 const customStyles = {
@@ -25,6 +28,7 @@ const customStyles = {
     }
   }
 }
+
 
 function MyOrder(){
 
@@ -53,17 +57,18 @@ function MyOrder(){
     })
 
   }
-   
-
-  function onUserChange(e)
+function onUserChange(e)
   {
     console.log(e);
     let val = e.value;
     setFilter((prevState)=>{
       return {...prevState, user: val};
     })
+}
+function onchange(e)
+{
 
-  }
+}
   // Build filter data and make async req to api
   useEffect(()=>
   {
@@ -166,10 +171,11 @@ function MyOrder(){
         selector: row => row["ClientName"],
         sortable: true
       },
+      
       {
         
         name: <b>Status</b>,
-        cell: row => <span className="p-1 text-theme-23" style={{color:'#e89223'}}>{row['StatusName']}</span>
+        cell: row => <span className='text-xs px-1 bg-theme-17 text-white rounded-md mr-1'>{row['StatusName']}</span>
       },
       {
         name:<b>Action</b>,
@@ -196,7 +202,8 @@ function MyOrder(){
             <div className="main-container clearfix">
                
                       <div className="myorder-header">
-                        <label for="input-state-2" className="form-label flex"><b style={{fontSize:'22px'}}>Orders List</b><Tippy content="Test Tooltip Content"><Icon.AlertCircle className="w-4 h-4 ml-2 text-theme-17" /></Tippy></label>
+                        <label for="input-state-2" className="form-label flex"><b style={{fontSize:'22px'}}>Orders List</b>
+                        <a href="#"><Tippy content="Test Tooltip Content"><Icon.AlertCircle className="w-4 h-4 ml-2 text-theme-17" /></Tippy></a></label>
                       </div> 
                       <div className="grid grid-cols-12 gap-3" style={{marginTop:'10px'}}>
                         <div className="p-5 col-span-2 lg:col-span-2 sm:col-span-2">
@@ -289,10 +296,17 @@ function MyOrder(){
                                
                           </div>  
                         </div>
+                        <div>
+               
+            </div>
+          
+                       
                           {/* Datatable */}
+                         
                           <div className="tab-values">
                               <div className="tab-content">
-                                  <div id="all" className="order-table tab-pane in active">
+                              <div id="all" className="order-table tab-pane in active badge badge-pill badge-info">
+                                 
                                       <DataTab            
                                         key={skey}                                                      
                                         title = ""
@@ -300,14 +314,26 @@ function MyOrder(){
                                         fetchData = {fetchUsers}
                                         setPerPage = {setCountPerPage}
                                         setCurrentPage = {setPage}
-                                        />
+                                        /> 
                                   </div>
+                                
                               </div>
                           </div>
+                            
+                          <section>
+                         <Tippy content="Hiii ">
+                          <a href="#"><img  style={{height:"120px",float:right}} src={image}/></a>
+                          </Tippy>
+                          
+                          </section>
+                          
                       </div>
             </div>
-            
         )
 }
 
 export default MyOrder;
+// {/* <div className="p-4 border-b border-theme-12 dark:border-dark-3">
+// <div className="font-medium">{ProfileDetails.UserName}</div>
+// <div className="text-xs text-theme-13 mt-0.5 dark:text-gray-600">{ProfileDetails.RoleName}</div>
+// </div> */}

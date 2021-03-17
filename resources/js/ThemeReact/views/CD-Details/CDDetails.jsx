@@ -208,8 +208,8 @@ return(
                                                 </tbody>
                                             </table>
                                             
-                                                                                            <button type="button" className="btn btn-xs btn-primary mr-2 ml-2 float-right btnNext active" onClick={clickNext}>Next<Icon.ArrowRight className="w-4 h-4"/></button>
-                                                            <button type="submit" className="btn btn-xs btn-primary mr-2 ml-2 float-right">Submit<Icon.Navigation className="w-4 h-4"/></button>
+                                 <button type="button" className="btn btn-xs btn-primary mr-2 ml-2 float-right btnNext active" onClick={clickNext}>Next<Icon.ArrowRight className="w-4 h-4"/></button>
+                                                            {/* <button type="submit" className="btn btn-xs btn-primary mr-2 ml-2 float-right">Submit<Icon.Navigation className="w-4 h-4"/></button> */}
                                                             {/* <button type="submit" className="btn  btn-xs btn-danger float-left">Previous<Icon.ArrowLeft className="w-4 h-4"/></button>     */}
                                                         </div>
                                         </div>
