@@ -254,7 +254,7 @@ function CDsecondpage(props) {
                                     <table className="table table--sm"> 
                                         <thead> 
                                             <tr> 
-                                                <th className="border border-l-0 dark:border-dark-5 whitespace-nowrap" rowspan="2" colspan="2">Loan Costs</th> 
+                                                <th className="border border-l-0 dark:border-dark-5 whitespace-nowrap" rowspan="2" >Loan Costs</th> 
                                                 <th className="border border-b-0 dark:border-dark-5 whitespace-nowrap text-center" colspan="2">Borrower-Paid</th> 
                                                 <th className="border border-b-0 dark:border-dark-5 whitespace-nowrap text-center"  colspan="2">Seller-Paid</th> 
                                                 <th className="border border-r-0 dark:border-dark-5 whitespace-nowrap text-center" >Paid By</th> 
@@ -273,7 +273,7 @@ function CDsecondpage(props) {
                                             
 
                                             <tr>
-                                                <td className="border border-l-0 dark:border-dark-5 whitespace-nowrap" colspan="2">
+                                                <td className="border border-l-0 dark:border-dark-5 whitespace-nowrap">
                                                     A.Orgination Charge
                                                 </td>
                                                 <td className="border" colspan="2"><CDE className="change_input_field" html="$ 1,802.00" onChange={handleChange}/></td>
@@ -281,7 +281,6 @@ function CDsecondpage(props) {
                                                 <td className="border border-r-0"><CDE className="change_input_field" html="" onChange={handleChange}/></td>
                                             </tr>
                                             <tr>
-                                                <td className="border">#</td>
                                                 <td className="border border-l-0 ">
                                                     {" "}
                                                     0.25 % of loanAmount(Points.)
@@ -295,7 +294,6 @@ function CDsecondpage(props) {
                                                 <td className="border border-r-0"><CDE className="change_input_field" html="" onChange={handleChange}/></td>
                                             </tr>
                                             <tr>
-                                                <td className="border">#</td>
                                                 <td className="border border-l-0"> Application Fee </td>
                                                 <td className="border">
                                                     <CDE className="change_input_field" html="$ 300.00" onChange={handleChange}/>
@@ -306,7 +304,6 @@ function CDsecondpage(props) {
                                                 <td className="border border-r-0"><CDE className="change_input_field" html="" onChange={handleChange}/></td>
                                             </tr>
                                             <tr>
-                                                <td className="border">#</td>
                                                 <td className="border border-l-0"> Underwriting Fee</td>
                                                 <td className="border">
                                                     <CDE className="change_input_field" html="$ 1,097.00" onChange={handleChange}/>
@@ -318,7 +315,6 @@ function CDsecondpage(props) {
                                                 <td className="border border-r-0"><CDE className="change_input_field" html="" onChange={handleChange}/></td>
                                             </tr>
                                             <tr>
-                                                <td className="border">#</td>
                                                 <td className="border border-l-0"><CDE className="change_input_field" html="" onChange={handleChange}/></td>
                                                 <td className="border"><CDE className="change_input_field" html="" onChange={handleChange}/></td>
                                                 <td className="border"><CDE className="change_input_field" html="" onChange={handleChange}/></td>
@@ -327,7 +323,6 @@ function CDsecondpage(props) {
                                                 <td className="border border-r-0"><CDE className="change_input_field" html="" onChange={handleChange}/></td>
                                             </tr>
                                             <tr>
-                                                <td className="border">#</td>
                                                 <td className="border border-l-0"><CDE className="change_input_field" html="" onChange={handleChange}/></td>
                                                 <td className="border"><CDE className="change_input_field" html="" onChange={handleChange}/></td>
                                                 <td className="border"><CDE className="change_input_field" html="" onChange={handleChange}/></td>
@@ -336,7 +331,6 @@ function CDsecondpage(props) {
                                                 <td className="border border-r-0"><CDE className="change_input_field" html="" onChange={handleChange}/></td>
                                             </tr>
                                             <tr>
-                                                <td className="border">#</td>
                                                 <td className="border border-l-0"><CDE className="change_input_field" html="" onChange={handleChange}/></td>
                                                 <td className="border"><CDE className="change_input_field" html="" onChange={handleChange}/></td>
                                                 <td className="border"><CDE className="change_input_field" html="" onChange={handleChange}/></td>
@@ -345,7 +339,6 @@ function CDsecondpage(props) {
                                                 <td className="border border-r-0"><CDE className="change_input_field" html="" onChange={handleChange}/></td>
                                             </tr>
                                             <tr>
-                                                <td className="border">#</td>
                                                 <td className="border border-l-0"><CDE className="change_input_field" html="" onChange={handleChange}/></td>
                                                 <td className="border"><CDE className="change_input_field" html="" onChange={handleChange}/></td>
                                                 <td className="border"><CDE className="change_input_field" html="" onChange={handleChange}/></td>
@@ -354,7 +347,6 @@ function CDsecondpage(props) {
                                                 <td className="border border-r-0"><CDE className="change_input_field" html="" onChange={handleChange}/></td>
                                             </tr>
                                             <tr>
-                                                <td className="border">#</td>
                                                 <td className="border border-l-0"><CDE className="change_input_field" html="" onChange={handleChange}/></td>
                                                 <td className="border"><CDE className="change_input_field" html="" onChange={handleChange}/></td>
                                                 <td className="border"><CDE className="change_input_field" html="" onChange={handleChange}/></td>
@@ -363,7 +355,7 @@ function CDsecondpage(props) {
                                                 <td className="border border-r-0"><CDE className="change_input_field" html="" onChange={handleChange}/></td>
                                             </tr>
                                             <tr>
-                                                <td className="border border-l-0 dark:border-dark-5 whitespace-nowrap" colspan="2">
+                                                <td className="border border-l-0 dark:border-dark-5 whitespace-nowrap">
                                                     B.Service Borrower Did Not Shop
                                                     For
                                                 </td>
@@ -378,7 +370,6 @@ function CDsecondpage(props) {
                                                 </td>
                                             </tr>
                                             <tr>
-                                                <td className="border">#</td>
                                                 <td className="border border-l-0">
                                                     {" "}
                                                     Appraisal Fee to John Smith
@@ -393,7 +384,6 @@ function CDsecondpage(props) {
                                                 <td className="border border-r-0"><CDE className="change_input_field" html="" onChange={handleChange}/></td>
                                             </tr>
                                             <tr>
-                                                <td className="border">#</td>
                                                 <td className="border border-l-0">
                                                     Credit Aepon Fee to Information
                                                     Inc.
@@ -407,7 +397,6 @@ function CDsecondpage(props) {
                                                 <td className="border border-r-0"><CDE className="change_input_field" html="" onChange={handleChange}/></td>
                                             </tr>
                                             <tr>
-                                                <td className="border">#</td>
                                                 <td className="border border-l-0">
                                                     {" "}
                                                     Flood Determination Fee to Info
@@ -423,7 +412,6 @@ function CDsecondpage(props) {
                                                 <td className="border border-r-0"><CDE className="change_input_field" html="" onChange={handleChange}/></td>
                                             </tr>
                                             <tr>
-                                                <td className="border">#</td>
                                                 <td className="border border-l-0">
                                                     Flood Monitoring Fee to Info Co.{" "}
                                                 </td>
@@ -437,7 +425,6 @@ function CDsecondpage(props) {
                                                 <td className="border border-r-0"><CDE className="change_input_field" html="" onChange={handleChange}/></td>
                                             </tr>
                                             <tr>
-                                                <td className="border">#</td>
                                                 <td className="border border-l-0">TaxMonitoring Fee</td>
                                                 <td className="border">
                                                     <CDE className="change_input_field" html="$ 75.00" onChange={handleChange}/>
@@ -449,7 +436,6 @@ function CDsecondpage(props) {
                                                 <td className="border border-r-0"><CDE className="change_input_field" html="" onChange={handleChange}/></td>
                                             </tr>
                                             <tr>
-                                                <td className="border">#</td>
                                                 <td className="border border-l-0">Tax Status Agent Fee</td>
                                                 <td className="border">
                                                     <CDE className="change_input_field" html="$ 80.00" onChange={handleChange}/>
@@ -461,7 +447,6 @@ function CDsecondpage(props) {
                                                 <td className="border border-r-0"><CDE className="change_input_field" html="" onChange={handleChange}/></td>
                                             </tr>
                                             <tr>
-                                                <td className="border">#</td>
                                                 <td className="border border-l-0"><CDE className="change_input_field" html="" onChange={handleChange}/></td>
                                                 <td className="border"><CDE className="change_input_field" html="" onChange={handleChange}/></td>
                                                 <td className="border"><CDE className="change_input_field" html="" onChange={handleChange}/></td>
@@ -470,7 +455,6 @@ function CDsecondpage(props) {
                                                 <td className="border border-r-0"><CDE className="change_input_field" html="" onChange={handleChange}/></td>
                                             </tr>
                                             <tr>
-                                                <td className="border">#</td>
                                                 <td className="border border-l-0"><CDE className="change_input_field" html="" onChange={handleChange}/></td>
                                                 <td className="border"><CDE className="change_input_field" html="" onChange={handleChange}/></td>
                                                 <td className="border"><CDE className="change_input_field" html="" onChange={handleChange}/></td>
@@ -479,7 +463,6 @@ function CDsecondpage(props) {
                                                 <td className="border border-r-0"><CDE className="change_input_field" html="" onChange={handleChange}/></td>
                                             </tr>
                                             <tr>
-                                                <td className="border">#</td>
                                                 <td className="border border-l-0"><CDE className="change_input_field" html="" onChange={handleChange}/></td>
                                                 <td className="border"><CDE className="change_input_field" html="" onChange={handleChange}/></td>
                                                 <td className="border"><CDE className="change_input_field" html="" onChange={handleChange}/></td>
@@ -488,7 +471,6 @@ function CDsecondpage(props) {
                                                 <td className="border border-r-0"><CDE className="change_input_field" html="" onChange={handleChange}/></td>
                                             </tr>
                                             <tr>
-                                                <td className="border">#</td>
                                                 <td className="border border-l-0"><CDE className="change_input_field" html="" onChange={handleChange}/></td>
                                                 <td className="border"><CDE className="change_input_field" html="" onChange={handleChange}/></td>
                                                 <td className="border"><CDE className="change_input_field" html="" onChange={handleChange}/></td>
@@ -511,7 +493,6 @@ function CDsecondpage(props) {
                                                 </td>
                                             </tr>
                                             <tr>
-                                                <td className="border">#</td>
                                                 <td className="border border-l-0">
                                                     {" "}
                                                     Pest lnspection fee to Pests Co.{" "}
@@ -526,7 +507,6 @@ function CDsecondpage(props) {
                                                 <td className="border border-r-0"><CDE className="change_input_field" html="" onChange={handleChange}/></td>
                                             </tr>
                                             <tr>
-                                                <td className="border">#</td>
                                                 <td className="border border-l-0"> Survey Fee to Surveys Co. </td>
                                                 <td className="border"><CDE className="change_input_field" html="" onChange={handleChange}/></td>
                                                 <td className="border">
@@ -538,7 +518,6 @@ function CDsecondpage(props) {
                                                 <td className="border border-r-0"><CDE className="change_input_field" html="" onChange={handleChange}/></td>
                                             </tr>
                                             <tr>
-                                                <td className="border">#</td>
                                                 <td className="border border-l-0">
                                                     {" "}
                                                     Title-lnsuranceBinder to Epsiloo
@@ -554,7 +533,6 @@ function CDsecondpage(props) {
                                                 <td className="border border-r-0"><CDE className="change_input_field" html="" onChange={handleChange}/></td>
                                             </tr>
                                             <tr>
-                                                <td className="border">#</td>
                                                 <td className="border border-l-0">
                                                     {" "}
                                                     Title - Lender's Title Insurance
@@ -570,7 +548,6 @@ function CDsecondpage(props) {
                                                 <td className="border border-r-0"><CDE className="change_input_field" html="" onChange={handleChange}/></td>
                                             </tr>
                                             <tr>
-                                                <td className="border">#</td>
                                                 <td className="border border-l-0">
                                                     {" "}
                                                     Title-Settlement Agent Fee to
@@ -586,7 +563,6 @@ function CDsecondpage(props) {
                                                 <td className="border border-r-0"><CDE className="change_input_field" html="" onChange={handleChange}/></td>
                                             </tr>
                                             <tr>
-                                                <td className="border">#</td>
                                                 <td className="border border-l-0">
                                                     {" "}
                                                     Title-Title Search to Epsilon
@@ -602,7 +578,6 @@ function CDsecondpage(props) {
                                                 <td className="border border-r-0"><CDE className="change_input_field" html="" onChange={handleChange}/></td>
                                             </tr>
                                             <tr>
-                                                <td className="border">#</td>
                                                 <td className="border border-l-0"><CDE className="change_input_field" html="" onChange={handleChange}/></td>
                                                 <td className="border"><CDE className="change_input_field" html="" onChange={handleChange}/></td>
                                                 <td className="border"><CDE className="change_input_field" html="" onChange={handleChange}/></td>
@@ -611,7 +586,6 @@ function CDsecondpage(props) {
                                                 <td className="border border-r-0"><CDE className="change_input_field" html="" onChange={handleChange}/></td>
                                             </tr>
                                             <tr>
-                                                <td className="border">#</td>
                                                 <td className="border border-l-0"><CDE className="change_input_field" html="" onChange={handleChange}/></td>
                                                 <td className="border"><CDE className="change_input_field" html="" onChange={handleChange}/></td>
                                                 <td className="border"><CDE className="change_input_field" html="" onChange={handleChange}/></td>
@@ -653,7 +627,6 @@ function CDsecondpage(props) {
                                                 <tr>
                                                     <td></td><td></td></tr>
                                             <tr>
-                                                <td className="border">#</td>
                                                 <td className="border border-l-0">Other Costs{" "}</td>
                                             </tr>
                                             <tr>
@@ -672,7 +645,6 @@ function CDsecondpage(props) {
                                                 </td>
                                             </tr>
                                             <tr>
-                                                <td className="border">#</td>
                                                 <td className="border border-l-0">
                                                     {" "}
                                                     Recording Fees Deed: $40.00
@@ -687,7 +659,6 @@ function CDsecondpage(props) {
                                                 <td className="border border-r-0"><CDE className="change_input_field" html="" onChange={handleChange}/></td>
                                             </tr>
                                             <tr>
-                                                <td className="border">#</td>
                                                 <td className="border border-l-0"> TransferTax to state </td>
                                                 <td className="border"><CDE className="change_input_field" html="" onChange={handleChange}/></td>
                                                 <td className="border"><CDE className="change_input_field" html="" onChange={handleChange}/></td>
@@ -713,7 +684,6 @@ function CDsecondpage(props) {
                                                 </td>
                                             </tr>
                                             <tr>
-                                                <td className="border">#</td>
                                                 <td className="border border-l-0">
                                                     {" "}
                                                     Homeowner's Insurance Premium (
@@ -729,7 +699,6 @@ function CDsecondpage(props) {
                                                 <td className="border border-r-0"><CDE className="change_input_field" html="" onChange={handleChange}/></td>
                                             </tr>
                                             <tr>
-                                                <td className="border">#</td>
                                                 <td className="border border-l-0">
                                                     {" "}
                                                     Mortgage Insurance Premium (
@@ -742,7 +711,6 @@ function CDsecondpage(props) {
                                                 <td className="border border-r-0"><CDE className="change_input_field" html="" onChange={handleChange}/></td>
                                             </tr>
                                             <tr>
-                                                <td className="border">#</td>
                                                 <td className="border border-l-0">
                                                     Prepaid Interest ($ 1744 per day
                                                     form 4/15/13 to 5/1/13)
@@ -757,7 +725,6 @@ function CDsecondpage(props) {
                                                 <td className="border border-r-0"><CDE className="change_input_field" html="" onChange={handleChange}/></td>
                                             </tr>
                                             <tr>
-                                                <td className="border">#</td>
                                                 <td className="border border-l-0">
                                                     PropertyTaxes ( 6 mo)
                                                     toAnyCounty USA{" "}
@@ -772,7 +739,6 @@ function CDsecondpage(props) {
                                                 <td className="border border-r-0"><CDE className="change_input_field" html="" onChange={handleChange}/></td>
                                             </tr>
                                             <tr>
-                                                <td className="border">#</td>
                                                 <td className="border border-l-0"><CDE className="change_input_field" html="" onChange={handleChange}/></td>
                                                 <td className="border"><CDE className="change_input_field" html="" onChange={handleChange}/></td>
                                                 <td className="border"><CDE className="change_input_field" html="" onChange={handleChange}/></td>
@@ -796,7 +762,6 @@ function CDsecondpage(props) {
                                                 </td>
                                             </tr>
                                             <tr>
-                                                <td className="border">#</td>
                                                 <td className="border border-l-0">
                                                     {" "}
                                                     Homeowner's Insurance $ 100.83
@@ -812,7 +777,6 @@ function CDsecondpage(props) {
                                                 <td className="border border-r-0"><CDE className="change_input_field" html="" onChange={handleChange}/></td>
                                             </tr>
                                             <tr>
-                                                <td className="border">#</td>
                                                 <td className="border border-l-0">
                                                     {" "}
                                                     Mortgage Insurance per month for
@@ -820,7 +784,6 @@ function CDsecondpage(props) {
                                                 </td>
                                             </tr>
                                             <tr>
-                                                <td className="border">#</td>
                                                 <td className="border border-l-0">
                                                     {" "}
                                                     Property Taxes $105.30 per month
@@ -836,7 +799,6 @@ function CDsecondpage(props) {
                                                 <td className="border border-r-0"><CDE className="change_input_field" html="" onChange={handleChange}/></td>
                                             </tr>
                                             <tr>
-                                                <td className="border">#</td>
                                                 <td className="border border-l-0"><CDE className="change_input_field" html="" onChange={handleChange}/></td>
                                                 <td className="border"><CDE className="change_input_field" html="" onChange={handleChange}/></td>
                                                 <td className="border"><CDE className="change_input_field" html="" onChange={handleChange}/></td>
@@ -845,7 +807,6 @@ function CDsecondpage(props) {
                                                 <td className="border border-r-0"><CDE className="change_input_field" html="" onChange={handleChange}/></td>
                                             </tr>
                                             <tr>
-                                                <td className="border">#</td>
                                                 <td className="border border-l-0"><CDE className="change_input_field" html="" onChange={handleChange}/></td>
                                                 <td className="border"><CDE className="change_input_field" html="" onChange={handleChange}/></td>
                                                 <td className="border"><CDE className="change_input_field" html="" onChange={handleChange}/></td>
@@ -854,7 +815,6 @@ function CDsecondpage(props) {
                                                 <td className="border border-r-0"><CDE className="change_input_field" html="" onChange={handleChange}/></td>
                                             </tr>
                                             <tr>
-                                                <td className="border">#</td>
                                                 <td className="border border-l-0"><CDE className="change_input_field" html="" onChange={handleChange}/></td>
                                                 <td className="border"><CDE className="change_input_field" html="" onChange={handleChange}/></td>
                                                 <td className="border"><CDE className="change_input_field" html="" onChange={handleChange}/></td>
@@ -863,7 +823,6 @@ function CDsecondpage(props) {
                                                 <td className="border border-r-0"><CDE className="change_input_field" html="" onChange={handleChange}/></td>
                                             </tr>
                                             <tr>
-                                                <td className="border">#</td>
                                                 <td className="border border-l-0"><CDE className="change_input_field" html="" onChange={handleChange}/></td>
                                                 <td className="border"><CDE className="change_input_field" html="" onChange={handleChange}/></td>
                                                 <td className="border"><CDE className="change_input_field" html="" onChange={handleChange}/></td>
@@ -872,7 +831,6 @@ function CDsecondpage(props) {
                                                 <td className="border border-r-0"><CDE className="change_input_field" html="" onChange={handleChange}/></td>
                                             </tr>
                                             <tr>
-                                                <td className="border">#</td>
                                                 <td className="border border-l-0"> Aggregate Adjustment </td>
                                                 <td className="border"><CDE className="change_input_field" html="-0.01" onChange={handleChange}/></td>
                                                 <td className="border"><CDE className="change_input_field" html="" onChange={handleChange}/></td>
@@ -893,7 +851,6 @@ function CDsecondpage(props) {
                                                 </td>
                                             </tr>
                                             <tr>
-                                                <td className="border">#</td>
                                                 <td className="border border-l-0">
                                                     {" "}
                                                     HOA Capital Contribution to HOA
@@ -909,7 +866,6 @@ function CDsecondpage(props) {
                                                 <td className="border border-r-0"><CDE className="change_input_field" html="" onChange={handleChange}/></td>
                                             </tr>
                                             <tr>
-                                                <td className="border">#</td>
                                                 <td className="border border-l-0">
                                                     HOA Processing Fee to HOA Acre
                                                     Inc.
@@ -924,7 +880,6 @@ function CDsecondpage(props) {
                                                 <td className="border border-r-0"><CDE className="change_input_field" html="" onChange={handleChange}/></td>
                                             </tr>
                                             <tr>
-                                                <td className="border">#</td>
                                                 <td className="border border-l-0">
                                                     {" "}
                                                     Home Inspection Fee to Engineers
@@ -943,7 +898,6 @@ function CDsecondpage(props) {
                                                 <td className="border border-r-0"><CDE className="change_input_field" html="" onChange={handleChange}/></td>
                                             </tr>
                                             <tr>
-                                                <td className="border">#</td>
                                                 <td className="border border-l-0">
                                                     {" "}
                                                     Home Warranty Fee to XVZ
@@ -959,7 +913,6 @@ function CDsecondpage(props) {
                                                 <td className="border border-r-0"><CDE className="change_input_field" html="" onChange={handleChange}/></td>
                                             </tr>
                                             <tr>
-                                                <td className="border">#</td>
                                                 <td className="border border-l-0">
                                                     Real Estate Commision to Alpha
                                                     Real Estate Broker
@@ -974,7 +927,6 @@ function CDsecondpage(props) {
                                                 <td className="border border-r-0"><CDE className="change_input_field" html="" onChange={handleChange}/></td>
                                             </tr>
                                             <tr>
-                                                <td className="border">#</td>
                                                 <td className="border border-l-0">
                                                     Real Estate Commisiion to Omega
                                                     Real Estate Broker{" "}
@@ -989,7 +941,6 @@ function CDsecondpage(props) {
                                                 <td className="border border-r-0"><CDE className="change_input_field" html="" onChange={handleChange}/></td>
                                             </tr>
                                             <tr>
-                                                <td className="border">#</td>
                                                 <td className="border border-l-0">
                                                     {" "}
                                                     Title-Owner's Title Insurance
@@ -1005,7 +956,6 @@ function CDsecondpage(props) {
                                                 <td className="border border-r-0"><CDE className="change_input_field" html="" onChange={handleChange}/></td>
                                             </tr>
                                             <tr>
-                                                <td className="border">#</td>
                                                 <td className="border border-l-0"><CDE className="change_input_field" html="" onChange={handleChange}/></td>
                                                 <td className="border"><CDE className="change_input_field" html="" onChange={handleChange}/></td>
                                                 <td className="border"><CDE className="change_input_field" html="" onChange={handleChange}/></td>
@@ -1043,7 +993,6 @@ function CDsecondpage(props) {
                                                 <td className="border border-r-0"><CDE className="change_input_field" html="" onChange={handleChange}/></td>
                                             </tr>
                                             <tr>
-                                                <td className="border">#</td>
                                                 <td></td>
                                             </tr>
                                             <tr>
