@@ -15,6 +15,8 @@ function CDDetails(props){
         props.changeTab(2);
    }
 
+   const [data, setData] = useState({})
+
     const [state, setstate] = useState({
         DateIssued: '',
         ClosingDate: '',

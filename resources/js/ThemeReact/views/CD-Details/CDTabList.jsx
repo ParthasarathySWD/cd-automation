@@ -6,12 +6,14 @@ import PageTwo from './CDsecondpage';
 import PageThree from './CDthirdpage';
 import PageFour from './CDfourthpage';
 import PageFive from './CDfifthpage';
+import axios from 'axios';
+import { reject } from 'lodash';
 // import './style.css';
 
 function CDPages(props) {
 
     const [tabIndex , setTabIndex] = useState(1);
-
+    const [CDData, setCDData] = useState([]);
     const handleTabChange = (e) => {
 
     	let target = e.target.dataset.target;
@@ -22,6 +24,37 @@ function CDPages(props) {
     	/* document.querySelectorAll('.page-tab-panes .tab-pane').classList.remove('active');
     	document.querySelector('.page-tab-panes .tab-pane:nth-child('+index+')').classList.add('active'); */
 
+    }
+
+
+    useEffect(()=>{
+
+        console.log('Effect Ran');
+        async function fetchCDRows() {
+            
+
+            let response = await fetchInputData();
+            
+            if(response.data.status=='ok'){
+                setCDData(response.data.rows);
+            }
+        }
+        fetchCDRows();
+
+    }, [])
+    
+
+    function fetchInputData() {
+        
+        return new Promise((resolve, reject) => {
+            axios.get('/fetchCDRows', {})
+            .then(function (response) {
+                resolve(response);     
+            })
+            .catch(function (error) {
+                resolve(error);
+            })
+        });
     }
 
     return(
