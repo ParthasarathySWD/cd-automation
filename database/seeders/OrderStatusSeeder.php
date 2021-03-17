@@ -30,8 +30,7 @@ class OrderStatusSeeder extends Seeder
             ],  
             [
                 'StatusUID'=>10,
-                'StatusName'=>'Prelim CD OCR Inprogress',
-                'StatusName'=>'Prelim CD OCR Inprogress',
+                'StatusName'=>'OCR Inprogress',
                 'StatusColor'=>'#d36632',
                 'IconType'=>'FontAwesome',
                 'IconName'=>'fa fa-tick',
@@ -42,7 +41,7 @@ class OrderStatusSeeder extends Seeder
                 
             [
                 'StatusUID'=>20,
-                'StatusName'=>'Prelim CD OCR Completed',
+                'StatusName'=>'OCR Completed',
                 'StatusColor'=>'#d36632',
                 'IconType'=>'FontAwesome',
                 'IconName'=>'fa fa-tick',
@@ -53,7 +52,7 @@ class OrderStatusSeeder extends Seeder
                 
             [
                 'StatusUID'=>30,
-                'StatusName'=>'Source Doc OCR Inprogress',
+                'StatusName'=>'Order Completed',
                 'StatusColor'=>'#d36632',
                 'IconType'=>'FontAwesome',
                 'IconName'=>'fa fa-tick',
@@ -61,17 +60,6 @@ class OrderStatusSeeder extends Seeder
                 'CreatedByDateTime'=>date('Y-m-d H:i:s'),
                 'Active'=>1,
             ],
-                
-            [
-                'StatusUID'=>40,
-                'StatusName'=>'Source Doc OCR Completed',
-                'StatusColor'=>'#d36632',
-                'IconType'=>'FontAwesome',
-                'IconName'=>'fa fa-tick',
-                'CreatedByUserUID'=>1,
-                'CreatedByDateTime'=>date('Y-m-d H:i:s'),
-                'Active'=>1,
-            ]
         ];
             
         DB::table('mOrderStatus')->insert($data);
