@@ -8,3 +8,7 @@
 .order-edit-icon{
     margin-top: -38px !important;
 }
+
+.form-check-input[type=radio] {
+    border-color: #142e71 !important;
+}
