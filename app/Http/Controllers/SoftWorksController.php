@@ -1272,22 +1272,22 @@ class SoftWorksController extends Controller
 
                 $query = DB::table('mClientTemplateFields')
                         ->select('mFormFields.*,tFormValues.FormValue,tFormValues.Confidence')
-                        ->leftJoin('mFormFields','mFormFields.FormFieldUID', '=' , 'mClientTemplateFields.FormFieldUID');
-                        ->leftJoin('tFormValues','tFormValues.FormFieldUID = mClientTemplateFields.FormFieldUID AND tFormValues.TransactionUID = '.$TransactionUID.'');
-                        ->where('mClientTemplateFields.ClientTemplateUID',$TemplateUID);
-                        ->where('FormFieldRequire',1);
-                        ->group_by('mFormFields.FormFieldUID');
+                        ->leftJoin('mFormFields','mFormFields.FormFieldUID', '=' , 'mClientTemplateFields.FormFieldUID')
+                        ->leftJoin('tFormValues','tFormValues.FormFieldUID = mClientTemplateFields.FormFieldUID AND tFormValues.TransactionUID = '.$TransactionUID.'')
+                        ->where('mClientTemplateFields.ClientTemplateUID',$TemplateUID)
+                        ->where('FormFieldRequire',1)
+                        ->group_by('mFormFields.FormFieldUID')
                         ->get();
                 return $query;
             }else{
 
                 $query = DB::table('mTemplateFields')
-                        ->select('mFormFields.*,tFormValues.FormValue,tFormValues.Confidence');
-                        ->leftjoin('mFormFields','mFormFields.FormFieldUID = mTemplateFields.FormFieldUID');
-                        ->leftJoin('tFormValues','tFormValues.FormFieldUID = mTemplateFields.FormFieldUID AND tFormValues.TransactionUID = '.$TransactionUID.'','left');
-                        ->where('mTemplateFields.TemplateUID',$TemplateUID);
-                        ->where('FormFieldRequire',1);
-                        ->group_by('mFormFields.FormFieldUID');
+                        ->select('mFormFields.*,tFormValues.FormValue,tFormValues.Confidence')
+                        ->leftjoin('mFormFields','mFormFields.FormFieldUID = mTemplateFields.FormFieldUID')
+                        ->leftJoin('tFormValues','tFormValues.FormFieldUID = mTemplateFields.FormFieldUID AND tFormValues.TransactionUID = '.$TransactionUID.'','left')
+                        ->where('mTemplateFields.TemplateUID',$TemplateUID)
+                        ->where('FormFieldRequire',1)
+                        ->group_by('mFormFields.FormFieldUID')
                         ->get();
                 return $query;
             } 
@@ -1295,8 +1295,8 @@ class SoftWorksController extends Controller
         function GetUserAllDetails($UserUID)
         {
             $query = DB::table('mUsers')
-                    ->select("*");
-                    ->where(array("mUsers.UserUID"=>$UserUID));
+                    ->select("*")
+                    ->where(array("mUsers.UserUID"=>$UserUID))
                     ->get();
 
             return $query->row();
