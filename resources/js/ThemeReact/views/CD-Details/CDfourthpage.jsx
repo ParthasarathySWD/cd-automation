@@ -70,7 +70,7 @@ function CDfourthpage(props) {
                                 <p>
                                 <b>Assumption</b><br/>
                                 If you sell or transfer this property to another person, your lender <br/>
-                                <input type="checkbox"/> will not allow assumption of this loan on the original terms<br/>
+                                <input type="checkbox"/> will allow,under certain conditions, this person to assume this<br/>
                                 &nbsp; loan on the original terms,<br/>
                                 <input type="checkbox"/> will not allow assumption of this loan on the original terms.
                                 </p>
