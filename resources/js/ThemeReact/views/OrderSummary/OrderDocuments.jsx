@@ -26,6 +26,7 @@ function OrderDocuments(props) {
     const [IsDocumentListView, setDocumentListView] = useState(true);
     const [isLoading, setIsLoading] = useState(false);
     const [DocumentTypes, setDocumnetTypes] = useState('');
+    const [DocTypeOption, setDocTypeOption] = useState({});
 
     /** init file upload state and ref */
     const drop = React.useRef(null);
@@ -133,8 +134,38 @@ function OrderDocuments(props) {
             };
         }        
         /** end */
+
+        console.log('Effect Ran');
+        async function fetchOrderEntryData() {       
+
+            let docTyperesponse = await fetchDocumentTypes();
+            
+            if(docTyperesponse.data){
+                setDocTypeOption(docTyperesponse.data);
+            }
+        }
+        fetchOrderEntryData();
     },[]);
     /** end */
+
+    /** fetch document type */
+    function fetchDocumentTypes() {
+        return new Promise((resolve, reject) => {
+            axios.get('order/fetchDocumentTypes', {})
+            .then(function (response) {
+                resolve(response);     
+            })
+            .catch(function (error) {
+                resolve(error);
+            })
+        });
+    }
+    /** end */
+    if (DocTypeOption && DocTypeOption.length > 0) {
+       var TypeOptions = DocTypeOption.map((val)=>{
+            return {value:val.DocumentTypeUID, label:val.DocumentTypeName}
+        }); 
+    }
     
     /** Drag and Drop Order File Store */
     function onUpload (files) {
@@ -241,13 +272,67 @@ function OrderDocuments(props) {
     /** end */
 
    
-    const DocTypeOption = [
-        { value: '1', label: 'Prelim' },
-        { value: '2', label: 'Title Commitment' },
-        { value: '3', label: 'Closing' },
-        { value: '4', label: 'Mortgage' }
-    ]
+    // const DocTypeOption = [
+    //     { value: '1', label: 'Prelim' },
+    //     { value: '2', label: 'Title Commitment' },
+    //     { value: '3', label: 'Closing' },
+    //     { value: '4', label: 'Mortgage' }
+    // ]
 
+    /** handel Submit event */
+    function handleSubmit(event){
+        event.preventDefault();        
+        setIsLoading(true);
+        console.log('File: ', OrderNewFile);
+        console.log('Length: ', Object.keys(OrderNewFile).length);
+
+        if (OrderNewFile) {        
+        
+            var formData = new FormData(event.target);
+            console.log(formData);
+
+            console.log(OrderNewFile);
+            Object.keys(OrderNewFile).map((fileName, index) => {
+                let file = OrderNewFile[fileName];
+                formData.append('OrderDocuments[]', file);
+            });
+
+
+            axios.post('orderdocs/addNewDocs', formData).then(response =>{
+                console.log(response);
+                if (response.data.status != true) {
+                    if (response.data.type == 'Form Validation') {
+                        let form_errors = response.data.errors;
+                        console.log(form_errors.DocumentTypeUID);
+                        if (form_errors.DocumentTypeUID) {
+                            addToast(form_errors.DocumentTypeUID, { appearance: 'error', autoDismiss: true, });
+                        }
+                        if (form_errors.OrderDocuments) {
+                            addToast(form_errors.OrderDocuments, { appearance: 'error', autoDismiss: true, });
+                        }
+                    } else {
+                        let CustomeContent = response.data.errors+' : '+response.data.message;
+                        addToast(CustomeContent, { appearance: 'error', autoDismiss: true, });
+                    }
+                    setIsLoading(false);
+                } else {
+                    setIsLoading(false);
+                    console.log(response);
+                    addToast(response.data.message, { appearance: 'success', autoDismiss: true, });
+                    fetchOrderDocs();
+                    setaddNewDocs(false);
+                    setDocumentListView(true);
+                }
+
+            })
+        } else {
+            addToast('Please Upload any Documents', { appearance: 'error', autoDismiss: true, });
+            setIsLoading(false);
+            return false;
+        }
+
+    }
+    /** end */
     return (
        <>
         <div className="grid grid-cols-12 gap-3 mt-5">
@@ -286,6 +371,7 @@ function OrderDocuments(props) {
                     <form
                         id="frm-order-documents"
                         encType="multipart/form-data"
+                        onSubmit={handleSubmit}
                     >
                         <input type="hidden" name="OrderUID" value={props.orderid}/>
                         <div class="intro-y col-span-12 lg:col-span-12">
@@ -354,7 +440,7 @@ function OrderDocuments(props) {
                                                             <Select
                                                                 className="custom_select"
                                                                 options={
-                                                                    DocTypeOption
+                                                                    TypeOptions
                                                                 }
                                                                 name="DocumentTypeUID[]"
                                                                 onChange={

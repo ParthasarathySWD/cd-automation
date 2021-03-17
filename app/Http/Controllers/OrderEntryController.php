@@ -364,8 +364,8 @@ class OrderEntryController extends Controller
         $OrderUID = $request->input('OrderUID');
         // echo '<pre>';print_r($OrderUID);exit;
         $OrderDocs = DB::table('tOrdersDocuments')
-            ->select('tOrdersDocuments.*', 'mDocumentTypes.DocumentTypeName', 'mUsers.UserName', 'mDocumentStatus.StatusName', 'mDocumentStatus.StatusColor')
-            ->leftJoin('mDocumentTypes', 'mDocumentTypes.DocumentTypeUID', '=', 'tOrdersDocuments.DocumentTypeUID')
+            ->select('tOrdersDocuments.*', 'mDocumentType.DocumentTypeName', 'mUsers.UserName', 'mDocumentStatus.StatusName', 'mDocumentStatus.StatusColor')
+            ->leftJoin('mDocumentType', 'mDocumentType.DocumentTypeUID', '=', 'tOrdersDocuments.DocumentTypeUID')
             ->leftJoin('mUsers', 'mUsers.UserUID', '=', 'tOrdersDocuments.CreatedByUserUID')
             ->leftJoin('mDocumentStatus', 'mDocumentStatus.StatusUID', '=', 'tOrdersDocuments.OcrStatus')
             ->where('tOrdersDocuments.OrderUID', '=', $OrderUID)
@@ -508,12 +508,17 @@ class OrderEntryController extends Controller
      */
     public function AddNewDocument(Request $request)
     {
-        echo '<pre>';print_r($request>all());exit;
+        // echo '<pre> Input';print_r($request->input());
+        // echo '<pre> Order FIle';print_r($request->file('OrderDocuments'));
+        // exit;
+        $attributes = [
+            'DocumentTypeUID' => 'Document Type',
+        ];
         $validation = Validator::make($request->all(), [
             'DocumentTypeUID' => 'required',
             'OrderDocuments' => 'required',
             // 'File.*' => 'mimes:pdf,xlsx,docx,txt,zip'
-        ]);
+        ],[], $attributes);
 
         /** form validation */
         if ($validation->fails()) {
@@ -524,6 +529,8 @@ class OrderEntryController extends Controller
             ]);
         } else {
             $OrderUID = $request->input('OrderUID');
+            $UserDetails = $request->user()->toArray();
+            $UserUID = $UserDetails['UserUID'];
 
             /** check order file is exits or not empty */
             if($request->hasFile('OrderDocuments'))
@@ -597,6 +604,25 @@ class OrderEntryController extends Controller
             /** end */
         }
 
+    }
+    /** end */
+
+    public function FetchAllDocumentTypes(Request $request)
+    {
+        $DocumentTypes = DB::table('mDocumentType')
+            ->select('*')
+            ->where('Active', 1)
+            ->get();
+        return response()->json($DocumentTypes);
+    }
+
+    public function FetchAllClients(Request $request)
+    {
+        $Clients = DB::table('mClients')
+            ->select('*')
+            ->where('Active', 1)
+            ->get();
+        return response()->json($Clients);
     }
 
 }

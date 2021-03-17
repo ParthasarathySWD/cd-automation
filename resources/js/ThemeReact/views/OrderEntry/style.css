@@ -11,4 +11,5 @@
 
 .form-check-input[type=radio] {
     border-color: #142e71 !important;
+    border-width: 2px !important;
 }

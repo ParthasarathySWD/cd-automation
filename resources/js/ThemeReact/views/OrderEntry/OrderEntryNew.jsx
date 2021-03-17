@@ -1,4 +1,4 @@
-import React, { useState, Component, useCallback } from 'react'
+import React, { useState, Component, useCallback, useEffect } from 'react'
 import { useDropzone } from 'react-dropzone'
 import * as Icon from 'react-feather';
 import Select from 'react-select';
@@ -32,6 +32,8 @@ function OrderEntry() {
     const [loannumber, setLoanNumber] = useState("");
     const [formError, setFormErrors] = useState([]);
     const [isLoading, setIsLoading] = useState(false);
+    const [DocTypeOption, setDocTypeOption] = useState({});
+    const [ClientOption, setClientOption] = useState({});
     /** END */
 
     /** Radio Button Base Section Show Hide */
@@ -68,6 +70,23 @@ function OrderEntry() {
                 }
             };
         }
+
+        console.log('Effect Ran');
+        async function fetchOrderEntryData() {       
+
+            let docTyperesponse = await fetchDocumentTypes();
+            
+            if(docTyperesponse.data){
+                setDocTypeOption(docTyperesponse.data);
+            }
+
+            let clientesponse = await fetchClients();
+            
+            if(clientesponse.data){
+                setClientOption(clientesponse.data);
+            }
+        }
+        fetchOrderEntryData();
     }, [Display.source_docs, Display.mock_docs, Display.mannual_edit]);
     /** end */
     
@@ -160,20 +179,54 @@ function OrderEntry() {
     };
     /** end */
 
-   
-    const DocTypeOption = [
-        { value: '1', label: 'Prelim' },
-        { value: '2', label: 'Title Commitment' },
-        { value: '3', label: 'Closing' },
-        { value: '4', label: 'Mortgage' }
-    ]
+    /** fetch document type */
+    function fetchDocumentTypes() {
+        return new Promise((resolve, reject) => {
+            axios.get('order/fetchDocumentTypes', {})
+            .then(function (response) {
+                resolve(response);     
+            })
+            .catch(function (error) {
+                resolve(error);
+            })
+        });
+    }
+    /** end */
 
-    const ClientOption = [
-        { value: '1', label: 'Test' },
-        { value: '2', label: 'Zion Bank' },
-        { value: '3', label: 'Demo' },
-        { value: '4', label: 'Admin' }
-    ]
+    /** fetch clients */
+    function fetchClients() {
+        return new Promise((resolve, reject) => {
+            axios.get('order/fetchClients', {})
+            .then(function (response) {
+                resolve(response);     
+            })
+            .catch(function (error) {
+                resolve(error);
+            })
+        });
+    }
+    /** end */   
+    
+    console.log('Document Type :', DocTypeOption);
+    console.log('Client :', ClientOption);
+
+    if (DocTypeOption && DocTypeOption.length > 0) {
+       var TypeOptions = DocTypeOption.map((val)=>{
+            return {value:val.DocumentTypeUID, label:val.DocumentTypeName}
+        }); 
+    }
+    if (ClientOption && ClientOption.length > 0) {
+       var ClientOpt = ClientOption.map((val)=>{
+            return {value:val.ClientUID, label:val.ClientName}
+        }); 
+    }
+
+    // const ClientOption = [
+    //     { value: '1', label: 'Test' },
+    //     { value: '2', label: 'Zion Bank' },
+    //     { value: '3', label: 'Demo' },
+    //     { value: '4', label: 'Admin' }
+    // ]
 
     /** Supporting file Documnet Type onchange event */
     const DocumentTypeChange = event => {
@@ -517,7 +570,7 @@ function OrderEntry() {
                                         <Select
                                             className=""
                                             ref={selectInputRef}
-                                            options={ClientOption}
+                                            options={ClientOpt}
                                             name="ClientUID"
                                             menuPortalTarget={document.body}
                                             styles={{
@@ -644,7 +697,7 @@ function OrderEntry() {
                                                                     <Select
                                                                         className="custom_select"
                                                                         options={
-                                                                            DocTypeOption
+                                                                            TypeOptions
                                                                         }
                                                                         name="DocumentTypeUID[]"
                                                                         onChange={

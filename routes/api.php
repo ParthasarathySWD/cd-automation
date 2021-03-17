@@ -51,7 +51,8 @@ Route::middleware(['auth:sanctum'])->group(function () {
     Route::resource('orderentry', OrderEntryController::class);
     Route::get('orderdocs/fetchOrderDocs', 'App\Http\Controllers\OrderEntryController@GetOrderDocumentsByOrderUID');
     Route::get('orderdocs/fetchOrderNotes', 'App\Http\Controllers\OrderEntryController@GetOrderNotesByOrderUID');
-    Route::get('orderdocs/addNewDocs', 'App\Http\Controllers\OrderEntryController@AddNewDocument');
+    Route::post('orderdocs/addNewDocs', 'App\Http\Controllers\OrderEntryController@AddNewDocument');
     Route::get('fetchCDRows', 'App\Http\Controllers\Api\CDOperations@fetchFields');
-
+    Route::get('order/fetchDocumentTypes', 'App\Http\Controllers\OrderEntryController@FetchAllDocumentTypes');
+    Route::get('order/fetchClients', 'App\Http\Controllers\OrderEntryController@FetchAllClients');
 });
