@@ -12,7 +12,7 @@ import TableLink from  '../../../components/DataTableComponents/TableLink';
 import Tippy from '@tippyjs/react';
 import 'tippy.js/dist/tippy.css'; // optional
 import "react-datepicker/dist/react-datepicker.css";
-import image from '../../../../images/thinking.gif';
+// import image from '../../../../images/thinking.gif';
 // import ReactTooltip from 'react-tooltip';
 // import MyOrderWidgets from './MyOrderWidgets';
 // multi select
@@ -321,9 +321,9 @@ function onchange(e)
                           </div>
                             
                           <section>
-                         <Tippy content="Hiii ">
+                         {/* <Tippy content="Hiii ">
                           <a href="#"><img  style={{height:"120px",float:right}} src={image}/></a>
-                          </Tippy>
+                          </Tippy> */}
                           
                           </section>
                           

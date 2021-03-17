@@ -116,6 +116,21 @@ function OrderDocuments(props) {
     }
     /** end */
 
+    /** Add New Documents Button On Click Event */
+    const showMailModal = (event) => {
+        event.preventDefault();
+        cash('#compose-mail-modal').modal('show');
+    }
+    /** end */
+
+    /** Cancel Documents Button On Click Event */
+    const hideMailModal = (event) => {
+        event.preventDefault(); 
+        setIsLoading(false)
+        cash('#compose-mail-modal').modal('hide');
+    }
+    /** end */
+
 
     /** Use Effect Function Begin */
     useEffect(() => {
@@ -346,7 +361,11 @@ function OrderDocuments(props) {
                         >
                             <Icon.PlusCircle className="w-5 h-5 mr-1"/> Add New Document
                         </button>
-                        <button type="button" className="btn btn-sm bg-theme-17 text-white w-30 mr-2 ml-auto mb-2 float-right">
+                        <button 
+                            type="button" 
+                            className="btn btn-sm bg-theme-17 text-white w-30 mr-2 ml-auto mb-2 float-right"
+                            onClick={showMailModal}
+                        >
                             <Icon.Mail className="w-5 h-5 mr-1"/> Compose Mail
                         </button>
                     </div>
@@ -493,6 +512,48 @@ function OrderDocuments(props) {
                                     </button>
                                     <button type="submit" className="btn btn-sm btn-primary w-30 mr-1 mb-2"> 
                                         <Icon.Save className="w-4 h-4 mr-2" /> {(isLoading)? 'Loading...' : 'Save Documnets'} 
+                                    </button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {/* end */}
+            {/* Compose Mail Modal Section Begin */}
+            <div className="col-span-12">
+                <div id="compose-mail-modal" className='modal' aria-hidden="true" data-backdrop="static" data-keyboard="false">
+                    <div className="modal-dialog modal-lg">
+                        <div className="modal-content">
+                            <form
+                                id="frm-order-compose-mail"
+                                encType="multipart/form-data"
+                                onSubmit={handleSubmit}
+                            >
+                                <div className="modal-header">
+                                    <h2 className="font-medium text-base mr-auto">Compose Mail</h2>
+                                    <a data-dismiss="modal" href="#!" onClick={cancelnewdoc}> 
+                                        <Icon.X className="w-5 h-5 text-gray-500" /> 
+                                    </a>
+                                </div> 
+
+                                <div className="modal-body pt-0">
+                                    <div className=" grid grid-cols-12 gap-4 gap-y-3">
+                                        <div className="col-span-12 lg:col-span-12 sm:col-span-12 mt-3">
+                                          <h6>Compose Mail With Attachment</h6>                                                                                    
+                                        </div>
+                                    </div>
+                                </div> 
+
+                                <div className="modal-footer text-right"> 
+                                    <button 
+                                        className="btn btn-sm btn-dark-soft w-24 mr-1 ml-auto mb-2"
+                                        onClick={hideMailModal}
+                                    > 
+                                        <Icon.X className="w-4 h-4 mr-2" /> Cancel 
+                                    </button>
+                                    <button type="submit" className="btn btn-sm btn-primary w-30 mr-1 mb-2"> 
+                                        <Icon.Save className="w-4 h-4 mr-2" /> {(isLoading)? 'Loading...' : 'Save Mail'} 
                                     </button>
                                 </div>
                             </form>
