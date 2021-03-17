@@ -7,8 +7,21 @@ import OrderCDPage from '../CD-Details/CDTabList';
 import * as Icon from 'react-feather';
 import './style.css';
 // progress bar 
-import { CircularProgressbar } from 'react-circular-progressbar';
-import 'react-circular-progressbar/dist/styles.css';
+import {
+  CircularProgressbar,
+  CircularProgressbarWithChildren,
+  buildStyles
+} from "react-circular-progressbar";
+import "react-circular-progressbar/dist/styles.css";
+// Animation
+import { easeQuadInOut } from 'd3-ease';
+import AnimatedProgressProvider from "../../CommonComponents/AnimatedProgressProvider";
+import ChangingProgressProvider from "../../CommonComponents/ChangingProgressProvider";
+
+// Radial separators
+//   import RadialSeparators from "./RadialSeparators";
+
+const percentage = 66;
 
 
 
@@ -46,7 +59,17 @@ function OrderSummary(props) {
 
               <div className="mx-3 text-center w-28 relative class_1">
                 <span class="w-12 block mx-auto mb-1"> 
-                  <CircularProgressbar value={percentage} text="100%" />
+                <ChangingProgressProvider values={[0, 100]}>
+                  {percentage => (
+                    <CircularProgressbar
+                      value={percentage}
+                      text={`${percentage}%`}
+                      styles={buildStyles({
+                        pathTransitionDuration: 0.15
+                      })}
+                    />
+                  )}
+                </ChangingProgressProvider>
                 </span>
                 <span class="text-white absolute right-0" style={{zIndex:"10",right:"-20%",top:"26%"}}>
                  <svg style={{fill:"#fac403"}} xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M14 2h-7.229l7.014 7h-13.785v6h13.785l-7.014 7h7.229l10-10z"/></svg>
@@ -58,7 +81,17 @@ function OrderSummary(props) {
               
               <div className="mx-3 text-center w-28 relative class_2">
                 <span class="w-12 block mx-auto mb-1"> 
-                  <CircularProgressbar value={percentage1} text="100%" />
+                <ChangingProgressProvider values={[0, 40,60]}>
+                  {percentage => (
+                    <CircularProgressbar
+                      value={percentage}
+                      text={`${percentage}%`}
+                      styles={buildStyles({
+                        pathTransitionDuration: 0.15
+                      })}
+                    />
+                  )}
+                </ChangingProgressProvider>
                 </span>
                 <span class="text-white absolute right-0" style={{zIndex:"10",right:"-20%",top:"26%"}}>
                  <svg style={{fill:"#eff3f6"}} xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M14 2h-7.229l7.014 7h-13.785v6h13.785l-7.014 7h7.229l10-10z"/></svg>
@@ -69,7 +102,18 @@ function OrderSummary(props) {
               </div>
               <div className="mx-3 text-center w-28 relative class_3">
                 <span class="w-12 block mx-auto mb-1"> 
-                  <CircularProgressbar value={percentage2} text="100%" />
+                  {/* <CircularProgressbar value={percentage2} text="100%" /> */}
+                  <ChangingProgressProvider values={[0]}>
+                  {percentage => (
+                    <CircularProgressbar
+                      value={percentage}
+                      text={`${percentage}%`}
+                      styles={buildStyles({
+                        pathTransitionDuration: 0.15
+                      })}
+                    />
+                  )}
+                </ChangingProgressProvider>
                 </span>
                 <span>
                   <p class="text-color">Order Completed</p>

@@ -7,6 +7,7 @@ use App\Http\Controllers\NoteController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\ClientsController;
 use App\Http\Controllers\OrderEntryController;
+use App\Http\Controllers\MTemplatesController;
 
 /*
 |--------------------------------------------------------------------------
@@ -49,6 +50,7 @@ Route::middleware(['auth:sanctum'])->group(function () {
     Route::resource('/users', UserController::class);
     Route::resource('/clients', ClientsController::class);
     Route::resource('orderentry', OrderEntryController::class);
+    Route::resource('formfields', MTemplatesController::class);
     Route::get('orderdocs/fetchOrderDocs', 'App\Http\Controllers\OrderEntryController@GetOrderDocumentsByOrderUID');
     Route::get('orderdocs/fetchOrderNotes', 'App\Http\Controllers\OrderEntryController@GetOrderNotesByOrderUID');
     Route::post('orderdocs/addNewDocs', 'App\Http\Controllers\OrderEntryController@AddNewDocument');

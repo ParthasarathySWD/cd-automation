@@ -1,11 +1,12 @@
-import { Button } from 'bootstrap';
+// import { Button } from 'bootstrap';
 import React, { useState, useEffect } from 'react';
 import PageTwo from './CDsecondpage';
 import CDE from "../../../components/ContentEditable";
 import Table from "react-bootstrap/Table";
 import * as Icon from 'react-feather';
-
-
+import Select from 'react-select';
+import { Button, UncontrolledPopover, PopoverHeader, PopoverBody } from 'reactstrap';
+// import { Popover, ArrowContainer} from 'react-tiny-popover';
 function CDDetails(props){
     const handleChange = (e) => {
         console.log(e);
@@ -15,8 +16,66 @@ function CDDetails(props){
         props.changeTab(2);
    }
 
-   const [data, setData] = useState({})
+   const templateOptions = [
+    { value: '1', label: 'Closing Template'},
+    { value: '2', label: 'Mortage Template' },
+    { value: '3', label: 'Signing Template' }
+    ]
 
+    // const[selectedVal,setSelectedVal]=useState([]);
+    
+    // const[getVal,getSelectedVal]=useState();
+    // const[selectedVal,setSelectedVal]=useState();
+    const[html, setHtml] = useState(<div className="p-5" style={{backgroundColor:'#fbffffc4',boxShadow:'#b2b2b5 0px 2px 8px 2px',}}><input type="checkbox" className="mr-2"/>Closing Template<br/>
+    <input type="checkbox" className="mr-2"/>Signing Template<br/>
+    <input type="checkbox" className="mr-2"/>Mortage Template<br/>
+    <button className="p-1 mt-2 ml-20 btn btn-xs btn-primary">submit</button></div>);
+
+    // var handleChanges = (e) => {
+        
+
+    //     setSelectedVal(Array.isArray(e)?e.map(x=>x.label):[]);
+    //     // console.log(selectedVal);
+    //   };
+    
+
+    // let handleContentEditableChange = (e) => {
+    //     let value = e.target.value;
+    //     setHtml(value);
+    // }
+    
+    
+    // const [popoverOpen, setPopoverOpen] = useState(false);
+    // const toggle = () => setPopoverOpen(!popoverOpen);
+   
+    
+    // const FileBadge = (template) => {
+    //     switch (template) {
+    //         case 'Closing Template':
+    //             return ({
+    //                 variant:'success'
+    //             })
+    //         break;
+    //         case 'Mortage Template':
+    //             return ({
+    //                 variant:'primary'
+    //             })
+    //         break;
+    //         case 'Signing Template':
+    //             return ({
+    //                 variant:'warning'
+    //             })
+    //         break;
+    //         default:
+    //             return ({
+    //                 variant:'secondary'
+    //             })
+    //             break;
+                
+    //             }
+    //         }
+    const[isPopoverOpen,setIsPopoverOpen]=useState();
+    const[popOverContent,setPopOverContent]=useState();
     const [state, setstate] = useState({
         DateIssued: '',
         ClosingDate: '',
@@ -49,9 +108,31 @@ function CDDetails(props){
 return(
         <div>                    
             <div class="intro-y flex items-center mt-6">
+                {/* <div className="grid grid-cols-12 gap-3 mt-3">
+                <label className="field-label">Template</label>
+                <Select name="multiselect"  
+                            isMulti 
+                            hideSelectedOptions={true}
+                            hideSelectedOptions={false}
+                            controlShouldRenderValue = {false} 
+                            options={templateOptions} 
+                            onChange={handleChanges}
+                            // menuPortalTarget={​​​​​​​​document.body}​​​​​​​​
+                            // styles={​​​​​​​​{​​​​​​​​ menuPortal: base => ({​​​​​​​​ ...base, zIndex: 9999 }​​​​​​​​) }​​​​​​​​}​​​​​​​​
+
+
+
+                        />
+                      
+                      {selectedVal.map((item) => {
+                            let BadgeClassName = FileBadge(item);
+                            return <Badge className="selected-badge-values align-middle" variant={BadgeClassName.variant}><span className="badge-value align-middle pb-2" style={{fontSize:'12px'}}>{item}</span><button className="badge-button align-middle pr-1 pl-1" style={{background:'none',color:'white',border:'none'}}><i className='fa fa-times-circle fa-lg' id={item} onClick={removeOption}></i></button></Badge>
+                        })}
+                </div> */}
             <h2 class="text-lg font-medium mr-auto">
                 Closing Disclosure
             </h2>
+            
         </div>
         <div className="grid grid-cols-12 gap-3 mt-3">
             <div className="intro-y col-span-12 lg:col-span-12">
@@ -117,8 +198,52 @@ return(
                                                         <td><label>Lender </label></td>
                                                         <td><CDE className="change_input_field" html="Freedom Mortgage Corporation " onChange={handleChange}/></td>
                                                     </tr>
+                                                    <Button id="PopoverLegacy" type="button" className="notification notification--bullet"> 
+                                                    {/* <i className="fa fa-circle fa-sm text-danger" style={{boxShadow: '0px 0px 10px 0px rgba(255, 0, 0, 0.46)',fontSize:'12px',padding:'0px'}}></i> */}
+                                                    </Button>
+                                                    <UncontrolledPopover trigger="legacy" placement="bottom" target="PopoverLegacy" style={{borderRadius:'1px solid black'}}>
+                                                        <PopoverHeader><div className="mt-2 p-2" style={{boxShadow:'#b2b2b5 2px 2px 0px 0px',backgroundColor:'#1c3271',color:'white'}}>Templates</div><hr/></PopoverHeader>
+                                                        <PopoverBody>
+                                                            {html}
+                                                        </PopoverBody>
+                                                    </UncontrolledPopover>
+                                                {/* <Popover
+                                                    isOpen={isPopoverOpen}
+                                                    position={["top", "right"]}
+                                                    padding={10}
+                                                    onClickOutside={() => {setIsPopoverOpen(true)}}
+                                                    content={({ position, targetRect, popoverRect }) => (
+                                                        <ArrowContainer // if you'd like an arrow, you can import the ArrowContainer!
+                                                        position={position}
+                                                        childRect={targetRect}
+                                                        popoverRect={popoverRect}
+                                                        arrowColor={"blue"}
+                                                        arrowSize={10}
+                                                        arrowStyle={{ opacity: 0.7 }}
+                                                        >
+                                                        <div
+                                                            style={{ backgroundColor: "blue", opacity: 0.7 }}
+                                                            onClick={() => {
+                                                            {setIsPopoverOpen(!isPopoverOpen)}}}
+                                                            
+                                                        >
+                                                            Hi! I'm popover content. Here's my position: {position}.
+                                                        </div>
+                                                        </ArrowContainer>
+                                                    )}
+                                                    >
+                                                    <div
+                                                        style={{ cursor: "pointer" }}
+                                                        onClick={() => {setIsPopoverOpen(true)}}
+                                                    >
+                                                        Click me!
+                                                    </div>
+                                                    </Popover> */}
                                                 </tbody>
                                             </table>
+                                            <div>
+                                               
+                                            </div>
                                         </div>
                                         <div className="col-span-4 lg:col-span-4">
                                             <div class="flex flex-col sm:flex-row items-center">

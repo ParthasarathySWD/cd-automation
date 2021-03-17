@@ -1,4 +1,4 @@
-import React, { Component, useCallback } from 'react';
+import React, { useState,Component, useCallback } from 'react';
 // dropzone
 import { useDropzone } from 'react-dropzone'
 // feather icon
@@ -65,6 +65,9 @@ reader.readAsArrayBuffer(file)
 
 }, [])
 const { getRootProps, getInputProps } = useDropzone({ onDrop })
+
+const[htmlcontent,sethtmlcontent]=useState(<div>I'm a custom tippy content</div>);
+const [visible, setVisible] = useState(false);
 
 return (
 <div>
@@ -278,9 +281,10 @@ return (
 
 <div className="grid grid-cols-12 gap-3">
   <div className=" col-span-3 lg:col-span-3 sm:col-span-3 mt-3">
-    <Tippy content="Hello">
+    <Tippy content={htmlcontent}>
       <button className="btn btn-sm btn-dark-soft w-24 mr-1 ml-auto mb-2">My button</button>
     </Tippy>
+    
   </div>
 </div>
 <div className="grid grid-cols-12 gap-3 mt-6">

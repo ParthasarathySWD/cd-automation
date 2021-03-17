@@ -19,11 +19,11 @@ class CDfourthpageSeeder extends Seeder
                 'FormFieldName' =>'Assumption',
                 'FormFieldHash' => bcrypt('Assumption'),
                 'InputTypeUID' => '4',
-                'FormFieldLabel' => 'Assumption',
                 'FormFieldLength'=> 100,    
                 'FormFieldRequire' => 1,
                 'FormFieldPosition' => '1',
-                'FormFieldInstruction' => 'Assumption',
+                'FormFieldInstruction' => 'will not allow assumption of this loan on the original terms
+                loan on the original terms,',
                 'FormFieldPlaceholder'=>'value',
                 'FormGrouping'=>'Loan Disclosures',
                 'Active' => 1,
